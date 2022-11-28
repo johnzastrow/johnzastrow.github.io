@@ -29,10 +29,10 @@ Here is the default user screenshot showing the toolbars and plugins installed
 
 ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/default_user.png)
 
-
-
 Here is the copied default user after simply copying the profile
 
-![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/copied_user.png)
+![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/copied_user.png)When you switch between profiles, Qgis spawns a new instance
+
+![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/SwitchingUsers.png)
 
 
