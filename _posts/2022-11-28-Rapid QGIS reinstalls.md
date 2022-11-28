@@ -7,7 +7,7 @@ tags: [qgis, gis]
 comments: false
 ---
 
-This is a living post. Check back for updates as I learned more.
+**This is a living post. Check back for updates as I learned more.**
 
 I find myself installing Qgis several times per year, and sometimes monthly (long story) and then spend the next day or two setting things up the way I like them. I knew that years ago the story around rapidly copying settings from one install to the next wasn't perfect, but I recently looked at it again.
 
@@ -33,6 +33,6 @@ Here is the copied default user after simply copying the profile
 
 ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/copied_user.png)When you switch between profiles, Qgis spawns a new instance
 
-![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/SwitchingUsers.png)
+![loading-ag-974](C:\Users\br8kw\Documents\github\johnzastrow.github.io\_posts\img\SwitchingUsers.png)
 
 
