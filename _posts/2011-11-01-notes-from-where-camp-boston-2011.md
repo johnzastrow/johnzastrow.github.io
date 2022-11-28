@@ -59,7 +59,7 @@ The session board at Where camp Boston 2011
 - — <http://leaflet.cloudmade.com/>
 
 
-<figure aria-describedby="caption-attachment-248" class="wp-caption alignnone" id="attachment_248" style="width: 150px">[![sailing, snow, halloween, boston, crazy, awesome!](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0085-150x150.jpg "IMAG0085")](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0085.jpg)<figcaption class="wp-caption-text" id="caption-attachment-248">sailing, snow, halloween, boston, crazy, awesome!</figcaption></figure>
+[![sailing, snow, halloween, boston, crazy, awesome!](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0085-150x150.jpg "IMAG0085")](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0085.jpg)sailing, snow, halloween, boston, crazy, awesome!
 
 Crazy folks out sailing. When I left at 6pm-ish it was raining hard with snow mixed in and nearly dark out – they were still sailing. I take my hand off to them.
 
