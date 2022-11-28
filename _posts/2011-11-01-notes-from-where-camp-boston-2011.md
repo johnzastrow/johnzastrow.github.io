@@ -26,7 +26,9 @@ I had a great time at this [little event](http://www.wherecampboston.com/ "Where
 
 So what follows are my notes from Where Camp Boston 2011, and in generally chronological order.
 
-<figure aria-describedby="caption-attachment-247" class="wp-caption alignnone" id="attachment_247" style="width: 150px">[![Session board](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0087-150x150.jpg "IMAG0087")](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0087.jpg)<figcaption class="wp-caption-text" id="caption-attachment-247">The session board at Where camp Boston 2011</figcaption></figure>
+[![Session board](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0087-150x150.jpg "IMAG0087")](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0087.jpg) 
+
+The session board at Where camp Boston 2011
 
 - **Geocouch** – finally heard someone using this spatially-enabled, NoSQL data storage technology. It does seem that many NoSQL solutions have at least X,Y spatial capabilities and data types. I’m kinda torn between Cassandra and MongoDB. Although, there are SOoo many commercial/cloud offerings out there if you just want to store points. See below
 - — **CouchDB** – <http://couchdb.apache.org/>
