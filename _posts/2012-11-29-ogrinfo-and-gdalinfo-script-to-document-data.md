@@ -13,7 +13,6 @@ categories:
 
 I needed to recursively document a bunch of Shapefiles and geotiffs in a hierarchy of directories (soon file geodatabses). I can’t use Arc\*anything so I’m using ogrinfo and gdalinfo in many directories. I started using xargs, but ran into weirdness beyond white characters, and involving bash string manipulation (I’m running on Cygwin in windows…). So I switched approaches and came up with this little ditty.
 
-```
 ```bash
 #!/bin/sh
 

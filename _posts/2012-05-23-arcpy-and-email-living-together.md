@@ -14,7 +14,6 @@ categories:
 
 The other day I needed to process some data for the whole country and I wanted to get the data out by the next morning. The processing was comprised of two steps in Python and ESRI’s ArcPy for ArcGIS 10 and each needed to run for several hours. So, instead of sitting waiting for the first to finish, I figured it would be cool if the script would email me when it was done? And, yes it was cool. Below is an example of how to do it. Note that the indents get screwed up by WordPress.
 
-```
 ```python
 # Import arcpy and other useful modules
 
@@ -185,7 +184,6 @@ print  "----------- Done! ---------- "
 
 When the script runs, it writes this to the screen (which is kinda sloppy and needs some cleaning)
 
-```
 ```bash
 
 05/25/2012 16:43:19
@@ -228,7 +226,6 @@ done!
 
 And this for the output log “2012\_05\_25\_16-43-19\_Appended\_Classes.txt”.
 
-```
 ```bash
 
 imprv_1km_AL_Huntsville_city - 05/25/2012 16:43:43
