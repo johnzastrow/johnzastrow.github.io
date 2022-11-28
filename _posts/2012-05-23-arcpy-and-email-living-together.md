@@ -15,7 +15,7 @@ categories:
 The other day I needed to process some data for the whole country and I wanted to get the data out by the next morning. The processing was comprised of two steps in Python and ESRI’s ArcPy for ArcGIS 10 and each needed to run for several hours. So, instead of sitting waiting for the first to finish, I figured it would be cool if the script would email me when it was done? And, yes it was cool. Below is an example of how to do it. Note that the indents get screwed up by WordPress.
 
 ```
-<pre class="lang:python decode:1 ">
+```python
 # Import arcpy and other useful modules
 
 import sys, os, time, traceback, shutil, arcpy, math, datetime, string, smtplib as s
