@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Rapid QGIS reinstalls - Portable settings and profiles
-subtitle: Each post also has a subtitle
+subtitle: Moving or reinstalling Qgis just got easier for me by copying profiles
 gh-badge: [star, fork, follow]
 tags: [qgis, gis]
 comments: false
@@ -24,7 +24,3 @@ The user profile folder seems to contain all settings, plugins, and caches used 
 and then chose that user under *Settings/User Profiles*
 
 ![](.\img\308488efb711756927c44c0f20bc29af43e8b550.png)
-
-
-
-
