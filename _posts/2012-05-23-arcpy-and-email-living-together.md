@@ -186,7 +186,7 @@ print  "----------- Done! ---------- "
 When the script runs, it writes this to the screen (which is kinda sloppy and needs some cleaning)
 
 ```
-<pre class="lang:bash decode:1 ">
+```bash
 
 05/25/2012 16:43:19
 C:\Users\john.zastrow\Documents\WORKING\PLACES_FGDB.gdb\merged1km\imprv_1km_merged20120525_164319 - I just renamed at 05/25/2012 16:43:30
@@ -229,7 +229,7 @@ done!
 And this for the output log “2012\_05\_25\_16-43-19\_Appended\_Classes.txt”.
 
 ```
-<pre class="lang:bash decode:1 ">
+```bash
 
 imprv_1km_AL_Huntsville_city - 05/25/2012 16:43:43
 imprv_1km_AL_Birmingham_city - 05/25/2012 16:43:51

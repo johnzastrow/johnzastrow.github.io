@@ -16,7 +16,7 @@ About three times a year I need to make a listing of files in a directory. Usual
 So, back in 2002 I made this little script. Enjoy.
 
 ```
-<pre class="lang:bash decode:1 ">
+```bash
 
 #!/bin/sh
 # jcz 2012-June-16

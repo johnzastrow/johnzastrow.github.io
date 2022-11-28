@@ -25,7 +25,7 @@ Step 3. You are lazy like me, so copy those binaries right into the /bin directo
 Step 4. Put the script below into the same /bin directory because you are lazy
 
 ```
-<pre class="lang:bash decode:1 ">
+```bash
 ```
 
 \#!/bin/bash  
@@ -139,7 +139,7 @@ Step 5. Using cygwin, change into a directory containing some .3gp files you wan
 You’ll also get a very verbose log file of what the starting files looked like (stat) and what ffmpeg saw and did. I do love my log files 🙂
 
 ```
-<pre class="lang:bash decode:1 ">
+```bash
 
 [START]
 ********** START RUN LOG HEADER ***************

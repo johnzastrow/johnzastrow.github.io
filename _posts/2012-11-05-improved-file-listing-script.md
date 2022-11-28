@@ -13,7 +13,7 @@ categories:
 Run this anywhere and it will recurse through your directories and make some readable output of your files. It’s set to list interesting things for GIS data. I also finally got it working where it will find all the .zip files and list their contents on most environments – even with spaces in the file names and directories.
 
 ```
-<pre class="lang:bash decode:1 ">
+```bash
 
 #!/bin/sh
 # jcz 2012-June-16
