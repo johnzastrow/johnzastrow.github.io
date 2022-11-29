@@ -11,7 +11,9 @@ comments: false
 
 #### Data Directory Structures
 
-The design of the structures defined below should directly  in this document were inspired by concepts found in the Spatial Data Standards for Facilities, Infrastructure, and Environment (SDSFIE) version 2.6 (https://www.sdsfieonline.org/), related Geofidelis guidance, and the Maine State GIS Catalog public geospatial data access pages (http://www.maine.gov/megis/catalog/). Some work was based on prior and similar efforts for the US Navy Marine Resources section of the Naval Facilities Command Atlantic (NAVFACLANT).
+The design of the structures defined below should directly  in this document were inspired by concepts found in the [Spatial Data Standards for Facilities, Infrastructure, and Environment (SDSFIE) version 2.6](https://www.sdsfieonline.org/) , related Geofidelis guidance, and the [Maine State GIS Catalog]([Maine Office of GIS](http://www.maine.gov/megis/catalog/)) public geospatial data access pages . 
+
+
 
 **DELIVERABLES** - directories by delivery year then project name containing final products from either GPMCT or other parties. Files in these project directories should never change and never be added to.
 
@@ -24,7 +26,7 @@ Products may be data as well as documents. Data should be considered read-only -
  2020
      Project_Name_C
      Project_Name_ D
-``` 
+```
 
 **MAIN** - directories by subject then by year containing finalized, authoritative data that is the most recent, validated, complete, and approved data owned by GPMCT. Files in these subject directories should only change when 1) a new final version is available, 2) new authoritative files are added to GPMCT’s holdings, or 3) data should be removed because they are deemed too problematic for use.
 
@@ -34,7 +36,6 @@ Data should be considered read-only until replaced by a newer finalized version.
 
 {: .box-note}
 From an older version of SDSFIE than is current. I can't access SDSFIE materials any more as it's primarily a function for federal organizations, like defense installations, and the current useful tools and documentation are largely locked away... because how a base stores information about their roads and swampy hazards is a matter of national security it seems.
-
 
 | SDSFIE 2.6 Classes        | Maine State GIS Entity Classes                       | GPMCT Subject Directory Name | Contents                                                                                                        |
 | ------------------------- | ---------------------------------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -58,6 +59,7 @@ From an older version of SDSFIE than is current. I can't access SDSFIE materials
 
 Creation Scripts
 
+```bash
 mkdir -p DATA/MAIN/Boundaries/2022
 mkdir -p DATA/MAIN/Biota_Ecological/2022
 mkdir -p DATA/MAIN/Cadastre/2022
@@ -77,3 +79,4 @@ mkdir -p DATA/MAIN/Hazards/2022
 mkdir -p DATA/MAIN/Natural_Resources/2022
 mkdir -p DATA/DELIVERABLES/2022/Project_A
 mkdir -p DATA/DELIVERABLES/2022/Project_B
+```
