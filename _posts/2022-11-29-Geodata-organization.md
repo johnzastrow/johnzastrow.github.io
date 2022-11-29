@@ -17,13 +17,14 @@ The design of the structures defined below should directly  in this document wer
 
 Products may be data as well as documents. Data should be considered read-only - stored exactly as delivered without changes, additions, or restructuring. Data to be used should be copied into working directories outside the DELIVERABLES tree.
 
-> 2019
->     Project_Name_A
->     Project_Name_B
-> 2020
->     Project_Name_C
->     Project_Name_ D
-> 
+```
+ 2019
+     Project_Name_A
+     Project_Name_B
+ 2020
+     Project_Name_C
+     Project_Name_ D
+``` 
 
 **MAIN** - directories by subject then by year containing finalized, authoritative data that is the most recent, validated, complete, and approved data owned by GPMCT. Files in these subject directories should only change when 1) a new final version is available, 2) new authoritative files are added to GPMCT’s holdings, or 3) data should be removed because they are deemed too problematic for use.
 
