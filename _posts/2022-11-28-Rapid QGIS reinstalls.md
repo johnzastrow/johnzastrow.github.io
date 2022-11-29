@@ -19,8 +19,6 @@ This paragraph from the docs is informative. The isolation, including installed 
 
 *Unless changed, the profile of the last closed QGIS session will be used in the following QGIS sessions."*
 
-
-
 Here is the directory structure of a profile (settings) for the user *SimpleUser*. Since I stripped down the toolbars to make a simple data explorer out of Qgis, it  made the *QGISCUSTOMIZATIONS.ini* file for me.
 
 ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/33c585aa4d205f3ae771b5187e70c634cfc0a7c7.png)
@@ -44,3 +42,7 @@ Here is the copied default user after simply copying the profile
 When you switch between profiles, Qgis spawns a new instance under that profile name.
 
 ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/SwitchingUsers.png)
+
+BTW, I spend about half my time in Linux ([Ubuntu MATE](https://ubuntu-mate.org/) flavor to be exact) and here is profiles look like in Linux - pretty much the same but under the user home directory under *.local/share/QGIS/QGIS3/profiles/*
+
+![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/QgisProfilesMATE.png)
