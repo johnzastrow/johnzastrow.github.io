@@ -11,9 +11,13 @@ comments: false
 
 #### Data Directory Structures
 
+{: .box-note}
+
+I've used this approach several times with years between and each time I have to develop it from memory. So I'm going to put it here for future use and revision. Hopefully it helps you too.
+
+
+
 The design of the structures defined below should directly  in this document were inspired by concepts found in the [Spatial Data Standards for Facilities, Infrastructure, and Environment (SDSFIE) version 2.6](https://www.sdsfieonline.org/) , related Geofidelis guidance, and the [Maine State GIS Catalog]([Maine Office of GIS](http://www.maine.gov/megis/catalog/)) public geospatial data access pages . 
-
-
 
 **DELIVERABLES** - directories by delivery year then project name containing final products from either GPMCT or other parties. Files in these project directories should never change and never be added to.
 
@@ -34,7 +38,7 @@ Data should be considered read-only until replaced by a newer finalized version.
 
 **Working** - any directories created outside of DELIVERABLES and MAIN used for intermediate processing. Input data should be copied from the MAIN or DELIVERABLES trees before used in processing. 
 
-{: .box-note}
+{: .box-warning}
 From an older version of SDSFIE than is current. I can't access SDSFIE materials any more as it's primarily a function for federal organizations, like defense installations, and the current useful tools and documentation are largely locked away... because how a base stores information about their roads and swampy hazards is a matter of national security it seems.
 
 | SDSFIE 2.6 Classes        | Maine State GIS Entity Classes                       | GPMCT Subject Directory Name | Contents                                                                                                        |
