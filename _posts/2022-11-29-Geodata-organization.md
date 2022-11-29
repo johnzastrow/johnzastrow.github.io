@@ -9,17 +9,21 @@ comments: false
 
 **This is a living post. Check back for updates as I learned more.**
 
+#### Usage
+
+This is a listing of topics that can be used to group or hold data (directories, but also Esri datasets if you lean that way) and it's accompanied by some words about an approach for managing the data therein. Of course, the approach is laden with problems, but it also solves some issues that have plagued some groups. Take what you need and leave the rest.
+
 #### Data Directory Structures
 
 {: .box-note}
 
-I've used this approach several times with years between and each time I have to develop it from memory. So I'm going to put it here for future use and revision. Hopefully it helps you too.
+I've used this approach several times with years between and each time I have to develop it from memory. So I'm going to put it here for future use and revision. Hopefully it helps you too. 
 
 
 
 The design of the structures defined below should directly  in this document were inspired by concepts found in the [Spatial Data Standards for Facilities, Infrastructure, and Environment (SDSFIE) version 2.6](https://www.sdsfieonline.org/) , ISO 19115 Topic Categories [[1,]([ISO 19115 Topic Category](https://apps.usgs.gov/thesaurus/thesaurus-full.php?thcode=15)) [2]([ISO Topic Categories - NGDC Wiki](https://www.ngdc.noaa.gov/wiki/index.php/ISO_Topic_Categories)), [3]([Topic Category](https://icsm-au.github.io/metadata-working-group/defs/TopicCategory))], and the [Maine State GIS Catalog]([Maine Office of GIS]([Data Catalog](https://www.maine.gov/geolib/catalog.html))) public geospatial data access pages (the new pages follow the ISO 19115 Topics).
 
-**DELIVERABLES** - directories by delivery year then project name containing final products from either GPMCT or other parties. Files in these project directories should never change and never be added to.
+**DELIVERABLES** - directories by delivery year then project name containing final products from either this organization or other parties. Files in these project directories should never change and never be added to.
 
 Products may be data as well as documents. Data should be considered read-only - stored exactly as delivered without changes, additions, or restructuring. Data to be used should be copied into working directories outside the DELIVERABLES tree.
 
@@ -32,9 +36,9 @@ Products may be data as well as documents. Data should be considered read-only -
      Project_Name_ D
 ```
 
-**MAIN** - directories by subject then by year containing finalized, authoritative data that is the most recent, validated, complete, and approved data owned by GPMCT. Files in these subject directories should only change when 1) a new final version is available, 2) new authoritative files are added to GPMCT’s holdings, or 3) data should be removed because they are deemed too problematic for use.
+**MAIN** - directories by topic then by year containing finalized, authoritative data that is the most recent, validated, complete, and approved data owned by this organization. Files in these subject directories should only change when 1) a new final version is available, 2) new authoritative files are added to this organization’s holdings, or 3) data should be removed because they are deemed too problematic for use.
 
-Data should be considered read-only until replaced by a newer finalized version. Data can be displayed from the MAIN tree, but should not be edited there. The MAIN tree should not contain working data. Data will be updated following GPMCT data stewardship guidelines from the data management plan, or as improvements become available, until the end of the year. Then the year directories are copied to make the next year unless the data did not change in the prior year. This approach allows for historical change tracking at the cost of increased data storage.
+Data should be considered read-only until replaced by a newer finalized version. Data can be displayed from the MAIN tree, but should not be edited there. The MAIN tree should not contain working data. Data will be updated following this organization data stewardship guidelines from the data management plan, or as improvements become available, until the end of the year. Then the year directories are copied to make the next year unless the data did not change in the prior year. This approach allows for historical change tracking at the cost of increased data storage.
 
 **Working** - any directories created outside of DELIVERABLES and MAIN used for intermediate processing. Input data should be copied from the MAIN or DELIVERABLES trees before used in processing. 
 
