@@ -17,7 +17,7 @@ I've used this approach several times with years between and each time I have to
 
 
 
-The design of the structures defined below should directly  in this document were inspired by concepts found in the [Spatial Data Standards for Facilities, Infrastructure, and Environment (SDSFIE) version 2.6](https://www.sdsfieonline.org/) , related Geofidelis guidance, and the [Maine State GIS Catalog]([Maine Office of GIS](http://www.maine.gov/megis/catalog/)) public geospatial data access pages . 
+The design of the structures defined below should directly  in this document were inspired by concepts found in the [Spatial Data Standards for Facilities, Infrastructure, and Environment (SDSFIE) version 2.6](https://www.sdsfieonline.org/) , related Geofidelis guidance, and the [Maine State GIS Catalog]([Maine Office of GIS]([Data Catalog](https://www.maine.gov/geolib/catalog.html))) public geospatial data access pages . 
 
 **DELIVERABLES** - directories by delivery year then project name containing final products from either GPMCT or other parties. Files in these project directories should never change and never be added to.
 
