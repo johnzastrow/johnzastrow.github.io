@@ -1,0 +1,13 @@
+[200~From the Publii blog process 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 
+
+
+https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list.png 
+
+
+https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/04/lidar-300x201.png 
+
+
+http://northredoubt.com/n/wp-content/uploads/2013/04/lidar.png
+
+
+sed 's/http:\/\/northredoubt.com\/n\/wp-content/https:\/\/raw.githubusercontent.com\/johnzastrow\/johnzastrow.github.io\/master\/assets/g' 2013-04-12-i-love-lidar.md > 2013-04-12-i-love-lidar.mdb
