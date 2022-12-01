@@ -28,13 +28,15 @@ So, I began compiling spatialite, and at the time I was using 3.0beta1a, so I ju
 
 After making way too many typos, I got it working and am getting the expected output. I also added some timer code which tells me that from my Ubuntu VM running on my 6-month-old laptop I’m completing these ~30,000 operations in about 6 seconds against the in-memory database, including opening and closing the connection to a database and tables that are created each page load.
 
-<figure aria-describedby="caption-attachment-284" class="wp-caption alignnone" id="attachment_284" style="width: 300px">[![Sample spatialite with PHP screen](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets//uploads/2012/01/Screenshot-at-2012-01-16-094923-300x157.png "Sample spatialite with PHP screen")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets//uploads/2012/01/Screenshot-at-2012-01-16-094923.png)<figcaption class="wp-caption-text" id="caption-attachment-284">Sample spatialite with PHP screen</figcaption></figure>
+[![Sample spatialite with PHP screen](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/Screenshot-at-2012-01-16-094923.png)
 
 My next exercise will be to figure out how to connect to an existing disk-based DB and try some simpler operations. My goal will be to get my operations out the door in about 1 second on modest hardware under no load.
 
-```php
+
 
 Testing SpatiaLite on PHP
+
+```php
 
 # Testing SpatiaLite on PHP
 
@@ -212,5 +214,5 @@ echo ‘
 
 ?&gt;
 
-\[/cc\]
+```
 
