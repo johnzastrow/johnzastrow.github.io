@@ -18,7 +18,7 @@ I finally decided to do a little demo here of a common feature I need on a lot o
 
 I spend time worrying about water quality so in this example I want to what small watershed (12-digit hydrologic unit code or HUC 12’s) my Points of Interest (POIs) fall into. I also want to know what date and time the record was created or updated on. Consider the following basic map. Blue polygons are HUC12s and the stars are my POIs – both stored in the same sqlite/spatialite file (a single .db or .sqlite file).
 
-![](http://northredoubt.com/n/wp-content/uploads/2012/10/101912_0507_Spatialitea1.png)
+![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea1.png)
 
 Note that I have an unique, incrementing primary key column (PKUID), then NAME and TYPE columns. We don’t see it, but there is also a Geometry column to store the coordinates of my points.
 
@@ -45,11 +45,11 @@ HUC_12 TEXT)
 
 Now my attribute table looks like this.
 
-![](http://northredoubt.com/n/wp-content/uploads/2012/10/101912_0507_Spatialitea2.png)
+![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea2.png)
 
 OK. So I’ve got a place to store these attributes. Now let’s apply the database triggers. We’ll create to add the data during an INSERT operation, and another for an UPDATE. Note that triggers must be uniquely named in a Sqlite database. So, I’ve prefixed my triggers with the table name.
 
-![](http://northredoubt.com/n/wp-content/uploads/2012/10/101912_0507_Spatialitea3.png)
+![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea3.png)
 
 And here’s the code.
 
@@ -97,10 +97,10 @@ END
 
 Now let me use Qgis to enter a new point. The screen below is just filling in the non-calculated attributes.
 
-<figure aria-describedby="caption-attachment-628" class="wp-caption alignnone" id="attachment_628" style="width: 300px">[![No need to fill in the attributes that will be set by the trigger](http://northredoubt.com/n/wp-content/uploads/2012/10/editing_4trigger-300x221.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/editing_4trigger/)<figcaption class="wp-caption-text" id="caption-attachment-628">No need to fill in the attributes that will be set by the trigger</figcaption></figure>
+<figure aria-describedby="caption-attachment-628" class="wp-caption alignnone" id="attachment_628" style="width: 300px">[![No need to fill in the attributes that will be set by the trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/editing_4trigger-300x221.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/editing_4trigger/)<figcaption class="wp-caption-text" id="caption-attachment-628">No need to fill in the attributes that will be set by the trigger</figcaption></figure>
 
 Here’s a quick screen to show how to start and end an editing session in Qgis. You must Save your edits to commit them and fire the trigger.
 
-<figure class="wp-caption alignnone" style="width: 586px">![](http://northredoubt.com/n/wp-content/uploads/2012/10/101912_0507_Spatialitea5.png)<figcaption class="wp-caption-text">Don’t forget to SAVE your edits, or the triggers won’t fire.</figcaption></figure>
+<figure class="wp-caption alignnone" style="width: 586px">![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea5.png)<figcaption class="wp-caption-text">Don’t forget to SAVE your edits, or the triggers won’t fire.</figcaption></figure>
 
-<figure aria-describedby="caption-attachment-627" class="wp-caption alignnone" id="attachment_627" style="width: 300px">[![saved_edits_trigger](http://northredoubt.com/n/wp-content/uploads/2012/10/saved_edits_trigger-300x169.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/saved_edits_trigger/)<figcaption class="wp-caption-text" id="caption-attachment-627">Voila. The triggered attributes were updated.</figcaption></figure>
+<figure aria-describedby="caption-attachment-627" class="wp-caption alignnone" id="attachment_627" style="width: 300px">[![saved_edits_trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/saved_edits_trigger-300x169.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/saved_edits_trigger/)<figcaption class="wp-caption-text" id="caption-attachment-627">Voila. The triggered attributes were updated.</figcaption></figure>

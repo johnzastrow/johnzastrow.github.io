@@ -20,7 +20,7 @@ Step 2. Download the \*static\* binaries for windows from this site <http://ffmp
 
 Step 3. You are lazy like me, so copy those binaries right into the /bin directory in cygwin so they are available at the command line without any salutes.
 
-[![](http://northredoubt.com/n/wp-content/uploads/2012/05/bin-300x253.gif "bin")](http://northredoubt.com/n/wp-content/uploads/2012/05/bin.gif)
+[![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/bin-300x253.gif "bin")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/bin.gif)
 
 Step 4. Put the script below into the same /bin directory because you are lazy
 
@@ -239,4 +239,4 @@ frame= 63 fps=0.0 q=31.0 size= 33kB time=00:00:00.18 bitrate=1488.0kbits/s dup=5
 
 <span style="color: #333333; font-style: normal; line-height: 24px;">And you’ll end up with files like this</span>
 
-[![](http://northredoubt.com/n/wp-content/uploads/2012/05/output.gif "output")](http://northredoubt.com/n/wp-content/uploads/2012/05/output.gif)
+[![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/output.gif "output")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/output.gif)

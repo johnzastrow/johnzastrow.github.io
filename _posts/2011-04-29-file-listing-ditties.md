@@ -81,4 +81,4 @@ cat statfile.txt
 
  is just a little different and produces the following output. Notice that in both script I’m using tabs so these text files should come into a spreadsheet program nicely as below. Also notice the use of –printf so that I can embed the tabs right into stat’s output thereby more gracefully handling filenames with spaces in them (plus I quote them for good measure). A good use of this would be to combine find with it.
 
-[![](http://northredoubt.com/n/wp-content/uploads/2011/04/stater_output-300x101.png "stater_output")](http://northredoubt.com/n/wp-content/uploads/2011/04/stater_output.png)
+[![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2011/04/stater_output-300x101.png "stater_output")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2011/04/stater_output.png)

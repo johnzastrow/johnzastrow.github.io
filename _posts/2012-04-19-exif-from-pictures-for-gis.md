@@ -34,11 +34,11 @@ where:
 
 below is the example of a run using the above command
 
-[![](http://northredoubt.com/n/wp-content/uploads/2012/04/cygwin_exiftool-300x84.gif "cygwin_exiftool")](http://northredoubt.com/n/wp-content/uploads/2012/04/cygwin_exiftool.gif)
+[![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/04/cygwin_exiftool-300x84.gif "cygwin_exiftool")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/04/cygwin_exiftool.gif)
 
 below is example output with some fields clipped
 
-[![](http://northredoubt.com/n/wp-content/uploads/2012/04/example_exiftool_output-300x4.gif "example_exiftool_output")](http://northredoubt.com/n/wp-content/uploads/2012/04/example_exiftool_output.gif)  
+[![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/04/example_exiftool_output-300x4.gif "example_exiftool_output")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/04/example_exiftool_output.gif)  
 This should import nicely into my GIS of choice where I will QC the data. Then I’ll proceed to my favorite Open Street Map edit and start submitting.
 
 PS. the GPSlogger tool saves tracks as KML and GPX, in addition to somehow also directly submitting to Open Street Map with tags… something I’ll have to play around with.

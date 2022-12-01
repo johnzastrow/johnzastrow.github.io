@@ -62,4 +62,4 @@ find ./* -type f -print0 | xargs -0  stat -c '%N |%s |%y'
 
 Here it is being used in Cygwin on windows
 
-[![](http://northredoubt.com/n/wp-content/uploads/2012/06/listfiles-300x128.gif "listfiles")](http://northredoubt.com/n/wp-content/uploads/2012/06/listfiles.gif)
+[![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/06/listfiles-300x128.gif "listfiles")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/06/listfiles.gif)

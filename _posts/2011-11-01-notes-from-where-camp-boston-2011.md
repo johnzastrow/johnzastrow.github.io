@@ -26,7 +26,7 @@ I had a great time at this [little event](http://www.wherecampboston.com/ "Where
 
 So what follows are my notes from Where Camp Boston 2011, and in generally chronological order.
 
-[![Session board](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0087-150x150.jpg "IMAG0087")](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0087.jpg) 
+[![Session board](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2011/11/IMAG0087-150x150.jpg "IMAG0087")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2011/11/IMAG0087.jpg) 
 
 The session board at Where camp Boston 2011
 
@@ -59,7 +59,7 @@ The session board at Where camp Boston 2011
 - — <http://leaflet.cloudmade.com/>
 
 
-[![sailing, snow, halloween, boston, crazy, awesome!](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0085-150x150.jpg "IMAG0085")](http://northredoubt.com/n/wp-content/uploads/2011/11/IMAG0085.jpg)sailing, snow, halloween, boston, crazy, awesome!
+[![sailing, snow, halloween, boston, crazy, awesome!](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2011/11/IMAG0085-150x150.jpg "IMAG0085")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2011/11/IMAG0085.jpg)sailing, snow, halloween, boston, crazy, awesome!
 
 Crazy folks out sailing. When I left at 6pm-ish it was raining hard with snow mixed in and nearly dark out – they were still sailing. I take my hand off to them.
 

@@ -29,4 +29,4 @@ Since I used Cygwin on Windows I installed all the Imagemagick utils through the
 
 Below is the result.
 
-[![contact-dark2-2b](http://northredoubt.com/n/wp-content/uploads/2015/08/contact-dark2-2b-214x300.jpg)](http://northredoubt.com/n/wp-content/uploads/2015/08/contact-dark2-2b.jpg)
+[![contact-dark2-2b](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2015/08/contact-dark2-2b-214x300.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2015/08/contact-dark2-2b.jpg)

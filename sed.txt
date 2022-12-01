@@ -24,5 +24,10 @@ sed -i '.bak' 's/foo/bar/g' *
 
 https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files/112024#112024
 
+sed -i -- 's+http://northredoubt.com/n/wp-content+https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets+g' *.md
 
-sed 's+http://northredoubt.com/n/wp-content+https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/+g' 2012-01-16-example-with-php-and-spatialite-part-1.md > 2012-01-16-example-with-php-and-spatialite-part-1.mdb
+sed 's+http://northredoubt.com/n/wp-content+https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets+g' 2012-01-16-example-with-php-and-spatialite-part-1.md > 2012-01-16-example-with-php-and-spatialite-part-1.md2
+
+gawk -i inplace '!/zemanta/' 2012-01-16-example-with-php-and-spatialite-part-1.md
+
+find . -type f -name "2008-07-17-cross-compare-sql-server-2008-spatial-postgresqlpostgis-13-14-mysql-5-6.md" -exec gawk -i inplace '!/zemanta/'

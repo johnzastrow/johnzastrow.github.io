@@ -12,7 +12,7 @@ categories:
 
 I’m looking at some data from the Avian Knowledge Network and Microsoft Access just isn’t up to dealing with the volume of records. So I switched over to MySQL.
 
-I’m using the Positive Observation Essentials format as queried from their database. Here’s an example of the data: ![](http://northredoubt.com/n/wp-content/uploads/2011/03/data_example.png)
+I’m using the Positive Observation Essentials format as queried from their database. Here’s an example of the data: ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2011/03/data_example.png)
 
 I did use a sed command (created and verified in Excel) on the original files to fix the spaces in the column names (if you are in the business of making data for people, never, ever, ever, ever create large tabular files with spaces or special characters in the column names. Avoid dashes as well, and preferably use all caps). Note that the commands below will REPLACE your files. So be sure to back up your originals in case anything goes wrong.
 
