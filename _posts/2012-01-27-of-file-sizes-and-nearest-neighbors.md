@@ -59,7 +59,7 @@ Where the value explanations are :
 Voila. This created the needed structures in the database to hold the indexes, setup needed triggers, etc. Then I created the point geometry with a recipe like the following:
 
 ```
-<pre class="lang:sql decode:1 ">UPDATE XYGNIS SET Geometry = MakePoint(PRIM_LONG_DEC, PRIM_LAT_DEC,4326);
+```sqlUPDATE XYGNIS SET Geometry = MakePoint(PRIM_LONG_DEC, PRIM_LAT_DEC,4326);
 ```
 
 Lastly, I had to tell Spatialite to build the spatial indexes. I just did this through the GUI by right-clicking on my new Geometry field.
@@ -73,7 +73,7 @@ Why am I telling you all this? Well, for it was interesting to see the differenc
 But now back to my question. Here is the performance without using my indexes.
 
 ```
-<pre class="lang:sql decode:1 ">SELECT feature_name, feature_class, ST_Distance(Geometry,
+```sqlSELECT feature_name, feature_class, ST_Distance(Geometry,
 MakePoint(-70.250, 43.802)) AS Distance
 FROM XYGNIS
 WHERE distance < 0.1
@@ -87,7 +87,7 @@ ORDER BY distance LIMIT 1
 I still want my queries to finish in less than a second, so with a little help from an email response from Sandro, here is the same query against 2.2 million points that **finishes in 0.036 seconds**. Barely enough time to open the database connection I think.
 
 ```
-<pre class="lang:sql decode:1 ">SELECT feature_name, feature_class, ST_Distance(Geometry,
+```sqlSELECT feature_name, feature_class, ST_Distance(Geometry,
 MakePoint(-70.250, 43.802)) AS Distance
 FROM XYGNIS
 WHERE distance < 0.1

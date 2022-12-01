@@ -48,7 +48,7 @@ CREATE TABLE “huc12” (
 and ending with
 
 ```
-<pre class="lang:sql decode:1 ">
+```sql
 
 CREATE TABLE "huc12" (
  PK_UID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -65,7 +65,7 @@ CREATE TABLE "huc12" (
 I ran this stuff in the middle.
 
 ```
-<pre class="lang:sql decode:1 ">
+```sql
 
 BEGIN TRANSACTION;
  CREATE temporary TABLE "huc12sm" (

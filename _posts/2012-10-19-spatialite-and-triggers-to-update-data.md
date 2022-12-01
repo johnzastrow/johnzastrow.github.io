@@ -24,15 +24,15 @@ Note that I have an unique, incrementing primary key column (PKUID), then NAME a
 
 Now I’ll add two columns to store the HUC12 and DATE and TIME of the edits to the points.
 
-```
-<pre class="lang:sql decode:1 "> ALTER TABLE "mypois" ADD COLUMN HUC_12 TEXT;
+
+```sql ALTER TABLE "mypois" ADD COLUMN HUC_12 TEXT;
 ALTER TABLE "mypois" ADD COLUMN UPDATE_DT DATETIME; 
 ```
 
 Here is the full structure now.
 
-```
-<pre class="lang:sql decode:1 ">
+
+```sql
 CREATE TABLE "mypois"(
 pkuid integer primary key autoincrement,
 
@@ -53,8 +53,8 @@ OK. So I’ve got a place to store these attributes. Now let’s apply the datab
 
 And here’s the code.
 
-```
-<pre class="lang:sql decode:1 ">
+
+```sql
 
 CREATE TRIGGER mypois_UPD_UDT_HUC12 AFTER UPDATE ON mypois
 BEGIN
@@ -75,8 +75,8 @@ END
 
 and
 
-```
-<pre class="lang:sql decode:1 ">
+
+```sql
 
 CREATE TRIGGER mypois_INS_UDT_HUC12 AFTER INSERT ON mypois
 BEGIN

@@ -50,20 +50,20 @@ Sandro earlier posted a short report on the latest spatialite advancements:
 =========================================================
 
 ```
-<pre class="lang:sql decode:1 "> SELECT InitSpatialMetaData();
+```sql SELECT InitSpatialMetaData();
 ```
 
 Same as before, unchanged: the complete EPSG dataset will be inserted into “spatial\_ref\_sys” (currently, about 4100+ rows)
 
 ```
-<pre class="lang:sql decode:1 ">
+```sql
 SELECT InitSpatialMetaData('WGS84');
 ```
 
 or
 
 ```
-<pre class="lang:sql decode:1 ">
+```sql
 
 SELECT InitSpatialMetaData('WGS84_ONLY'); 
 ```
@@ -71,7 +71,7 @@ SELECT InitSpatialMetaData('WGS84_ONLY');
 only WGS84-related EPSG SRIDs will be inserted into “spatial\_ref\_sys” (about 130 rows)
 
 ```
-<pre class="lang:sql decode:1 ">
+```sql
 
 SELECT InitSpatialMetaData('NONE'); 
 ```
@@ -79,7 +79,7 @@ SELECT InitSpatialMetaData('NONE');
 or
 
 ```
-<pre class="lang:sql decode:1 ">
+```sql
 
 SELECT InitSpatialMetaData('EMPTY'); 
 ```
@@ -87,7 +87,7 @@ SELECT InitSpatialMetaData('EMPTY');
 no EPSG SRID will be inserted into “spatial\_ref\_sys” (0 rows)
 
 ```
-<pre class="lang:sql decode:1 ">
+```sql
 
 # SELECT InsertEpsgSrid(4326);
 
@@ -100,7 +100,7 @@ no EPSG SRID will be inserted into “spatial\_ref\_sys” (0 rows)
 =========================================================
 
 ```
-<pre class="lang:sql decode:1 ">
+```sql
 --
 -- immediately after connecting a new empty DB
 
