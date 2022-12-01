@@ -57,4 +57,4 @@ Open MyFile For Output As fnum
 Write #fnum, outputStr  
 Write #fnum,  
 Close #fnum  
-End Sub\[/cc\]
+End Sub\```

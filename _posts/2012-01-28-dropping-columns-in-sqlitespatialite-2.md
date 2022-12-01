@@ -47,7 +47,7 @@ CREATE TABLE “huc12” (
 
 and ending with
 
-```
+
 ```sql
 
 CREATE TABLE "huc12" (
@@ -64,7 +64,6 @@ CREATE TABLE "huc12" (
 
 I ran this stuff in the middle.
 
-```
 ```sql
 
 BEGIN TRANSACTION;

@@ -13,5 +13,5 @@ categories:
 
 This will list the non-numeric data values in a mysql column.
 
-\[cc lang=’sql’ \]select \* from `tablename` where concat(”,`columnname` \* 1) &lt;&gt; `columnname`\[/cc\]
+```sql select \* from `tablename` where concat(”,`columnname` \* 1) &lt;&gt; `columnname`\```
 

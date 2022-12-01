@@ -147,7 +147,7 @@ echo ‘&lt;/p&gt;’;
 &lt;/body&gt;  
 &lt;/html&gt;
 
-\[/cc\]
+\```
 
 Not too bad, but I want this faster because I want to feed it much larger data in my final project.
 
