@@ -97,10 +97,10 @@ END
 
 Now let me use Qgis to enter a new point. The screen below is just filling in the non-calculated attributes.
 
- [![No need to fill in the attributes that will be set by the trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/editing_4trigger-300x221.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/editing_4trigger/)<figcaption class="wp-caption-text" id="caption-attachment-628">No need to fill in the attributes that will be set by the trigger</figcaption></figure>
+ [![No need to fill in the attributes that will be set by the trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/editing_4trigger-300x221.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/editing_4trigger/)<figcaption class="wp-caption-text" id="caption-attachment-628">No need to fill in the attributes that will be set by the trigger</figcaption> 
 
 Here’s a quick screen to show how to start and end an editing session in Qgis. You must Save your edits to commit them and fire the trigger.
 
- ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea5.png)<figcaption class="wp-caption-text">Don’t forget to SAVE your edits, or the triggers won’t fire.</figcaption></figure>
+ ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea5.png)<figcaption class="wp-caption-text">Don’t forget to SAVE your edits, or the triggers won’t fire.</figcaption> 
 
- [![saved_edits_trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/saved_edits_trigger-300x169.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/saved_edits_trigger/)<figcaption class="wp-caption-text" id="caption-attachment-627">Voila. The triggered attributes were updated.</figcaption></figure>
+ [![saved_edits_trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/saved_edits_trigger-300x169.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/saved_edits_trigger/)<figcaption class="wp-caption-text" id="caption-attachment-627">Voila. The triggered attributes were updated.</figcaption> 

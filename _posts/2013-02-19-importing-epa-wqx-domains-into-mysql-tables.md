@@ -46,7 +46,7 @@ First I created this table to hold my data (you might need to add more columns).
 
 then run the following bash code from within a directory that looks like below.
 
-<figure aria-describedby="caption-attachment-657" class="wp-caption aligncenter" id="attachment_657" style="width: 188px">[![WQX XML domain file list](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list-188x300.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list.png)<figcaption class="wp-caption-text" id="caption-attachment-657">WQX XML domain file list</figcaption></figure>
+ [![WQX XML domain file list](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list-188x300.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list.png)<figcaption class="wp-caption-text" id="caption-attachment-657">WQX XML domain file list</figcaption> 
 
 in the last sed line below, note that you must reset the delimeter to | (or something besides / as you need to escape those chars in the values you need to replace. This is the easiest way I think.
 

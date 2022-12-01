@@ -21,11 +21,11 @@ Based on my earlier tests I felt confident that I could expand the size of the d
 
 So, getting back to the data, here is my new queryable data set.
 
-<figure aria-describedby="caption-attachment-341" class="wp-caption alignnone" id="attachment_341" style="width: 609px">[![12-digit hydrologic units for the entire US](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/whole_country.png "12-digit hydrologic units for the entire US")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/whole_country.png)<figcaption class="wp-caption-text" id="caption-attachment-341">12-digit hydrologic units for the entire US</figcaption></figure>
+ [![12-digit hydrologic units for the entire US](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/whole_country.png "12-digit hydrologic units for the entire US")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/whole_country.png)<figcaption class="wp-caption-text" id="caption-attachment-341">12-digit hydrologic units for the entire US</figcaption> 
 
 The pink blob on the right my new, harder question.. searching with not one pair of coordinates, but a bunch of pairs in the form of a pink polygon. Pink scares computers, so this should hurt it a little. It might also be scary that my database file representing the HUCs is now **1.9GB** in size (lots of coordinates and the indexes to describes them).
 
-<figure aria-describedby="caption-attachment-343" class="wp-caption alignnone" id="attachment_343" style="width: 772px">[![Pink test polygon](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/example_poly.png "Pink test polygon")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/example_poly.png)<figcaption class="wp-caption-text" id="caption-attachment-343">Pink test polygon</figcaption></figure>
+ [![Pink test polygon](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/example_poly.png "Pink test polygon")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/example_poly.png)<figcaption class="wp-caption-text" id="caption-attachment-343">Pink test polygon</figcaption> 
 
 Because I’m likely going to be using coordinate pairs passed in from some kind of Web application, I converted the polygon to well-known text using
 
@@ -35,7 +35,7 @@ Because I’m likely going to be using coordinate pairs passed in from some kind
 
 which of course gives us
 
-<figure aria-describedby="caption-attachment-351" class="wp-caption alignnone" id="attachment_351" style="width: 628px">[![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/selectwkt.png "select a geometry (polygon) as well-known text (wkt)")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/selectwkt.png)<figcaption class="wp-caption-text" id="caption-attachment-351">select a geometry (polygon) as well-known text (wkt)</figcaption></figure>
+ [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/selectwkt.png "select a geometry (polygon) as well-known text (wkt)")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/selectwkt.png)<figcaption class="wp-caption-text" id="caption-attachment-351">select a geometry (polygon) as well-known text (wkt)</figcaption> 
 
 With the handy text string to describe my polygon given to me, I’m able to just copy and paste it into my text SQL. So let’s do that and the first query should really hurt because I’m not going to use an index. Note that I switched from Contains.. to Intersects since I want to detect anything that touches my pink poly.
 
@@ -50,7 +50,7 @@ WHERE ST_Intersects(Geometry, ST_GeomFromText('POLYGON((-70.286127 43.839038,
 
 How did it do? Surprisingly well. 40 seconds give or take. Of course, that won’t work for my application, so I’m keeping my fingers crossed that the index rescues me.
 
-<figure aria-describedby="caption-attachment-344" class="wp-caption alignnone" id="attachment_344" style="width: 470px">[![Polygon query with no index](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_no_index.png "Polygon query with no index")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_no_index.png)<figcaption class="wp-caption-text" id="caption-attachment-344">Polygon query with no index</figcaption></figure>
+ [![Polygon query with no index](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_no_index.png "Polygon query with no index")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_no_index.png)<figcaption class="wp-caption-text" id="caption-attachment-344">Polygon query with no index</figcaption> 
 
 Now how about with the index? Here’s the query.
 
@@ -74,10 +74,10 @@ AND search_frame = ST_GeomFromText('POLYGON((-70.286127 43.839038,
 
 And survey says! **0.186 seconds!** Oh yeah.
 
-<figure aria-describedby="caption-attachment-342" class="wp-caption alignnone" id="attachment_342" style="width: 504px">[![Pink polygon query with spatial index](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_with_index.png "Pink polygon query with spatial index")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_with_index.png)<figcaption class="wp-caption-text" id="caption-attachment-342">Pink polygon query with spatial index</figcaption></figure>
+ [![Pink polygon query with spatial index](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_with_index.png "Pink polygon query with spatial index")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_with_index.png)<figcaption class="wp-caption-text" id="caption-attachment-342">Pink polygon query with spatial index</figcaption> 
 
 So this all well and good, but the real reason why these queries are so fast is because the test geometry (the pink polygon) is so small. So lets push that a little.
 
-<figure aria-describedby="caption-attachment-353" class="wp-caption alignnone" id="attachment_353" style="width: 620px">[![Multipart polygon with lotsa geometry](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/lotsa_geometry.png "Multipart polygon with lotsa geometry")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/lotsa_geometry.png)<figcaption class="wp-caption-text" id="caption-attachment-353">Multipart polygon with lotsa geometry</figcaption></figure>
+ [![Multipart polygon with lotsa geometry](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/lotsa_geometry.png "Multipart polygon with lotsa geometry")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/lotsa_geometry.png)<figcaption class="wp-caption-text" id="caption-attachment-353">Multipart polygon with lotsa geometry</figcaption> 
 
 So, here I’ve made a single multipart polygon with lots of vertices to keep my query simple. I’ll spare you the geometry and the query, but the pink polygon above, querying a whole country of HUC12s with the spatial index, took **1.4 seconds**. So, we finally broke our time limit with enough testing geometry.

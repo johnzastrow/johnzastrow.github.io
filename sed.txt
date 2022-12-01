@@ -36,3 +36,7 @@ find . -type f -name "*.md" -exec sed -i '/zemanta/d'  {} \;
 sed -i 's+<figure.*px">+ +g' 2012-10-19-spatialite-and-triggers-to-update-data.md
 
 find . -type f -name "*.md" -exec sed -i 's+<figure.*px">+ +g' {} \;
+
+sed -i -- 's+</figure>+ +g' *.md
+
+find . -type f -name "*.md" -exec sed -i 's+<figure.*px">+ +g' {} \;
