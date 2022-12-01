@@ -62,4 +62,3 @@ LINES TERMINATED BY ‘\\n’ IGNORE 1 LINES;
 
 I used LOCAL since the database is on my workstation. Note the full path to the windows file, with forward slashes. Fields are tab-delimited, lines seem to just use carriage returns (or at least it doesn’t look like I need another line ender) and I’m ignoring the column header row.
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=f9368272-1492-847d-9091-49726d62d833)</div>

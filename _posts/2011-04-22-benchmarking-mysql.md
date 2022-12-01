@@ -85,4 +85,3 @@ mysqlslap -u… -p… -hlocalhost -v –concurrency=1 –iterations=2 –number-
 The above command was executed to produce the results above it.  
 —————— END ——————–
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=d54ad172-51f5-87b0-9511-d9bb15393ec4)</div>

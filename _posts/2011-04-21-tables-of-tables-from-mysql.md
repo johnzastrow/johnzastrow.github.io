@@ -56,4 +56,3 @@ while ($myrow=mysql\_fetch\_array($showDB));
 
 \[/cce\_php\]
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=adc45109-061d-89ca-8703-2cb25695bc7c)</div>

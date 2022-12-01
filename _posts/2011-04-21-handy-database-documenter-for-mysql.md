@@ -65,4 +65,3 @@ ON (((`tables`.`TABLE_SCHEMA` = `columns`.`TABLE_SCHEMA`)
 AND (`tables`.`TABLE_NAME` = `columns`.`TABLE_NAME`))))
 ```
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=8a34e3ac-a0c2-8733-86c6-ebf35beb73af)</div>

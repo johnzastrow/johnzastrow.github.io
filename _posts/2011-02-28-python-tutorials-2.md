@@ -18,4 +18,3 @@ categories:
 - <http://young-programmers.blogspot.com/search/label/python>
 - [http://en.wikibooks.org/wiki/Non-Programmer%27s\_Tutorial\_for\_Python\_2.6](http://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_2.6)
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=c11b1846-676a-8c63-a795-124055cdf35e)</div>
