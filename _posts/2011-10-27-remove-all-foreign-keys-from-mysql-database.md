@@ -19,4 +19,3 @@ WHERE constraint\_type=’FOREIGN KEY’ AND table\_schema = ‘MY\_DATABASE\_NA
 
 I loaded the values, and dumped just the values (only insert statements) that I will use to populate the version of the DB with my FK’s intact.
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=c91d2d8b-38fd-85cf-a328-4abe703f51cf)</div>

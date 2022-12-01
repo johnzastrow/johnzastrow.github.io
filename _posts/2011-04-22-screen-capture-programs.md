@@ -38,4 +38,3 @@ I always need to capture computer screens into graphic files. Even for my Mom wh
 
 <span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"> </span>
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=82259afb-3fd7-88e5-bb2d-6ccbc9a955e8)</div>

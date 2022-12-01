@@ -34,4 +34,3 @@ This one find text always to the right of a value (assumes within the last 5 cha
 | <span style="color: #000000;">filename.doc</span> | .doc |
 | <span style="color: #000000;">hfhg/fghfgh/hh</span> | hfhg/fghfgh/hh |
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=2b8ebf75-4781-88ba-b542-4fb3fa5a7ab7)</div>

@@ -175,4 +175,3 @@ host all all ::1/128 trust </span></span></span></span>
 
 <span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">/etc/init.d/postgresql start</span></span></span></span>
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=37c7bedc-c127-8b4e-b541-1b99f5be40a5)</div>

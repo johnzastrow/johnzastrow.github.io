@@ -15,4 +15,3 @@ select * from `tablename` where concat(”,`columnname` * 1) <> `columnname`
 
 ```
 
-![](http://img.zemanta.com/pixy.gif?x-id=dda9f3a7-b810-8363-8180-8096b9010999)
