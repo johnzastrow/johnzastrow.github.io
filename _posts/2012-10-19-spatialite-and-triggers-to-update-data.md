@@ -24,14 +24,12 @@ Note that I have an unique, incrementing primary key column (PKUID), then NAME a
 
 Now I’ll add two columns to store the HUC12 and DATE and TIME of the edits to the points.
 
-
-```sql 
+```sql
 ALTER TABLE "mypois" ADD COLUMN HUC_12 TEXT;
 ALTER TABLE "mypois" ADD COLUMN UPDATE_DT DATETIME; 
 ```
 
 Here is the full structure now.
-
 
 ```sql
 CREATE TABLE "mypois"(
@@ -54,9 +52,7 @@ OK. So I’ve got a place to store these attributes. Now let’s apply the datab
 
 And here’s the code.
 
-
 ```sql
-
 CREATE TRIGGER mypois_UPD_UDT_HUC12 AFTER UPDATE ON mypois
 BEGIN
 UPDATE mypois SET UPDATE_DT = DATETIME ('NOW')
@@ -71,14 +67,11 @@ AND mypois.ROWID = NEW.ROWID
 )
 WHERE mypois.ROWID = NEW.ROWID;
 END
-
 ```
 
 and
 
-
 ```sql
-
 CREATE TRIGGER mypois_INS_UDT_HUC12 AFTER INSERT ON mypois
 BEGIN
 UPDATE mypois SET UPDATE_DT = DATETIME ('NOW')
@@ -93,15 +86,24 @@ AND mypois.ROWID = NEW.ROWID
 )
 WHERE mypois.ROWID = NEW.ROWID;
 END
-
 ```
 
 Now let me use Qgis to enter a new point. The screen below is just filling in the non-calculated attributes.
 
- [![No need to fill in the attributes that will be set by the trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/editing_4trigger-300x221.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/editing_4trigger/) No need to fill in the attributes that will be set by the trigger.
+ [![No need to fill in the attributes that will be set by the trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/editing_4trigger-300x221.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/editing_4trigger/) 
+
+
+
+No need to fill in the attributes that will be set by the trigger.
 
 Here’s a quick screen to show how to start and end an editing session in Qgis. You must Save your edits to commit them and fire the trigger.
 
- ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea5.png) Don’t forget to SAVE your edits, or the triggers won’t fire. 
+
+
+ ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea5.png) 
+
+
+
+Don’t forget to SAVE your edits, or the triggers won’t fire. 
 
  [![saved_edits_trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/saved_edits_trigger-300x169.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/saved_edits_trigger/) Voila. The triggered attributes were updated. 

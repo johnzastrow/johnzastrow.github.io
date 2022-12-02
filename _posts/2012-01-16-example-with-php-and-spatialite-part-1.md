@@ -32,12 +32,9 @@ After making way too many typos, I got it working and am getting the expected ou
 
 My next exercise will be to figure out how to connect to an existing disk-based DB and try some simpler operations. My goal will be to get my operations out the door in about 1 second on modest hardware under no load.
 
-
-
 Testing SpatiaLite on PHP
 
 ```php
-
 # Testing SpatiaLite on PHP
 
 loadExtension(‘libspatialite.so’);
@@ -45,11 +42,11 @@ loadExtension(‘libspatialite.so’);
 \# enabling Spatial Metadata  
 \# using v.2.4.0 this automatically initializes SPATIAL\_REF\_SYS  
 \# and GEOMETRY\_COLUMNS  
-$db-&gt;exec(“SELECT InitSpatialMetadata()”);
+$db->exec(“SELECT InitSpatialMetadata()”);
 
 \# reporting some version info  
-$rs = $db-&gt;query(‘SELECT sqlite\_version()’);  
-while ($row = $rs-&gt;fetchArray())  
+$rs = $db->query(‘SELECT sqlite\_version()’);  
+while ($row = $rs->fetchArray())  
 {  
 print ”
 
@@ -57,8 +54,8 @@ print ”
 
 “;  
 }  
-$rs = $db-&gt;query(‘SELECT spatialite\_version()’);  
-while ($row = $rs-&gt;fetchArray())  
+$rs = $db->query(‘SELECT spatialite\_version()’);  
+while ($row = $rs->fetchArray())  
 {  
 print ”
 
@@ -71,46 +68,46 @@ print ”
 $sql = “CREATE TABLE test\_pt (“;  
 $sql .= “id INTEGER NOT NULL PRIMARY KEY,”;  
 $sql .= “name TEXT NOT NULL)”;  
-$db-&gt;exec($sql);  
+$db->exec($sql);  
 \# creating a POINT Geometry column  
 $sql = “SELECT AddGeometryColumn(‘test\_pt’, “;  
 $sql .= “‘geom’, 4326, ‘POINT’, ‘XY’)”;  
-$db-&gt;exec($sql);
+$db->exec($sql);
 
 \# creating a LINESTRING table  
 $sql = “CREATE TABLE test\_ln (“;  
 $sql .= “id INTEGER NOT NULL PRIMARY KEY,”;  
 $sql .= “name TEXT NOT NULL)”;  
-$db-&gt;exec($sql);  
+$db->exec($sql);  
 \# creating a LINESTRING Geometry column  
 $sql = “SELECT AddGeometryColumn(‘test\_ln’, “;  
 $sql .= “‘geom’, 4326, ‘LINESTRING’, ‘XY’)”;  
-$db-&gt;exec($sql);
+$db->exec($sql);
 
 \# creating a POLYGON table  
 $sql = “CREATE TABLE test\_pg (“;  
 $sql .= “id INTEGER NOT NULL PRIMARY KEY,”;  
 $sql .= “name TEXT NOT NULL)”;  
-$db-&gt;exec($sql);  
+$db->exec($sql);  
 \# creating a POLYGON Geometry column  
 $sql = “SELECT AddGeometryColumn(‘test\_pg’, “;  
 $sql .= “‘geom’, 4326, ‘POLYGON’, ‘XY’)”;  
-$db-&gt;exec($sql);
+$db->exec($sql);
 
 \# inserting some POINTs  
 \# please note well: SQLite is ACID and Transactional  
 \# so (to get best performance) the whole insert cycle  
 \# will be handled as a single TRANSACTION  
-$db-&gt;exec(“BEGIN”);  
-for ($i = 0; $i &lt; 10000; $i++) { # for POINTs we’ll use full text sql statements $sql = “INSERT INTO test\_pt (id, name, geom) VALUES (“; $sql .= $i + 1; $sql .= “, ‘test POINT #”; $sql .= $i + 1; $sql .= “‘, GeomFromText(‘POINT(“; $sql .= $i / 1000.0; $sql .= ” “; $sql .= $i / 1000.0; $sql .= “)’, 4326))”; $db-&gt;exec($sql);  
+$db->exec(“BEGIN”);  
+for ($i = 0; $i < 10000; $i++) { # for POINTs we’ll use full text sql statements $sql = “INSERT INTO test\_pt (id, name, geom) VALUES (“; $sql .= $i + 1; $sql .= “, ‘test POINT #”; $sql .= $i + 1; $sql .= “‘, GeomFromText(‘POINT(“; $sql .= $i / 1000.0; $sql .= ” “; $sql .= $i / 1000.0; $sql .= “)’, 4326))”; $db->exec($sql);  
 }  
-$db-&gt;exec(“COMMIT”);
+$db->exec(“COMMIT”);
 
 \# checking POINTs  
 $sql = “SELECT DISTINCT Count(\*), ST\_GeometryType(geom), “;  
 $sql .= “ST\_Srid(geom) FROM test\_pt”;  
-$rs = $db-&gt;query($sql);  
-while ($row = $rs-&gt;fetchArray())  
+$rs = $db->query($sql);  
+while ($row = $rs->fetchArray())  
 {  
 \# read the result set  
 $msg = “Inserted “;  
@@ -130,22 +127,22 @@ print ”
 \# this time we’ll use a Prepared Statement  
 $sql = “INSERT INTO test\_ln (id, name, geom) “;  
 $sql .= “VALUES (?, ?, GeomFromText(?, 4326))”;  
-$stmt = $db-&gt;prepare($sql);  
-$db-&gt;exec(“BEGIN”);  
-for ($i = 0; $i &lt; 10000; $i++) { # setting up values / binding $name = “test LINESTRING #”; $name .= $i + 1; $geom = “LINESTRING(“; if (($i%2) == 1) { # odd row: five points $geom .= “-180.0 -90.0, “; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “, “; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); $geom .= “, “; $geom .= 10.0 + ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); $geom .= “, 180.0 90.0″; } else { # even row: two points $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “, “; $geom .= 10.0 + ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); } $geom .= “)”; $stmt-&gt;reset();  
-$stmt-&gt;clear();  
-$stmt-&gt;bindValue(1, $i+1, SQLITE3\_INTEGER);  
-$stmt-&gt;bindValue(2, $name, SQLITE3\_TEXT);  
-$stmt-&gt;bindValue(3, $geom, SQLITE3\_TEXT);  
-$stmt-&gt;execute();  
+$stmt = $db->prepare($sql);  
+$db->exec(“BEGIN”);  
+for ($i = 0; $i < 10000; $i++) { # setting up values / binding $name = “test LINESTRING #”; $name .= $i + 1; $geom = “LINESTRING(“; if (($i%2) == 1) { # odd row: five points $geom .= “-180.0 -90.0, “; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “, “; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); $geom .= “, “; $geom .= 10.0 + ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); $geom .= “, 180.0 90.0″; } else { # even row: two points $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “, “; $geom .= 10.0 + ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); } $geom .= “)”; $stmt->reset();  
+$stmt->clear();  
+$stmt->bindValue(1, $i+1, SQLITE3\_INTEGER);  
+$stmt->bindValue(2, $name, SQLITE3\_TEXT);  
+$stmt->bindValue(3, $geom, SQLITE3\_TEXT);  
+$stmt->execute();  
 }  
-$db-&gt;exec(“COMMIT”);
+$db->exec(“COMMIT”);
 
 \# checking LINESTRINGs  
 $sql = “SELECT DISTINCT Count(\*), ST\_GeometryType(geom), “;  
 $sql .= “ST\_Srid(geom) FROM test\_ln”;  
-$rs = $db-&gt;query($sql);  
-while ($row = $rs-&gt;fetchArray())  
+$rs = $db->query($sql);  
+while ($row = $rs->fetchArray())  
 {  
 \# read the result set  
 $msg = “Inserted “;  
@@ -165,22 +162,22 @@ print ”
 \# this time too we’ll use a Prepared Statement  
 $sql = “INSERT INTO test\_pg (id, name, geom) “;  
 $sql .= “VALUES (?, ?, GeomFromText(?, 4326))”;  
-$stmt = $db-&gt;prepare($sql);  
-$db-&gt;exec(“BEGIN”);  
-for ($i = 0; $i &lt; 10000; $i++) { # setting up values / binding $name = “test POLYGON #”; $name .= $i + 1; $geom = “POLYGON((“; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “, “; $geom .= 10.0 + ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “, “; $geom .= 10.0 + ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); $geom .= “, “; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); $geom .= “, “; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “))”; $stmt-&gt;reset();  
-$stmt-&gt;clear();  
-$stmt-&gt;bindValue(1, $i+1, SQLITE3\_INTEGER);  
-$stmt-&gt;bindValue(2, $name, SQLITE3\_TEXT);  
-$stmt-&gt;bindValue(3, $geom, SQLITE3\_TEXT);  
-$stmt-&gt;execute();  
+$stmt = $db->prepare($sql);  
+$db->exec(“BEGIN”);  
+for ($i = 0; $i < 10000; $i++) { # setting up values / binding $name = “test POLYGON #”; $name .= $i + 1; $geom = “POLYGON((“; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “, “; $geom .= 10.0 + ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “, “; $geom .= 10.0 + ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); $geom .= “, “; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= 10.0 + ($i / 1000.0); $geom .= “, “; $geom .= -10.0 – ($i / 1000.0); $geom .= ” “; $geom .= -10.0 – ($i / 1000.0); $geom .= “))”; $stmt->reset();  
+$stmt->clear();  
+$stmt->bindValue(1, $i+1, SQLITE3\_INTEGER);  
+$stmt->bindValue(2, $name, SQLITE3\_TEXT);  
+$stmt->bindValue(3, $geom, SQLITE3\_TEXT);  
+$stmt->execute();  
 }  
-$db-&gt;exec(“COMMIT”);
+$db->exec(“COMMIT”);
 
 \# checking POLYGONs  
 $sql = “SELECT DISTINCT Count(\*), ST\_GeometryType(geom), “;  
 $sql .= “ST\_Srid(geom) FROM test\_pg”;  
-$rs = $db-&gt;query($sql);  
-while ($row = $rs-&gt;fetchArray())  
+$rs = $db->query($sql);  
+while ($row = $rs->fetchArray())  
 {  
 \# read the result set  
 $msg = “Inserted “;  
@@ -197,7 +194,7 @@ print ”
 }
 
 \# closing the DB connection  
-$db-&gt;close();
+$db->close();
 
 // End TIMER  
 // ———  
@@ -212,7 +209,5 @@ echo ‘
 ‘;  
 // ———
 
-?&gt;
-
+?>
 ```
-
