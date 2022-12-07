@@ -7,9 +7,14 @@ tags: [geodata, gis, spatial, data management]
 comments: false
 ---
 
+# Intro 
+
 From [https://epsg.io/about]([EPSG.io: Coordinate Systems Worldwide](https://epsg.io/about))
 
-# EPSG 3463
+
+# The CRSs
+
+## EPSG 3463
 
 ```python
 NAD83 / Maine CS2000 Central
@@ -63,7 +68,7 @@ Extent
 -70.03, 43.75, -68.33, 47.47
 ```
 
-# EPSG 6480
+## EPSG 6480
 
 ```python
 NAD83(2011) / Maine CS2000 Central
@@ -117,9 +122,9 @@ Extent
 -70.03, 43.75, -68.33, 47.47
 ```
 
-ESRI 102607
+## ESRI 102607
 
-```
+```python
 NAD_1983_Maine_2000_Central_Zone
 Properties
 Units: meters
