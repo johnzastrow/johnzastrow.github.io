@@ -7,12 +7,11 @@ tags: [geodata, gis, spatial, data management]
 comments: false
 ---
 
-
-From !(https://epsg.io/about)[https://epsg.io/about]
+From [https://epsg.io/about]([EPSG.io: Coordinate Systems Worldwide](https://epsg.io/about))
 
 # EPSG 3463
 
-```
+```python
 NAD83 / Maine CS2000 Central
 Properties
 Units: meters
@@ -66,7 +65,7 @@ Extent
 
 # EPSG 6480
 
-```
+```python
 NAD83(2011) / Maine CS2000 Central
 Properties
 Units: meters
