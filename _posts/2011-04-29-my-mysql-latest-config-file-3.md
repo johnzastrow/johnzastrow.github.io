@@ -349,4 +349,3 @@ interactive-timeout
 \# to /etc/my.cnf before restarting MySQL and then add –port=8819 to the mysqldump command.   
 \# This way you avoid the MySQL database getting hit with queries while the repair is in progress.
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=3affc337-e9b4-8c90-be3e-3ee77533dd8c)</div>

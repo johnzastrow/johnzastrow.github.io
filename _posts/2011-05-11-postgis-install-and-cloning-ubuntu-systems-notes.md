@@ -11,32 +11,43 @@ categories:
     - Linux
 ---
 
-\[cc lang=’bash’ \]sudo apt-get remove –purge\[/cc\]
+```bash 
+sudo apt-get remove –purge\
+```
 
-\[cc lang=’bash’ \]apt-get install deborphan debfoster  
+```bash 
+apt-get install deborphan debfoster  
 debfoster  
 deborphan  
-deborphan –guess-all\[/cc\]
+deborphan –guess-all\
+```
 
-\[cc lang=’bash’ \]apt-get autoremove  
+```bash 
+apt-get autoremove  
 sudo apt-get remove –purge postgresql-client  
 sudo apt-get remove –purge postgresql-client-8.4  
 sudo apt-get remove –purge postgresql-client-common  
-apt-get clean\[/cc\]
+apt-get clean\
+```
 
 still didn’t work.  
-\[cc lang=’bash’ \]jcz@dell390:/usr/local/src/postgis-1.5.2$ ls -l /usr/bin/pg\*  
+```bash 
+jcz@dell390:/usr/local/src/postgis-1.5.2$ ls -l /usr/bin/pg\*  
 -rwxr-xr-x 1 root root 26260 2011-02-02 03:56 /usr/bin/pg  
 -rwxr-xr-x 1 root root 25912 2011-04-20 10:27 /usr/bin/pg\_config  
 -rwxr-xr-x 1 root root 13860 2010-07-06 20:21 /usr/bin/pgrep  
-jcz@dell390:/usr/local/src/postgis-1.5.2$ sudo rm /usr/bin/pg\_config\[/cc\]
+jcz@dell390:/usr/local/src/postgis-1.5.2$ sudo rm /usr/bin/pg\_config\
+```
 
 then  
-\[cc lang=’bash’ \]sudo ln -s /usr/local/pgsql/bin/pg\_config /usr/bin/pg\_config  
-apt-get install libxml2-dev\[/cc\]
+```bash 
+sudo ln -s /usr/local/pgsql/bin/pg\_config /usr/bin/pg\_config  
+apt-get install libxml2-dev\
+```
 
 and finally got  
-\[cc lang=’bash’ \]PostGIS is now configured for i686-pc-linux-gnu
+```bash 
+PostGIS is now configured for i686-pc-linux-gnu
 
 ————– Compiler Info ————-  
 C compiler: gcc -g -O2  
@@ -56,9 +67,11 @@ PostGIS debug level: 0
 xsltproc:  
 xsl style sheets:  
 dblatex:  
-convert: \[/cc\]
+convert: \
+```
 
-\[cc lang=’bash’ \]#!/bin/sh  
+```bash 
+#!/bin/sh  
 sudo ln -s /usr/local/pgsql/bin/createlang /usr/bin/createlang  
 sudo ln -s /usr/local/pgsql/bin/dropdb /usr/bin/dropdb  
 sudo ln -s /usr/local/pgsql/bin/initdb /usr/bin/initdb  
@@ -79,13 +92,16 @@ make
 make install  
 createlang plpgsql yourtestdatabase  
 psql -d yourtestdatabase -f postgis/postgis.sql  
-psql -d yourtestdatabase -f spatial\_ref\_sys.sql\[/cc\]
+psql -d yourtestdatabase -f spatial\_ref\_sys.sql\
+```
 
 how to generate a list of installed packages and use it to reinstall packages  
-\[cc lang=’bash’ \]sudo apt-get update  
+```bash 
+sudo apt-get update  
 sudo apt-get dist-upgrade  
 sudo dpkg –get-selections | grep -v deinstall | awk ‘{print $1}’ &gt; 164.ubuntu-files\_b.txt  
-sudo cat 164.ubuntu-files\_b.txt | xargs sudo aptitude install\[/cc\]
+sudo cat 164.ubuntu-files\_b.txt | xargs sudo aptitude install\
+```
 
 NOTE: WordPress interprets two dashes (- -) as one dash (–). When you’re putting this into your CLI, make sure it’s dropping two dashes ‘- -’ without the space between them.
 
@@ -175,4 +191,3 @@ host all all ::1/128 trust </span></span></span></span>
 
 <span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">/etc/init.d/postgresql start</span></span></span></span>
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=37c7bedc-c127-8b4e-b541-1b99f5be40a5)</div>

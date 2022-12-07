@@ -49,58 +49,54 @@ Sandro earlier posted a short report on the latest spatialite advancements:
 
 =========================================================
 
-```
-<pre class="lang:sql decode:1 "> SELECT InitSpatialMetaData();
+
+```sql 
+SELECT InitSpatialMetaData();
 ```
 
 Same as before, unchanged: the complete EPSG dataset will be inserted into “spatial\_ref\_sys” (currently, about 4100+ rows)
 
-```
-<pre class="lang:sql decode:1 ">
+
+```sql
 SELECT InitSpatialMetaData('WGS84');
 ```
 
 or
 
-```
-<pre class="lang:sql decode:1 ">
+```sql
 
 SELECT InitSpatialMetaData('WGS84_ONLY'); 
 ```
 
 only WGS84-related EPSG SRIDs will be inserted into “spatial\_ref\_sys” (about 130 rows)
 
-```
-<pre class="lang:sql decode:1 ">
+
+```sql
 
 SELECT InitSpatialMetaData('NONE'); 
 ```
 
 or
 
-```
-<pre class="lang:sql decode:1 ">
+
+```sql
 
 SELECT InitSpatialMetaData('EMPTY'); 
 ```
 
 no EPSG SRID will be inserted into “spatial\_ref\_sys” (0 rows)
 
-```
-<pre class="lang:sql decode:1 ">
+
+```sql
 
 # SELECT InsertEpsgSrid(4326);
 
 ```
 
 \*new\* SQL function: will attempt to insert SRID=4326 into “spatial\_ref\_sys”. the corresponding EPSG SRID definition will be copied from the inlined dataset internally defined within the libspatialite library (.DLL, .so, .dylib …)
-
-**SQL-script sample:**
-
-=========================================================
-
-```
-<pre class="lang:sql decode:1 ">
+```sql
+-- **SQL-script sample:**
+-- =========================================================
 --
 -- immediately after connecting a new empty DB
 
@@ -138,9 +134,7 @@ SELECT InsertEpsgSrid(25833);
 
 =========================================================
 
-```
-<pre class="lang:c decode:1 ">
-
+```c
 # SPATIALITE_DECLARE int spatial_ref_sys_init2
 
 #   (sqlite3 * sqlite, int mode, int verbose);

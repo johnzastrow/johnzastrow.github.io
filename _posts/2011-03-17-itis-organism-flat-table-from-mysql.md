@@ -36,4 +36,3 @@ FROM (((`taxon\_unit\_types`
  LEFT JOIN `longnames`  
  ON ((`longnames`.`tsn` = `taxonomic\_units`.`tsn`)))
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=1d835071-fa11-8823-a5d7-aee7a0064e95)</div>

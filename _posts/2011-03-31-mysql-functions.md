@@ -191,4 +191,3 @@ select insert2(“ATGCATACAGTTATTTGA”, 3, ” “) as seq2;
 
 —————————-
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=26bdc108-b3ac-8690-b831-825b794bbe96)</div>

@@ -1,0 +1,42 @@
+
+
+
+https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list.png 
+
+
+https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/04/lidar-300x201.png 
+
+
+http://northredoubt.com/n/wp-content/uploads/2013/04/lidar.png
+
+
+sed 's/http:\/\/northredoubt.com\/n\/wp-content/https:\/\/raw.githubusercontent.com\/johnzastrow\/johnzastrow.github.io\/master\/assets/g' 2013-04-12-i-love-lidar.md > 2013-04-12-i-love-lidar.mdb
+
+
+Our syntax is correct but the / delimiter character is also part of word1 and word2 in above example. Sed command allows you to change the delimiter / to something else. So I am going to use +:
+sed 's+http://+https://www.cyberciti.biz+g' input.txt
+
+
+On BSD systems like macOS, you need to provide a backup extension like -i '.bak' or else "risk corruption or partial content" per the manpage.
+
+cd /path/to/your/folder
+sed -i '.bak' 's/foo/bar/g' *
+
+https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files/112024#112024
+
+sed -i -- 's+http://northredoubt.com/n/wp-content+https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets+g' *.md
+
+sed 's+http://northredoubt.com/n/wp-content+https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets+g' 2012-01-16-example-with-php-and-spatialite-part-1.md > 2012-01-16-example-with-php-and-spatialite-part-1.md2
+
+gawk -i inplace '!/zemanta/' 2012-01-16-example-with-php-and-spatialite-part-1.md
+sed -i '/zemanta/d'  {} \;
+
+find . -type f -name "*.md" -exec sed -i '/zemanta/d'  {} \;
+
+sed -i 's+<figure.*px">+ +g' 2012-10-19-spatialite-and-triggers-to-update-data.md
+
+find . -type f -name "*.md" -exec sed -i 's+<figure.*px">+ +g' {} \;
+
+sed -i -- 's+</figure>+ +g' *.md
+
+find . -type f -name "*.md" -exec sed -i 's+<figure.*px">+ +g' {} \;

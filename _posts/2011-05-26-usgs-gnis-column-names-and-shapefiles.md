@@ -30,4 +30,3 @@ sed -i ‘s/SOURCE\_LONG\_DEC/SRC\_X\_DEC/g’ GNISNationalFile.txt
 sed -i ‘s/STATE\_ALPHA/STATE\_NAME/g’ GNISNationalFile.txt  
 sed -i ‘s/STATE\_NUMERIC/STATE\_NUM/g’ GNISNationalFile.txt
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=47dfdb49-9584-8cc8-925f-8f5fc3a881a9)</div>

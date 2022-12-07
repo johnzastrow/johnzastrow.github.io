@@ -13,4 +13,3 @@ categories:
 From  
 <http://www.gaztronics.net/rsync.php>
 
-<div class="zemanta-pixie">![](http://img.zemanta.com/pixy.gif?x-id=b584e7e6-8781-81af-b8c4-4d648172f25c)</div>
