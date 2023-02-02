@@ -20,3 +20,9 @@ Our town motto is, "Young in spirit. Ageless in pride." While I'm not sure about
 # The Words
 
 Home, Historic, Simple, Strong, Basic, Practical, Stable, Timeless, Stable, Proud, Patinaed, Storied, Tranquil, Calming, Stoic, Nurturing, Sheltering, Blessed, Native, Blue-collar, White-collar, Agriculture, Industry, Water, Sailing, Fishing, Family, Community, Safe, Dependent, Independent, Immovable, Stalwart, Roots, Simple, Bland, Shrunken, Insular, Stuck,
+
+<figure>
+    <img src="/assets/uploads/YNYgazebo.jpg"
+         alt="Gazebo, Youngstown, NY" width="600">
+    <figcaption>The village gazebo looking over the Niagara River to Niagara-on-the-Lake, Ontario, Canada</figcaption>
+</figure>
