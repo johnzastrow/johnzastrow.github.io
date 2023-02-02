@@ -39,4 +39,9 @@ find . -type f -name "*.md" -exec sed -i 's+<figure.*px">+ +g' {} \;
 
 sed -i -- 's+</figure>+ +g' *.md
 
+sed -i 's+<figcaption.*">+a +g' 2012-10-19-spatialite-and-triggers-to-update-data.md
+sed -i 's+</figcaption>+a +g' 2012-10-19-spatialite-and-triggers-to-update-data.md
+
+</figcaption>
+
 find . -type f -name "*.md" -exec sed -i 's+<figure.*px">+ +g' {} \;
