@@ -16,7 +16,7 @@ categories:
     - Web
 ---
 
-*This post is part of a series [\[1\]](http://northredoubt.com/n/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1"), [\[2\]](http://northredoubt.com/n/2012/01/17/example-with-php-and-spatialite-part-2/ "Example with PHP and Spatialite, part 2"), [\[3\]](http://northredoubt.com/n/2012/01/18/spatialite-and-spatial-indexes/ "Spatialite and Spatial Indexes"), [\[4\]](http://northredoubt.com/n/2012/01/20/spatialite-speed-test/ "Spatialite Speed Test")*
+*This post is part of a series [[1]](http://northredoubt.com/n/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1"), [[2]](http://northredoubt.com/n/2012/01/17/example-with-php-and-spatialite-part-2/ "Example with PHP and Spatialite, part 2"), [[3]](http://northredoubt.com/n/2012/01/18/spatialite-and-spatial-indexes/ "Spatialite and Spatial Indexes"), [[4]](http://northredoubt.com/n/2012/01/20/spatialite-speed-test/ "Spatialite Speed Test")*
 
 So I’m ready to take the next steps with my little project. This is a continuation of my [previous post ](http://northredoubt.com/n/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1")about my little journey. At this point I am connecting to a physical database file that I loaded with some sample data (12-digit watersheds). Now I’m going to practice with queries and you can see the results below.
 
@@ -24,12 +24,13 @@ Here are the base data.
 
  [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huc12all-240x300.png "12-digit US watersheds (HUC12)")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huc12all.png)
  
- <figcaption> 12-digit US watersheds (HUC12) and the example data set used here. Found in Southern Maine, Cumberland </figcaption>
+ <figcaption><b> 12-digit US watersheds (HUC12) and the example data set used here. Found in Southern Maine, Cumberland</b> </figcaption>
  
 
 And here are some close ups of the data. These are fairly dense polygons.
 
  [![Example of polygon vertices](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huczoom-300x216.png "Example of polygon vertices")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huczoom.png)
+ 
  Example of polygon vertices
 
 In fact, it looks like this query is testing the relationship between the point and polygons formed by 144,700 coordinate pairs (vertices) by scanning without the help of an index.
@@ -48,12 +49,14 @@ In Spatialite, the indexes are just tables and you have to add subqueries to you
 And here are the spatial indexes that spatialite sees.
 
  [![spatialite_indexes](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialite_indexes-147x300.png "spatialite_indexes")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialite_indexes.png)
+ 
  Spatial indexes used in spatialite
  
 
-So what’s in these indexes? Boxes…as we see below. Hopefully you can imagine how we get boxes from Xmin, Ymin, Xmax, Ymax extents. There is one box for each polygon HUC12 feature (note the PK\_UID is the primary key of the main geometry layer). These simple boxes are much simpler to test for spatial relationships that the multitude of vertices we saw above. But also much less accurate; especially for funny shaped things like watersheds. But, we can use these simple boxes to pre-filter the number of features that have to be tested by the more accurate (but lengthy) spatial test – hence speeding up the overall operation in many cases.
+So what’s in these indexes? Boxes…as we see below. Hopefully you can imagine how we get boxes from Xmin, Ymin, Xmax, Ymax extents. There is one box for each polygon HUC12 feature (note the PK_UID is the primary key of the main geometry layer). These simple boxes are much simpler to test for spatial relationships that the multitude of vertices we saw above. But also much less accurate; especially for funny shaped things like watersheds. But, we can use these simple boxes to pre-filter the number of features that have to be tested by the more accurate (but lengthy) spatial test – hence speeding up the overall operation in many cases.
 
  [![What is in a name... or an Rtree index.](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/index-300x152.png "What is in a name... or an Rtree index.")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/index.png)
+ 
  What is in a name... or an Rtree index.
  
 
@@ -75,94 +78,94 @@ Here’s the code of db.php. This isn’t using spatial indexes, so it’s scann
 
 ```php
 
-&lt;html&gt;  
-&lt;head&gt;  
-&lt;title&gt;Testing SpatiaLite on PHP&lt;/title&gt;  
-&lt;/head&gt;  
-&lt;body&gt;  
-&lt;h1&gt;Testing SpatiaLite on PHP&lt;/h1&gt;
+<html>  
+<head>  
+<title>Testing SpatiaLite on PHP</title>  
+</head>  
+<body>  
+<h1>Testing SpatiaLite on PHP</h1>
 
-&lt;?php  
+<?php  
 // Start TIMER  
 // ———–  
 $stimer = explode( ‘ ‘, microtime() );  
-$stimer = $stimer\[1\] + $stimer\[0\];  
+$stimer = $stimer[1] + $stimer[0];  
 // ———–  
 try {  
-/\*\*\* connect to SQLite database \*\*\*/  
+/*** connect to SQLite database ***/  
 $db = new SQLite3(‘db.sqlite’);
 
-/\*\*\* a little message to say we did it \*\*\*/  
+/*** a little message to say we did it ***/  
 echo ‘database connected’;  
 }  
 catch(PDOException $e)  
 {  
-echo $e-&gt;getMessage();  
+echo $e->getMessage();  
 }  
-\# loading SpatiaLite as an extension  
-$db-&gt;loadExtension(‘libspatialite.so’);
+# loading SpatiaLite as an extension  
+$db->loadExtension(‘libspatialite.so’);
 
-\# reporting some version info  
-$rs = $db-&gt;query(‘SELECT sqlite\_version()’);  
-while ($row = $rs-&gt;fetchArray())  
+# reporting some version info  
+$rs = $db->query(‘SELECT sqlite_version()’);  
+while ($row = $rs->fetchArray())  
 {  
-print “&lt;h3&gt;SQLite version: $row\[0\]&lt;/h3&gt;”;  
+print “<h3>SQLite version: $row[0]</h3>”;  
 }  
-$rs = $db-&gt;query(‘SELECT spatialite\_version()’);  
-while ($row = $rs-&gt;fetchArray())  
+$rs = $db->query(‘SELECT spatialite_version()’);  
+while ($row = $rs->fetchArray())  
 {  
-print “&lt;h3&gt;SpatiaLite version: $row\[0\]&lt;/h3&gt;”;  
+print “<h3>SpatiaLite version: $row[0]</h3>”;  
 }
 
-/\* SELECT HU\_12\_NAME FROM huc12 WHERE ST\_Contains(Geometry, MakePoint(-70.250,43.802));  
-\*/  
-/\*  
-\* Create a query  
-\*/  
-$sql = “SELECT DISTINCT Count(\*), ST\_GeometryType(Geometry), “;  
-$sql .= “ST\_Srid(Geometry) FROM huc12”;  
-$rs = $db-&gt;query($sql);  
-while ($row = $rs-&gt;fetchArray())  
+/* SELECT HU_12_NAME FROM huc12 WHERE ST_Contains(Geometry, MakePoint(-70.250,43.802));  
+*/  
+/*  
+* Create a query  
+*/  
+$sql = “SELECT DISTINCT Count(*), ST_GeometryType(Geometry), “;  
+$sql .= “ST_Srid(Geometry) FROM huc12”;  
+$rs = $db->query($sql);  
+while ($row = $rs->fetchArray())  
 {  
-\# read the result set  
+# read the result set  
 $msg = “There are “;  
-$msg .= $row\[0\];  
+$msg .= $row[0];  
 $msg .= ” entities of type “;  
-$msg .= $row\[1\];  
+$msg .= $row[1];  
 $msg .= ” SRID=”;  
-$msg .= $row\[2\];  
-print “&lt;h3&gt;$msg&lt;/h3&gt;”;  
+$msg .= $row[2];  
+print “<h3>$msg</h3>”;  
 }
 
-$sql = “SELECT HU\_12\_NAME FROM huc12 WHERE ST\_Contains(Geometry, MakePoint(-70.250,43.802))”;  
-$rs = $db-&gt;query($sql);  
-while ($row = $rs-&gt;fetchArray())  
+$sql = “SELECT HU_12_NAME FROM huc12 WHERE ST_Contains(Geometry, MakePoint(-70.250,43.802))”;  
+$rs = $db->query($sql);  
+while ($row = $rs->fetchArray())  
 {  
-\# read the result set  
+# read the result set  
 $msg = “Your point is in the HUC12: “;  
-$msg .= $row\[0\];  
-print “&lt;h3&gt;$msg&lt;/h3&gt;”;  
+$msg .= $row[0];  
+print “<h3>$msg</h3>”;  
 }  
-/\*  
-\* do not forget to release all handles !  
-\*/
+/*  
+* do not forget to release all handles !  
+*/
 
-\# closing the DB connection  
-$db-&gt;close();
+# closing the DB connection  
+$db->close();
 
 // End TIMER  
 // ———  
 $etimer = explode( ‘ ‘, microtime() );  
-$etimer = $etimer\[1\] + $etimer\[0\];  
-echo ‘&lt;p style=”margin:auto; text-align:center”&gt;’;  
-printf( “Script timer: &lt;b&gt;%f&lt;/b&gt; seconds.”, ($etimer-$stimer) );  
-echo ‘&lt;/p&gt;’;  
+$etimer = $etimer[1] + $etimer[0];  
+echo ‘<p style=”margin:auto; text-align:center”>’;  
+printf( “Script timer: <b>%f</b> seconds.”, ($etimer-$stimer) );  
+echo ‘</p>’;  
 // ———
 
-?&gt;
+?>
 
-&lt;/body&gt;  
-&lt;/html&gt;
+</body>  
+</html>
 
 ```
 
