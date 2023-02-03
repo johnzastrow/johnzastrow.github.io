@@ -160,7 +160,7 @@ These steps should be done as the postgres user. As root, issue: `su – postgre
 
 Using the '[nano](http://www.nano-editor.org/dist/v1.2/nano.1.html)' editor, (or vi), modify the postgresql.conf to allow the installation to listen for remote connections. Also, while we're in here let's configure the logging to create the log file in /var/log/pgsql/. The main cause of not being able to connect to a PostgreSQL database is because of a misconfiguration in this file.
 
-```
+```bash
 listen_addresses = '*'  
 port = 5432  
 log_destination = 'stderr'  
@@ -170,16 +170,20 @@ log_filename = 'postgresql-%Y-%m-%d'
 log_line_prefix = ' %t %d %u '
 ```
 
-<span style="color: #000000;">Now, edit the pg\_hba.conf and configure some network rules. Add the line in <span style="color: #ff0000;">red</span> to match your LAN address range. Set access from other computers to use [md5 authentication](http://en.wikipedia.org/wiki/MD5). You can also set the other methods to md5, (and others) but for managability, leave the local connections set to 'trust' for now. The order of rules in this file matters.</span>
+Now, edit the pg_hba.conf and configure some network rules. Add the line in red to match your LAN address range. Set access from other computers to use md5 authentication. You can also set the other methods to md5, (and others) but for managability, leave the local connections set to 'trust' for now. The order of rules in this file matters.
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;"># TYPE DATABASE USER CIDR-ADDRESS METHOD  
+```bash
+ TYPE DATABASE USER CIDR-ADDRESS METHOD  
 # "local" is for Unix domain socket connections only  
 local all all trust  
 # IPv4 local connections:  
 host all all 127.0.0.1/32 trust  
-<span style="color: #ff0000;">host all all 192.168.0.0/24 md5</span>  
+host all all 192.168.0.0/24 md5 
 # IPv6 local connections:  
-host all all ::1/128 trust </span></span></span></span>
+host all all ::1/128 trust 
+```
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">/etc/init.d/postgresql start</span></span></span></span>
 
+```bash
+/etc/init.d/postgresql start
+```
