@@ -17,7 +17,7 @@ categories:
 
 So, starting with a table that looks like this
 
-&lt;pre class="lang:pgsql decode:true"&gt;
+```sql
 
 CREATE TABLE "huc12" (  
  PK\_UID INTEGER PRIMARY KEY AUTOINCREMENT,  
@@ -43,7 +43,7 @@ CREATE TABLE "huc12" (
  "SHAPE\_Leng" DOUBLE,  
  "SHAPE\_Area" DOUBLE, "Geometry" MULTIPOLYGON)
 
-&lt;/pre&gt;
+```
 
 and ending with
 

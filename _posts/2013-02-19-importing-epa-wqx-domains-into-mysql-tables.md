@@ -16,8 +16,8 @@ I wanted fresh [WQX](http://www.epa.gov/storet/wqx/) domain values from the [STO
 
 First I created this table to hold my data (you might need to add more columns).
 
-```
-<pre class="lang:mysql decode:true" title="A basic table to hold the values. You might need to add more columns">CREATE TABLE `wqx21_domains` (
+```sql
+CREATE TABLE `wqx21_domains` (
   `DOM_ID` int(11) NOT NULL AUTO_INCREMENT,
   `WQXElementName` varchar(500) DEFAULT NULL,
   `UniqueIdentifier` varchar(500) DEFAULT NULL,
@@ -48,7 +48,8 @@ then run the following bash code from within a directory that looks like below.
 
  [![WQX XML domain file list](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list-188x300.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list.png)
  <p><i> 
--657">WQX XML domain file list
+
+WQX XML domain file list
  </i></p> 
 
 

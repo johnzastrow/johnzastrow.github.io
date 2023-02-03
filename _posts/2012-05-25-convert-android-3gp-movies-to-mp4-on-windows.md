@@ -25,7 +25,7 @@ Step 3. You are lazy like me, so copy those binaries right into the /bin directo
 Step 4. Put the script below into the same /bin directory because you are lazy
 
 ```bash
-```
+
 
 \#!/bin/bash  
 # jcz 25-may-12  
@@ -116,9 +116,11 @@ unix2dos $filenamer.txt
 echo " "  
 echo " "  
 echo "\*\*\*\*\*\*\*\*\*\*\*\*\* DONE \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* "
+```
 
 Step 5. Using cygwin, change into a directory containing some .3gp files you want to convert and run it. You will send up with one .mp4 file for each .3gp file you started with in that directory.
 
+```
 *john.zastrow@DIVL-GY4K3R1 /cygdrive/c/Users/john.zastrow/Videos/PhoneVids*  
 *$ 3gp2mp4.sh*  
 *Welcome, john.zastrow. I'm running in /cygdrive/c/Users/john.zastrow/Videos/Phon eVids and I will convert all 3GP phone videos to here mp4 files.*
@@ -134,8 +136,10 @@ Step 5. Using cygwin, change into a directory containing some .3gp files you wan
 *Moving files: ls VIDEO0001.3gp.mp4 VIDEO0002.3gp.mp4 VIDEO0003.3gp.mp4 VIDEO000 4.3gp.mp4 VIDEO0005.3gp.mp4 VIDEO0006.3gp.mp4 VIDEO0007.3gp.mp4 VIDEO0008.3gp.mp 4 VIDEO0009.3gp.mp4 VIDEO0010.3gp.mp4*
 
 *# <snip></snip>*
+```
 
 You'll also get a very verbose log file of what the starting files looked like (stat) and what ffmpeg saw and did. I do love my log files 🙂
+
 
 ```bash
 
@@ -237,6 +241,7 @@ frame= 63 fps=0.0 q=31.0 size= 33kB time=00:00:00.18 bitrate=1488.0kbits/s dup=5
 </snip></snip>
 ```
 
-<span style="color: #333333; font-style: normal; line-height: 24px;">And you'll end up with files like this</span>
+And you'll end up with files like this
+
 
 [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/output.gif "output")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/output.gif)
