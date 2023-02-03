@@ -26,11 +26,15 @@ Here are the base data.
 
 And here are some close ups of the data. These are fairly dense polygons.
 
- [![Example of polygon vertices](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huczoom-300x216.png "Example of polygon vertices")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huczoom.png)<figcaption class="wp-caption-text" id="caption-attachment-307">Example of polygon vertices</figcaption> 
+ [![Example of polygon vertices](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huczoom-300x216.png "Example of polygon vertices")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huczoom.png)
+ Example of polygon vertices
 
 In fact, it looks like this query is testing the relationship between the point and polygons formed by 144,700 coordinate pairs (vertices) by scanning without the help of an index.
 
- [![Lots of little points to check](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/nodes-300x136.png "Lots of little points to check")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/nodes.png)<figcaption class="wp-caption-text" id="caption-attachment-306">Lots of little points to check</figcaption> 
+ [![Lots of little points to check](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/nodes-300x136.png "Lots of little points to check")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/nodes.png)
+ 
+ Lots of little points to check
+ 
 
 At this point I’m just going to perform basic queries without using spatial indexes. You will almost always want to use spatial indexes, but I’m going to practice this in phases so these examples won’t use indexes.
 
@@ -40,19 +44,29 @@ In Spatialite, the indexes are just tables and you have to add subqueries to you
 
 And here are the spatial indexes that spatialite sees.
 
- [![spatialite_indexes](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialite_indexes-147x300.png "spatialite_indexes")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialite_indexes.png)<figcaption class="wp-caption-text" id="caption-attachment-295">Spatial indexes used in spatialite</figcaption> 
+ [![spatialite_indexes](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialite_indexes-147x300.png "spatialite_indexes")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialite_indexes.png)
+ Spatial indexes used in spatialite
+ 
 
 So what’s in these indexes? Boxes…as we see below. Hopefully you can imagine how we get boxes from Xmin, Ymin, Xmax, Ymax extents. There is one box for each polygon HUC12 feature (note the PK\_UID is the primary key of the main geometry layer). These simple boxes are much simpler to test for spatial relationships that the multitude of vertices we saw above. But also much less accurate; especially for funny shaped things like watersheds. But, we can use these simple boxes to pre-filter the number of features that have to be tested by the more accurate (but lengthy) spatial test – hence speeding up the overall operation in many cases.
 
- [![What is in a name... or an Rtree index.](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/index-300x152.png "What is in a name... or an Rtree index.")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/index.png)<figcaption class="wp-caption-text" id="caption-attachment-308">What is in a name... or an Rtree index.</figcaption> 
+ [![What is in a name... or an Rtree index.](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/index-300x152.png "What is in a name... or an Rtree index.")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/index.png)
+ What is in a name... or an Rtree index.
+ 
 
 Below is an example of the spatial query used in the code below. Translated, it says, “show me the name of the HUC12 that contains this point.”
 
- [![The free gui provided by spatialite and a spatial query](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialgui-300x276.png "The free gui provided by spatialite and a spatial query")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialgui.png)<figcaption class="wp-caption-text" id="caption-attachment-294">The free gui provided by spatialite and a spatial query</figcaption> 
+ [![The free gui provided by spatialite and a spatial query](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialgui-300x276.png "The free gui provided by spatialite and a spatial query")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialgui.png)
+ 
+ The free gui provided by spatialite and a spatial query
+ 
 
 Here are the files in the project so far. Of course you’re not normally going to be putting a loadable extension library (libspatialite.so) in a web server file directory. But, this is just practice.
 
- [![Files so far for this project](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/files-300x122.png "Files so far for this project")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/files.png)<figcaption class="wp-caption-text" id="caption-attachment-299">Files so far for this project</figcaption> 
+ [![Files so far for this project](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/files-300x122.png "Files so far for this project")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/files.png)
+ 
+ Files so far for this project
+ 
 
 Here’s the code of db.php. This isn’t using spatial indexes, so it’s scanning 183 features and a whole bunch of vertices to figure out which polygon actually contains that point… and doing a couple simpler things like opening a connection, asking some simple questions, and closing the connection all in about 0.4 seconds.
 
