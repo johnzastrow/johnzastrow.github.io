@@ -70,7 +70,7 @@ Here are the files in the project so far. Of course you’re not normally going 
 
 Here’s the code of db.php. This isn’t using spatial indexes, so it’s scanning 183 features and a whole bunch of vertices to figure out which polygon actually contains that point… and doing a couple simpler things like opening a connection, asking some simple questions, and closing the connection all in about 0.4 seconds.
 
-\[cc lang=’php’ \]
+```php
 
 &lt;html&gt;  
 &lt;head&gt;  
@@ -161,8 +161,10 @@ echo ‘&lt;/p&gt;’;
 &lt;/body&gt;  
 &lt;/html&gt;
 
-\```
+```
 
 Not too bad, but I want this faster because I want to feed it much larger data in my final project.
 
- [![Results of the first try at this](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/testing-300x157.png "Results of the first try at this")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/testing.png)<figcaption class="wp-caption-text" id="caption-attachment-300">Results of the first try at this</figcaption> 
+ [![Results of the first try at this](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/testing-300x157.png "Results of the first try at this")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/testing.png)
+ 
+ ##### Results of the first try at this
