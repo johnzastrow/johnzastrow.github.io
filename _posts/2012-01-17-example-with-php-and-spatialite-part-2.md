@@ -22,7 +22,10 @@ So I’m ready to take the next steps with my little project. This is a continua
 
 Here are the base data.
 
- [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huc12all-240x300.png "12-digit US watersheds (HUC12)")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huc12all.png)<figcaption class="wp-caption-text" id="caption-attachment-293">12-digit US watersheds (HUC12) and the example data set used here. Found in Southern Maine, Cumberland</figcaption> 
+ [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huc12all-240x300.png "12-digit US watersheds (HUC12)")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huc12all.png)
+ 
+ ##### 12-digit US watersheds (HUC12) and the example data set used here. Found in Southern Maine, Cumberland
+ 
 
 And here are some close ups of the data. These are fairly dense polygons.
 
