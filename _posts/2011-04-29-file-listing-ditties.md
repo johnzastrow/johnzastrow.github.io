@@ -11,22 +11,22 @@ categories:
 ---
 
 Here are some simple bash scripts to list files into a text files that can be used to catalog stuff. Most of the time I use the last one.   
-\[cce\_bash\]
+```bash
 
 filer=$(find . -mtime -1)  
 sizer=$(ls -lah $filer | awk '{ print $5″\\t" $6″\\t" $7″\\t" $8″\\t" $9″\\t\
 " }')  
 echo $sizer
 
-\[/cce\_bash\]
+[/cce_bash]
 
 or this one
 
-\[cce\_bash\]  
+```bash  
 ls -ghG –full-time | awk '{ print $1″\\t" $3 "\\t" $4 "\\t" $7 $8 $9 $10 $11 $12 "\
 " }' &gt; files.txt  
 cat files.txt  
-\[/cce\_bash\]  
+[/cce_bash]  
 The script above makes output as follows. The extra lines just made it easier for me to read. This one will output files with spaces in the name by removing the spaces (lumping the words together). If you don't like that, just put the " " between $7 $8 $9 etc. above.
 
 > ```
@@ -70,15 +70,15 @@ The script above makes output as follows. The extra lines just made it easier fo
 
 <span style="color: #000000;"> </span>
 
-<div class="mcePaste" id="_mcePaste" style="position: absolute; width: 1px; height: 1px; overflow: hidden; top: 0px; left: -10000px;">?</div>\[cce\_bash\]  
-\#!/bin/sh  
+<div class="mcePaste" id="_mcePaste" style="position: absolute; width: 1px; height: 1px; overflow: hidden; top: 0px; left: -10000px;">?</div>```bash  
+#!/bin/sh  
 date &gt; statfile.txt  
-echo -e "File\_type \\t Modified\_date \\t Change\_date \\t File\_bytes \\t File\_name" &gt;&gt; statfile.txt  
+echo -e "File_type \\t Modified_date \\t Change_date \\t File_bytes \\t File_name" &gt;&gt; statfile.txt  
 stat –printf "%F \\t %y \\t %z \\t %s \\t %N\
 " \* &gt;&gt; statfile.txt  
 cat statfile.txt
 
-\[/cce\_bash\]  
+[/cce_bash]  
 <span style="color: #ff6600;">  
 </span>
 

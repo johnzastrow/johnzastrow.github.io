@@ -17,12 +17,12 @@ Access. So I created a new field called NEWDATE of the date/time type.
 
 Then I ran the query below to convert the numbers.
 
-UPDATE Itec\_data1  
-SET \[NEWDATE\] = format(DateSerial (left(\[DATEOLD\],4), mid(\[DATEOLD\],5,2), right(\[DATEOLD\],2)),"yyyy/mm/dd");
+UPDATE Itec_data1  
+SET [NEWDATE] = format(DateSerial (left([DATEOLD],4), mid([DATEOLD],5,2), right([DATEOLD],2)),"yyyy/mm/dd");
 
 Because dates and times are stored as integers and decimals  
 respectively, with two datetime fields (DATE and TIME) you can create a  
 third and final datetime field (DATETIMER) simply by adding them.
 
-UPDATE Itec\_data1  
-SET \[DATETIMER\] = \[DATE\]+\[TIME\];
+UPDATE Itec_data1  
+SET [DATETIMER] = [DATE]+[TIME];

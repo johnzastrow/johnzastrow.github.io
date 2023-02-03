@@ -16,35 +16,35 @@ script from David (aka Matir aka EmptyCinema) from linuxquestions.org [http://ww
 
 to do just that (along with a sample sessions using it).
 
-\#!/bin/bash  
+#!/bin/bash  
 for dir in \*/  
  do dir=`echo $dir | tr -d '/'`  
  echo $dir  
  tar czf $dir.tar.gz $dir  
 done
 
-\[jcz@actinella ~\]$ ./zipdir.sh  
+[jcz@actinella ~]$ ./zipdir.sh  
 cdcatalogs  
 ddclient-3.6.6  
 Desktop
 
-\[jcz@actinella ~\]$ ls -lht \*.gz  
+[jcz@actinella ~]$ ls -lht \*.gz  
 -rw-rw-r– 1 jcz jcz 17M Sep 6 23:31 Desktop.tar.gz  
 -rw-rw-r– 1 jcz jcz 13K Sep 6 23:31 cdcatalogs.tar.gz  
 -rw-rw-r– 1 jcz jcz 74K Sep 6 23:31 ddclient-3.6.6.tar.gz
 
 Here is another more advanced version:
 
-\#!/bin/bash  
+#!/bin/bash  
 # jcz 13-nov-05  
 # zips (or tar.gz) all directories  
 # in the directory in which it is run  
-\##################################  
-echo " \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* "  
+##################################  
+echo " ******************************\* "  
 echo " this app zips all directories in this directory,"  
 echo " tests the created zips for integrity, then "  
 echo " copies them to some directory."  
-echo " \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* "
+echo " ******************************\* "
 
 # user enters the directory that they want the zips copied to  
 echo -n "Destination directory for zips e.g. /cygdrive/f/BACKUPS ( . =  

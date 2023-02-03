@@ -10,7 +10,7 @@ categories:
     - Database
 ---
 
-UPDATE: see the next iteration on this project [\[here\]](https://johnzastrow.github.io/2011/07/18/handy-database-documenterprofiler-for-mysql-cont/ "Handy database documenter/profiler for mysql, cont.")
+UPDATE: see the next iteration on this project [[here]](https://johnzastrow.github.io/2011/07/18/handy-database-documenterprofiler-for-mysql-cont/ "Handy database documenter/profiler for mysql, cont.")
 
 Here's a view that will spit out just about everything MySQL (5.1) knows about the tables and fields it maintains for you. The first field can be joined to the output of something like
 

@@ -30,9 +30,9 @@ ls -ghGR --full-time | awk '{ print $1"\t" $3 "\t" $4 "\t" $7 $8 $9 $10 $11 $12 
 
  to produce the following listing:
 
-\[snip\]  
+[snip]  
 <font color="#009900"><small><font face="Courier New">total   
--rwx——+ 16K 2008-06-09 Export\_Output.shp.xml  
+-rwx——+ 16K 2008-06-09 Export_Output.shp.xml  
 drwx——+ 0 2008-06-24 java  
 drwx——+ 0 2008-06-24 licenses  
 -rwx——+ 42K 2008-05-29 openoffice.org-activex.cab  

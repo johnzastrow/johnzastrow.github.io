@@ -242,7 +242,7 @@ done!
 </snip>
 ```
 
-And this for the output log "2012\_05\_25\_16-43-19\_Appended\_Classes.txt".
+And this for the output log "2012_05_25_16-43-19_Appended_Classes.txt".
 
 ```bash
 

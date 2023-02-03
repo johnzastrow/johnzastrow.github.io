@@ -23,7 +23,7 @@ I think that embedding ESRI in their pages for such a simple need is overkill an
 - See these links for some impressive examples. Note the use of non-Google data, and the events tied to the polygons. We might have enough here to work with.
 - <http://code.google.com/apis/maps/documentation/demogallery.html>
 - 
-- [http://maps.forum.nu/gm\_main.html](http://maps.forum.nu/gm_main.html) – looks like dynamic polys may be KML.
+- [http://maps.forum.nu/gm_main.html](http://maps.forum.nu/gm_main.html) – looks like dynamic polys may be KML.
 - 
 - <http://gmaps-samples.googlecode.com/svn/trunk/poly/statemap.html> – click a state to see the GPolygon interaction
 - 
@@ -32,7 +32,7 @@ I think that embedding ESRI in their pages for such a simple need is overkill an
 - <http://gmaps-samples.googlecode.com/svn/trunk/poly/clickable.html>
 - 
 - This link seems to suggest options for feeding ArcIMS into Google Maps. Not bad.
-- [http://www.mapdex.org/blog/index.cfm?mode=cat&amp;category\_id= F4D2DF9D-A091-9FBE-E92623681946F858](http://www.mapdex.org/blog/index.cfm?mode=cat&category_id=F4D2DF9D-A091-9FBE-E92623681946F858)
+- [http://www.mapdex.org/blog/index.cfm?mode=cat&amp;category_id= F4D2DF9D-A091-9FBE-E92623681946F858](http://www.mapdex.org/blog/index.cfm?mode=cat&category_id=F4D2DF9D-A091-9FBE-E92623681946F858)
 - 
 - 
 - Here is a classic write up as well

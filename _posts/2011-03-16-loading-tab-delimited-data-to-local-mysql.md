@@ -16,47 +16,47 @@ I'm using the Positive Observation Essentials format as queried from their datab
 
 I did use a sed command (created and verified in Excel) on the original files to fix the spaces in the column names (if you are in the business of making data for people, never, ever, ever, ever create large tabular files with spaces or special characters in the column names. Avoid dashes as well, and preferably use all caps). Note that the commands below will REPLACE your files. So be sure to back up your originals in case anything goes wrong.
 
-find . -name '\*AKN\*' -exec sed -i 's/Record\\ Number/Record\_Number/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Global\\ Unique\\ Identifier/Global\_Unique\_Identifier/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Collection\\ Code/Collection\_Code/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Scientific\\ Name/Scientific\_Name/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Record\\ Number/Record_Number/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Global\\ Unique\\ Identifier/Global_Unique_Identifier/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Collection\\ Code/Collection_Code/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Scientific\\ Name/Scientific_Name/g' {} \\;  
 find . -name '\*AKN\*' -exec sed -i 's/Latitude/Latitude/g' {} \\;  
 find . -name '\*AKN\*' -exec sed -i 's/Longitude/Longitude/g' {} \\;  
 find . -name '\*AKN\*' -exec sed -i 's/Country/Country/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/State\\ Province/State\_Province/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Observation\\ Count/Observation\_Count/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Obs\\ Count\\ At\\ Least/Obs\_Count\_At\_Least/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Obs\\ Count\\ At\\ Most/Obs\_Count\_At\_Most/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Observation\\ Date/Observation\_Date/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Duration\\ In\\ Hours/Duration\_In\_Hours/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Time\\ Observations\\ Started/Time\_Observations\_Started/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Time\\ Observations\\ Ended/Time\_Observations\_Ended/g' {} \\;  
-find . -name '\*AKN\*' -exec sed -i 's/Sampling\\ Event\\ Identifier/Sampling\_Event\_Identifier/g' {} \\;
+find . -name '\*AKN\*' -exec sed -i 's/State\\ Province/State_Province/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Observation\\ Count/Observation_Count/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Obs\\ Count\\ At\\ Least/Obs_Count_At_Least/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Obs\\ Count\\ At\\ Most/Obs_Count_At_Most/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Observation\\ Date/Observation_Date/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Duration\\ In\\ Hours/Duration_In_Hours/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Time\\ Observations\\ Started/Time_Observations_Started/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Time\\ Observations\\ Ended/Time_Observations_Ended/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Sampling\\ Event\\ Identifier/Sampling_Event_Identifier/g' {} \\;
 
 Then I create a basic staging table (commands also from Excel). I don't know why I used InnoDB, when MyIsam would have been faster. But, notice the absence of indexes for faster loading.
 
-CREATE TABLE `nv\_akn` (  
- `Record\_Number` VARCHAR(30) DEFAULT NULL,  
- `Global\_Unique\_Identifier` VARCHAR(30) DEFAULT NULL,  
- `Collection\_Code` VARCHAR(30) DEFAULT NULL,  
- `Scientific\_Name` VARCHAR(150) DEFAULT NULL,  
+CREATE TABLE `nv_akn` (  
+ `Record_Number` VARCHAR(30) DEFAULT NULL,  
+ `Global_Unique_Identifier` VARCHAR(30) DEFAULT NULL,  
+ `Collection_Code` VARCHAR(30) DEFAULT NULL,  
+ `Scientific_Name` VARCHAR(150) DEFAULT NULL,  
  `Latitude` VARCHAR(30) DEFAULT NULL,  
  `Longitude` VARCHAR(30) DEFAULT NULL,  
  `Country` VARCHAR(50) DEFAULT NULL,  
- `State\_Province` VARCHAR(50) DEFAULT NULL,  
- `Observation\_Count` VARCHAR(30) DEFAULT NULL,  
- `Obs\_Count\_At\_Least` VARCHAR(30) DEFAULT NULL,  
- `Obs\_Count\_At\_Most` VARCHAR(30) DEFAULT NULL,  
- `Observation\_Date` VARCHAR(30) DEFAULT NULL,  
- `Duration\_In\_Hours` VARCHAR(30) DEFAULT NULL,  
- `Time\_Observations\_Started` VARCHAR(30) DEFAULT NULL,  
- `Time\_Observations\_Ended` VARCHAR(30) DEFAULT NULL,  
- `Sampling\_Event\_Identifier` VARCHAR(50) DEFAULT NULL  
+ `State_Province` VARCHAR(50) DEFAULT NULL,  
+ `Observation_Count` VARCHAR(30) DEFAULT NULL,  
+ `Obs_Count_At_Least` VARCHAR(30) DEFAULT NULL,  
+ `Obs_Count_At_Most` VARCHAR(30) DEFAULT NULL,  
+ `Observation_Date` VARCHAR(30) DEFAULT NULL,  
+ `Duration_In_Hours` VARCHAR(30) DEFAULT NULL,  
+ `Time_Observations_Started` VARCHAR(30) DEFAULT NULL,  
+ `Time_Observations_Ended` VARCHAR(30) DEFAULT NULL,  
+ `Sampling_Event_Identifier` VARCHAR(50) DEFAULT NULL  
 ) ENGINE=INNODB DEFAULT CHARSET=latin1
 
 I'm just doing this locally, so XAMPP is my friend. So from the xampp /mysql/bin directory, I ran mysql.exe. I chose my database and ran the following on the text files produced by the above sed cleaners.
 
-mysql&gt; LOAD DATA LOCAL INFILE 'c:/xampp/mysql/bin/Nevada\_Pos\_obs\_Essent\_15-MAR-2011.txt' INTO TABLE nv\_akn  
+mysql&gt; LOAD DATA LOCAL INFILE 'c:/xampp/mysql/bin/Nevada_Pos_obs_Essent_15-MAR-2011.txt' INTO TABLE nv_akn  
 FIELDS TERMINATED BY '\\t'  
 LINES TERMINATED BY '\
 ' IGNORE 1 LINES;

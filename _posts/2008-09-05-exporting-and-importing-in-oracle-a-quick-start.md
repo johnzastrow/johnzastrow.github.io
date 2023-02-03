@@ -12,7 +12,7 @@ categories:
 
 I do this about twice per year and every time I have to look back at my notes to remember how. Maybe you are in the same boat. So, to save us both some trouble I'm going to blog my notes on the subject here.
 
-**exp schemaname/password@instance FILE=d:\\mydump.dmp \[follow instructions\]**  
+**exp schemaname/password@instance FILE=d:\\mydump.dmp [follow instructions]**  
 Give the file a name after FILE, most of the rest of the defaults are fine in the interactive prompting that exp will provide
 
 For example, given a user called *mike*, his schema will be called *mike* in Oracle. The instance value is the same as is listed in the tnsnames.ora file in your Oracle client installation.
@@ -62,18 +62,18 @@ LOG log file of screen output STATISTICS analyze objects (ESTIMATE)
 ROWS export data rows (Y) PARFILE parameter filename  
 CONSISTENT cross-table consistency(N) CONSTRAINTS export constraints (Y)
 
-OBJECT\_CONSISTENT transaction set to read only during object export (N)  
+OBJECT_CONSISTENT transaction set to read only during object export (N)  
 FEEDBACK display progress every x rows (0)  
 FILESIZE maximum size of each dump file  
-FLASHBACK\_SCN SCN used to set session snapshot back to  
-FLASHBACK\_TIME time used to get the SCN closest to the specified time  
+FLASHBACK_SCN SCN used to set session snapshot back to  
+FLASHBACK_TIME time used to get the SCN closest to the specified time  
 QUERY select clause used to export a subset of a table  
 RESUMABLE suspend when a space related error is encountered(N)  
-RESUMABLE\_NAME text string used to identify resumable statement  
-RESUMABLE\_TIMEOUT wait time for RESUMABLE  
-TTS\_FULL\_CHECK perform full or partial dependency check for TTS  
+RESUMABLE_NAME text string used to identify resumable statement  
+RESUMABLE_TIMEOUT wait time for RESUMABLE  
+TTS_FULL_CHECK perform full or partial dependency check for TTS  
 TABLESPACES list of tablespaces to export  
-TRANSPORT\_TABLESPACE export transportable tablespace metadata (N)  
+TRANSPORT_TABLESPACE export transportable tablespace metadata (N)  
 TEMPLATE template name which invokes iAS mode export
 
 Export terminated successfully without warnings.
@@ -106,20 +106,20 @@ ROWS import data rows (Y) PARFILE parameter filename
 LOG log file of screen output CONSTRAINTS import constraints (Y)  
 DESTROY overwrite tablespace data file (N)  
 INDEXFILE write table/index info to specified file  
-SKIP\_UNUSABLE\_INDEXES skip maintenance of unusable indexes (N)  
+SKIP_UNUSABLE_INDEXES skip maintenance of unusable indexes (N)  
 FEEDBACK display progress every x rows(0)  
-TOID\_NOVALIDATE skip validation of specified type ids  
+TOID_NOVALIDATE skip validation of specified type ids  
 FILESIZE maximum size of each dump file  
 STATISTICS import precomputed statistics (always)  
 RESUMABLE suspend when a space related error is encountered(N)  
-RESUMABLE\_NAME text string used to identify resumable statement  
-RESUMABLE\_TIMEOUT wait time for RESUMABLE  
+RESUMABLE_NAME text string used to identify resumable statement  
+RESUMABLE_TIMEOUT wait time for RESUMABLE  
 COMPILE compile procedures, packages, and functions (Y)  
-STREAMS\_CONFIGURATION import streams general metadata (Y)  
-STREAMS\_INSTANTIATION import streams instantiation metadata (N)
+STREAMS_CONFIGURATION import streams general metadata (Y)  
+STREAMS_INSTANTIATION import streams instantiation metadata (N)
 
 The following keywords only apply to transportable tablespaces  
-TRANSPORT\_TABLESPACE import transportable tablespace metadata (N)  
+TRANSPORT_TABLESPACE import transportable tablespace metadata (N)  
 TABLESPACES tablespaces to be transported into database  
 DATAFILES datafiles to be transported into database  
-TTS\_OWNERS users that own data in the transportable tablespace set
+TTS_OWNERS users that own data in the transportable tablespace set

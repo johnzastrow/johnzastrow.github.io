@@ -14,7 +14,7 @@ categories:
     - Spatialite
 ---
 
-The primary outlet for spatialite news and changes is the [Google Groups Spatialite user mailing list](https://groups.google.com/group/spatialite-users). This is a low-barrier place to announce things. But it can be a little tough to use to understand the [trajectory](https://www.gaia-gis.it/fossil/libspatialite/timeline) of the project. So, I might take some time every now and then to re-post interesting updates from the mailing list here. I'll cook them down and edit them to my taste – so be sure to check the original sources for the official versions. Please note this post and others like it are not a changelog or formal announcements. Some links to related – but perhaps older -formal changelogs are [\[here\]](http://www.gaia-gis.it/spatialite-3.0.0-BETA/changelog.html) and [\[here\]](https://launchpad.net/ubuntu/+source/spatialite/+changelog).
+The primary outlet for spatialite news and changes is the [Google Groups Spatialite user mailing list](https://groups.google.com/group/spatialite-users). This is a low-barrier place to announce things. But it can be a little tough to use to understand the [trajectory](https://www.gaia-gis.it/fossil/libspatialite/timeline) of the project. So, I might take some time every now and then to re-post interesting updates from the mailing list here. I'll cook them down and edit them to my taste – so be sure to check the original sources for the official versions. Please note this post and others like it are not a changelog or formal announcements. Some links to related – but perhaps older -formal changelogs are [[here]](http://www.gaia-gis.it/spatialite-3.0.0-BETA/changelog.html) and [[here]](https://launchpad.net/ubuntu/+source/spatialite/+changelog).
 
 Update: the second link above is from the [Ubuntu launchpad](https://launchpad.net/ubuntu/+source/spatialite) itself. It's nice to see them tracking spatialite so closely. They've even got an RC packages up when most repos are much further behind it seems.
 
@@ -22,14 +22,14 @@ Update: the second link above is from the [Ubuntu launchpad](https://launchpad.n
 
 - Including the latest SQLite 3.7.12.1
 - Including the latest EPSG CRS definitions supported by PROJ4 v.4.8.0
-- Fixing a bug in load\_shapefile() and load\_dbf() double quoting the table name
+- Fixing a bug in load_shapefile() and load_dbf() double quoting the table name
 - Fix a typo in the configure.ac script that causes problems detecting a 3.3.0 or later version of GEOS.
 - Updating the build scripts in order to support Android (as suggested by Marco Bernasocchi, QGIS-Android)
 - Fixing some GEOS related issues Debian/Ubuntu obsolete GEOS 3.2.2
 
 Sandro (a.furieri ) mentioned on March 7 to the list that libspatialite 3.1.0 was soon to be released. It seems the major focus is to tighten up the code with testing and to introduce a few new features. Sandro writes in an earlier message,
 
-> \[Brad Hard\]'s the author of the test coverage: Brad has spent many months of precious work so to develop the full coverage, and he deserves full credit for this 😀 Never forget: if SpatiaLite is now a robustly engineered library, it's mainly thank to Brad's wise contributions.
+> [Brad Hard]'s the author of the test coverage: Brad has spent many months of precious work so to develop the full coverage, and he deserves full credit for this 😀 Never forget: if SpatiaLite is now a robustly engineered library, it's mainly thank to Brad's wise contributions.
 
 Sandro also writes in another message, "Hi List, I'm glad to announce you all that version 3.1.0 is coming soon :-)" with following edited summary.
 
@@ -43,7 +43,7 @@ Sandro earlier posted a short report on the latest spatialite advancements:
 
 - The whole test coverage has now been successfully ported on both MinGW32 and MinGW64 (lcov isn't supported on MinGW, but gcov is available anyway, and that's enough)
 - The same is for Mac Os X (Leopard) Power PC. This marks a notable step, because this way we were able to identify (and fix) many small portability issues. and testing a big-endian arch (PPC) ensures us that there are no endianness-related issues at all in libspatialite.
-- The next release (v.3.0.2 at the time) will support a more flexible way allowing to initially create and populate the "spatial\_ref\_sys" metadata table accordingly to your specific individual requirements (many thanks to Pepijn Van Eeckhoudt; he initially advanced this idea)
+- The next release (v.3.0.2 at the time) will support a more flexible way allowing to initially create and populate the "spatial_ref_sys" metadata table accordingly to your specific individual requirements (many thanks to Pepijn Van Eeckhoudt; he initially advanced this idea)
 
 **SQL-level:**
 
@@ -54,7 +54,7 @@ Sandro earlier posted a short report on the latest spatialite advancements:
 SELECT InitSpatialMetaData();
 ```
 
-Same as before, unchanged: the complete EPSG dataset will be inserted into "spatial\_ref\_sys" (currently, about 4100+ rows)
+Same as before, unchanged: the complete EPSG dataset will be inserted into "spatial_ref_sys" (currently, about 4100+ rows)
 
 
 ```sql
@@ -68,7 +68,7 @@ or
 SELECT InitSpatialMetaData('WGS84_ONLY'); 
 ```
 
-only WGS84-related EPSG SRIDs will be inserted into "spatial\_ref\_sys" (about 130 rows)
+only WGS84-related EPSG SRIDs will be inserted into "spatial_ref_sys" (about 130 rows)
 
 
 ```sql
@@ -84,7 +84,7 @@ or
 SELECT InitSpatialMetaData('EMPTY'); 
 ```
 
-no EPSG SRID will be inserted into "spatial\_ref\_sys" (0 rows)
+no EPSG SRID will be inserted into "spatial_ref_sys" (0 rows)
 
 
 ```sql
@@ -93,7 +93,7 @@ no EPSG SRID will be inserted into "spatial\_ref\_sys" (0 rows)
 
 ```
 
-\*new\* SQL function: will attempt to insert SRID=4326 into "spatial\_ref\_sys". the corresponding EPSG SRID definition will be copied from the inlined dataset internally defined within the libspatialite library (.DLL, .so, .dylib …)
+\*new\* SQL function: will attempt to insert SRID=4326 into "spatial_ref_sys". the corresponding EPSG SRID definition will be copied from the inlined dataset internally defined within the libspatialite library (.DLL, .so, .dylib …)
 ```sql
 -- **SQL-script sample:**
 -- =========================================================
@@ -159,8 +159,8 @@ now simply defaults to:
 please see SQL InsertEpsgSrid()
 ```
 
-> **spatialite CLI and spatialite\_gui tools:**  
-> No changes at all: these tools will continue to automatically create and fully populate the "spatial\_ref\_sys" table when creating a new DB; exactly as before. Bye Sandro
+> **spatialite CLI and spatialite_gui tools:**  
+> No changes at all: these tools will continue to automatically create and fully populate the "spatial_ref_sys" table when creating a new DB; exactly as before. Bye Sandro
 
 The overall "spatialite project" includes many ancillary helper programs and code as well. So, on May 5, 2012 Sandro wrote to announce the release of some new and revised helper tools.
 

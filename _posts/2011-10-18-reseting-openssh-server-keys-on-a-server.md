@@ -15,7 +15,7 @@ categories:
 by <span class="author vcard fn">Vivek Gite</span> on <abbr class="published" title="2008-06-15">June 15, 2008</abbr> · <span>[4 comments](http://www.cyberciti.biz/faq/howto-regenerate-openssh-host-keys/#comments)</span>
 
 </div><div style="float:right;margin-top:0px;margin-left:5px;">[![](http://files.cyberciti.biz/cbzcache/3rdparty/debianlogo.gif)](http://www.cyberciti.biz/faq/category/debian-ubuntu/ "See all Debian/Ubuntu Linux related FAQ")</div><span style="color: rgb(255, 0, 0);">Q.</span> How do I regenerate  
-OpenSSH sshd server host keys stored in /etc/ssh/ssh\_host\_\* files? Can I  
+OpenSSH sshd server host keys stored in /etc/ssh/ssh_host_\* files? Can I  
  safely regenerate ssh host keys using remote ssh session as my existing  
  ssh connections shouldn't be interrupted?  
 <span id="more-1115"></span>  
@@ -44,9 +44,9 @@ Creating SSH2 DSA key; this may take some time ...
 Restarting OpenBSD Secure Shell server: sshd.
 ```
 
-## Step # 3: Update all ssh client(s) known\_hosts files
+## Step # 3: Update all ssh client(s) known_hosts files
 
-Finally, you need to update ~/.ssh/known\_hosts files, otherwise everyone will see an error message:
+Finally, you need to update ~/.ssh/known_hosts files, otherwise everyone will see an error message:
 
 ```
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

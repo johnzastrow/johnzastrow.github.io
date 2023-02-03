@@ -63,10 +63,10 @@ crontab usage info by typing in "crontab" and hitting return.
 
 Here's what it looks like on my server:
 
-usage: crontab \[-u user\]  
+usage: crontab [-u user]  
 file
 
-crontab \[-u user\] { -e | -l | -r }
+crontab [-u user] { -e | -l | -r }
 
 -e (edit user's crontab)
 
@@ -105,15 +105,15 @@ for your cron job. Here is a run down of the syntax:
 
 | | | | |
 
-| | | | |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ day of week
+| | | | |________________ day of week
 
-| | | |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ month of year
+| | | |__________________ month of year
 
-| | |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ day of month
+| | |____________________ day of month
 
-| |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ hour of day
+| |______________________ hour of day
 
-|\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ minute of hour
+|________________________ minute of hour
 
 The \* in the above example  
 basically means "every". So, in this example the script would execute  

@@ -21,7 +21,7 @@ As long as it is just the attributes that you are after, you can set up a multi-
 sdetable.exe -o create_mv_view -T mvv_wMeter -t wMeter
 ```**
 
-Then on your db connection, you execute the set\_current\_version stored proc to set the version, then issue your select statement on the multi-versioned view:
+Then on your db connection, you execute the set_current_version stored proc to set the version, then issue your select statement on the multi-versioned view:
 
 **```
 exec sde.set_current_version 'SDE.SOMEOTHERVERSION'<br />

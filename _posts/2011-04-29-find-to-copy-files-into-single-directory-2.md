@@ -14,18 +14,18 @@ Useful little one liners. This one makes copy of subset of dir/ and below based 
 
 I run most of this stuff in Windows on Cygwin, so I use the:
 
-\[cce\_bash\]
+```bash
 
-```
+
 -print0 | xargs -0
-[/cce_bash]
+
 ```
 
 part to handle the spaces in file and directory names.
 
-\[cce\_bash\]
+```bash
 
-```
+
 find /cygdrive/f/dir1/ -name '*.doc' -print0 | xargs -0 cp -a --target-directory=/cygdrive/c/Temp --parents
-[/cce_bash]
+
 ```

@@ -15,11 +15,11 @@ I needed to update a column with the date and time whenever a record changed in 
 DELIMITER $$
 
 CREATE  
- /\*\[DEFINER = { user | CURRENT\_USER }\]\*/  
- TRIGGER `my\_database`.`UpdatedOn` BEFORE UPDATE  
- ON `my\_database`.`my\_table`  
+ /\*[DEFINER = { user | CURRENT_USER }]\*/  
+ TRIGGER `my_database`.`UpdatedOn` BEFORE UPDATE  
+ ON `my_database`.`my_table`  
  FOR EACH ROW BEGIN  
-set NEW.update\_on = now();  
+set NEW.update_on = now();  
  END$$
 
 DELIMITER ;

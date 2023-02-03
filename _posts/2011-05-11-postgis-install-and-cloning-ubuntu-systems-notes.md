@@ -34,14 +34,14 @@ still didn't work.
 ```bash 
 jcz@dell390:/usr/local/src/postgis-1.5.2$ ls -l /usr/bin/pg\*  
 -rwxr-xr-x 1 root root 26260 2011-02-02 03:56 /usr/bin/pg  
--rwxr-xr-x 1 root root 25912 2011-04-20 10:27 /usr/bin/pg\_config  
+-rwxr-xr-x 1 root root 25912 2011-04-20 10:27 /usr/bin/pg_config  
 -rwxr-xr-x 1 root root 13860 2010-07-06 20:21 /usr/bin/pgrep  
-jcz@dell390:/usr/local/src/postgis-1.5.2$ sudo rm /usr/bin/pg\_config\
+jcz@dell390:/usr/local/src/postgis-1.5.2$ sudo rm /usr/bin/pg_config\
 ```
 
 then  
 ```bash 
-sudo ln -s /usr/local/pgsql/bin/pg\_config /usr/bin/pg\_config  
+sudo ln -s /usr/local/pgsql/bin/pg_config /usr/bin/pg_config  
 apt-get install libxml2-dev\
 ```
 
@@ -57,7 +57,7 @@ C++ compiler: g++ -g -O2
 ————– Dependencies ————–  
 GEOS config: /usr/local/bin/geos-config  
 GEOS version: 3.2.2  
-PostgreSQL config: /usr/bin/pg\_config  
+PostgreSQL config: /usr/bin/pg_config  
 PostgreSQL version: PostgreSQL 9.0.4  
 PROJ4 version: 47  
 Libxml2 config: /usr/bin/xml2-config  
@@ -76,12 +76,12 @@ convert: \
 sudo ln -s /usr/local/pgsql/bin/createlang /usr/bin/createlang  
 sudo ln -s /usr/local/pgsql/bin/dropdb /usr/bin/dropdb  
 sudo ln -s /usr/local/pgsql/bin/initdb /usr/bin/initdb  
-sudo ln -s /usr/local/pgsql/bin/pg\_ctl /usr/bin/pg\_ctl  
+sudo ln -s /usr/local/pgsql/bin/pg_ctl /usr/bin/pg_ctl  
 sudo ln -s /usr/local/pgsql/bin/createdb /usr/bin/createdb  
 sudo ln -s /usr/local/pgsql/bin/createuser /usr/bin/createuser  
-sudo ln -s /usr/local/pgsql/bin/pg\_dump /usr/bin/pg\_dump  
+sudo ln -s /usr/local/pgsql/bin/pg_dump /usr/bin/pg_dump  
 sudo ln -s /usr/local/pgsql/bin/pgsql2shp /usr/bin/pgsql2shp  
-sudo ln -s /usr/local/pgsql/bin/pg\_upgrade /usr/bin/pg\_upgrade  
+sudo ln -s /usr/local/pgsql/bin/pg_upgrade /usr/bin/pg_upgrade  
 sudo ln -s /usr/local/pgsql/bin/shp2pgsql /usr/bin/shp2pgsql
 
 /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data  
@@ -93,7 +93,7 @@ make
 make install  
 createlang plpgsql yourtestdatabase  
 psql -d yourtestdatabase -f postgis/postgis.sql  
-psql -d yourtestdatabase -f spatial\_ref\_sys.sql\
+psql -d yourtestdatabase -f spatial_ref_sys.sql\
 ```
 
 how to generate a list of installed packages and use it to reinstall packages  
@@ -102,8 +102,8 @@ how to generate a list of installed packages and use it to reinstall packages
 ```bash 
 sudo apt-get update  
 sudo apt-get dist-upgrade  
-sudo dpkg –get-selections | grep -v deinstall | awk '{print $1}' &gt; 164.ubuntu-files\_b.txt  
-sudo cat 164.ubuntu-files\_b.txt | xargs sudo aptitude install\
+sudo dpkg –get-selections | grep -v deinstall | awk '{print $1}' &gt; 164.ubuntu-files_b.txt  
+sudo cat 164.ubuntu-files_b.txt | xargs sudo aptitude install\
 ```
 
 NOTE: WordPress interprets two dashes (- -) as one dash (–). When you're putting this into your CLI, make sure it's dropping two dashes '- -' without the space between them.
@@ -154,7 +154,7 @@ su – postgres
 ```
 
 These steps should be done as the postgres user. As root, issue: `su – postgres` (no password needed)
-, the postgresql.conf and pg\_hba.conf configuration files are located in /usr/local/pgsql/data/
+, the postgresql.conf and pg_hba.conf configuration files are located in /usr/local/pgsql/data/
 
 
 

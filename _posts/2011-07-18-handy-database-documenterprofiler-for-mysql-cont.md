@@ -10,7 +10,7 @@ categories:
     - Database
 ---
 
-Some time ago I wrote down a little [script](https://johnzastrow.github.io/2011/04/21/handy-database-documenter-for-mysql/ "Handy database documenter for MySQL") to make a table from the MySQL information schema to describe your database. My eventual goal is to come close to reproducing a poor man's database profiling script similar to this crude one ( [http://www.ipcdesigns.com/data\_profiling/](http://www.ipcdesigns.com/data_profiling/ "Oracle, SQL Server")), but perhaps less powerful and yet more elegant. I figure it's going to take creating some procedures to loop through the chosen tables and columns.
+Some time ago I wrote down a little [script](https://johnzastrow.github.io/2011/04/21/handy-database-documenter-for-mysql/ "Handy database documenter for MySQL") to make a table from the MySQL information schema to describe your database. My eventual goal is to come close to reproducing a poor man's database profiling script similar to this crude one ( [http://www.ipcdesigns.com/data_profiling/](http://www.ipcdesigns.com/data_profiling/ "Oracle, SQL Server")), but perhaps less powerful and yet more elegant. I figure it's going to take creating some procedures to loop through the chosen tables and columns.
 
 Towards that end, I figure I need to take the contents of the handy view I made earlier and turn them into a table. Then if I execute some profiling queries, I can create tables from the results and join back to this summary table. So here is me persisting the view created earlier.You can do it this way:
 
@@ -70,10 +70,10 @@ PRIMARY KEY (`PROFILE_RECS_ID`)
 ) ENGINE=INNODB AUTO_INCREMENT=27399 DEFAULT CHARSET=latin1
 ```
 
-I think you could design a procedure(*returnExtents*) that would accept a schema\_name, then loop through all tables and columns by selecting from the view or table we created earlier and store the results as follows
+I think you could design a procedure(*returnExtents*) that would accept a schema_name, then loop through all tables and columns by selecting from the view or table we created earlier and store the results as follows
 
-**Accept:** SCHEMA\_NAME  
-**Return:** max\_value, min\_value, num\_nulls, max\_length, min\_length for each record in the above table. Or one record for each column in the schema.
+**Accept:** SCHEMA_NAME  
+**Return:** max_value, min_value, num_nulls, max_length, min_length for each record in the above table. Or one record for each column in the schema.
 
 Ideally you would write the results into a table as below
 

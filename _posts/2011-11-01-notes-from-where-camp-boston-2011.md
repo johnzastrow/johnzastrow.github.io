@@ -35,7 +35,7 @@ The session board at Where camp Boston 2011
 - **Open Geo Portal**. could be interesting. <http://opengeoportal.org/>
 - **Fascinating use of VGI/Crowd sourcing to collect hi-res data.** Now if they can just harness all that information and use it effectively. Hopefully the Where Camp Boston folks can post some slides from the keynotes. I missed a lot of detail from this one. <http://publiclaboratory.org/home>
 - — **Tools** – Had some great tools for rapid georeferencing and other processing of Kite-collected images, etc. <http://publiclaboratory.org/tools>
-- — **Your \[nearest\] Superfund** – <http://macwright.org/superfund/>
+- — **Your [nearest] Superfund** – <http://macwright.org/superfund/>
 - — **Firebird commander** for RC remote sensing with a $300 HD video camera – <http://www.amazon.com/Firebird-Commander-2-RTF-Electric/dp/B000AUO7B8>
 
 - **Google Refine** for cleansing dirty data. I'm totally going to use this – <http://code.google.com/p/google-refine/>
@@ -49,7 +49,7 @@ The session board at Where camp Boston 2011
 - — appspot.com -to store data – but now fusion tables
 - — Fusion tables – will limit to several hundred megs of geodata
 - — Change setting/app on phone to allow unknown sources and development
-- — Kinda useful – [http://gmaps-samples.googlecode.com/svn/trunk/fusiontables/fusiontableslayer\_builder.html](http://gmaps-samples.googlecode.com/svn/trunk/fusiontables/fusiontableslayer_builder.html)
+- — Kinda useful – [http://gmaps-samples.googlecode.com/svn/trunk/fusiontables/fusiontableslayer_builder.html](http://gmaps-samples.googlecode.com/svn/trunk/fusiontables/fusiontableslayer_builder.html)
 
 - **jQuery Geo**. Yep, might turn into our JS mapping toolkit of choice. Very nice, and very jQuery compliant. Definitely takes the "less is more approach" It can use Esri tiles and internal builds have mobile app builder with geo ready templates. These might get released – <http://jquerygeo.com/>
 - — See also:
@@ -88,7 +88,7 @@ Crazy folks out sailing. When I left at 6pm-ish it was raining hard with snow mi
 
 <span style="color: #666699;">There was some talk about various projects using (1) publicly available historical data, or (2) data from a range of public, crowd-sourced, etc sources. There were also related discussions about **collecting** data for broad public use (use case 2). But all the discussions left out an important topic — which is a common malady in many discussions in the open, free, non-government (not necessarily related, but often coincident concepts) circles: ***documentation/metadata***. I love open data. But when I use it, I need to have convenient, parse-able, understandable, hopefully standards-based information about this stuff I am about to use. It doesn't have to be <span style="text-decoration: underline; color: #99ccff;">[<span style="color: #99ccff; text-decoration: underline;">elaborate</span>](http://www.fgdc.gov/metadata/documents/preparing-for-international-metadata-guidance.pdf "19115 NAP, FGDC")</span>, but it needs to be present. </span>
 
-<span style="color: #666699;">I wish the spatial community would agree on some simple, general, common approach to ***<span style="text-decoration: underline;">embed</span>*** metadata right into the data so that the two could never be separated. When you create/maintain/manage/supply data, you'd better assume responsibility for the metadata and the data, as they should be two sides of the same coin. So, in your spatial DBs, maybe always include a table called.. DOCUMENTATION, link to the information\_schema and create records contains Dublin Core RDF, or SOMETHING. Now I just need to follow my own advice…  
+<span style="color: #666699;">I wish the spatial community would agree on some simple, general, common approach to ***<span style="text-decoration: underline;">embed</span>*** metadata right into the data so that the two could never be separated. When you create/maintain/manage/supply data, you'd better assume responsibility for the metadata and the data, as they should be two sides of the same coin. So, in your spatial DBs, maybe always include a table called.. DOCUMENTATION, link to the information_schema and create records contains Dublin Core RDF, or SOMETHING. Now I just need to follow my own advice…  
 </span>
 
 <span style="color: #666699;">**&lt;/Soapbox&gt;**</span>
@@ -96,10 +96,10 @@ Crazy folks out sailing. When I left at 6pm-ish it was raining hard with snow mi
 <span style="text-decoration: underline; color: #666699;">See:</span>
 
 - <http://www.bridges.state.mn.us/metadata.html>
-- [http://www.geomapp.net/docs/MetadataComparison\_200903.pdf](http://www.geomapp.net/docs/MetadataComparison_200903.pdf)
+- [http://www.geomapp.net/docs/MetadataComparison_200903.pdf](http://www.geomapp.net/docs/MetadataComparison_200903.pdf)
 - <http://www.bridges.state.mn.us/catalog.html>
-- [http://gis.hsr.ch/wiki/OSGeodata\_metadata\_exchange\_model](http://gis.hsr.ch/wiki/OSGeodata_metadata_exchange_model)
-- [http://proceedings.esri.com/library/userconf/feduc10/papers/tech/feduc2010nap19115\_arcgis.pdf](http://proceedings.esri.com/library/userconf/feduc10/papers/tech/feduc2010nap19115_arcgis.pdf)
+- [http://gis.hsr.ch/wiki/OSGeodata_metadata_exchange_model](http://gis.hsr.ch/wiki/OSGeodata_metadata_exchange_model)
+- [http://proceedings.esri.com/library/userconf/feduc10/papers/tech/feduc2010nap19115_arcgis.pdf](http://proceedings.esri.com/library/userconf/feduc10/papers/tech/feduc2010nap19115_arcgis.pdf)
 
 <span style="text-decoration: underline;">**Scratch pad** </span>
 

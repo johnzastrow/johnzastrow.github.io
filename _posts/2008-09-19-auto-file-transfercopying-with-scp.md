@@ -16,19 +16,19 @@ Here is a
 automated script. Please see attached. The script usage is as  
 follows:</span></font>
 
-**<font face="Arial" size="2"><span style="font-weight: bold; font-size: 10pt; font-family: Arial;"><font face="Courier New">./auto\_scp.sh   
-local\_file user@host:remote\_folder   
-user\_password</font></span></font>**
+**<font face="Arial" size="2"><span style="font-weight: bold; font-size: 10pt; font-family: Arial;"><font face="Courier New">./auto_scp.sh   
+local_file user@host:remote_folder   
+user_password</font></span></font>**
 
 <font face="Arial" size="2"><span style="font-size: 10pt; font-family: Arial;">or<font face="Courier New"></font></span></font>
 
-**<font face="Arial" size="2"><span style="font-weight: bold; font-size: 10pt; font-family: Arial;"><font face="Courier New">./auto\_scp.sh   
-user@host:remote\_file local\_folder   
-user\_password</font></span></font>**
+**<font face="Arial" size="2"><span style="font-weight: bold; font-size: 10pt; font-family: Arial;"><font face="Courier New">./auto_scp.sh   
+user@host:remote_file local_folder   
+user_password</font></span></font>**
 
 <font face="Arial" size="2"><span style="font-size: 10pt; font-family: Arial;">Example:</span></font>
 
-<font face="Arial" size="2"><span style="font-size: 10pt; font-family: Arial;"><font face="Courier New">**./auto\_scp.sh dump.dmp [oracle@hostname:/U01/oracle](mailto:oracle@ttdffxs-klamath.tetratech-ffx.com:/U01/oracle "mailto:oracle@ttdffxs-klamath.tetratech-ffx.com:/U01/oracle")  
+<font face="Arial" size="2"><span style="font-size: 10pt; font-family: Arial;"><font face="Courier New">**./auto_scp.sh dump.dmp [oracle@hostname:/U01/oracle](mailto:oracle@ttdffxs-klamath.tetratech-ffx.com:/U01/oracle "mailto:oracle@ttdffxs-klamath.tetratech-ffx.com:/U01/oracle")  
  &lt;oracle password&gt;**</font></span></font>
 
 and here is the script  

@@ -22,7 +22,7 @@ Notice the ampersand, which sends the command to the background so you don't hav
 
 Here are some more links:
 
-[http://www.softpanorama.org/Net/Application\_layer/Ftp/lftp.shtml](http://www.softpanorama.org/Net/Application_layer/Ftp/lftp.shtml)  
+[http://www.softpanorama.org/Net/Application_layer/Ftp/lftp.shtml](http://www.softpanorama.org/Net/Application_layer/Ftp/lftp.shtml)  
 <http://www.linux.com/archive/articles/122169>  
-[http://how-to.wikia.com/wiki/How\_to\_use\_lftp\_as\_a\_sftp\_client](http://how-to.wikia.com/wiki/How_to_use_lftp_as_a_sftp_client)  
+[http://how-to.wikia.com/wiki/How_to_use_lftp_as_a_sftp_client](http://how-to.wikia.com/wiki/How_to_use_lftp_as_a_sftp_client)  
 [http://www.gsp.com/cgi-bin/man.cgi?section=1&amp;topic=lftp](http://www.gsp.com/cgi-bin/man.cgi?section=1&topic=lftp)

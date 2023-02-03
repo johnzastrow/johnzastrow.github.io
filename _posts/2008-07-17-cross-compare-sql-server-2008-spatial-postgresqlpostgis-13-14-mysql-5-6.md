@@ -10,7 +10,7 @@ categories:
     - GIS
 ---
 
-[http://www.bostongis.com/PrinterFriendly.aspx?content\_name =sqlserver2008\_postgis\_mysql\_compare](http://www.bostongis.com/PrinterFriendly.aspx?content_name=sqlserver2008_postgis_mysql_compare)
+[http://www.bostongis.com/PrinterFriendly.aspx?content_name =sqlserver2008_postgis_mysql_compare](http://www.bostongis.com/PrinterFriendly.aspx?content_name=sqlserver2008_postgis_mysql_compare)
 
 From the PostGIS Listserv comes a very useful comparison table that has been partially vetted by the members of the list. I just wish they included Oracle Spatial and Oracle Locator.
 
@@ -26,8 +26,8 @@ Paragon wrote:
  /&gt; tried to be as fair as possible.  
  /&gt;  
  /&gt;  
- /&gt; http://www.bostongis.com/?content\_name=sqlserver2008r2\_oracle11gr2\_postgis15\_compare#221  
- /&gt; tgis\_mysql\_compare  
+ /&gt; http://www.bostongis.com/?content_name=sqlserver2008r2_oracle11gr2_postgis15_compare#221  
+ /&gt; tgis_mysql_compare  
  /&gt;  
  /&gt; Thanks,  
  /&gt; Regina and Leo

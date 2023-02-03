@@ -26,7 +26,7 @@ The X environment should start in a new window.
 
 Many Linux distributions do not start XDMCP by default. To allow XDMCP  
 access from Cygwin edit the "/etc/X11/gdm/gdm.conf" file. Under the  
-"\[xdmcp\]" section set "Enable=true".
+"[xdmcp]" section set "Enable=true".
 
 If you are starting any X applications during the session you will need  
 to set the DISPLAY environment variable. Remember, you are acting as an  

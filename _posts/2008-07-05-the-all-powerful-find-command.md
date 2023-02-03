@@ -19,9 +19,9 @@ search criteria. If any do, find performs the specified action on each
 found file. Here are some of the most useful search criteria options:
 
 -name pattern Find files with names that match the pattern.  
--size \[+|-\] n Find files larger or smaller than a certain size.  
--atime \[+|-\] n Find files accessed before or after a certain date.  
--mtime \[+|-\] n Find files modified before or after a certain date.  
+-size [+|-] n Find files larger or smaller than a certain size.  
+-atime [+|-] n Find files accessed before or after a certain date.  
+-mtime [+|-] n Find files modified before or after a certain date.  
 -type filetype Find only regular files or only directories.
 
 And here are the actions that can be applied to found files:

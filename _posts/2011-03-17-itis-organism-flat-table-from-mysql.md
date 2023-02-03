@@ -12,27 +12,27 @@ categories:
 
 I need to make a table to look up common (vernacular) names for some organisms. So I imported the USGS ITIS database from text files into MySQL and created this little view. Hopefully this helps someone else.
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v\_flat\_table` AS   
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_flat_table` AS   
 SELECT  
- `taxonomic\_units`.`tsn` AS `tsn`,  
- `taxonomic\_units`.`unit\_ind1` AS `unit\_ind1`,  
- `taxonomic\_units`.`unit\_name1` AS `unit\_name1`,  
- `taxonomic\_units`.`unit\_ind2` AS `unit\_ind2`,  
- `taxonomic\_units`.`unit\_name2` AS `unit\_name2`,  
- `taxonomic\_units`.`unit\_ind3` AS `unit\_ind3`,  
- `taxonomic\_units`.`unit\_name3` AS `unit\_name3`,  
- `taxonomic\_units`.`unit\_ind4` AS `unit\_ind4`,  
- `taxonomic\_units`.`parent\_tsn` AS `parent\_tsn`,  
- `taxonomic\_units`.`update\_date` AS `update\_date`,  
- `taxon\_unit\_types`.`rank\_name` AS `rank\_name`,  
- `vernaculars`.`vernacular\_name` AS `vernacular\_name`,  
+ `taxonomic_units`.`tsn` AS `tsn`,  
+ `taxonomic_units`.`unit_ind1` AS `unit_ind1`,  
+ `taxonomic_units`.`unit_name1` AS `unit_name1`,  
+ `taxonomic_units`.`unit_ind2` AS `unit_ind2`,  
+ `taxonomic_units`.`unit_name2` AS `unit_name2`,  
+ `taxonomic_units`.`unit_ind3` AS `unit_ind3`,  
+ `taxonomic_units`.`unit_name3` AS `unit_name3`,  
+ `taxonomic_units`.`unit_ind4` AS `unit_ind4`,  
+ `taxonomic_units`.`parent_tsn` AS `parent_tsn`,  
+ `taxonomic_units`.`update_date` AS `update_date`,  
+ `taxon_unit_types`.`rank_name` AS `rank_name`,  
+ `vernaculars`.`vernacular_name` AS `vernacular_name`,  
  `longnames`.`completename` AS `completename`  
-FROM (((`taxon\_unit\_types`  
- JOIN `taxonomic\_units`  
- ON (((`taxon\_unit\_types`.`rank\_id` = `taxonomic\_units`.`rank\_id`)  
- AND (`taxon\_unit\_types`.`kingdom\_id` = `taxonomic\_units`.`kingdom\_id`))))  
+FROM (((`taxon_unit_types`  
+ JOIN `taxonomic_units`  
+ ON (((`taxon_unit_types`.`rank_id` = `taxonomic_units`.`rank_id`)  
+ AND (`taxon_unit_types`.`kingdom_id` = `taxonomic_units`.`kingdom_id`))))  
  LEFT JOIN `vernaculars`  
- ON ((`vernaculars`.`tsn` = `taxonomic\_units`.`tsn`)))  
+ ON ((`vernaculars`.`tsn` = `taxonomic_units`.`tsn`)))  
  LEFT JOIN `longnames`  
- ON ((`longnames`.`tsn` = `taxonomic\_units`.`tsn`)))
+ ON ((`longnames`.`tsn` = `taxonomic_units`.`tsn`)))
 

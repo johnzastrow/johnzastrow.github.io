@@ -139,7 +139,7 @@ Please review the file Tue_2012-04-10_21_47_05_untgzlog in this folder when I'm 
  ************* DONE ****************
 ```
 
-and the following output in the file called Tue\_2012-04-10\_21\_47\_05\_untgzlog.txt. Notice there file that errored out.
+and the following output in the file called Tue_2012-04-10_21_47_05_untgzlog.txt. Notice there file that errored out.
 
 ```
 

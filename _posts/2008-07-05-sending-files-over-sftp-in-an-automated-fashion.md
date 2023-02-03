@@ -14,11 +14,11 @@ The exerpts below describe how to use SFTP to transfer files from one
 machine to another in automated fashion, such as using shell scripts. I  
 needed to do this as part of a back up script.
 
-Use the ssh authorized\_keys functionality instead of trying to pass in  
+Use the ssh authorized_keys functionality instead of trying to pass in  
 a username and password. Create a key on the client side using  
 ssh-keygen (it will have to be nonpassworded if you want this to be  
 fully automated) and copy the public key to the target user's  
-authorized\_keys file on the ssh/sftp server. For extra security, an  
+authorized_keys file on the ssh/sftp server. For extra security, an  
 option ("from") is available to limit the use of that key to  
 connections coming from your client server. This will give ssh or sftp  
 access to anyone who comes from the client server with the right  
@@ -43,19 +43,19 @@ You are asked for a passphrase, do not enter a passphrase, type <ret> for empty 
 
 verify the creation of the 2 files:
 
-~/.ssh/id\_dsa
+~/.ssh/id_dsa
 
-~/.ssh/id\_dsa.pub
+~/.ssh/id_dsa.pub
 
-copy ~/.ssh/id\_dsa.pub to the destination node
+copy ~/.ssh/id_dsa.pub to the destination node
 
-login into the destination node and verify if file ~/.ssh/authorized\_keys is already present, if not do:
+login into the destination node and verify if file ~/.ssh/authorized_keys is already present, if not do:
 
 $ cd ~/.ssh
 
-$ mv id\_dsa.pub authorized\_keys
+$ mv id_dsa.pub authorized_keys
 
-Verify ~/.ssh/authorized\_keys and add/replace id\_dsa.pub as needed.
+Verify ~/.ssh/authorized_keys and add/replace id_dsa.pub as needed.
 
 Then, run your sftp with a -b extension. This will put it in batch mode  
 and allow it to draw its commands from a text, or batchfile. You need  
@@ -85,11 +85,11 @@ The ssh-keygen program will respond with:
 
 Generating a public/private rsa key pair.
 
-Enter file in which to save the key (/root/.ssh/id\_rsa):
+Enter file in which to save the key (/root/.ssh/id_rsa):
 
 Type the Enter key to accept the default value:
 
-\[Enter\]
+[Enter]
 
 The ssh-keygen program will respond with:
 
@@ -99,7 +99,7 @@ Enter passphrase (empty for no passphrase):
 
 Type the Enter key to accept the default value:
 
-\[Enter\]
+[Enter]
 
 The ssh-keygen program will respond with:
 
@@ -107,17 +107,17 @@ Enter same passphrase again:
 
 Type the Enter key again:
 
-\[Enter\]
+[Enter]
 
 The ssh-keygen program will respond with:
 
-Your identification has been saved in /root/.ssh/id\_rsa.
+Your identification has been saved in /root/.ssh/id_rsa.
 
-Your public key has been saved in /root/.ssh/id\_rsa.pub.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
 
 The key fingerprint is:
 
-\[fingerprint\] root@\[hostname\]
+[fingerprint] root@[hostname]
 
 Create the ssh directory for each compute node's root
 
@@ -127,7 +127,7 @@ creates the ssh directory for you).
 
 Login to a compute node. Type:
 
-ssh root@\[compute node address\]
+ssh root@[compute node address]
 
 Enter the root password.
 
@@ -147,7 +147,7 @@ ls -la
 
 The .ssh listing should look like:
 
-drwx—— 2 root root 4096 \[date &amp; time\] .ssh
+drwx—— 2 root root 4096 [date &amp; time] .ssh
 
 The .ssh directory is now only accessible by the user root.
 
@@ -159,9 +159,9 @@ Use sftp (secure ftp) to copy the generated rsa public key
 
 to each compute node's root account secure shell directory
 
-as the file authorized\_keys. Type:
+as the file authorized_keys. Type:
 
-sftp root@\[compute node address\]
+sftp root@[compute node address]
 
 If prompted to continue connecting, type:
 
@@ -179,7 +179,7 @@ cd .ssh
 
 Copy the rsa public key to the compute node. Type:
 
-put /root/.ssh/id\_rsa.pub authorized\_keys
+put /root/.ssh/id_rsa.pub authorized_keys
 
 Exit sftp. Type:
 
@@ -191,7 +191,7 @@ To test that the secure automatic login is working
 
 properly from the front-end node, type:
 
-ssh root@\[compute node address\]
+ssh root@[compute node address]
 
 The system should log you in without prompting for a
 
@@ -201,11 +201,11 @@ Log out of the compute node. Type:
 
 logout
 
-Also copy the rsa public key to the authorized\_keys file on
+Also copy the rsa public key to the authorized_keys file on
 
 the front-end node. Type:
 
-cp /root/.ssh/id\_rsa.pub /root/.ssh/authorized\_keys
+cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 root on the front-end node can now securely access all nodes
 

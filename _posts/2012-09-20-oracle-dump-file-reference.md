@@ -93,6 +93,6 @@ Imports the file emp.dmp via user scott (password = tiger) and sticks it in scot
 
 See
 
-[http://www.orafaq.com/wiki/Import\_Export\_FAQ](http://www.orafaq.com/wiki/Import_Export_FAQ)
+[http://www.orafaq.com/wiki/Import_Export_FAQ](http://www.orafaq.com/wiki/Import_Export_FAQ)
 
 for more info

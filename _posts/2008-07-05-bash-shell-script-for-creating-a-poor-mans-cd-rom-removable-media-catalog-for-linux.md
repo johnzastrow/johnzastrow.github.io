@@ -10,7 +10,7 @@ categories:
     - Linux
 ---
 
-\#!/bin/sh  
+#!/bin/sh  
 # jcz 2004-jan-12
 
 # assumes iso9660 CD-ROM  
@@ -31,10 +31,10 @@ echo -n "Enter written CD-ROM label and any notes from the disc itself: "
 read labler
 
 # trims white space after the name always written out by volname  
-cdshort=$(echo $cd | sed -e 's/\[ntr \]\*$//')  
+cdshort=$(echo $cd | sed -e 's/[ntr ]\*$//')  
 echo $cdshort  
-echo $cdshort"\_catalog.txt"  
-disk=$cdshort"\_catalog.txt"  
+echo $cdshort"_catalog.txt"  
+disk=$cdshort"_catalog.txt"  
 echo $disk  
 echo $labler  
 echo "Disk Volume Label: "$cdshort &gt; $disk  

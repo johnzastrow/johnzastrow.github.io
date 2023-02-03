@@ -14,11 +14,11 @@ I've gotten so used to using "real" databases, that I find myself frustrated whe
 
 Annoyingly, if you just want to run some SQL back-to-back, or one after another, you have to call it in VBA. So, create a module and do something silly like.
 
-Sub update\_results()  
+Sub update_results()  
 DoCmd.SetWarnings False  
-DoCmd.OpenQuery "q\_1-4000"  
-DoCmd.OpenQuery "q\_4001-8000"  
-DoCmd.OpenQuery "q\_the\_rest"  
+DoCmd.OpenQuery "q_1-4000"  
+DoCmd.OpenQuery "q_4001-8000"  
+DoCmd.OpenQuery "q_the_rest"  
 DoCmd.SetWarnings True  
 End Sub
 

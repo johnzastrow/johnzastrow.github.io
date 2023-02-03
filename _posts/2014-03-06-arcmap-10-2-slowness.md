@@ -37,7 +37,7 @@ This is a more hard-core version of replacing normal.mxt. But it seems to be wha
 
 Be aware that renaming the Esri folders is a factory reset of ArcGIS, and therefore all third party tools, custom scripts, and/ or custom toolbars currently installed will need to be re-installed as a result. Also, you will need to re-connect all existing folder connections.
 
-\*\*\*Renaming the esri Folder in the C: drive\*\*\*
+***Renaming the esri Folder in the C: drive***
 
 1\. Open Control Panel &gt; Appearance and Personalization &gt; Folder Options &gt; View Tab
 

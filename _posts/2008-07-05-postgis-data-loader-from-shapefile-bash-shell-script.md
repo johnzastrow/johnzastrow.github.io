@@ -13,7 +13,7 @@ categories:
 Run this script in a directory of shp files to create STDOUT that will load them all into postgis
 
 ——————————————————  
-\#!/bin/sh  
+#!/bin/sh  
 # jcz aug 24, 2005  
 # clip off the ".shp" file extensions before use  
 # drops existing shapes if they are the same name

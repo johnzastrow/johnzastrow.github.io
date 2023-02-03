@@ -16,5 +16,5 @@ categories:
 - <http://www.swaroopch.com/notes/Python>
 - 
 - <http://young-programmers.blogspot.com/search/label/python>
-- [http://en.wikibooks.org/wiki/Non-Programmer%27s\_Tutorial\_for\_Python\_2.6](http://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_2.6)
+- [http://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_2.6](http://en.wikibooks.org/wiki/Non-Programmer%27s_Tutorial_for_Python_2.6)
 

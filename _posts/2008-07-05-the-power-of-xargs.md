@@ -71,7 +71,7 @@ for pkg in `rpm -qa`
 do  
  echo "Remove package $pkg? (y/n)"  
  read ans  
- if \[ "$ans" == "y" \]; then  
+ if [ "$ans" == "y" ]; then  
  rpm -e –nodeps $pkg  
  fi  
 done

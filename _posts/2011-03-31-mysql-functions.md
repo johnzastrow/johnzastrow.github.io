@@ -17,15 +17,15 @@ From the MySQL 5.0 Online manual
 
 An example of how to make the first letter in a string uppercase – analogous to UCFIRST
 
-\[cce\_sql\]
+[cce_sql]
 
 SELECT CONCAT(UPPER(SUBSTRING(firstName, 1, 1)), LOWER(SUBSTRING(firstName FROM 2))) AS properFirstName
 
-\[/cce\_sql\]
+[/cce_sql]
 
-a user-defined function in MySQL 5.0+ similar to PHP's substr\_count(), since I could not find an equivalent native function in MySQL. (If there is one please tell me!!!)
+a user-defined function in MySQL 5.0+ similar to PHP's substr_count(), since I could not find an equivalent native function in MySQL. (If there is one please tell me!!!)
 
-\[cce\_sql\]
+[cce_sql]
 
 delimiter ||  
 DROP FUNCTION IF EXISTS substrCount||  
@@ -55,29 +55,29 @@ END;
 
 delimiter ;
 
-\[/cce\_sql\]
+[/cce_sql]
 
 Use like this:
 
-\[cce\_sql\]
+[cce_sql]
 
 SELECT substrCount('/this/is/a/path', '/') `count`;
 
-\[/cce\_sql\]
+[/cce_sql]
 
 `count` would return 4 in this case. Can be used in such cases where you might want to find the "depth" of a path, or for many other uses.
 
 It's pretty easy to create your own string functions for many examples listed here
 
-\[cce\_sql\]  
-\## Count substrings
+[cce_sql]  
+## Count substrings
 
 CREATE FUNCTION substrCount(x varchar(255), delim varchar(12)) returns int  
 return (length(x)-length(REPLACE(x, delim, ")))/length(delim);
 
 SELECT substrCount('/this/is/a/path', '/') as count;
 
-\[/cce\_sql\]
+[/cce_sql]
 
 +——-+  
 | count |  
@@ -85,11 +85,11 @@ SELECT substrCount('/this/is/a/path', '/') as count;
 | 4 |  
 +——-+
 
-\[cce\_sql\]
+[cce_sql]
 
 SELECT substrCount('/this/is/a/path', 'is') as count;
 
-\[/cce\_sql\]
+[/cce_sql]
 
 +——-+  
 | count |  
@@ -97,16 +97,16 @@ SELECT substrCount('/this/is/a/path', 'is') as count;
 | 2 |  
 +——-+
 
-\[cce\_sql\]
+[cce_sql]
 
-\## Split delimited strings
+## Split delimited strings
 
 CREATE FUNCTION strSplit(x varchar(255), delim varchar(12), pos int) returns varchar(255)  
-return replace(substring(substring\_index(x, delim, pos), length(substring\_index(x, delim, pos – 1)) + 1), delim, ");
+return replace(substring(substring_index(x, delim, pos), length(substring_index(x, delim, pos – 1)) + 1), delim, ");
 
 select strSplit("aaa,b,cc,d", ',', 2) as second;
 
-\[/cce\_sql\]
+[/cce_sql]
 
 +——–+  
 | second |  
@@ -114,11 +114,11 @@ select strSplit("aaa,b,cc,d", ',', 2) as second;
 | b |  
 +——–+
 
-\[cce\_sql\]
+[cce_sql]
 
 select strSplit("a|bb|ccc|dd", '|', 3) as third;
 
-\[/cce\_sql\]
+[/cce_sql]
 
 +——-+  
 | third |  
@@ -126,11 +126,11 @@ select strSplit("a|bb|ccc|dd", '|', 3) as third;
 | ccc |  
 +——-+
 
-\[cce\_sql\]
+[cce_sql]
 
 select strSplit("aaa,b,cc,d", ',', 7) as 7th;
 
-\[/cce\_sql\]
+[/cce_sql]
 
 +——+  
 | 7th |  
@@ -138,16 +138,16 @@ select strSplit("aaa,b,cc,d", ',', 7) as 7th;
 | NULL |  
 +——+
 
-\[cce\_sql\]
+[cce_sql]
 
-\## Upper case first letter, UCFIRST or INITCAP
+## Upper case first letter, UCFIRST or INITCAP
 
 CREATE FUNCTION ucfirst(x varchar(255)) returns varchar(255)  
 return concat( upper(substring(x,1,1)),lower(substring(x,2)) );
 
 select ucfirst("TEST");
 
-\[/cce\_sql\]
+[/cce_sql]
 
 +—————–+  
 | ucfirst("TEST") |  
@@ -155,9 +155,9 @@ select ucfirst("TEST");
 | Test |  
 +—————–+
 
-\[cce\_sql\]
+[cce_sql]
 
-\##Or a more complicated example, this will repeat an insert after every nth position.
+##Or a more complicated example, this will repeat an insert after every nth position.
 
 drop function insert2;  
 DELIMITER //  
@@ -166,22 +166,22 @@ RETURNS text
 DETERMINISTIC  
 BEGIN  
 DECLARE i INT DEFAULT 1;  
-DECLARE str\_len INT;  
-DECLARE out\_str text default ";  
-SET str\_len=length(str);  
-WHILE(i&lt;str\_len) DO  
-SET out\_str=CONCAT(out\_str, SUBSTR(str, i,pos), delimit);  
+DECLARE str_len INT;  
+DECLARE out_str text default ";  
+SET str_len=length(str);  
+WHILE(i&lt;str_len) DO  
+SET out_str=CONCAT(out_str, SUBSTR(str, i,pos), delimit);  
 SET i=i+pos;  
 END WHILE;  
 — trim delimiter from end of string  
-SET out\_str=TRIM(trailing delimit from out\_str);  
-RETURN(out\_str);  
+SET out_str=TRIM(trailing delimit from out_str);  
+RETURN(out_str);  
 END//  
 DELIMITER ;
 
 select insert2("ATGCATACAGTTATTTGA", 3, " ") as seq2;
 
-\[/cce\_sql\]
+[/cce_sql]
 
 +————————-+  
 | seq2 |  

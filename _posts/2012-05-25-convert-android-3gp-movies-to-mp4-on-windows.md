@@ -27,7 +27,7 @@ Step 4. Put the script below into the same /bin directory because you are lazy
 ```bash
 
 
-\#!/bin/bash  
+#!/bin/bash  
 # jcz 25-may-12  
 # filename: 3gp2mp4.sh  
 # converts all 3GP video files in the directory  
@@ -35,25 +35,25 @@ Step 4. Put the script below into the same /bin directory because you are lazy
 # and errors to a text file in the directory  
 # in which it is run  
 #  
-\##################################
+##################################
 
-\############################  
+############################  
 # Global script variables block  
-\############################  
+############################  
 # Date and other variables pretty self explanatory, S is seconds  
-# date format is currently YYYYMMDD\_HHMMSS  
+# date format is currently YYYYMMDD_HHMMSS  
  dater=$(date)  
  dayer=$(date +%a%F%H%m)  
  namer=$(whoami)  
  hoster=$(hostname)  
  directory=$(pwd)  
- filenamer=$(date +%a\_%F\_%H\_%M\_%S)\_3gp\_convertlog  
+ filenamer=$(date +%a_%F_%H_%M_%S)_3gp_convertlog  
 # sets day of the week  
  set $(date)  
  logger=$filenamer.txt  
-\############################  
+############################  
 # END Global script variables block  
-\############################  
+############################  
  echo "Welcome, $namer. I'm running in $directory and I will convert all 3GP phone videos to here mp4 files. "  
  echo " "  
  echo "I see the following files to convert. I will write them down for you now "  
@@ -62,18 +62,18 @@ Step 4. Put the script below into the same /bin directory because you are lazy
  echo "Please review the file $filenamer in this folder when I'm done. "  
  echo " "  
  echo " "  
- echo "\*\*\*\*\*\*\*\*\*\*\*\*\* RUNNING \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* "
+ echo "************\* RUNNING ***************\* "
 
- echo "\[START\] " &gt;&gt;$logger  
+ echo "[START] " &gt;&gt;$logger  
 echo " " &gt;&gt;$logger  
 echo " " &gt;&gt;$logger  
-echo "\*\*\*\*\*\*\*\*\*\* START RUN LOG HEADER \*\*\*\*\*\*\*\*\*\*\*\*\*\*\* " &gt;&gt; $logger  
+echo "*********\* START RUN LOG HEADER *************** " &gt;&gt; $logger  
 echo "Dater: " $dater &gt;&gt; $logger  
 echo "Username: " $namer &gt;&gt; $logger  
 echo "Computer: " $hoster &gt;&gt; $logger  
 echo "Directory: " $directory &gt;&gt; $logger  
 echo " " &gt;&gt;$logger  
-echo "\*\*\*\*\*\*\*\*\*\* END RUN LOG HEADER \*\*\*\*\*\*\*\*\*\*\*\*\*\*\* " &gt;&gt; $logger  
+echo "*********\* END RUN LOG HEADER *************** " &gt;&gt; $logger  
 echo " " &gt;&gt;$logger  
 echo " " &gt;&gt;$logger  
 echo " " &gt;&gt;$logger
@@ -108,14 +108,14 @@ echo " " &gt;&gt;$logger
 echo " " &gt;&gt;$logger  
 done
 
-echo "\[END\] " &gt;&gt;$logger  
+echo "[END] " &gt;&gt;$logger  
 echo " " &gt;&gt;$logger
 
 # make my log a little more readble in windows  
 unix2dos $filenamer.txt  
 echo " "  
 echo " "  
-echo "\*\*\*\*\*\*\*\*\*\*\*\*\* DONE \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* "
+echo "************\* DONE ***************\* "
 ```
 
 Step 5. Using cygwin, change into a directory containing some .3gp files you want to convert and run it. You will send up with one .mp4 file for each .3gp file you started with in that directory.
@@ -131,8 +131,8 @@ Step 5. Using cygwin, change into a directory containing some .3gp files you wan
 
 *# <snip></snip>*
 
-*Please review the file Fri\_2012-05-25\_17\_06\_28\_3gp\_convertlog in this folder whe n I'm done.*  
-*\*\*\*\*\*\*\*\*\*\*\*\*\* RUNNING \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\**  
+*Please review the file Fri_2012-05-25_17_06_28_3gp_convertlog in this folder whe n I'm done.*  
+*************\* RUNNING ***************\**  
 *Moving files: ls VIDEO0001.3gp.mp4 VIDEO0002.3gp.mp4 VIDEO0003.3gp.mp4 VIDEO000 4.3gp.mp4 VIDEO0005.3gp.mp4 VIDEO0006.3gp.mp4 VIDEO0007.3gp.mp4 VIDEO0008.3gp.mp 4 VIDEO0009.3gp.mp4 VIDEO0010.3gp.mp4*
 
 *# <snip></snip>*

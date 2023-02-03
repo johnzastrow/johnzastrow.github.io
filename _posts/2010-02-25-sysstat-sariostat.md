@@ -14,7 +14,7 @@ tags:
 
 The pidstat command is used to monitor processes and threads currently being managed by the Linux kernel. It can also monitor the children of those processes and threads.
 
-With its -d option, pidstat can report I/O statistics, providing that you have a recent Linux kernel (2.6.20+) with the option CONFIG\_TASK\_IO\_ACCOUNTING compiled in. So imagine that your system is undergoing heavy I/O and you want to know which tasks are generating them. You could then enter the following command:
+With its -d option, pidstat can report I/O statistics, providing that you have a recent Linux kernel (2.6.20+) with the option CONFIG_TASK_IO_ACCOUNTING compiled in. So imagine that your system is undergoing heavy I/O and you want to know which tasks are generating them. You could then enter the following command:
 
 ```
 $ pidstat -d 2

@@ -14,15 +14,15 @@ apt-spy is a program that benchmarks debian apt-get sources. Run this
 script when you need to find your bets local mirror for grabbing debian  
 packages.
 
-\#!/bin/sh  
+#!/bin/sh  
 # jcz 2005-july-13  
 #  
 # This script will add the best debian servers to your sources.list file.  
 # You should prune the file by hand when it's done.
 
 # Date and other variables pretty self explanatory, S is seconds  
-# date format is currently YYYYMMDD\_HHMMSS  
- datearc=$(hostname)\_sourcesbackup\_$(date +%Y%m%d\_%H%M%S).txt
+# date format is currently YYYYMMDD_HHMMSS  
+ datearc=$(hostname)_sourcesbackup_$(date +%Y%m%d_%H%M%S).txt
 
 cp /etc/apt/sources.list /etc/apt/sources.list.$datearc
 

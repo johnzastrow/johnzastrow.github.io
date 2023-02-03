@@ -20,28 +20,28 @@ So, starting with a table that looks like this
 ```sql
 
 CREATE TABLE "huc12" (  
- PK\_UID INTEGER PRIMARY KEY AUTOINCREMENT,  
+ PK_UID INTEGER PRIMARY KEY AUTOINCREMENT,  
  "OBJECTID" INTEGER,  
- "HUC\_8" TEXT,  
- "HUC\_10" TEXT,  
- "HUC\_12" TEXT,  
+ "HUC_8" TEXT,  
+ "HUC_10" TEXT,  
+ "HUC_12" TEXT,  
  "ACRES" DOUBLE,  
- "NCONTRB\_A" DOUBLE,  
- "HU\_10\_GNIS" TEXT,  
- "HU\_12\_GNIS" TEXT,  
- "HU\_10\_DS" TEXT,  
- "HU\_10\_NAME" TEXT,  
- "HU\_10\_MOD" TEXT,  
- "HU\_10\_TYPE" TEXT,  
- "HU\_12\_DS" TEXT,  
- "HU\_12\_NAME" TEXT,  
- "HU\_12\_MOD" TEXT,  
- "HU\_12\_TYPE" TEXT,  
- "META\_ID" TEXT,  
+ "NCONTRB_A" DOUBLE,  
+ "HU_10_GNIS" TEXT,  
+ "HU_12_GNIS" TEXT,  
+ "HU_10_DS" TEXT,  
+ "HU_10_NAME" TEXT,  
+ "HU_10_MOD" TEXT,  
+ "HU_10_TYPE" TEXT,  
+ "HU_12_DS" TEXT,  
+ "HU_12_NAME" TEXT,  
+ "HU_12_MOD" TEXT,  
+ "HU_12_TYPE" TEXT,  
+ "META_ID" TEXT,  
  "STATES" TEXT,  
  "GlobalID" TEXT,  
- "SHAPE\_Leng" DOUBLE,  
- "SHAPE\_Area" DOUBLE, "Geometry" MULTIPOLYGON)
+ "SHAPE_Leng" DOUBLE,  
+ "SHAPE_Area" DOUBLE, "Geometry" MULTIPOLYGON)
 
 ```
 

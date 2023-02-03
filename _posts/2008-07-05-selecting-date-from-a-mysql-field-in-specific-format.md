@@ -27,9 +27,9 @@ Which resulted in
 
 SQL result
 
- **SQL-query:** SELECT DATE\_FORMAT( regdate, '%b %Y' ) AS  
+ **SQL-query:** SELECT DATE_FORMAT( regdate, '%b %Y' ) AS  
 MONTH , count( uid ) AS Users  
-FROM gl\_users  
+FROM gl_users  
 GROUP BY MONTH LIMIT 0, 30;
 
 | MONTH | Users |
@@ -49,9 +49,9 @@ GROUP BY MONTH LIMIT 0, 30;
 And here are some more resources that I found.
 
 [  
-http://dev.mysql.com/doc/mysql/en/Date\_and\_time\_functions.html](http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html)  
+http://dev.mysql.com/doc/mysql/en/Date_and_time_functions.html](http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html)  
 [  
 http://www.sitepoint.com/forums/archive/index.php/t-164068](http://www.sitepoint.com/forums/archive/index.php/t-164068)
 
 [  
-http://www.databasejournal.com/features/mysql/article.php/10897\_2190421\_2](http://www.databasejournal.com/features/mysql/article.php/10897_2190421_2)
+http://www.databasejournal.com/features/mysql/article.php/10897_2190421_2](http://www.databasejournal.com/features/mysql/article.php/10897_2190421_2)

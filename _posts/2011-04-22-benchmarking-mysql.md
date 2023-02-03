@@ -13,16 +13,16 @@ categories:
 
 So I'm trying to figure which old machine to turn into a little mySQL number cruncher. So, I'm going to do some clean installs of Ubuntu server on each and run this little script (with the same my.cnf) and see how they fair. Perhaps you will this useful, run it a few times.
 
-\[cce\_bash\]
+```bash
 
-\#!/bin/sh  
+#!/bin/sh  
 # jcz 2011-April-22  
 #  
 # This script will time your MySQL database in a repeatable way  
 #  
 # Date and other variables pretty self explanatory, S is seconds  
-# date format is currently YYYYMMDD\_HHMMSS  
- dater=$(date +%Y%m%d\_%H%M%S)  
+# date format is currently YYYYMMDD_HHMMSS  
+ dater=$(date +%Y%m%d_%H%M%S)  
  dayer=$(date +%a)  
  myhost=$(hostname)  
  directory=$(pwd)  
@@ -55,7 +55,7 @@ echo "" &gt;&gt; $outfile
 echo "" &gt;&gt; $outfile  
 echo "" &gt;&gt; $outfile
 
-\[/cce\_bash\]
+[/cce_bash]
 
 The above script makes output like below
 
