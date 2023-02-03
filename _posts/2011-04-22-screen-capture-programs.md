@@ -12,29 +12,24 @@ categories:
 
 I always need to capture computer screens into graphic files. Even for my Mom who needs the occasional over-email tutorial. So here is a list of screen capture utitlities that I've used over the years. Snag-it is by far my tool of choice. But really, all will work. Do you know of any more?
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;">Do you run Firefox? If so, try this.</span>
+Do you run Firefox? If so, try this.
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"><https://addons.mozilla.org/en-US/firefox/addon/awesome-screenshot-capture-/?src=discovery-learnmore></span>
+<https://addons.mozilla.org/en-US/firefox/addon/awesome-screenshot-capture-/?src=discovery-learnmore>
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"> or..</span>
+ or..
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"> I bought this, can't live without it for $50</span>
+I bought this, can't live without it for $50
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"><http://www.techsmith.com/snagit/></span>
+http://www.techsmith.com/snagit/
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"> </span>
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"> </span>
+This is free and I've liked it over the years
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;">This is free and I've liked it over the years</span>
+http://cropper.codeplex.com/releases/view/56509
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"><http://cropper.codeplex.com/releases/view/56509></span>
+Some people like this, but I never got into it
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"> </span>
+http://www.gadwin.com/printscreen/
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;">Some people like this, but I never got into it</span>
 
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"><http://www.gadwin.com/printscreen/></span>
-
-<span style="font-size: 11.0pt; font-family: 'Calibri','sans-serif'; color: #1f497d;"> </span>
 

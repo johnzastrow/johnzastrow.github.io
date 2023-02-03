@@ -55,10 +55,11 @@ echo "" &gt;&gt; $outfile
 echo "" &gt;&gt; $outfile  
 echo "" &gt;&gt; $outfile
 
-[/cce_bash]
+```
 
 The above script makes output like below
 
+```bash
 —————— BEGIN ——————–  
 Fri Apr 22 17:05:15 EDT 2011  
 monitor  
@@ -85,3 +86,4 @@ mysqlslap -u… -p… -hlocalhost -v –concurrency=1 –iterations=2 –number-
 The above command was executed to produce the results above it.  
 —————— END ——————–
 
+```
