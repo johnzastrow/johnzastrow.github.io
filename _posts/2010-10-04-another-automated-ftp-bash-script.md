@@ -20,7 +20,7 @@ The problem I always encountered in scripting ftp transfers involved getting a p
 
 ## Example Working Script
 
-```
+```bash
 <kbd>#!/bin/sh
 HOST='ftp.users.qwest.net'
 USER='yourid'
@@ -54,7 +54,7 @@ One obvious improvement would have the ftp client program controlled by the shel
 
 I saw a second way of doing this in a usenet article:
 
-```
+```bash
 <kbd>#!/bin/sh
 USER=userid
 PASSWD=userpw
@@ -77,7 +77,7 @@ It still uses the "-n" trick, but it sends user ID and password in the same "use
 
 Linux, Unix and BSD users have the alternative of using a <kbd>.netrc</kbd> file. The ftp man page documents the format of <kbd>.netrc</kbd>. To accomplish the task of using ftp in a shell script you would have to fill out a <kbd>.netrc</kbd> file something like this:
 
-```
+```bash
 <kbd>
 machine something.else.com
 login myid
@@ -87,7 +87,7 @@ password mypassword
 
 ftp demands that <kbd>.netrc</kbd> not have group or world read or write permissions:
 
-```
+```bash
 <kbd>
 $ ls -l .netrc
 -rw-------    1 bediger  users          51 Dec 16 13:30 .netrc
@@ -107,8 +107,8 @@ Apparently, the [Ckermit](http://www.columbia.edu/kermit/ck80.html) program from
 
 See also <http://www.linuxforums.org/forum/programming-scripting/106665-automatic-ftp-upload-via-script.html>
 
-```
-<pre dir="ltr">#!/bin/bash
+```bash
+#!/bin/bash
 # puts the file bookmarks.html
 cd $HOME/.mozilla/firefox/
 cd ./*.default/

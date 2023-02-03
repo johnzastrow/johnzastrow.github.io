@@ -12,6 +12,7 @@ categories:
 
 I need to make a table to look up common (vernacular) names for some organisms. So I imported the USGS ITIS database from text files into MySQL and created this little view. Hopefully this helps someone else.
 
+```sql
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_flat_table` AS   
 SELECT  
  `taxonomic_units`.`tsn` AS `tsn`,  
@@ -36,3 +37,4 @@ FROM (((`taxon_unit_types`
  LEFT JOIN `longnames`  
  ON ((`longnames`.`tsn` = `taxonomic_units`.`tsn`)))
 
+```

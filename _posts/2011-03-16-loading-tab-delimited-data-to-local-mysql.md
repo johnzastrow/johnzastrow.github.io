@@ -16,6 +16,8 @@ I'm using the Positive Observation Essentials format as queried from their datab
 
 I did use a sed command (created and verified in Excel) on the original files to fix the spaces in the column names (if you are in the business of making data for people, never, ever, ever, ever create large tabular files with spaces or special characters in the column names. Avoid dashes as well, and preferably use all caps). Note that the commands below will REPLACE your files. So be sure to back up your originals in case anything goes wrong.
 
+```bash
+
 find . -name '\*AKN\*' -exec sed -i 's/Record\\ Number/Record_Number/g' {} \\;  
 find . -name '\*AKN\*' -exec sed -i 's/Global\\ Unique\\ Identifier/Global_Unique_Identifier/g' {} \\;  
 find . -name '\*AKN\*' -exec sed -i 's/Collection\\ Code/Collection_Code/g' {} \\;  
@@ -32,9 +34,11 @@ find . -name '\*AKN\*' -exec sed -i 's/Duration\\ In\\ Hours/Duration_In_Hours/g
 find . -name '\*AKN\*' -exec sed -i 's/Time\\ Observations\\ Started/Time_Observations_Started/g' {} \\;  
 find . -name '\*AKN\*' -exec sed -i 's/Time\\ Observations\\ Ended/Time_Observations_Ended/g' {} \\;  
 find . -name '\*AKN\*' -exec sed -i 's/Sampling\\ Event\\ Identifier/Sampling_Event_Identifier/g' {} \\;
+```
 
 Then I create a basic staging table (commands also from Excel). I don't know why I used InnoDB, when MyIsam would have been faster. But, notice the absence of indexes for faster loading.
 
+```sql
 CREATE TABLE `nv_akn` (  
  `Record_Number` VARCHAR(30) DEFAULT NULL,  
  `Global_Unique_Identifier` VARCHAR(30) DEFAULT NULL,  
@@ -54,12 +58,17 @@ CREATE TABLE `nv_akn` (
  `Sampling_Event_Identifier` VARCHAR(50) DEFAULT NULL  
 ) ENGINE=INNODB DEFAULT CHARSET=latin1
 
+```
+
 I'm just doing this locally, so XAMPP is my friend. So from the xampp /mysql/bin directory, I ran mysql.exe. I chose my database and ran the following on the text files produced by the above sed cleaners.
 
-mysql&gt; LOAD DATA LOCAL INFILE 'c:/xampp/mysql/bin/Nevada_Pos_obs_Essent_15-MAR-2011.txt' INTO TABLE nv_akn  
+```bash
+mysql> LOAD DATA LOCAL INFILE 'c:/xampp/mysql/bin/Nevada_Pos_obs_Essent_15-MAR-2011.txt' INTO TABLE nv_akn  
 FIELDS TERMINATED BY '\\t'  
 LINES TERMINATED BY '\
 ' IGNORE 1 LINES;
+
+```
 
 I used LOCAL since the database is on my workstation. Note the full path to the windows file, with forward slashes. Fields are tab-delimited, lines seem to just use carriage returns (or at least it doesn't look like I need another line ender) and I'm ignoring the column header row.
 
