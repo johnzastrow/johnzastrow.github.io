@@ -4,7 +4,7 @@ title: 'Meet Bubba'
 date: '2008-07-05T20:26:47-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/meet-bubba/'
+guid: 'https://johnzastrow.github.io/2008/07/05/meet-bubba/'
 permalink: /2008/07/05/meet-bubba/
 categories:
     - 'Home and Family'

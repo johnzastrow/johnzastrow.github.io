@@ -4,7 +4,7 @@ title: 'PostGIS Install and Cloning Ubuntu Systems Notes'
 date: '2011-05-11T15:02:15-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/05/11/postgis-install-and-cloning-ubuntu-systems-notes/'
+guid: 'https://johnzastrow.github.io/2011/05/11/postgis-install-and-cloning-ubuntu-systems-notes/'
 permalink: /2011/05/11/postgis-install-and-cloning-ubuntu-systems-notes/
 categories:
     - Database

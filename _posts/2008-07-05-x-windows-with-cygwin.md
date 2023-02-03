@@ -4,7 +4,7 @@ title: 'X windows with Cygwin'
 date: '2008-07-05T20:33:04-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/x-windows-with-cygwin/'
+guid: 'https://johnzastrow.github.io/2008/07/05/x-windows-with-cygwin/'
 permalink: /2008/07/05/x-windows-with-cygwin/
 categories:
     - Linux

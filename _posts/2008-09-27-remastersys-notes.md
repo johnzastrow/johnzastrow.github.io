@@ -4,7 +4,7 @@ title: 'Remastersys Notes'
 date: '2008-09-27T21:12:16-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/09/27/remastersys-notes/'
+guid: 'https://johnzastrow.github.io/2008/09/27/remastersys-notes/'
 permalink: /2008/09/27/remastersys-notes/
 categories:
     - Linux

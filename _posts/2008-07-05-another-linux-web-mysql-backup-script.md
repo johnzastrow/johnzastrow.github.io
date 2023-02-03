@@ -4,7 +4,7 @@ title: 'Another Linux Web MySQL Backup Script'
 date: '2008-07-05T20:45:37-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/another-linux-web-mysql-backup-script/'
+guid: 'https://johnzastrow.github.io/2008/07/05/another-linux-web-mysql-backup-script/'
 permalink: /2008/07/05/another-linux-web-mysql-backup-script/
 categories:
     - Linux

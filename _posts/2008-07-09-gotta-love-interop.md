@@ -4,7 +4,7 @@ title: 'Gotta love interop'
 date: '2008-07-09T22:15:08-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/09/gotta-love-interop/'
+guid: 'https://johnzastrow.github.io/2008/07/09/gotta-love-interop/'
 permalink: /2008/07/09/gotta-love-interop/
 categories:
     - GIS

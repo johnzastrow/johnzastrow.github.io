@@ -4,7 +4,7 @@ title: 'Changing run levels at boot time'
 date: '2008-07-05T20:37:34-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/changing-run-levels-at-boot-time/'
+guid: 'https://johnzastrow.github.io/2008/07/05/changing-run-levels-at-boot-time/'
 permalink: /2008/07/05/changing-run-levels-at-boot-time/
 categories:
     - Linux

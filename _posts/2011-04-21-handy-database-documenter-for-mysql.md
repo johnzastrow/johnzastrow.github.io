@@ -4,13 +4,13 @@ title: 'Handy database documenter for MySQL'
 date: '2011-04-21T14:39:45-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/04/21/handy-database-documenter-for-mysql/'
+guid: 'https://johnzastrow.github.io/2011/04/21/handy-database-documenter-for-mysql/'
 permalink: /2011/04/21/handy-database-documenter-for-mysql/
 categories:
     - Database
 ---
 
-UPDATE: see the next iteration on this project [\[here\]](http://northredoubt.com/n/2011/07/18/handy-database-documenterprofiler-for-mysql-cont/ "Handy database documenter/profiler for mysql, cont.")
+UPDATE: see the next iteration on this project [\[here\]](https://johnzastrow.github.io/2011/07/18/handy-database-documenterprofiler-for-mysql-cont/ "Handy database documenter/profiler for mysql, cont.")
 
 Here’s a view that will spit out just about everything MySQL (5.1) knows about the tables and fields it maintains for you. The first field can be joined to the output of something like
 

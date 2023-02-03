@@ -4,7 +4,7 @@ title: 'Paths on Linux'
 date: '2008-07-05T20:40:37-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/paths-on-linux/'
+guid: 'https://johnzastrow.github.io/2008/07/05/paths-on-linux/'
 permalink: /2008/07/05/paths-on-linux/
 categories:
     - Linux

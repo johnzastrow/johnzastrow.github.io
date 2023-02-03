@@ -4,7 +4,7 @@ title: 'Handy shell file lister for cygwin or *NIX'
 date: '2008-07-05T18:59:44-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/handy-shell-file-lister-for-cygwin-or-nix/'
+guid: 'https://johnzastrow.github.io/2008/07/05/handy-shell-file-lister-for-cygwin-or-nix/'
 permalink: /2008/07/05/handy-shell-file-lister-for-cygwin-or-nix/
 categories:
     - Uncategorized

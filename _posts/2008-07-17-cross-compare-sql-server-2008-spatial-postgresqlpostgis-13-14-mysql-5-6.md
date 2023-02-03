@@ -4,7 +4,7 @@ title: 'Cross Compare SQL Server 2008 Spatial, PostgreSQL/PostGIS 1.3-1.4, MySQL
 date: '2008-07-17T22:16:59-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/17/cross-compare-sql-server-2008-spatial-postgresqlpostgis-13-14-mysql-5-6-2/'
+guid: 'https://johnzastrow.github.io/2008/07/17/cross-compare-sql-server-2008-spatial-postgresqlpostgis-13-14-mysql-5-6-2/'
 permalink: /2008/07/17/cross-compare-sql-server-2008-spatial-postgresqlpostgis-13-14-mysql-5-6/
 categories:
     - GIS

@@ -4,7 +4,7 @@ title: 'Sending files over SFTP in an automated fashion'
 date: '2008-07-05T20:21:15-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/sending-files-over-sftp-in-an-automated-fashion/'
+guid: 'https://johnzastrow.github.io/2008/07/05/sending-files-over-sftp-in-an-automated-fashion/'
 permalink: /2008/07/05/sending-files-over-sftp-in-an-automated-fashion/
 categories:
     - Linux

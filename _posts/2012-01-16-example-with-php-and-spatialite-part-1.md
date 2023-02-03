@@ -16,7 +16,7 @@ categories:
     - Web
 ---
 
-*This post is part of a series [\[1\]](http://northredoubt.com/n/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1"), [\[2\]](http://northredoubt.com/n/2012/01/17/example-with-php-and-spatialite-part-2/ "Example with PHP and Spatialite, part 2"), [\[3\]](http://northredoubt.com/n/2012/01/18/spatialite-and-spatial-indexes/ "Spatialite and Spatial Indexes"), [\[4\]](http://northredoubt.com/n/2012/01/20/spatialite-speed-test/ "Spatialite Speed Test")*
+*This post is part of a series [\[1\]](https://johnzastrow.github.io/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1"), [\[2\]](https://johnzastrow.github.io/2012/01/17/example-with-php-and-spatialite-part-2/ "Example with PHP and Spatialite, part 2"), [\[3\]](https://johnzastrow.github.io/2012/01/18/spatialite-and-spatial-indexes/ "Spatialite and Spatial Indexes"), [\[4\]](https://johnzastrow.github.io/2012/01/20/spatialite-speed-test/ "Spatialite Speed Test")*
 
 So, PHP supports SQLite out of the box (<http://www.sqlite.org/>, now at 3.7.10), making it a nice combo if you want to do some reads from your page. My impression is that SQLite is not recommended if you want stuff with database writes and you have more than a couple visitors. But reading seems to be fine.
 

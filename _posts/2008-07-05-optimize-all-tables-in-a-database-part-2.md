@@ -4,7 +4,7 @@ title: 'Optimize all tables in a database, Part 2'
 date: '2008-07-05T20:47:17-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/optimize-all-tables-in-a-database-part-2/'
+guid: 'https://johnzastrow.github.io/2008/07/05/optimize-all-tables-in-a-database-part-2/'
 permalink: /2008/07/05/optimize-all-tables-in-a-database-part-2/
 categories:
     - Database

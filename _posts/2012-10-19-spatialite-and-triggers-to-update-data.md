@@ -90,7 +90,7 @@ END
 
 Now let me use Qgis to enter a new point. The screen below is just filling in the non-calculated attributes.
 
- [![No need to fill in the attributes that will be set by the trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/editing_4trigger-300x221.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/editing_4trigger/) 
+ [![No need to fill in the attributes that will be set by the trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/editing_4trigger-300x221.png)](https://johnzastrow.github.io/2012/10/19/spatialite-and-triggers-to-update-data/editing_4trigger/) 
 
 
 
@@ -106,4 +106,4 @@ Here’s a quick screen to show how to start and end an editing session in Qgis.
 
 Don’t forget to SAVE your edits, or the triggers won’t fire. 
 
- [![saved_edits_trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/saved_edits_trigger-300x169.png)](http://northredoubt.com/n/2012/10/19/spatialite-and-triggers-to-update-data/saved_edits_trigger/) Voila. The triggered attributes were updated. 
+ [![saved_edits_trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/saved_edits_trigger-300x169.png)](https://johnzastrow.github.io/2012/10/19/spatialite-and-triggers-to-update-data/saved_edits_trigger/) Voila. The triggered attributes were updated. 

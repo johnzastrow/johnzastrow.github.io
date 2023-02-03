@@ -4,7 +4,7 @@ title: 'Simple netstat'
 date: '2008-07-05T20:32:20-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/simple-netstat/'
+guid: 'https://johnzastrow.github.io/2008/07/05/simple-netstat/'
 permalink: /2008/07/05/simple-netstat/
 categories:
     - Linux

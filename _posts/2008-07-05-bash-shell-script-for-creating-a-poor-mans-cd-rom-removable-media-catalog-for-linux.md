@@ -4,7 +4,7 @@ title: 'Bash shell script for creating a poor man&#8217;s CD-ROM (removable medi
 date: '2008-07-05T20:42:10-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/bash-shell-script-for-creating-a-poor-mans-cd-rom-removable-media-catalog-for-linux/'
+guid: 'https://johnzastrow.github.io/2008/07/05/bash-shell-script-for-creating-a-poor-mans-cd-rom-removable-media-catalog-for-linux/'
 permalink: /2008/07/05/bash-shell-script-for-creating-a-poor-mans-cd-rom-removable-media-catalog-for-linux/
 categories:
     - Linux

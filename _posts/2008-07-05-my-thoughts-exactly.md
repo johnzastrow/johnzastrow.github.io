@@ -4,7 +4,7 @@ title: 'My thoughts exactly'
 date: '2008-07-05T16:47:36-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/my-thoughts-exactly/'
+guid: 'https://johnzastrow.github.io/2008/07/05/my-thoughts-exactly/'
 permalink: /2008/07/05/my-thoughts-exactly/
 categories:
     - Thoughts

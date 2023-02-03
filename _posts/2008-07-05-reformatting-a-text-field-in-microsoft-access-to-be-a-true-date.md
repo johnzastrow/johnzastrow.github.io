@@ -4,7 +4,7 @@ title: 'Reformatting a text field in Microsoft Access to be a true date'
 date: '2008-07-05T20:24:22-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/reformatting-a-text-field-in-microsoft-access-to-be-a-true-date/'
+guid: 'https://johnzastrow.github.io/2008/07/05/reformatting-a-text-field-in-microsoft-access-to-be-a-true-date/'
 permalink: /2008/07/05/reformatting-a-text-field-in-microsoft-access-to-be-a-true-date/
 categories:
     - Database

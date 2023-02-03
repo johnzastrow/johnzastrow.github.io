@@ -4,7 +4,7 @@ title: 'Use Excel&#8217;s MID and FIND to extract characters from varying positi
 date: '2011-07-08T12:28:13-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/07/08/use-excels-mid-and-find-to-extract-characters-from-varying-positions/'
+guid: 'https://johnzastrow.github.io/2011/07/08/use-excels-mid-and-find-to-extract-characters-from-varying-positions/'
 permalink: /2011/07/08/use-excels-mid-and-find-to-extract-characters-from-varying-positions/
 categories:
     - 'Data processing'

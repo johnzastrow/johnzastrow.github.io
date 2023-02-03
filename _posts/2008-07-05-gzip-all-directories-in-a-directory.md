@@ -4,7 +4,7 @@ title: 'gzip all directories in a directory'
 date: '2008-07-05T20:44:13-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/gzip-all-directories-in-a-directory/'
+guid: 'https://johnzastrow.github.io/2008/07/05/gzip-all-directories-in-a-directory/'
 permalink: /2008/07/05/gzip-all-directories-in-a-directory/
 categories:
     - Linux

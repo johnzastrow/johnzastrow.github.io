@@ -4,7 +4,7 @@ title: 'Tables of Tables from MySQL'
 date: '2011-04-21T15:47:57-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/04/21/tables-of-tables-from-mysql/'
+guid: 'https://johnzastrow.github.io/2011/04/21/tables-of-tables-from-mysql/'
 permalink: /2011/04/21/tables-of-tables-from-mysql/
 categories:
     - Database

@@ -4,7 +4,7 @@ title: 'Remove all foreign keys from MySQL database'
 date: '2011-10-27T14:23:29-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/10/27/remove-all-foreign-keys-from-mysql-database/'
+guid: 'https://johnzastrow.github.io/2011/10/27/remove-all-foreign-keys-from-mysql-database/'
 permalink: /2011/10/27/remove-all-foreign-keys-from-mysql-database/
 categories:
     - 'Data processing'

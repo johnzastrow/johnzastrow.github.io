@@ -4,7 +4,7 @@ title: 'Tips for using the ls command to list files in Cygwin or Linux'
 date: '2008-07-05T20:39:40-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/tips-for-using-the-ls-command-to-list-files-in-cygwin-or-linux/'
+guid: 'https://johnzastrow.github.io/2008/07/05/tips-for-using-the-ls-command-to-list-files-in-cygwin-or-linux/'
 permalink: /2008/07/05/tips-for-using-the-ls-command-to-list-files-in-cygwin-or-linux/
 categories:
     - Linux

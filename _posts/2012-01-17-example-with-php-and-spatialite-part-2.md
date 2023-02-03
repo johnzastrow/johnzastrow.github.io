@@ -16,9 +16,9 @@ categories:
     - Web
 ---
 
-*This post is part of a series [[1]](http://northredoubt.com/n/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1"), [[2]](http://northredoubt.com/n/2012/01/17/example-with-php-and-spatialite-part-2/ "Example with PHP and Spatialite, part 2"), [[3]](http://northredoubt.com/n/2012/01/18/spatialite-and-spatial-indexes/ "Spatialite and Spatial Indexes"), [[4]](http://northredoubt.com/n/2012/01/20/spatialite-speed-test/ "Spatialite Speed Test")*
+*This post is part of a series [[1]](https://johnzastrow.github.io/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1"), [[2]](https://johnzastrow.github.io/2012/01/17/example-with-php-and-spatialite-part-2/ "Example with PHP and Spatialite, part 2"), [[3]](https://johnzastrow.github.io/2012/01/18/spatialite-and-spatial-indexes/ "Spatialite and Spatial Indexes"), [[4]](https://johnzastrow.github.io/2012/01/20/spatialite-speed-test/ "Spatialite Speed Test")*
 
-So I’m ready to take the next steps with my little project. This is a continuation of my [previous post ](http://northredoubt.com/n/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1")about my little journey. At this point I am connecting to a physical database file that I loaded with some sample data (12-digit watersheds). Now I’m going to practice with queries and you can see the results below.
+So I’m ready to take the next steps with my little project. This is a continuation of my [previous post ](https://johnzastrow.github.io/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1")about my little journey. At this point I am connecting to a physical database file that I loaded with some sample data (12-digit watersheds). Now I’m going to practice with queries and you can see the results below.
 
 Here are the base data.
 

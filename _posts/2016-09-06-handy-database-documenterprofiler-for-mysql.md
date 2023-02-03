@@ -4,11 +4,11 @@ title: 'Handy database documenter/profiler for mysql, cont.'
 date: '2016-09-06T16:08:05-05:00'
 author: 'John C. Zastrow'
 layout: revision
-guid: 'http://northredoubt.com/n/2016/09/06/201-autosave-v1/'
+guid: 'https://johnzastrow.github.io/2016/09/06/201-autosave-v1/'
 permalink: '/?p=909'
 ---
 
-Some time ago I wrote down a little [script](http://northredoubt.com/n/2011/04/21/handy-database-documenter-for-mysql/ "Handy database documenter for MySQL") to make a table from the MySQL information schema to describe your database. My eventual goal is to come close to reproducing a poor man’s database profiling script similar to this crude one ( [http://www.ipcdesigns.com/data\_profiling/](http://www.ipcdesigns.com/data_profiling/ "Oracle, SQL Server")), but perhaps less powerful and yet more elegant. I figure it’s going to take creating some procedures to loop through the chosen tables and columns.
+Some time ago I wrote down a little [script](https://johnzastrow.github.io/2011/04/21/handy-database-documenter-for-mysql/ "Handy database documenter for MySQL") to make a table from the MySQL information schema to describe your database. My eventual goal is to come close to reproducing a poor man’s database profiling script similar to this crude one ( [http://www.ipcdesigns.com/data\_profiling/](http://www.ipcdesigns.com/data_profiling/ "Oracle, SQL Server")), but perhaps less powerful and yet more elegant. I figure it’s going to take creating some procedures to loop through the chosen tables and columns.
 
 Towards that end, I figure I need to take the contents of the handy view I made earlier and turn them into a table. Then if I execute some profiling queries, I can create tables from the results and join back to this summary table. So here is me persisting the view created earlier.You can do it this way:
 

@@ -4,7 +4,7 @@ title: 'Linux.com: Bugs in your shell script?'
 date: '2008-07-05T20:09:45-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/linuxcom-bugs-in-your-shell-script/'
+guid: 'https://johnzastrow.github.io/2008/07/05/linuxcom-bugs-in-your-shell-script/'
 permalink: /2008/07/05/linuxcom-bugs-in-your-shell-script/
 categories:
     - Linux

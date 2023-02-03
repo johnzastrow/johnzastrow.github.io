@@ -4,7 +4,7 @@ title: 'Mounting your old linux HD to recover files'
 date: '2008-07-05T19:13:58-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/mounting-your-old-linux-hd-to-recover-files/'
+guid: 'https://johnzastrow.github.io/2008/07/05/mounting-your-old-linux-hd-to-recover-files/'
 permalink: /2008/07/05/mounting-your-old-linux-hd-to-recover-files/
 categories:
     - Linux

@@ -4,7 +4,7 @@ title: 'Reseting OpenSSH server keys on a server'
 date: '2011-10-18T09:41:45-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/10/18/reseting-openssh-server-keys-on-a-server/'
+guid: 'https://johnzastrow.github.io/2011/10/18/reseting-openssh-server-keys-on-a-server/'
 permalink: /2011/10/18/reseting-openssh-server-keys-on-a-server/
 categories:
     - Uncategorized

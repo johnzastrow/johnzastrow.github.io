@@ -4,7 +4,7 @@ title: 'Screen capture programs'
 date: '2011-04-22T10:19:59-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/04/22/screen-capture-programs/'
+guid: 'https://johnzastrow.github.io/2011/04/22/screen-capture-programs/'
 permalink: /2011/04/22/screen-capture-programs/
 categories:
     - Uncategorized

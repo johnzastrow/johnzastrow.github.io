@@ -4,7 +4,7 @@ title: 'My MySQL latest config file'
 date: '2011-04-29T12:07:38-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/04/29/my-mysql-latest-config-file-3/'
+guid: 'https://johnzastrow.github.io/2011/04/29/my-mysql-latest-config-file-3/'
 permalink: /2011/04/29/my-mysql-latest-config-file-3/
 categories:
     - Database

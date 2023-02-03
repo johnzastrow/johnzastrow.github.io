@@ -4,7 +4,7 @@ title: 'ITIS Organism Flat table from MySQL'
 date: '2011-03-17T15:03:30-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/03/17/itis-organism-flat-table-from-mysql/'
+guid: 'https://johnzastrow.github.io/2011/03/17/itis-organism-flat-table-from-mysql/'
 permalink: /2011/03/17/itis-organism-flat-table-from-mysql/
 categories:
     - Uncategorized

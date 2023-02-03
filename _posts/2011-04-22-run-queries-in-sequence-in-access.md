@@ -4,7 +4,7 @@ title: 'Run queries in sequence in Access'
 date: '2011-04-22T15:31:04-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/04/22/run-queries-in-sequence-in-access/'
+guid: 'https://johnzastrow.github.io/2011/04/22/run-queries-in-sequence-in-access/'
 permalink: /2011/04/22/run-queries-in-sequence-in-access/
 categories:
     - Uncategorized

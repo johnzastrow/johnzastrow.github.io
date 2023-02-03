@@ -4,7 +4,7 @@ title: 'Python Tutorials'
 date: '2011-02-28T09:07:27-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/02/28/python-tutorials-2/'
+guid: 'https://johnzastrow.github.io/2011/02/28/python-tutorials-2/'
 permalink: /2011/02/28/python-tutorials-2/
 categories:
     - GIS

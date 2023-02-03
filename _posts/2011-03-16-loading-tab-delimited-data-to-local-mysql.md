@@ -4,7 +4,7 @@ title: 'Loading tab-delimited data to local MySQL'
 date: '2011-03-16T10:17:15-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/03/16/loading-tab-delimited-data-to-local-mysql/'
+guid: 'https://johnzastrow.github.io/2011/03/16/loading-tab-delimited-data-to-local-mysql/'
 permalink: /2011/03/16/loading-tab-delimited-data-to-local-mysql/
 categories:
     - Uncategorized

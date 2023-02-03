@@ -4,7 +4,7 @@ title: 'USGS GNIS column names and shapefiles'
 date: '2011-05-26T14:10:36-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/05/26/usgs-gnis-column-names-and-shapefiles/'
+guid: 'https://johnzastrow.github.io/2011/05/26/usgs-gnis-column-names-and-shapefiles/'
 permalink: /2011/05/26/usgs-gnis-column-names-and-shapefiles/
 categories:
     - Uncategorized

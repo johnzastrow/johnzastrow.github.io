@@ -4,7 +4,7 @@ title: 'MySQL Functions'
 date: '2011-03-31T13:48:01-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/03/31/mysql-functions/'
+guid: 'https://johnzastrow.github.io/2011/03/31/mysql-functions/'
 permalink: /2011/03/31/mysql-functions/
 categories:
     - Database

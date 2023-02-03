@@ -4,7 +4,7 @@ title: 'Putting your own content into a website with Google Maps'
 date: '2008-07-21T21:43:17-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/21/putting-your-own-content-into-a-website-with-google-maps/'
+guid: 'https://johnzastrow.github.io/2008/07/21/putting-your-own-content-into-a-website-with-google-maps/'
 permalink: /2008/07/21/putting-your-own-content-into-a-website-with-google-maps/
 categories:
     - GIS

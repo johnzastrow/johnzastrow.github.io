@@ -4,7 +4,7 @@ title: 'SYSSTAT: SAR/IOSTAT'
 date: '2010-02-25T13:30:48-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2010/02/25/sysstat-sariostat/'
+guid: 'https://johnzastrow.github.io/2010/02/25/sysstat-sariostat/'
 permalink: /2010/02/25/sysstat-sariostat/
 categories:
     - Uncategorized

@@ -4,7 +4,7 @@ title: 'Simple grep and search &#038; replace'
 date: '2008-07-05T20:36:36-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/simple-grep-and-search-replace/'
+guid: 'https://johnzastrow.github.io/2008/07/05/simple-grep-and-search-replace/'
 permalink: /2008/07/05/simple-grep-and-search-replace/
 categories:
     - Linux

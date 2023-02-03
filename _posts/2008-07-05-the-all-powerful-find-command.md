@@ -4,7 +4,7 @@ title: 'The all powerful find command'
 date: '2008-07-05T20:46:44-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/the-all-powerful-find-command/'
+guid: 'https://johnzastrow.github.io/2008/07/05/the-all-powerful-find-command/'
 permalink: /2008/07/05/the-all-powerful-find-command/
 categories:
     - Linux

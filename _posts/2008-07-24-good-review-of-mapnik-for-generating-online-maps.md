@@ -4,7 +4,7 @@ title: 'Good review of Mapnik for generating online maps'
 date: '2008-07-24T23:02:08-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/24/good-review-of-mapnik-for-generating-online-maps/'
+guid: 'https://johnzastrow.github.io/2008/07/24/good-review-of-mapnik-for-generating-online-maps/'
 permalink: /2008/07/24/good-review-of-mapnik-for-generating-online-maps/
 categories:
     - GIS

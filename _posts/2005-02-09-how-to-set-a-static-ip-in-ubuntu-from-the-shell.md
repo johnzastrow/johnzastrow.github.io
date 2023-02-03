@@ -4,7 +4,7 @@ title: 'How to set a static IP in Ubuntu from the shell'
 date: '2005-02-09T04:40:00-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2005/02/09/how-to-set-a-static-ip-in-ubuntu-from-the-shell/'
+guid: 'https://johnzastrow.github.io/2005/02/09/how-to-set-a-static-ip-in-ubuntu-from-the-shell/'
 permalink: /2005/02/09/how-to-set-a-static-ip-in-ubuntu-from-the-shell/
 categories:
     - Linux

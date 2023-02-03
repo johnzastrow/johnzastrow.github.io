@@ -4,7 +4,7 @@ title: 'Search remotely and send the results to local machine'
 date: '2008-07-05T19:15:11-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/search-remotely-and-send-the-results-to-local-machine/'
+guid: 'https://johnzastrow.github.io/2008/07/05/search-remotely-and-send-the-results-to-local-machine/'
 permalink: /2008/07/05/search-remotely-and-send-the-results-to-local-machine/
 categories:
     - Linux

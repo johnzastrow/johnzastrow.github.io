@@ -4,7 +4,7 @@ title: 'SQL: My Oracle quick reference'
 date: '2008-07-05T18:52:56-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/sql-my-oracle-quick-reference-2/'
+guid: 'https://johnzastrow.github.io/2008/07/05/sql-my-oracle-quick-reference-2/'
 permalink: /2008/07/05/sql-my-oracle-quick-reference-2/
 categories:
     - Database

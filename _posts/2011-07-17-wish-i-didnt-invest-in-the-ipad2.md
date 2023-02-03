@@ -4,7 +4,7 @@ title: 'Wish I didn&#8217;t invest in the iPad2'
 date: '2011-07-17T22:41:54-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/07/17/wish-i-didnt-invest-in-the-ipad2/'
+guid: 'https://johnzastrow.github.io/2011/07/17/wish-i-didnt-invest-in-the-ipad2/'
 permalink: /2011/07/17/wish-i-didnt-invest-in-the-ipad2/
 categories:
     - 'Home and Family'

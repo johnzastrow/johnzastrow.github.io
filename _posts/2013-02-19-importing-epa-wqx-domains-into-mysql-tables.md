@@ -50,7 +50,7 @@ then run the following bash code from within a directory that looks like below.
 
 in the last sed line below, note that you must reset the delimeter to | (or something besides / as you need to escape those chars in the values you need to replace. This is the easiest way I think.
 
-**UPDATE:** the post following this one shows how to [create the directory of .zip files this script needs](http://northredoubt.com/n/2013/02/20/wget-examples/ "Wget examples") with a one-liner using wget.
+**UPDATE:** the post following this one shows how to [create the directory of .zip files this script needs](https://johnzastrow.github.io/2013/02/20/wget-examples/ "Wget examples") with a one-liner using wget.
 
 ```
 <pre class="lang:sh decode:true" title="bash script to run through all the .zip files and load them to mysql">#!/bin/sh

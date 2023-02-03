@@ -4,7 +4,7 @@ title: 'Running cygwin cron from windows as a service'
 date: '2008-07-05T20:34:25-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/running-cygwin-cron-from-windows-as-a-service/'
+guid: 'https://johnzastrow.github.io/2008/07/05/running-cygwin-cron-from-windows-as-a-service/'
 permalink: /2008/07/05/running-cygwin-cron-from-windows-as-a-service/
 categories:
     - Linux

@@ -4,7 +4,7 @@ title: 'When you need a sexy terrain relief map'
 date: '2008-08-04T07:21:03-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/08/04/when-you-need-a-sexy-terrain-relief-map/'
+guid: 'https://johnzastrow.github.io/2008/08/04/when-you-need-a-sexy-terrain-relief-map/'
 permalink: /2008/08/04/when-you-need-a-sexy-terrain-relief-map/
 categories:
     - GIS

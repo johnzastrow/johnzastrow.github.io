@@ -4,7 +4,7 @@ title: 'Benchmarking MySQL'
 date: '2011-04-22T16:10:46-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/04/22/benchmarking-mysql/'
+guid: 'https://johnzastrow.github.io/2011/04/22/benchmarking-mysql/'
 permalink: /2011/04/22/benchmarking-mysql/
 categories:
     - Database

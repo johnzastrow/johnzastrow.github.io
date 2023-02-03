@@ -4,7 +4,7 @@ title: 'Auto File transfer/copying with SCP'
 date: '2008-09-19T13:45:49-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/09/19/auto-file-transfercopying-with-scp/'
+guid: 'https://johnzastrow.github.io/2008/09/19/auto-file-transfercopying-with-scp/'
 permalink: /2008/09/19/auto-file-transfercopying-with-scp/
 categories:
     - Uncategorized

@@ -4,7 +4,7 @@ title: 'Postgis data loader from shapefile bash shell script'
 date: '2008-07-05T20:43:16-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/postgis-data-loader-from-shapefile-bash-shell-script/'
+guid: 'https://johnzastrow.github.io/2008/07/05/postgis-data-loader-from-shapefile-bash-shell-script/'
 permalink: /2008/07/05/postgis-data-loader-from-shapefile-bash-shell-script/
 categories:
     - GIS

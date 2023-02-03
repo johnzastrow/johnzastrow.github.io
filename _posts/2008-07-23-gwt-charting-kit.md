@@ -4,7 +4,7 @@ title: 'GWT Charting Kit'
 date: '2008-07-23T10:52:30-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/23/gwt-charting-kit/'
+guid: 'https://johnzastrow.github.io/2008/07/23/gwt-charting-kit/'
 permalink: /2008/07/23/gwt-charting-kit/
 categories:
     - Web

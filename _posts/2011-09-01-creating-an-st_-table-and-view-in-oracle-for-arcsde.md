@@ -4,7 +4,7 @@ title: 'Creating an ST_ table and view in Oracle for ArcSDE'
 date: '2011-09-01T15:30:10-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2011/09/01/creating-an-st_-table-and-view-in-oracle-for-arcsde/'
+guid: 'https://johnzastrow.github.io/2011/09/01/creating-an-st_-table-and-view-in-oracle-for-arcsde/'
 permalink: /2011/09/01/creating-an-st_-table-and-view-in-oracle-for-arcsde/
 categories:
     - 'Data processing'

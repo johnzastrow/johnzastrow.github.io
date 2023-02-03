@@ -4,7 +4,7 @@ title: 'Upgrade your debian sources.list'
 date: '2008-07-05T20:38:31-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/upgrade-your-debian-sourceslist/'
+guid: 'https://johnzastrow.github.io/2008/07/05/upgrade-your-debian-sourceslist/'
 permalink: /2008/07/05/upgrade-your-debian-sourceslist/
 categories:
     - Linux

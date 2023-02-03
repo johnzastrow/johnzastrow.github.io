@@ -4,7 +4,7 @@ title: 'Selecting Date from a Mysql field in specific format'
 date: '2008-07-05T20:19:40-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/selecting-date-from-a-mysql-field-in-specific-format/'
+guid: 'https://johnzastrow.github.io/2008/07/05/selecting-date-from-a-mysql-field-in-specific-format/'
 permalink: /2008/07/05/selecting-date-from-a-mysql-field-in-specific-format/
 categories:
     - Database

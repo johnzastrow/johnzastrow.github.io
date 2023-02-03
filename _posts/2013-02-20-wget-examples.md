@@ -13,7 +13,7 @@ categories:
     - Web
 ---
 
-I keep having to Google wget incantations. So, I’m going to just write some common ones down here. The spell at the moment is below and can be used with [my previous post](http://northredoubt.com/n/2013/02/19/importing-epa-wqx-domains-into-mysql-tables/ "Importing EPA WQX Domains into MySQL Tables") about processing EPA WQX/STORET domain values into useful tables:
+I keep having to Google wget incantations. So, I’m going to just write some common ones down here. The spell at the moment is below and can be used with [my previous post](https://johnzastrow.github.io/2013/02/19/importing-epa-wqx-domains-into-mysql-tables/ "Importing EPA WQX Domains into MySQL Tables") about processing EPA WQX/STORET domain values into useful tables:
 
 ```
 wget -r -c -np -l2 -H -nd -A.zip,.xslx -erobots=off -o download.log --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" http://www.epa.gov/storet/wqx/wqx_getdomainvalueswebservice.html

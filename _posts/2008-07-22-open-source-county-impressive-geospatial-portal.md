@@ -4,7 +4,7 @@ title: 'Open Source County &#8211; Impressive Geospatial Portal'
 date: '2008-07-22T11:24:38-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/22/open-source-county-impressive-geospatial-portal/'
+guid: 'https://johnzastrow.github.io/2008/07/22/open-source-county-impressive-geospatial-portal/'
 permalink: /2008/07/22/open-source-county-impressive-geospatial-portal/
 categories:
     - Uncategorized

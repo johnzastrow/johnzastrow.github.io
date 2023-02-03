@@ -4,7 +4,7 @@ title: 'Automate your life'
 date: '2008-07-05T20:17:21-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/automate-your-life/'
+guid: 'https://johnzastrow.github.io/2008/07/05/automate-your-life/'
 permalink: /2008/07/05/automate-your-life/
 categories:
     - Linux

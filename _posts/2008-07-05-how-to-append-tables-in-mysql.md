@@ -4,7 +4,7 @@ title: 'How to append tables in Mysql'
 date: '2008-07-05T18:58:01-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/how-to-append-tables-in-mysql/'
+guid: 'https://johnzastrow.github.io/2008/07/05/how-to-append-tables-in-mysql/'
 permalink: /2008/07/05/how-to-append-tables-in-mysql/
 categories:
     - Database

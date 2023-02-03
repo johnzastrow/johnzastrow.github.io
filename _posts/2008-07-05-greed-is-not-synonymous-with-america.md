@@ -4,7 +4,7 @@ title: 'Greed is not synonymous with America'
 date: '2008-07-05T20:14:24-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'http://northredoubt.com/n/2008/07/05/greed-is-not-synonymous-with-america/'
+guid: 'https://johnzastrow.github.io/2008/07/05/greed-is-not-synonymous-with-america/'
 permalink: /2008/07/05/greed-is-not-synonymous-with-america/
 categories:
     - Thoughts
