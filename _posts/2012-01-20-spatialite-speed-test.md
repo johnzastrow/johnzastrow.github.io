@@ -39,7 +39,7 @@ Pink test polygon
 
 Because I'm likely going to be using coordinate pairs passed in from some kind of Web application, I converted the polygon to well-known text using
 
-```
+```sql
 --- 
 SELECT ST_AsText(geom) from test_polys;
 ```
@@ -55,7 +55,7 @@ select a geometry (polygon) as well-known text (wkt)
 
 With the handy text string to describe my polygon given to me, I'm able to just copy and paste it into my text SQL. So let's do that and the first query should really hurt because I'm not going to use an index. Note that I switched from Contains.. to Intersects since I want to detect anything that touches my pink poly.
 
-```
+```sql
 --- 
 select HU_12_NAME FROM huc12
 WHERE ST_Intersects(Geometry, ST_GeomFromText('POLYGON((-70.286127 43.839038, 
@@ -76,8 +76,9 @@ Polygon query with no index
 
 Now how about with the index? Here's the query.
 
-```
---- select HU_12_NAME FROM huc12
+```sql
+--- 
+select HU_12_NAME FROM huc12
 WHERE ST_Intersects(Geometry, ST_GeomFromText('POLYGON((-70.286127 43.839038, 
 -70.305482 43.823696, -70.30855 43.798912, -70.292028 43.773421, 
 -70.243169 43.769644, -70.231367 43.774601, -70.193601 43.811186, 
