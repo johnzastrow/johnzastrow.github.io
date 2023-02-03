@@ -14,7 +14,9 @@ If you try to convert the USGS geographic names (GNIS) text files from the websi
 
 Run this script to rename certain fields to avoid this. Note that the entire US results in a file that is over 2 million records. Interestingly, but not surprisingly, the tools that seems to handle this size of data most gracefully is QGIS, not ArcMap.
 
-\#!/bin/sh  
+```sh
+
+#!/bin/sh  
 sed -i 's/DATE\_CREATED/DT\_CREATE/g' GNISNationalFile.txt  
 sed -i 's/DATE\_EDITED/DT\_EDIT/g' GNISNationalFile.txt  
 sed -i 's/FEATURE\_CLASS/FEAT\_CLASS/g' GNISNationalFile.txt  
@@ -30,3 +32,4 @@ sed -i 's/SOURCE\_LONG\_DEC/SRC\_X\_DEC/g' GNISNationalFile.txt
 sed -i 's/STATE\_ALPHA/STATE\_NAME/g' GNISNationalFile.txt  
 sed -i 's/STATE\_NUMERIC/STATE\_NUM/g' GNISNationalFile.txt
 
+```

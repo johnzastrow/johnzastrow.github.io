@@ -46,6 +46,7 @@ apt-get install libxml2-dev\
 ```
 
 and finally got  
+
 ```bash 
 PostGIS is now configured for i686-pc-linux-gnu
 
@@ -96,6 +97,8 @@ psql -d yourtestdatabase -f spatial\_ref\_sys.sql\
 ```
 
 how to generate a list of installed packages and use it to reinstall packages  
+
+
 ```bash 
 sudo apt-get update  
 sudo apt-get dist-upgrade  
@@ -111,72 +114,61 @@ Update 20-Aug-2011
 
 One liners install process instructions for Ubuntu 11
 
+```bash
 wget http://postgis.refractions.net/download/postgis-1.5.3.tar.gz  
 wget  
 wget http://download.osgeo.org/geos/geos-3.3.0.tar.bz2  
 wget http://download.osgeo.org/proj/proj-4.7.0.tar.gz
+```
 
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">sudo apt-get install libreadline6-dev zlib1g-dev libxml2 libxml2-dev bison openssl libssl-dev  
+```bash 
+sudo apt-get install libreadline6-dev zlib1g-dev libxml2 libxml2-dev bison openssl libssl-dev  
 sudo apt-get yum install -y  
-</span></span></span>
+```
 
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">  
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">mkdir -p /usr/local/src</span></span></span></span></span></span>
-
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">cd /usr/local/src</span></span></span></span></span></span>
-
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">tar zxvf postgresql-8.3.7.tar.gz</span></span></span></span></span></span>
-
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">cd postgresql-8.3.7</span></span></span></span></span></span>
-
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">./configure –with-openssl –enable-integer-datetimes</span></span></span>
-
+```bash
+mkdir -p /usr/local/src
+cd /usr/local/src
+tar zxvf postgresql-8.3.7.tar.gz
+cd postgresql-8.3.7
+./configure –with-openssl –enable-integer-datetimes
 make
-
 make install
-
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">cd /usr/local/src/postgresql-8.3.7/contrib/</span></span></span>
-
+cd /usr/local/src/postgresql-8.3.7/contrib/
 make all
-
 make install
-
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">cp /usr/local/src/postgresql-8.3.7/contrib/start-scripts/linux /etc/init.d/postgresql</span></span></span>
-
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">chmod 775 /etc/init.d/postgresql</span></span></span>
-
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">update-rc.d /etc/init.d/postgresql defaults</span></span></span>
-
-<span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">adduser postgres -d /usr/local/pgsql</span></span></span>
-
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">echo 'PATH=$PATH:/usr/local/pgsql/bin; export PATH' &gt; /etc/profile.d/postgresql.sh  
-echo 'MANPATH=$MANPATH:/usr/local/pgsql/man; export MANPATH &gt;&gt; /etc/profile.d/pgmanual.sh</span></span></span></span>
-
+cp /usr/local/src/postgresql-8.3.7/contrib/start-scripts/linux /etc/init.d/postgresql
+chmod 775 /etc/init.d/postgresql
+update-rc.d /etc/init.d/postgresql defaults
+adduser postgres -d /usr/local/pgsql
+echo 'PATH=$PATH:/usr/local/pgsql/bin; export PATH' &gt; /etc/profile.d/postgresql.sh  
+echo 'MANPATH=$MANPATH:/usr/local/pgsql/man; export MANPATH &gt;&gt; /etc/profile.d/pgmanual.sh
 chmod 775 /etc/profile.d/postgresql.sh  
 chmod 775 /etc/profile.d/pgmanual.sh
+mkdir -p /var/log/pgsql  
+chown -R postgres:postgres /var/log/pgsql/
+mkdir /usr/local/pgsql/data
+chown -R postgres:postgres /usr/local/pgsql/data
+su – postgres
+/usr/local/pgsql/bin/initdb -U postgres -E=UTF8 /usr/local/pgsql/data
+```
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">mkdir -p /var/log/pgsql  
-chown -R postgres:postgres /var/log/pgsql/</span></span></span></span>
+These steps should be done as the postgres user. As root, issue: `su – postgres` (no password needed)
+, the postgresql.conf and pg\_hba.conf configuration files are located in /usr/local/pgsql/data/
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">mkdir /usr/local/pgsql/data</span></span></span></span>
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">chown -R postgres:postgres /usr/local/pgsql/data</span></span></span></span>
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">su – postgres</span></span></span></span>
+Using the '[nano](http://www.nano-editor.org/dist/v1.2/nano.1.html)' editor, (or vi), modify the postgresql.conf to allow the installation to listen for remote connections. Also, while we're in here let's configure the logging to create the log file in /var/log/pgsql/. The main cause of not being able to connect to a PostgreSQL database is because of a misconfiguration in this file.
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">/usr/local/pgsql/bin/initdb -U postgres -E=UTF8 /usr/local/pgsql/data</span></span></span></span>
-
-<span style="color: #000000;">These steps should be done as the postgres user. As root, issue: `su – postgres` (no password needed)</span>, t<span style="color: #000000;">he postgresql.conf and pg\_hba.conf configuration files are located in /usr/local/pgsql/data/</span>
-
-<span style="color: #000000;">Using the '[nano](http://www.nano-editor.org/dist/v1.2/nano.1.html)' editor, (or vi), modify the postgresql.conf to allow the installation to listen for remote connections. Also, while we're in here let's configure the logging to create the log file in /var/log/pgsql/. The main cause of not being able to connect to a PostgreSQL database is because of a misconfiguration in this file.</span>
-
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;"> listen\_addresses = '\*'  
+```
+listen_addresses = '*'  
 port = 5432  
-log\_destination = 'stderr'  
-logging\_collector = on  
-log\_directory = '/var/log/pgsql/'  
-log\_filename = 'postgresql-%Y-%m-%d'  
-log\_line\_prefix = ' %t %d %u '</span></span></span></span>
+log_destination = 'stderr'  
+logging_collector = on  
+log_directory = '/var/log/pgsql/'  
+log_filename = 'postgresql-%Y-%m-%d'  
+log_line_prefix = ' %t %d %u '
+```
 
 <span style="color: #000000;">Now, edit the pg\_hba.conf and configure some network rules. Add the line in <span style="color: #ff0000;">red</span> to match your LAN address range. Set access from other computers to use [md5 authentication](http://en.wikipedia.org/wiki/MD5). You can also set the other methods to md5, (and others) but for managability, leave the local connections set to 'trust' for now. The order of rules in this file matters.</span>
 

@@ -17,7 +17,8 @@ TODO's include grabbing descriptions for tables and then tweaking below to creat
 
 Option Explicit
 
-\[cc lang='vb' \]'call readAllTables  
+```vb
+call readAllTables  
 Public Function readAllTables()
 
 Dim DB As Database, tbl As TableDef, fld As DAO.Field
@@ -57,4 +58,6 @@ Open MyFile For Output As fnum
 Write #fnum, outputStr  
 Write #fnum,  
 Close #fnum  
-End Sub\```
+End Sub\
+
+```
