@@ -19,7 +19,9 @@ I'm a big fan of this talk.
 Published on Oct 5, 2012  
 Paul Ramsey delivers a introductory talk on open source for GIS and IT managers: history, motivation, why to consider it, how to get started with it. This keynote presentation delivered was at the Texas GIS Forum in October 2012.
 
-<iframe allowfullscreen="" frameborder="0" height="315" loading="lazy" src="http://www.youtube.com/embed/jUgiG6eaYtI" width="560"></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jUgiG6eaYtI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 
 And these too:
 
