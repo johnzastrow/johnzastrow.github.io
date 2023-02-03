@@ -23,7 +23,8 @@ So, getting back to the data, here is my new queryable data set.
 
  [![12-digit hydrologic units for the entire US](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/whole_country.png "12-digit hydrologic units for the entire US")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/whole_country.png)
  <p><i> 
--341">12-digit hydrologic units for the entire US
+
+12-digit hydrologic units for the entire US
  </i></p> 
 
 
@@ -31,7 +32,8 @@ The pink blob on the right my new, harder question.. searching with not one pair
 
  [![Pink test polygon](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/example_poly.png "Pink test polygon")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/example_poly.png)
  <p><i> 
--343">Pink test polygon
+
+Pink test polygon
  </i></p> 
 
 
@@ -46,7 +48,8 @@ which of course gives us
 
  [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/selectwkt.png "select a geometry (polygon) as well-known text (wkt)")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/selectwkt.png)
  <p><i> 
--351">select a geometry (polygon) as well-known text (wkt)
+
+select a geometry (polygon) as well-known text (wkt)
  </i></p> 
 
 
@@ -66,7 +69,8 @@ How did it do? Surprisingly well. 40 seconds give or take. Of course, that won't
 
  [![Polygon query with no index](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_no_index.png "Polygon query with no index")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_no_index.png)
  <p><i> 
--344">Polygon query with no index
+
+Polygon query with no index
  </i></p> 
 
 
@@ -94,7 +98,8 @@ And survey says! **0.186 seconds!** Oh yeah.
 
  [![Pink polygon query with spatial index](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_with_index.png "Pink polygon query with spatial index")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/poly_with_index.png)
  <p><i> 
--342">Pink polygon query with spatial index
+
+Pink polygon query with spatial index
  </i></p> 
 
 
@@ -102,7 +107,8 @@ So this all well and good, but the real reason why these queries are so fast is 
 
  [![Multipart polygon with lotsa geometry](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/lotsa_geometry.png "Multipart polygon with lotsa geometry")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/lotsa_geometry.png)
  <p><i> 
--353">Multipart polygon with lotsa geometry
+
+Multipart polygon with lotsa geometry
  </i></p> 
 
 
