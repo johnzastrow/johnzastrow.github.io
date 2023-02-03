@@ -13,7 +13,7 @@ categories:
     - Uncategorized
 ---
 
-We’ve been experiencing <del>some</del> a lot of slowness with ArcMap 10.2 across many Windows 7 (64-bit of course) Pro and Enterprise machines. So my colleague has done a lot of research, phone calling (with Esri), and troubleshooting to arrive at the following helpful information. If you having some weird and annoying slowness in 10.2 (or perhaps even 10.1) some of the options below may help you. We’re not convinced that these tips have solved our problems, but they seem to help.
+We've been experiencing <del>some</del> a lot of slowness with ArcMap 10.2 across many Windows 7 (64-bit of course) Pro and Enterprise machines. So my colleague has done a lot of research, phone calling (with Esri), and troubleshooting to arrive at the following helpful information. If you having some weird and annoying slowness in 10.2 (or perhaps even 10.1) some of the options below may help you. We're not convinced that these tips have solved our problems, but they seem to help.
 
 **1. Try not to use Personal Geodatabases (PGDB) (.mdb) format.**
 
@@ -21,19 +21,19 @@ We wish that Esri would issue proper warnings about using PGDBs rather than just
 
 Apparently switching between geoprocessing in the foreground (32-bit) versus the background (64-bit) switches between 32 and 64-bit processing. The default is background processing.This makes sense now finding out that personal geodatabases files are unsupported in v10.2 with 64-bit AND background anything. See the docs below. The upside is converting .mdb to file geodatabase (.gdb) appears to have fixed the problems.
 
-[![ArcGIS64-bit_docs](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs-300x181.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs.jpg)**Solution:** Don’t use PGDBs and if you do, set everything to run in the FOREGROUND, which forces operations to be done in 32-bit mode. Switching to foreground brought the speeds back to near instantaneous (un-checking the enable background processing in the screen shot below).
+[![ArcGIS64-bit_docs](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs-300x181.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs.jpg)**Solution:** Don't use PGDBs and if you do, set everything to run in the FOREGROUND, which forces operations to be done in 32-bit mode. Switching to foreground brought the speeds back to near instantaneous (un-checking the enable background processing in the screen shot below).
 
 [![ArcGIS64-bit_docs2](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs2-243x300.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs2.jpg)
 
-Given that SQLite (Spatialite and Geopackage) are now or soon will be nearly first-class citizens for storing for use in Arc\*, if you need true database functions (like joins, views/queries) the various SQLite formats might be a good eventual replacement for PGDBs.. and dare I say even Shapefiles! Much will depend on how seamless Esri makes using them. Right now it’s actually quite SEAMFUL.
+Given that SQLite (Spatialite and Geopackage) are now or soon will be nearly first-class citizens for storing for use in Arc\*, if you need true database functions (like joins, views/queries) the various SQLite formats might be a good eventual replacement for PGDBs.. and dare I say even Shapefiles! Much will depend on how seamless Esri makes using them. Right now it's actually quite SEAMFUL.
 
-**2. Don’t update metadata if you don’t have to**
+**2. Don't update metadata if you don't have to**
 
-Also the Arc Map default is to update metadata anytime you touch a file. We turned this off and likely has aided in performance enhancement as well. The improvement seemed to be “noticeable” but not what you’d call terrific.
+Also the Arc Map default is to update metadata anytime you touch a file. We turned this off and likely has aided in performance enhancement as well. The improvement seemed to be "noticeable" but not what you'd call terrific.
 
 **3. Rename your home**
 
-This is a more hard-core version of replacing normal.mxt. But it seems to be what is needed if that doesn’t resolve additional flaky/slow behaviors.
+This is a more hard-core version of replacing normal.mxt. But it seems to be what is needed if that doesn't resolve additional flaky/slow behaviors.
 
 Be aware that renaming the Esri folders is a factory reset of ArcGIS, and therefore all third party tools, custom scripts, and/ or custom toolbars currently installed will need to be re-installed as a result. Also, you will need to re-connect all existing folder connections.
 

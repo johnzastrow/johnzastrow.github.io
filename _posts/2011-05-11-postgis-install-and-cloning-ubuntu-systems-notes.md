@@ -30,7 +30,7 @@ sudo apt-get remove –purge postgresql-client-common
 apt-get clean\
 ```
 
-still didn’t work.  
+still didn't work.  
 ```bash 
 jcz@dell390:/usr/local/src/postgis-1.5.2$ ls -l /usr/bin/pg\*  
 -rwxr-xr-x 1 root root 26260 2011-02-02 03:56 /usr/bin/pg  
@@ -99,11 +99,11 @@ how to generate a list of installed packages and use it to reinstall packages
 ```bash 
 sudo apt-get update  
 sudo apt-get dist-upgrade  
-sudo dpkg –get-selections | grep -v deinstall | awk ‘{print $1}’ &gt; 164.ubuntu-files\_b.txt  
+sudo dpkg –get-selections | grep -v deinstall | awk '{print $1}' &gt; 164.ubuntu-files\_b.txt  
 sudo cat 164.ubuntu-files\_b.txt | xargs sudo aptitude install\
 ```
 
-NOTE: WordPress interprets two dashes (- -) as one dash (–). When you’re putting this into your CLI, make sure it’s dropping two dashes ‘- -’ without the space between them.
+NOTE: WordPress interprets two dashes (- -) as one dash (–). When you're putting this into your CLI, make sure it's dropping two dashes '- -' without the space between them.
 
 ———————————————————————–
 
@@ -149,8 +149,8 @@ make install
 
 <span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">adduser postgres -d /usr/local/pgsql</span></span></span>
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">echo ‘PATH=$PATH:/usr/local/pgsql/bin; export PATH’ &gt; /etc/profile.d/postgresql.sh  
-echo ‘MANPATH=$MANPATH:/usr/local/pgsql/man; export MANPATH &gt;&gt; /etc/profile.d/pgmanual.sh</span></span></span></span>
+<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">echo 'PATH=$PATH:/usr/local/pgsql/bin; export PATH' &gt; /etc/profile.d/postgresql.sh  
+echo 'MANPATH=$MANPATH:/usr/local/pgsql/man; export MANPATH &gt;&gt; /etc/profile.d/pgmanual.sh</span></span></span></span>
 
 chmod 775 /etc/profile.d/postgresql.sh  
 chmod 775 /etc/profile.d/pgmanual.sh
@@ -168,25 +168,25 @@ chown -R postgres:postgres /var/log/pgsql/</span></span></span></span>
 
 <span style="color: #000000;">These steps should be done as the postgres user. As root, issue: `su – postgres` (no password needed)</span>, t<span style="color: #000000;">he postgresql.conf and pg\_hba.conf configuration files are located in /usr/local/pgsql/data/</span>
 
-<span style="color: #000000;">Using the ‘[nano](http://www.nano-editor.org/dist/v1.2/nano.1.html)‘ editor, (or vi), modify the postgresql.conf to allow the installation to listen for remote connections. Also, while we’re in here let’s configure the logging to create the log file in /var/log/pgsql/. The main cause of not being able to connect to a PostgreSQL database is because of a misconfiguration in this file.</span>
+<span style="color: #000000;">Using the '[nano](http://www.nano-editor.org/dist/v1.2/nano.1.html)' editor, (or vi), modify the postgresql.conf to allow the installation to listen for remote connections. Also, while we're in here let's configure the logging to create the log file in /var/log/pgsql/. The main cause of not being able to connect to a PostgreSQL database is because of a misconfiguration in this file.</span>
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;"> listen\_addresses = ‘\*’  
+<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;"> listen\_addresses = '\*'  
 port = 5432  
-log\_destination = ‘stderr’  
+log\_destination = 'stderr'  
 logging\_collector = on  
-log\_directory = ‘/var/log/pgsql/’  
-log\_filename = ‘postgresql-%Y-%m-%d’  
-log\_line\_prefix = ‘ %t %d %u ‘</span></span></span></span>
+log\_directory = '/var/log/pgsql/'  
+log\_filename = 'postgresql-%Y-%m-%d'  
+log\_line\_prefix = ' %t %d %u '</span></span></span></span>
 
-<span style="color: #000000;">Now, edit the pg\_hba.conf and configure some network rules. Add the line in <span style="color: #ff0000;">red</span> to match your LAN address range. Set access from other computers to use [md5 authentication](http://en.wikipedia.org/wiki/MD5). You can also set the other methods to md5, (and others) but for managability, leave the local connections set to ‘trust’ for now. The order of rules in this file matters.</span>
+<span style="color: #000000;">Now, edit the pg\_hba.conf and configure some network rules. Add the line in <span style="color: #ff0000;">red</span> to match your LAN address range. Set access from other computers to use [md5 authentication](http://en.wikipedia.org/wiki/MD5). You can also set the other methods to md5, (and others) but for managability, leave the local connections set to 'trust' for now. The order of rules in this file matters.</span>
 
-<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">\# TYPE DATABASE USER CIDR-ADDRESS METHOD  
-\# “local” is for Unix domain socket connections only  
+<span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;"># TYPE DATABASE USER CIDR-ADDRESS METHOD  
+# "local" is for Unix domain socket connections only  
 local all all trust  
-\# IPv4 local connections:  
+# IPv4 local connections:  
 host all all 127.0.0.1/32 trust  
 <span style="color: #ff0000;">host all all 192.168.0.0/24 md5</span>  
-\# IPv6 local connections:  
+# IPv6 local connections:  
 host all all ::1/128 trust </span></span></span></span>
 
 <span style="color: #000000;"><span style="color: #000000;"><span style="font-family: Nimbus Mono L,monospace;"><span style="font-size: x-small;">/etc/init.d/postgresql start</span></span></span></span>

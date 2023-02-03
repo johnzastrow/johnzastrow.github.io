@@ -10,7 +10,7 @@ categories:
     - Database
 ---
 
-Some time ago I wrote down a little [script](https://johnzastrow.github.io/2011/04/21/handy-database-documenter-for-mysql/ "Handy database documenter for MySQL") to make a table from the MySQL information schema to describe your database. My eventual goal is to come close to reproducing a poor man’s database profiling script similar to this crude one ( [http://www.ipcdesigns.com/data\_profiling/](http://www.ipcdesigns.com/data_profiling/ "Oracle, SQL Server")), but perhaps less powerful and yet more elegant. I figure it’s going to take creating some procedures to loop through the chosen tables and columns.
+Some time ago I wrote down a little [script](https://johnzastrow.github.io/2011/04/21/handy-database-documenter-for-mysql/ "Handy database documenter for MySQL") to make a table from the MySQL information schema to describe your database. My eventual goal is to come close to reproducing a poor man's database profiling script similar to this crude one ( [http://www.ipcdesigns.com/data\_profiling/](http://www.ipcdesigns.com/data_profiling/ "Oracle, SQL Server")), but perhaps less powerful and yet more elegant. I figure it's going to take creating some procedures to loop through the chosen tables and columns.
 
 Towards that end, I figure I need to take the contents of the handy view I made earlier and turn them into a table. Then if I execute some profiling queries, I can create tables from the results and join back to this summary table. So here is me persisting the view created earlier.You can do it this way:
 
@@ -92,7 +92,7 @@ PRIMARY KEY (`PROF_VALUE_RECS_ID`)
 ) ENGINE=INNODB
 ```
 
-The following query returns somewhat useful information that could be used to populate the above table, but you’d have to loop it through every field.
+The following query returns somewhat useful information that could be used to populate the above table, but you'd have to loop it through every field.
 
 ```
 SELECT MIN(FIELD_NAME) AS MIN_VALUE,

@@ -21,7 +21,7 @@ set -vx
 
  in the beginning of the script.
 
-The shell script will then output what it’s doing so you can watch.
+The shell script will then output what it's doing so you can watch.
 
 This can also be done via command line by doing
 

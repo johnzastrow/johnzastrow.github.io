@@ -13,7 +13,7 @@ categories:
     - Web
 ---
 
-I keep having to Google wget incantations. So, I’m going to just write some common ones down here. The spell at the moment is below and can be used with [my previous post](https://johnzastrow.github.io/2013/02/19/importing-epa-wqx-domains-into-mysql-tables/ "Importing EPA WQX Domains into MySQL Tables") about processing EPA WQX/STORET domain values into useful tables:
+I keep having to Google wget incantations. So, I'm going to just write some common ones down here. The spell at the moment is below and can be used with [my previous post](https://johnzastrow.github.io/2013/02/19/importing-epa-wqx-domains-into-mysql-tables/ "Importing EPA WQX Domains into MySQL Tables") about processing EPA WQX/STORET domain values into useful tables:
 
 ```
 wget -r -c -np -l2 -H -nd -A.zip,.xslx -erobots=off -o download.log --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" http://www.epa.gov/storet/wqx/wqx_getdomainvalueswebservice.html
@@ -21,17 +21,17 @@ wget -r -c -np -l2 -H -nd -A.zip,.xslx -erobots=off -o download.log --user-agent
 
 This is derived from the following notes:
 
-- if you omit ‘-A.mid’ it would just download everything.
+- if you omit '-A.mid' it would just download everything.
 - -l1 means 1 level deep.
 - -np means ignore parent links.
 - -r means recursively download links.
-- -nc means don’t download stuff that is already downloaded (if you want to resume later, or check for new files some other time)
+- -nc means don't download stuff that is already downloaded (if you want to resume later, or check for new files some other time)
 - If the links are to different subdomains, you can specify host-spanning using the -H option,
-- e.g. if bar.html contains links to files on host src.foobar.com, it won’t fetch them unless you specify -H.
-- It’s also a good idea in that case to limit spanning to a domain using -D foobar.com.
+- e.g. if bar.html contains links to files on host src.foobar.com, it won't fetch them unless you specify -H.
+- It's also a good idea in that case to limit spanning to a domain using -D foobar.com.
 - The -w option waits 30 seconds between retrievals. Not used here.
 - You can also use –limit-rate=20k to limit the download speed to 20kb per second.
-- -nd, –no-directories or don’t create directories as files are found on the server. Just stick everything into a single directory.
+- -nd, –no-directories or don't create directories as files are found on the server. Just stick everything into a single directory.
 - -c Continue the Incomplete Download Using wget -c
 - –user-agent Some websites can disallow you to download its page by identifying that the user agent is not a browser. So you can mask the user agent by using –user-agent options and show wget like a browser as shown below.
 
@@ -51,7 +51,7 @@ wget --tries=75 DOWNLOAD-URL
 wget -o download.log DOWNLOAD-URL
 ```
 
-Many sites now employ a means of blocking robots like wget from accessing their files. Most of the time they use .htaccess to do this. So a permanent workaround has wget mimic a normal browser. *Just add the -d option. Like: $ wget -O/dev/null -d http://www.askapache.com* If you run the command at the top, you’ll get a directory of files as below
+Many sites now employ a means of blocking robots like wget from accessing their files. Most of the time they use .htaccess to do this. So a permanent workaround has wget mimic a normal browser. *Just add the -d option. Like: $ wget -O/dev/null -d http://www.askapache.com* If you run the command at the top, you'll get a directory of files as below
 
 ```
 $ ls -lht

@@ -12,13 +12,13 @@ categories:
 
 UPDATE: see the next iteration on this project [\[here\]](https://johnzastrow.github.io/2011/07/18/handy-database-documenterprofiler-for-mysql-cont/ "Handy database documenter/profiler for mysql, cont.")
 
-Here’s a view that will spit out just about everything MySQL (5.1) knows about the tables and fields it maintains for you. The first field can be joined to the output of something like
+Here's a view that will spit out just about everything MySQL (5.1) knows about the tables and fields it maintains for you. The first field can be joined to the output of something like
 
 ```
 SELECT * FROM AZ_CA_NV_UT_species_LOCAL PROCEDURE ANALYSE(10000, 4000);
 ```
 
-to see before and after “optimal” [(1)](http://www.mysqlperformanceblog.com/2009/03/23/procedure-analyse/) [(2)](http://dave-stokes.blogspot.com/2008/02/procedure-analyse.html) field types and lengths predicted by the internal <span style="text-decoration: underline;">**PROCEDURE ANALYSE.**</span>
+to see before and after "optimal" [(1)](http://www.mysqlperformanceblog.com/2009/03/23/procedure-analyse/) [(2)](http://dave-stokes.blogspot.com/2008/02/procedure-analyse.html) field types and lengths predicted by the internal <span style="text-decoration: underline;">**PROCEDURE ANALYSE.**</span>
 
 ```
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_field_table_data` AS

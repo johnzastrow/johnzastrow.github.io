@@ -27,7 +27,7 @@ Which resulted in
 
 SQL result
 
- **SQL-query:** SELECT DATE\_FORMAT( regdate, ‘%b %Y’ ) AS  
+ **SQL-query:** SELECT DATE\_FORMAT( regdate, '%b %Y' ) AS  
 MONTH , count( uid ) AS Users  
 FROM gl\_users  
 GROUP BY MONTH LIMIT 0, 30;

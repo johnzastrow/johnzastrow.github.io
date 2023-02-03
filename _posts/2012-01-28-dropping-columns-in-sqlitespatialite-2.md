@@ -13,35 +13,35 @@ categories:
     - Spatialite
 ---
 
-[SQLite doesn’t have a nice](http://www.sqlite.org/faq.html#q11) ALTER TABLE DROP COLUMN command and neither does spatialite. Instead, you get to run a long sequence of commands like this. Here I wanted to drop all the extra columns from my huc12 layer for the country.
+[SQLite doesn't have a nice](http://www.sqlite.org/faq.html#q11) ALTER TABLE DROP COLUMN command and neither does spatialite. Instead, you get to run a long sequence of commands like this. Here I wanted to drop all the extra columns from my huc12 layer for the country.
 
 So, starting with a table that looks like this
 
-&lt;pre class=”lang:pgsql decode:true”&gt;
+&lt;pre class="lang:pgsql decode:true"&gt;
 
-CREATE TABLE “huc12” (  
+CREATE TABLE "huc12" (  
  PK\_UID INTEGER PRIMARY KEY AUTOINCREMENT,  
- “OBJECTID” INTEGER,  
- “HUC\_8” TEXT,  
- “HUC\_10” TEXT,  
- “HUC\_12” TEXT,  
- “ACRES” DOUBLE,  
- “NCONTRB\_A” DOUBLE,  
- “HU\_10\_GNIS” TEXT,  
- “HU\_12\_GNIS” TEXT,  
- “HU\_10\_DS” TEXT,  
- “HU\_10\_NAME” TEXT,  
- “HU\_10\_MOD” TEXT,  
- “HU\_10\_TYPE” TEXT,  
- “HU\_12\_DS” TEXT,  
- “HU\_12\_NAME” TEXT,  
- “HU\_12\_MOD” TEXT,  
- “HU\_12\_TYPE” TEXT,  
- “META\_ID” TEXT,  
- “STATES” TEXT,  
- “GlobalID” TEXT,  
- “SHAPE\_Leng” DOUBLE,  
- “SHAPE\_Area” DOUBLE, “Geometry” MULTIPOLYGON)
+ "OBJECTID" INTEGER,  
+ "HUC\_8" TEXT,  
+ "HUC\_10" TEXT,  
+ "HUC\_12" TEXT,  
+ "ACRES" DOUBLE,  
+ "NCONTRB\_A" DOUBLE,  
+ "HU\_10\_GNIS" TEXT,  
+ "HU\_12\_GNIS" TEXT,  
+ "HU\_10\_DS" TEXT,  
+ "HU\_10\_NAME" TEXT,  
+ "HU\_10\_MOD" TEXT,  
+ "HU\_10\_TYPE" TEXT,  
+ "HU\_12\_DS" TEXT,  
+ "HU\_12\_NAME" TEXT,  
+ "HU\_12\_MOD" TEXT,  
+ "HU\_12\_TYPE" TEXT,  
+ "META\_ID" TEXT,  
+ "STATES" TEXT,  
+ "GlobalID" TEXT,  
+ "SHAPE\_Leng" DOUBLE,  
+ "SHAPE\_Area" DOUBLE, "Geometry" MULTIPOLYGON)
 
 &lt;/pre&gt;
 

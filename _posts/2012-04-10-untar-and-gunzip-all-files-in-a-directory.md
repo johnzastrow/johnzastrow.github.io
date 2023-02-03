@@ -11,7 +11,7 @@ categories:
     - Linux
 ---
 
-I needed a little script to expand a bunch of tarred and gzipped files in a directory and I needed a log of what happened.. and didn’t happen (errors). So, here it is.
+I needed a little script to expand a bunch of tarred and gzipped files in a directory and I needed a log of what happened.. and didn't happen (errors). So, here it is.
 
 ```
 #!/bin/bash

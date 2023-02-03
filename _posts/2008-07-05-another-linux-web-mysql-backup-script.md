@@ -11,7 +11,7 @@ categories:
 ---
 
 I found this on on the nixcraft craft. Looks pretty good to me. Similar  
-in functionality to my other script posted here. I’m going to poach  
+in functionality to my other script posted here. I'm going to poach  
 some concepts from here to make a script that will auto-optimize all  
 tables in all databases on the mysql server.
 
@@ -53,52 +53,52 @@ tables in all databases on the mysql server.
 \## \* mysqldump command  
 \## \* GNU tar command  
 \###########################################  
-\# ———————————————————————  
+# ———————————————————————  
 \### System Setup ###  
-DIRS=”/home /etc /var/www”  
+DIRS="/home /etc /var/www"  
 BACKUP=/tmp/backup.$$  
-NOW=$(date +”%d-%m-%Y”)  
-INCFILE=”/root/tar-inc-backup.dat”  
-DAY=$(date +”%a”)  
-FULLBACKUP=”Sun”  
+NOW=$(date +"%d-%m-%Y")  
+INCFILE="/root/tar-inc-backup.dat"  
+DAY=$(date +"%a")  
+FULLBACKUP="Sun"  
 \### MySQL Setup ###  
-MUSER=”admin”  
-MPASS=”mysqladminpassword”  
-MHOST=”localhost”  
-MYSQL=”$(which mysql)”  
-MYSQLDUMP=”$(which mysqldump)”  
-GZIP=”$(which gzip)”  
+MUSER="admin"  
+MPASS="mysqladminpassword"  
+MHOST="localhost"  
+MYSQL="$(which mysql)"  
+MYSQLDUMP="$(which mysqldump)"  
+GZIP="$(which gzip)"  
 \### FTP server Setup ###  
-FTPD=”/home/vivek/incremental”  
-FTPU=”vivek”  
-FTPP=”ftppassword”  
-FTPS=”208.111.11.2?  
-NCFTP=”$(which ncftpput)”  
+FTPD="/home/vivek/incremental"  
+FTPU="vivek"  
+FTPP="ftppassword"  
+FTPS="208.111.11.2?  
+NCFTP="$(which ncftpput)"  
 \### Other stuff ###  
-EMAILID=”admin@theos.in”  
+EMAILID="admin@theos.in"  
 \### Start Backup for file system ###  
 \[ ! -d $BACKUP \] &amp;&amp; mkdir -p $BACKUP || :  
 \### See if we want to make a full backup ###  
-if \[ “$DAY” == “$FULLBACKUP” \]; then  
-FTPD=”/home/vivek/full”  
-FILE=”fs-full-$NOW.tar.gz”  
+if \[ "$DAY" == "$FULLBACKUP" \]; then  
+FTPD="/home/vivek/full"  
+FILE="fs-full-$NOW.tar.gz"  
 tar -zcvf $BACKUP/$FILE $DIRS  
 else  
-i=$(date +”%Hh%Mm%Ss”)  
-FILE=”fs-i-$NOW-$i.tar.gz”  
+i=$(date +"%Hh%Mm%Ss")  
+FILE="fs-i-$NOW-$i.tar.gz"  
 tar -g $INCFILE -zcvf $BACKUP/$FILE $DIRS  
 fi  
 \### Start MySQL Backup ###  
-\# Get all databases name  
-DBS=”$($MYSQL -u $MUSER -h $MHOST -p$MPASS -Bse ’show databases’)”  
+# Get all databases name  
+DBS="$($MYSQL -u $MUSER -h $MHOST -p$MPASS -Bse 'show databases')"  
 for db in $DBS  
 do  
-FILE=$BACKUP/mysql-$db.$NOW-$(date +”%T”).gz  
+FILE=$BACKUP/mysql-$db.$NOW-$(date +"%T").gz  
 $MYSQLDUMP -u $MUSER -h $MHOST -p$MPASS $db | $GZIP -9 &gt; $FILE  
 done  
 \### Dump backup using FTP ###  
 \#Start FTP backup using ncftp  
-ncftp -u”$FTPU” -p”$FTPP” $FTPS&lt;  
+ncftp -u"$FTPU" -p"$FTPP" $FTPS&lt;  
 mkdir $FTPD  
 mkdir $FTPD/$NOW  
 cd $FTPD/$NOW  
@@ -107,13 +107,13 @@ mput \*
 quit  
 EOF  
 \### Find out if ftp backup failed or not ###  
-if \[ “$?” == “0” \]; then  
+if \[ "$?" == "0" \]; then  
 rm -f $BACKUP/\*  
 else  
 T=/tmp/backup.fail  
-echo “Date: $(date)”&gt;$T  
-echo “Hostname: $(hostname)” &gt;&gt;$T  
-echo “Backup failed” &gt;&gt;$T  
-mail -s “BACKUP FAILED” “$EMAILID” &lt;$T  
+echo "Date: $(date)"&gt;$T  
+echo "Hostname: $(hostname)" &gt;&gt;$T  
+echo "Backup failed" &gt;&gt;$T  
+mail -s "BACKUP FAILED" "$EMAILID" &lt;$T  
 rm -f $T  
 fi

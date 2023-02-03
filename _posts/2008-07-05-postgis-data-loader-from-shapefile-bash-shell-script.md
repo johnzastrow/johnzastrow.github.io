@@ -14,12 +14,12 @@ Run this script in a directory of shp files to create STDOUT that will load them
 
 ——————————————————  
 \#!/bin/sh  
-\# jcz aug 24, 2005  
-\# clip off the “.shp” file extensions before use  
-\# drops existing shapes if they are the same name
+# jcz aug 24, 2005  
+# clip off the ".shp" file extensions before use  
+# drops existing shapes if they are the same name
 
 for z in `ls \*.shp  
 do  
- echo “shp2pgsql $z $z &gt; $z.sql”  
-echo “psql -d -f $z.sql”  
+ echo "shp2pgsql $z $z &gt; $z.sql"  
+echo "psql -d -f $z.sql"  
 done

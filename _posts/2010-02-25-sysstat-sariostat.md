@@ -36,7 +36,7 @@ Linux 2.6.20 (localhost)    09/26/2007
 10:13:35 AM     15625      0.00  10642.00      0.00  dd
 ```
 
-When no PID’s are explicitly selected on the command line (as in the case above), the pidstat command examines all the tasks managed by the system but displays only those whose statistics are varying during the interval of time.
+When no PID's are explicitly selected on the command line (as in the case above), the pidstat command examines all the tasks managed by the system but displays only those whose statistics are varying during the interval of time.
 
 The sar utility (System Activity Reporter) is a system activity reporter that is quite popular with HP/UX and Solaris, and sar is also available for AIX. Just like top, sar gives detailed information about Oracle tasks from the UNIX level. You will be able to see the overall consumption of CPU, disk, memory, and Journal File System (JFS) buffer usage. There are three major flags that you can use with sar:
 
@@ -46,7 +46,7 @@ The sar utility (System Activity Reporter) is a system activity reporter that is
 
 NOTE: Each flavor of UNIX has a different implementation of sar. For example, some of the key flags used in the Sun version of sar are not available on HP/UX. The examples in this book show the HP/UX version of sar.
 
-The output from sar reports usually shows a time-based snapshot of activity. This is true for all reports that you’ll see in this section. When you issue the **sar** command, you pass two numeric arguments. The first represents the time interval between samples, and the second represents the number of samples to take. For example:
+The output from sar reports usually shows a time-based snapshot of activity. This is true for all reports that you'll see in this section. When you issue the **sar** command, you pass two numeric arguments. The first represents the time interval between samples, and the second represents the number of samples to take. For example:
 
 L 6-4
 

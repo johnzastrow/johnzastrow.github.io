@@ -89,7 +89,7 @@ So
 imp scott/tiger file=emp.dmp fromuser=scott touser=scott tables=dept
 ```
 
-Imports the file emp.dmp via user scott (password = tiger) and sticks it in scott’s schema.
+Imports the file emp.dmp via user scott (password = tiger) and sticks it in scott's schema.
 
 See
 

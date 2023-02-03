@@ -23,7 +23,7 @@ Here is my command line to transform a directory of .jpg files into a few (3 in 
 montage -verbose -label '%f' -font Helvetica -pointsize 16 -background '#ffffff' -fill 'black' -tile 3x4 -define jpeg:size=400x400 -geometry 400x400 -auto-orient *.jpg contact-light.jpg
 ```
 
-Read the blog above and Imagemagick docs to explain the switches. I did change a few things in the blog’s example. I bumped up the resolutions of the images, (and hence the contact sheet) a bit, made it black text on white, bigger font, and limited the images to 3×4 pics per page using the tile options.
+Read the blog above and Imagemagick docs to explain the switches. I did change a few things in the blog's example. I bumped up the resolutions of the images, (and hence the contact sheet) a bit, made it black text on white, bigger font, and limited the images to 3×4 pics per page using the tile options.
 
 Since I used Cygwin on Windows I installed all the Imagemagick utils through the easy to use Cygwin installer, as well as Ghostscript and all the fonts I could find for it.
 

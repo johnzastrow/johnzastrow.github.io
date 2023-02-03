@@ -11,7 +11,7 @@ categories:
     - Web
 ---
 
-<font color="navy" face="Arial" size="2"><span style="font-size: 10pt; color: navy; font-family: Arial;">EPA appears to be using ESRI’s ArcIMS 9.2 OGC connectors to publish OGC WMS/WFS services of their WATERS data.</span></font>
+<font color="navy" face="Arial" size="2"><span style="font-size: 10pt; color: navy; font-family: Arial;">EPA appears to be using ESRI's ArcIMS 9.2 OGC connectors to publish OGC WMS/WFS services of their WATERS data.</span></font>
 
 <font color="navy" face="Arial" size="2"><span style="font-size: 10pt; color: navy; font-family: Arial;"></span></font><font color="navy" face="Arial" size="2"><span style="font-size: 10pt; color: navy; font-family: Arial;"></span></font>
 

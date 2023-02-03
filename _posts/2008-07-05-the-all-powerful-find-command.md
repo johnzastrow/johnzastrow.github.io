@@ -35,7 +35,7 @@ That all might look a bit confusing, so here are some examples to bring
 things down to earth. To find files (starting in the current directory)  
 with names ending with .data and to print their names, try this:
 
-find . -name ‘\*.data’ -print  
+find . -name '\*.data' -print  
 company.data  
 donor.data  
 grades.data  
@@ -52,7 +52,7 @@ To find all files modified within the last 5 days:
 
 find / -mtime -5 -print
 
-The – in front of the 5 modifies the meaning of the time as “less than five days.” The command
+The – in front of the 5 modifies the meaning of the time as "less than five days." The command
 
 find / -mtime +5 -print
 

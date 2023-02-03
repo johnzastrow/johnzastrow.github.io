@@ -46,7 +46,7 @@ Getting the password to the ftp server without having the ftp client program rea
 
 ## Control of ftp by a shell script
 
-One obvious improvement would have the ftp client program controlled by the shell script. I don’t think that would comprise an impossible task, but I also don’t think that it would have much value. Scripting ftp transfer using [expect](http://expect.nist.gov/) might cause you less pain, except that it is sensitive to the environment that it is run in. Changes to default program inputs and outputs can break it.
+One obvious improvement would have the ftp client program controlled by the shell script. I don't think that would comprise an impossible task, but I also don't think that it would have much value. Scripting ftp transfer using [expect](http://expect.nist.gov/) might cause you less pain, except that it is sensitive to the environment that it is run in. Changes to default program inputs and outputs can break it.
 
 - - - - - -
 
@@ -67,7 +67,7 @@ SCRIPT
 </kbd>
 ```
 
-It still uses the “-n” trick, but it sends user ID and password in the same “user” command.
+It still uses the "-n" trick, but it sends user ID and password in the same "user" command.
 
 - - - - - -
 
@@ -97,13 +97,13 @@ $ ls -l .netrc
 Using a <kbd>.netrc</kbd> file has a few problems that may or may not prevent you from using it.
 
 - A shell scripkt that does FTP using .netrc is no longer self-contained. You have to keep track of two files, which means that bugs can be less than obvious.
-- ftp reads it’s user ID’s <kbd>.netrc</kbd>. If you develop your script under a given user ID, then put it in production under a second user ID, you have to coordinate .netrc file contents between those two user IDs.
+- ftp reads it's user ID's <kbd>.netrc</kbd>. If you develop your script under a given user ID, then put it in production under a second user ID, you have to coordinate .netrc file contents between those two user IDs.
 
 - - - - - -
 
 ### Alternative #3
 
-Apparently, the [Ckermit](http://www.columbia.edu/kermit/ck80.html) program from Columbia University understands FTP. You could use Ckermit to [script FTP transfers](http://www.columbia.edu/kermit/ftpscripts.html). This looks to have advantages and disadvantages. On the “pro” side, it appears that Ckermit can exit on various errors, like unknown user IDs, or bad passwords. On the “con” side, you have to have Ckermit. I don’t recall that it had a too onerous install, but it doesn’t come with many Linux distros these days, and it probably doesn’t come with any vendor Unix.
+Apparently, the [Ckermit](http://www.columbia.edu/kermit/ck80.html) program from Columbia University understands FTP. You could use Ckermit to [script FTP transfers](http://www.columbia.edu/kermit/ftpscripts.html). This looks to have advantages and disadvantages. On the "pro" side, it appears that Ckermit can exit on various errors, like unknown user IDs, or bad passwords. On the "con" side, you have to have Ckermit. I don't recall that it had a too onerous install, but it doesn't come with many Linux distros these days, and it probably doesn't come with any vendor Unix.
 
 See also <http://www.linuxforums.org/forum/programming-scripting/106665-automatic-ftp-upload-via-script.html>
 

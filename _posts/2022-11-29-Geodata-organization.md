@@ -36,7 +36,7 @@ Products may be data as well as documents. Data should be considered read-only -
      Project_Name_ D
 ```
 
-**MAIN** - directories by topic then by year containing finalized, authoritative data that is the most recent, validated, complete, and approved data owned by this organization. Files in these subject directories should only change when 1) a new final version is available, 2) new authoritative files are added to this organization’s holdings, or 3) data should be removed because they are deemed too problematic for use.
+**MAIN** - directories by topic then by year containing finalized, authoritative data that is the most recent, validated, complete, and approved data owned by this organization. Files in these subject directories should only change when 1) a new final version is available, 2) new authoritative files are added to this organization's holdings, or 3) data should be removed because they are deemed too problematic for use.
 
 Data should be considered read-only until replaced by a newer finalized version. Data can be displayed from the MAIN tree, but should not be edited there. The MAIN tree should not contain working data. Data will be updated following this organization data stewardship guidelines from the data management plan, or as improvements become available, until the end of the year. Then the year directories are copied to make the next year unless the data did not change in the prior year. This approach allows for historical change tracking at the cost of increased data storage.
 

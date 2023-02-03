@@ -11,7 +11,7 @@ categories:
     - Uncategorized
 ---
 
-I just want to record these for future reference. I’m actually using the first now.
+I just want to record these for future reference. I'm actually using the first now.
 
 From the MySQL 5.0 Online manual
 
@@ -23,7 +23,7 @@ SELECT CONCAT(UPPER(SUBSTRING(firstName, 1, 1)), LOWER(SUBSTRING(firstName FROM 
 
 \[/cce\_sql\]
 
-a user-defined function in MySQL 5.0+ similar to PHP’s substr\_count(), since I could not find an equivalent native function in MySQL. (If there is one please tell me!!!)
+a user-defined function in MySQL 5.0+ similar to PHP's substr\_count(), since I could not find an equivalent native function in MySQL. (If there is one please tell me!!!)
 
 \[cce\_sql\]
 
@@ -33,7 +33,7 @@ CREATE FUNCTION substrCount(s VARCHAR(255), ss VARCHAR(255)) RETURNS TINYINT(3) 
 BEGIN  
 DECLARE count TINYINT(3) UNSIGNED;  
 DECLARE offset TINYINT(3) UNSIGNED;  
-DECLARE CONTINUE HANDLER FOR SQLSTATE ‘02000’ SET s = NULL;
+DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET s = NULL;
 
 SET count = 0;  
 SET offset = 1;
@@ -61,21 +61,21 @@ Use like this:
 
 \[cce\_sql\]
 
-SELECT substrCount(‘/this/is/a/path’, ‘/’) `count`;
+SELECT substrCount('/this/is/a/path', '/') `count`;
 
 \[/cce\_sql\]
 
-`count` would return 4 in this case. Can be used in such cases where you might want to find the “depth” of a path, or for many other uses.
+`count` would return 4 in this case. Can be used in such cases where you might want to find the "depth" of a path, or for many other uses.
 
-It’s pretty easy to create your own string functions for many examples listed here
+It's pretty easy to create your own string functions for many examples listed here
 
 \[cce\_sql\]  
 \## Count substrings
 
 CREATE FUNCTION substrCount(x varchar(255), delim varchar(12)) returns int  
-return (length(x)-length(REPLACE(x, delim, ”)))/length(delim);
+return (length(x)-length(REPLACE(x, delim, ")))/length(delim);
 
-SELECT substrCount(‘/this/is/a/path’, ‘/’) as count;
+SELECT substrCount('/this/is/a/path', '/') as count;
 
 \[/cce\_sql\]
 
@@ -87,7 +87,7 @@ SELECT substrCount(‘/this/is/a/path’, ‘/’) as count;
 
 \[cce\_sql\]
 
-SELECT substrCount(‘/this/is/a/path’, ‘is’) as count;
+SELECT substrCount('/this/is/a/path', 'is') as count;
 
 \[/cce\_sql\]
 
@@ -102,9 +102,9 @@ SELECT substrCount(‘/this/is/a/path’, ‘is’) as count;
 \## Split delimited strings
 
 CREATE FUNCTION strSplit(x varchar(255), delim varchar(12), pos int) returns varchar(255)  
-return replace(substring(substring\_index(x, delim, pos), length(substring\_index(x, delim, pos – 1)) + 1), delim, ”);
+return replace(substring(substring\_index(x, delim, pos), length(substring\_index(x, delim, pos – 1)) + 1), delim, ");
 
-select strSplit(“aaa,b,cc,d”, ‘,’, 2) as second;
+select strSplit("aaa,b,cc,d", ',', 2) as second;
 
 \[/cce\_sql\]
 
@@ -116,7 +116,7 @@ select strSplit(“aaa,b,cc,d”, ‘,’, 2) as second;
 
 \[cce\_sql\]
 
-select strSplit(“a|bb|ccc|dd”, ‘|’, 3) as third;
+select strSplit("a|bb|ccc|dd", '|', 3) as third;
 
 \[/cce\_sql\]
 
@@ -128,7 +128,7 @@ select strSplit(“a|bb|ccc|dd”, ‘|’, 3) as third;
 
 \[cce\_sql\]
 
-select strSplit(“aaa,b,cc,d”, ‘,’, 7) as 7th;
+select strSplit("aaa,b,cc,d", ',', 7) as 7th;
 
 \[/cce\_sql\]
 
@@ -145,12 +145,12 @@ select strSplit(“aaa,b,cc,d”, ‘,’, 7) as 7th;
 CREATE FUNCTION ucfirst(x varchar(255)) returns varchar(255)  
 return concat( upper(substring(x,1,1)),lower(substring(x,2)) );
 
-select ucfirst(“TEST”);
+select ucfirst("TEST");
 
 \[/cce\_sql\]
 
 +—————–+  
-| ucfirst(“TEST”) |  
+| ucfirst("TEST") |  
 +—————–+  
 | Test |  
 +—————–+
@@ -167,7 +167,7 @@ DETERMINISTIC
 BEGIN  
 DECLARE i INT DEFAULT 1;  
 DECLARE str\_len INT;  
-DECLARE out\_str text default ”;  
+DECLARE out\_str text default ";  
 SET str\_len=length(str);  
 WHILE(i&lt;str\_len) DO  
 SET out\_str=CONCAT(out\_str, SUBSTR(str, i,pos), delimit);  
@@ -179,7 +179,7 @@ RETURN(out\_str);
 END//  
 DELIMITER ;
 
-select insert2(“ATGCATACAGTTATTTGA”, 3, ” “) as seq2;
+select insert2("ATGCATACAGTTATTTGA", 3, " ") as seq2;
 
 \[/cce\_sql\]
 

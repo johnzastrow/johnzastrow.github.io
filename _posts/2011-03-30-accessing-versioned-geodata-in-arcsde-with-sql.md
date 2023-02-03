@@ -13,7 +13,7 @@ categories:
 
 This is excerpted from the following forum post:
 
-“We’re running SDE and have several featuresets with versioning turned on…. We have numerous non-GIS applications that use SQL queries to access information from the spatial data. However, we don’t get all the features that I’m expecting to be returned. How do I access the features that have been added/deleted (and are, therefore, “hidden” from a straight SQL query)?”
+"We're running SDE and have several featuresets with versioning turned on…. We have numerous non-GIS applications that use SQL queries to access information from the spatial data. However, we don't get all the features that I'm expecting to be returned. How do I access the features that have been added/deleted (and are, therefore, "hidden" from a straight SQL query)?"
 
 As long as it is just the attributes that you are after, you can set up a multi-versioned view using sdetable.exe.
 
@@ -29,7 +29,7 @@ GO<br />
 Select COUNT(*) from mvv_wMeter ; 
 ```**
 
-> <span style="color: #999999;">i don’t have it my example, but sdetable.exe needs db connection info arguments: -s,-i,-u,-p,-D in some combination depending on your config (I usually just set the SDEDATABASE,SDEINSTANCE,SDESERVER env vars in a batch file–sdetable use the env vars if they exist). – Jay Cummins Aug 6 ’10 at 19:39</span>
+> <span style="color: #999999;">i don't have it my example, but sdetable.exe needs db connection info arguments: -s,-i,-u,-p,-D in some combination depending on your config (I usually just set the SDEDATABASE,SDEINSTANCE,SDESERVER env vars in a batch file–sdetable use the env vars if they exist). – Jay Cummins Aug 6 '10 at 19:39</span>
 
 [I think this ESRI support page may be relevant.](http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/in_SQL_Server/006z0000001r000000/)
 

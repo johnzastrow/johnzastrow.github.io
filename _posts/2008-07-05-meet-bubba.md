@@ -11,7 +11,7 @@ categories:
 ---
 
 We had originally planned to slow down after the wedding –  
-Didn’t happen!   
+Didn't happen!   
 Now that the wedding planning is not consuming our time, this  
 past Tuesday we decided to apply as foster parents at the Northern VA  
 Sheltie Rescue Association. We figured they would check our   

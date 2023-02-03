@@ -14,9 +14,9 @@ categories:
     - Spatialite
 ---
 
-The primary outlet for spatialite news and changes is the [Google Groups Spatialite user mailing list](https://groups.google.com/group/spatialite-users). This is a low-barrier place to announce things. But it can be a little tough to use to understand the [trajectory](https://www.gaia-gis.it/fossil/libspatialite/timeline) of the project. So, I might take some time every now and then to re-post interesting updates from the mailing list here. I’ll cook them down and edit them to my taste – so be sure to check the original sources for the official versions. Please note this post and others like it are not a changelog or formal announcements. Some links to related – but perhaps older -formal changelogs are [\[here\]](http://www.gaia-gis.it/spatialite-3.0.0-BETA/changelog.html) and [\[here\]](https://launchpad.net/ubuntu/+source/spatialite/+changelog).
+The primary outlet for spatialite news and changes is the [Google Groups Spatialite user mailing list](https://groups.google.com/group/spatialite-users). This is a low-barrier place to announce things. But it can be a little tough to use to understand the [trajectory](https://www.gaia-gis.it/fossil/libspatialite/timeline) of the project. So, I might take some time every now and then to re-post interesting updates from the mailing list here. I'll cook them down and edit them to my taste – so be sure to check the original sources for the official versions. Please note this post and others like it are not a changelog or formal announcements. Some links to related – but perhaps older -formal changelogs are [\[here\]](http://www.gaia-gis.it/spatialite-3.0.0-BETA/changelog.html) and [\[here\]](https://launchpad.net/ubuntu/+source/spatialite/+changelog).
 
-Update: the second link above is from the [Ubuntu launchpad](https://launchpad.net/ubuntu/+source/spatialite) itself. It’s nice to see them tracking spatialite so closely. They’ve even got an RC packages up when most repos are much further behind it seems.
+Update: the second link above is from the [Ubuntu launchpad](https://launchpad.net/ubuntu/+source/spatialite) itself. It's nice to see them tracking spatialite so closely. They've even got an RC packages up when most repos are much further behind it seems.
 
 **May 24, 2012 – Recent highlights from the libspatialite source repository at <https://www.gaia-gis.it/fossil/libspatialite/timeline>**
 
@@ -29,21 +29,21 @@ Update: the second link above is from the [Ubuntu launchpad](https://launchpad.n
 
 Sandro (a.furieri ) mentioned on March 7 to the list that libspatialite 3.1.0 was soon to be released. It seems the major focus is to tighten up the code with testing and to introduce a few new features. Sandro writes in an earlier message,
 
-> \[Brad Hard\]’s the author of the test coverage: Brad has spent many months of precious work so to develop the full coverage, and he deserves full credit for this 😀 Never forget: if SpatiaLite is now a robustly engineered library, it’s mainly thank to Brad’s wise contributions.
+> \[Brad Hard\]'s the author of the test coverage: Brad has spent many months of precious work so to develop the full coverage, and he deserves full credit for this 😀 Never forget: if SpatiaLite is now a robustly engineered library, it's mainly thank to Brad's wise contributions.
 
-Sandro also writes in another message, “Hi List, I’m glad to announce you all that version 3.1.0 is coming soon :-)” with following edited summary.
+Sandro also writes in another message, "Hi List, I'm glad to announce you all that version 3.1.0 is coming soon :-)" with following edited summary.
 
 **Main goals of 3.1.0:**
 
 - Test coverage is a major focus. Extensive test coverage: about 95% of code lines are now covered ( something like 1,800 different SQL queries are actually tested)
-- Systematic Valgrind checks: Valgrind is a wonderful tool identifying many memory-related issues (uninitialized variables, bad pointers, buffer overflows, memory leaks and similar): so we’ve been able to identify (and resolve) many potential harmful conditions.
+- Systematic Valgrind checks: Valgrind is a wonderful tool identifying many memory-related issues (uninitialized variables, bad pointers, buffer overflows, memory leaks and similar): so we've been able to identify (and resolve) many potential harmful conditions.
 - Extensive cross-platform testing: thanks to Debian folks, now SpatiaLite has been built and tested on on an impressively wide range of different architectures: x86/amd64, ARM, PPC, SPARC, Itanium, IBM S390, and more. This practically means any possible platform, ranging from the simplest embedded/mobile since the mightiest mainframe.
 
 Sandro earlier posted a short report on the latest spatialite advancements:
 
-- The whole test coverage has now been successfully ported on both MinGW32 and MinGW64 (lcov isn’t supported on MinGW, but gcov is available anyway, and that’s enough)
+- The whole test coverage has now been successfully ported on both MinGW32 and MinGW64 (lcov isn't supported on MinGW, but gcov is available anyway, and that's enough)
 - The same is for Mac Os X (Leopard) Power PC. This marks a notable step, because this way we were able to identify (and fix) many small portability issues. and testing a big-endian arch (PPC) ensures us that there are no endianness-related issues at all in libspatialite.
-- The next release (v.3.0.2 at the time) will support a more flexible way allowing to initially create and populate the “spatial\_ref\_sys” metadata table accordingly to your specific individual requirements (many thanks to Pepijn Van Eeckhoudt; he initially advanced this idea)
+- The next release (v.3.0.2 at the time) will support a more flexible way allowing to initially create and populate the "spatial\_ref\_sys" metadata table accordingly to your specific individual requirements (many thanks to Pepijn Van Eeckhoudt; he initially advanced this idea)
 
 **SQL-level:**
 
@@ -54,7 +54,7 @@ Sandro earlier posted a short report on the latest spatialite advancements:
 SELECT InitSpatialMetaData();
 ```
 
-Same as before, unchanged: the complete EPSG dataset will be inserted into “spatial\_ref\_sys” (currently, about 4100+ rows)
+Same as before, unchanged: the complete EPSG dataset will be inserted into "spatial\_ref\_sys" (currently, about 4100+ rows)
 
 
 ```sql
@@ -68,7 +68,7 @@ or
 SELECT InitSpatialMetaData('WGS84_ONLY'); 
 ```
 
-only WGS84-related EPSG SRIDs will be inserted into “spatial\_ref\_sys” (about 130 rows)
+only WGS84-related EPSG SRIDs will be inserted into "spatial\_ref\_sys" (about 130 rows)
 
 
 ```sql
@@ -84,7 +84,7 @@ or
 SELECT InitSpatialMetaData('EMPTY'); 
 ```
 
-no EPSG SRID will be inserted into “spatial\_ref\_sys” (0 rows)
+no EPSG SRID will be inserted into "spatial\_ref\_sys" (0 rows)
 
 
 ```sql
@@ -93,7 +93,7 @@ no EPSG SRID will be inserted into “spatial\_ref\_sys” (0 rows)
 
 ```
 
-\*new\* SQL function: will attempt to insert SRID=4326 into “spatial\_ref\_sys”. the corresponding EPSG SRID definition will be copied from the inlined dataset internally defined within the libspatialite library (.DLL, .so, .dylib …)
+\*new\* SQL function: will attempt to insert SRID=4326 into "spatial\_ref\_sys". the corresponding EPSG SRID definition will be copied from the inlined dataset internally defined within the libspatialite library (.DLL, .so, .dylib …)
 ```sql
 -- **SQL-script sample:**
 -- =========================================================
@@ -160,11 +160,11 @@ please see SQL InsertEpsgSrid()
 ```
 
 > **spatialite CLI and spatialite\_gui tools:**  
-> No changes at all: these tools will continue to automatically create and fully populate the “spatial\_ref\_sys” table when creating a new DB; exactly as before. Bye Sandro
+> No changes at all: these tools will continue to automatically create and fully populate the "spatial\_ref\_sys" table when creating a new DB; exactly as before. Bye Sandro
 
-The overall “spatialite project” includes many ancillary helper programs and code as well. So, on May 5, 2012 Sandro wrote to announce the release of some new and revised helper tools.
+The overall "spatialite project" includes many ancillary helper programs and code as well. So, on May 5, 2012 Sandro wrote to announce the release of some new and revised helper tools.
 
-“I’m pleased to announce you all the following news:
+"I'm pleased to announce you all the following news:
 
 **a) a new library: ReadOSM**  
 This library is intended to implement a parser supporting OSM datasets; both input formats OSM-XML and OSM-probuf are equally supported:  

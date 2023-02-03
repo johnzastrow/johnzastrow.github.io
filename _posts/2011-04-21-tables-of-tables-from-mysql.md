@@ -15,35 +15,35 @@ From Matthew Crowley on the MySQl forums (<http://forums.mysql.com/read.php?101,
 
 \[cce\_php\]
 
-$connection = mysql\_connect(“localhost”,”root”,”PASSWORD”);
+$connection = mysql\_connect("localhost","root","PASSWORD");
 
-$showDB = mysql\_query(“show databases”);  
+$showDB = mysql\_query("show databases");  
 if($myrow=mysql\_fetch\_array($showDB))  
 {  
 do  
 {  
-$DB = $myrow\[“Database”\];  
-echo “$DB \\n”;  
-$showTable = mysql\_query(“show tables from $DB”);  
+$DB = $myrow\["Database"\];  
+echo "$DB \\n";  
+$showTable = mysql\_query("show tables from $DB");  
 if($myrow=mysql\_fetch\_array($showTable))  
 {  
 do  
 {  
-$col = “Tables\_in\_”.$DB;  
-$Table = $myrow\[“$col”\];  
-echo “$Table \\n”;  
-$describeTable = mysql\_query(“describe $DB.$Table”);  
+$col = "Tables\_in\_".$DB;  
+$Table = $myrow\["$col"\];  
+echo "$Table \\n";  
+$describeTable = mysql\_query("describe $DB.$Table");  
 if($myrow=mysql\_fetch\_array($describeTable))  
 {  
 do  
 {  
-$field = $myrow\[“Field”\];  
-$type = $myrow\[“Type”\];  
-$null = $myrow\[“Null”\];  
-$key = $myrow\[“Key”\];  
-$default = $myrow\[“Default”\];  
-$extra = $myrow\[“Extra”\];  
-echo “$field \\t $type \\t $null \\t $key \\t $default \\t $extra \\n”;  
+$field = $myrow\["Field"\];  
+$type = $myrow\["Type"\];  
+$null = $myrow\["Null"\];  
+$key = $myrow\["Key"\];  
+$default = $myrow\["Default"\];  
+$extra = $myrow\["Extra"\];  
+echo "$field \\t $type \\t $null \\t $key \\t $default \\t $extra \\n";  
 }  
 while ($myrow=mysql\_fetch\_array($describeTable));  
 }  

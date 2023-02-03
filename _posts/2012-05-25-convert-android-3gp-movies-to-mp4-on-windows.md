@@ -12,7 +12,7 @@ categories:
     - Web
 ---
 
-Hardly any software works well with .3GP movie files. So, with this collection of movies accumulating in my phone sync folder I needed something to convert them into formats that are more useful (like video editing software or upload sites). So, here’s a little quick and dirty solution for batch converting these files on a Windows machine – with pretty high quality I might add. Of course there are a lot of other things you can do with ffmpeg, so be sure to explore…
+Hardly any software works well with .3GP movie files. So, with this collection of movies accumulating in my phone sync folder I needed something to convert them into formats that are more useful (like video editing software or upload sites). So, here's a little quick and dirty solution for batch converting these files on a Windows machine – with pretty high quality I might add. Of course there are a lot of other things you can do with ffmpeg, so be sure to explore…
 
 Step 1. Install [cygwin](http://www.cygwin.com) command line so that you can use the bash shell to loop through stuff on Windows.
 
@@ -28,65 +28,65 @@ Step 4. Put the script below into the same /bin directory because you are lazy
 ```
 
 \#!/bin/bash  
-\# jcz 25-may-12  
-\# filename: 3gp2mp4.sh  
-\# converts all 3GP video files in the directory  
-\# where it is run. Logs all file contents  
-\# and errors to a text file in the directory  
-\# in which it is run  
-\#  
+# jcz 25-may-12  
+# filename: 3gp2mp4.sh  
+# converts all 3GP video files in the directory  
+# where it is run. Logs all file contents  
+# and errors to a text file in the directory  
+# in which it is run  
+#  
 \##################################
 
 \############################  
-\# Global script variables block  
+# Global script variables block  
 \############################  
-\# Date and other variables pretty self explanatory, S is seconds  
-\# date format is currently YYYYMMDD\_HHMMSS  
+# Date and other variables pretty self explanatory, S is seconds  
+# date format is currently YYYYMMDD\_HHMMSS  
  dater=$(date)  
  dayer=$(date +%a%F%H%m)  
  namer=$(whoami)  
  hoster=$(hostname)  
  directory=$(pwd)  
  filenamer=$(date +%a\_%F\_%H\_%M\_%S)\_3gp\_convertlog  
-\# sets day of the week  
+# sets day of the week  
  set $(date)  
  logger=$filenamer.txt  
 \############################  
-\# END Global script variables block  
+# END Global script variables block  
 \############################  
- echo “Welcome, $namer. I’m running in $directory and I will convert all 3GP phone videos to here mp4 files. ”  
- echo ” ”  
- echo “I see the following files to convert. I will write them down for you now ”  
+ echo "Welcome, $namer. I'm running in $directory and I will convert all 3GP phone videos to here mp4 files. "  
+ echo " "  
+ echo "I see the following files to convert. I will write them down for you now "  
  ls \*.3gp 2&gt; deleteme.txt  
- echo ” ”  
- echo “Please review the file $filenamer in this folder when I’m done. ”  
- echo ” ”  
- echo ” ”  
- echo “\*\*\*\*\*\*\*\*\*\*\*\*\* RUNNING \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* ”
+ echo " "  
+ echo "Please review the file $filenamer in this folder when I'm done. "  
+ echo " "  
+ echo " "  
+ echo "\*\*\*\*\*\*\*\*\*\*\*\*\* RUNNING \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* "
 
- echo “\[START\] ” &gt;&gt;$logger  
-echo ” ” &gt;&gt;$logger  
-echo ” ” &gt;&gt;$logger  
-echo “\*\*\*\*\*\*\*\*\*\* START RUN LOG HEADER \*\*\*\*\*\*\*\*\*\*\*\*\*\*\* ” &gt;&gt; $logger  
-echo “Dater: ” $dater &gt;&gt; $logger  
-echo “Username: ” $namer &gt;&gt; $logger  
-echo “Computer: ” $hoster &gt;&gt; $logger  
-echo “Directory: ” $directory &gt;&gt; $logger  
-echo ” ” &gt;&gt;$logger  
-echo “\*\*\*\*\*\*\*\*\*\* END RUN LOG HEADER \*\*\*\*\*\*\*\*\*\*\*\*\*\*\* ” &gt;&gt; $logger  
-echo ” ” &gt;&gt;$logger  
-echo ” ” &gt;&gt;$logger  
-echo ” ” &gt;&gt;$logger
+ echo "\[START\] " &gt;&gt;$logger  
+echo " " &gt;&gt;$logger  
+echo " " &gt;&gt;$logger  
+echo "\*\*\*\*\*\*\*\*\*\* START RUN LOG HEADER \*\*\*\*\*\*\*\*\*\*\*\*\*\*\* " &gt;&gt; $logger  
+echo "Dater: " $dater &gt;&gt; $logger  
+echo "Username: " $namer &gt;&gt; $logger  
+echo "Computer: " $hoster &gt;&gt; $logger  
+echo "Directory: " $directory &gt;&gt; $logger  
+echo " " &gt;&gt;$logger  
+echo "\*\*\*\*\*\*\*\*\*\* END RUN LOG HEADER \*\*\*\*\*\*\*\*\*\*\*\*\*\*\* " &gt;&gt; $logger  
+echo " " &gt;&gt;$logger  
+echo " " &gt;&gt;$logger  
+echo " " &gt;&gt;$logger
 
-\# The &amp; characters after the commands log all output (stdout and stderr) to the log file  
-echo “I see the following files to work on. I will write them down for you now ” &gt;&gt; $logger  
+# The &amp; characters after the commands log all output (stdout and stderr) to the log file  
+echo "I see the following files to work on. I will write them down for you now " &gt;&gt; $logger  
 ls -lh \*.3gp &gt;&gt; $logger  
-echo ” ” &gt;&gt;$logger  
-echo ” ” &gt;&gt;$logger  
-echo ” ” &gt;&gt;$logger
+echo " " &gt;&gt;$logger  
+echo " " &gt;&gt;$logger  
+echo " " &gt;&gt;$logger
 
-\# Rename any existing .Mp4 files so they don’t get over written and stop ffmpeg from asking me if I want to over write them  
-echo “Moving files: ” ls \*.mp4  
+# Rename any existing .Mp4 files so they don't get over written and stop ffmpeg from asking me if I want to over write them  
+echo "Moving files: " ls \*.mp4  
  for nowmp4s in \*.mp4  
  do  
  mv -v $nowmp4s $dayer-$nowmp4s.mp4 &gt;&gt; $logger  
@@ -95,47 +95,47 @@ echo “Moving files: ” ls \*.mp4
  # Now loop through the files and convert them using -sameq inside of ffmpeg.  
 for phonevid in \*.3gp  
 do  
-echo “—- START $phonevid ARCHIVE INFO —- ” &gt;&gt; $logger  
+echo "—- START $phonevid ARCHIVE INFO —- " &gt;&gt; $logger  
 stat $phonevid &gt;&gt; $logger  
-echo “—- END $phonevid ARCHIVE INFO —- ” &gt;&gt; $logger  
-echo ” ” &gt;&gt;$logger  
-echo “~~~~~~~~~~~~~ START FILES IN ARCHIVE $phonevid ~~~~~~~~~~~ ” &gt;&gt; $logger  
-echo “Converting: $phonevid ”  
+echo "—- END $phonevid ARCHIVE INFO —- " &gt;&gt; $logger  
+echo " " &gt;&gt;$logger  
+echo "~~~~~~~~~~~~~ START FILES IN ARCHIVE $phonevid ~~~~~~~~~~~ " &gt;&gt; $logger  
+echo "Converting: $phonevid "  
 ffmpeg -i $phonevid -sameq $phonevid.mp4 &gt;&gt; $logger  
-echo “~~~~~~~~~~~~~ END FILES IN ARCHIVE $phonevid ~~~~~~~~~~~ ” &gt;&gt; $logger  
-echo ” ” &gt;&gt;$logger  
-echo ” ” &gt;&gt;$logger  
-echo ” ” &gt;&gt;$logger  
+echo "~~~~~~~~~~~~~ END FILES IN ARCHIVE $phonevid ~~~~~~~~~~~ " &gt;&gt; $logger  
+echo " " &gt;&gt;$logger  
+echo " " &gt;&gt;$logger  
+echo " " &gt;&gt;$logger  
 done
 
-echo “\[END\] ” &gt;&gt;$logger  
-echo ” ” &gt;&gt;$logger
+echo "\[END\] " &gt;&gt;$logger  
+echo " " &gt;&gt;$logger
 
-\# make my log a little more readble in windows  
+# make my log a little more readble in windows  
 unix2dos $filenamer.txt  
-echo ” ”  
-echo ” ”  
-echo “\*\*\*\*\*\*\*\*\*\*\*\*\* DONE \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* ”
+echo " "  
+echo " "  
+echo "\*\*\*\*\*\*\*\*\*\*\*\*\* DONE \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* "
 
 Step 5. Using cygwin, change into a directory containing some .3gp files you want to convert and run it. You will send up with one .mp4 file for each .3gp file you started with in that directory.
 
 *john.zastrow@DIVL-GY4K3R1 /cygdrive/c/Users/john.zastrow/Videos/PhoneVids*  
 *$ 3gp2mp4.sh*  
-*Welcome, john.zastrow. I’m running in /cygdrive/c/Users/john.zastrow/Videos/Phon eVids and I will convert all 3GP phone videos to here mp4 files.*
+*Welcome, john.zastrow. I'm running in /cygdrive/c/Users/john.zastrow/Videos/Phon eVids and I will convert all 3GP phone videos to here mp4 files.*
 
 *I see the following files to convert. I will write them down for you now*  
 *VIDEO0001.3gp VIDEO0013.3gp VIDEO0025.3gp VIDEO0037.3gp VIDEO0049.3gp*  
 *VIDEO0002.3gp VIDEO0014.3gp VIDEO0026.3gp VIDEO0038.3gp VIDEO0050.3gp*
 
-*\# <snip></snip>*
+*# <snip></snip>*
 
-*Please review the file Fri\_2012-05-25\_17\_06\_28\_3gp\_convertlog in this folder whe n I’m done.*  
+*Please review the file Fri\_2012-05-25\_17\_06\_28\_3gp\_convertlog in this folder whe n I'm done.*  
 *\*\*\*\*\*\*\*\*\*\*\*\*\* RUNNING \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\**  
 *Moving files: ls VIDEO0001.3gp.mp4 VIDEO0002.3gp.mp4 VIDEO0003.3gp.mp4 VIDEO000 4.3gp.mp4 VIDEO0005.3gp.mp4 VIDEO0006.3gp.mp4 VIDEO0007.3gp.mp4 VIDEO0008.3gp.mp 4 VIDEO0009.3gp.mp4 VIDEO0010.3gp.mp4*
 
-*\# <snip></snip>*
+*# <snip></snip>*
 
-You’ll also get a very verbose log file of what the starting files looked like (stat) and what ffmpeg saw and did. I do love my log files 🙂
+You'll also get a very verbose log file of what the starting files looked like (stat) and what ffmpeg saw and did. I do love my log files 🙂
 
 ```bash
 
@@ -237,6 +237,6 @@ frame= 63 fps=0.0 q=31.0 size= 33kB time=00:00:00.18 bitrate=1488.0kbits/s dup=5
 </snip></snip>
 ```
 
-<span style="color: #333333; font-style: normal; line-height: 24px;">And you’ll end up with files like this</span>
+<span style="color: #333333; font-style: normal; line-height: 24px;">And you'll end up with files like this</span>
 
 [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/output.gif "output")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/output.gif)

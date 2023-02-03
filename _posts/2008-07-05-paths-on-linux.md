@@ -10,7 +10,7 @@ categories:
     - Linux
 ---
 
-Today I’m going to do a test install of the J2EE mapserver-like  
+Today I'm going to do a test install of the J2EE mapserver-like  
 facilities provided by geoserver version 1.3 Rc2. I recently installed  
 java and the JDK on this machine, so I still need to set JAVA\_HOME in  
 the path. I do this so rarely everytime I need to do it I have to look  
@@ -57,7 +57,7 @@ I set JAVA\_HOME to point to the directory the extraction just created.
 Ie, if I was in /opt/java when I ran the extraction, it would have  
 created a directory named java, so I would set JAVA\_HOME to /opt/java.
 
-export JAVA\_HOME=”/opt/java”
+export JAVA\_HOME="/opt/java"
 
 You may want to edit your path to set this enironment variable  
 permanently. To do that (again, assuming the Bash shell), edit  
@@ -72,7 +72,7 @@ PATH=$PATH:$HOME/bin:/usr/local/iperf
 to  
 PATH=$PATH:$HOME/bin:$JAVA\_HOME/bin:/usr/local/iperf
 
-Then “source” your copy of .bash\_profile to invoke the changes:  
+Then "source" your copy of .bash\_profile to invoke the changes:  
 source .bash\_profile
 
 or in my case

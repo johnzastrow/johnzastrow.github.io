@@ -13,6 +13,6 @@ categories:
     - Web
 ---
 
-I’ve never used the acronym LOL in a message to anyone before. But I did LOL when I read this (and still am LOLing) and so I sent this link to a few selected colleagues. This won’t make sense to you unless you use ESRI products or are a GISer. But if you fall into either or both of these, you may get as much pleasure out of this graphic as I do.
+I've never used the acronym LOL in a message to anyone before. But I did LOL when I read this (and still am LOLing) and so I sent this link to a few selected colleagues. This won't make sense to you unless you use ESRI products or are a GISer. But if you fall into either or both of these, you may get as much pleasure out of this graphic as I do.
 
 ![](https://lh6.googleusercontent.com/-K4zFYDHgEJs/T98pSpiIh2I/AAAAAAAADEo/VXiKHYQ5Owg/s918/1.png "Tobin's an artist")

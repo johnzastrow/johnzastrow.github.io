@@ -13,9 +13,9 @@ categories:
     - Spatialite
 ---
 
-I am thrilled to see the OGC Geopackage \[GPKG\] spec hit the street and see Sandro, Brad and Spatialite taking such a prominent role there. Using [Spatialite](http://www.gaia-gis.it/gaia-sins/) as the vector reference implementation makes a lot of sense. The spec does seem a little bloated to me. But OTOH, sometimes I would want all that stuff – and creating a standard to support them means that they will be there for me if I need them. Now maybe we can get Spatialite better supported out in the world… Tiles, rasters, metadata, improved SRS support, plus all the normal vector data I normally get all in an easy-to-use relational, SQL-compliant database – yippee! What’s next? Watershed delineation on my phone?!
+I am thrilled to see the OGC Geopackage \[GPKG\] spec hit the street and see Sandro, Brad and Spatialite taking such a prominent role there. Using [Spatialite](http://www.gaia-gis.it/gaia-sins/) as the vector reference implementation makes a lot of sense. The spec does seem a little bloated to me. But OTOH, sometimes I would want all that stuff – and creating a standard to support them means that they will be there for me if I need them. Now maybe we can get Spatialite better supported out in the world… Tiles, rasters, metadata, improved SRS support, plus all the normal vector data I normally get all in an easy-to-use relational, SQL-compliant database – yippee! What's next? Watershed delineation on my phone?!
 
-Here’s the link to the announcement on the Spatialite list, and I’ll include Sandro’s announcement below.
+Here's the link to the announcement on the Spatialite list, and I'll include Sandro's announcement below.
 
 <https://groups.google.com/forum/#!msg/spatialite-users/XPYzxnYMCrU/i5lxfnShTNUJ>
 
@@ -23,7 +23,7 @@ Here’s the link to the announcement on the Spatialite list, and I’ll include
 **To: spatialite-users@googlegroups.com**
 
 Hi List,  
-I’m glad to announce you all that SpatiaLite is going to be adopted as the reference implementation by the candidate OGC GeoPackage (GPKG) standard. \[1\]
+I'm glad to announce you all that SpatiaLite is going to be adopted as the reference implementation by the candidate OGC GeoPackage (GPKG) standard. \[1\]
 
 The current draft of the candidate GPKG standard is now available for download; comments are welcome. \[2\]  
 \[1\] http://www.opengeospatial.org/standards/requests/95  
@@ -31,7 +31,7 @@ The current draft of the candidate GPKG standard is now available for download; 
 
 <span style="text-decoration: underline;">Very short abstract for busy readers:</span>
 
-A GeoPackage is an open, non-proprietary, platform-independent container for distribution of all kinds of geospatial data. It’s a self-describing single file ready for immediate use  
+A GeoPackage is an open, non-proprietary, platform-independent container for distribution of all kinds of geospatial data. It's a self-describing single file ready for immediate use  
 supporting mapping and other geospatial applications. The primary purpose of GPKG is supporting Mobile device users who operate in disconnected or limited network connectivity.
 
 But GPKG is a standard exchange format as well, supporting data distribution, collection of observations, and distribution of change-only updates.

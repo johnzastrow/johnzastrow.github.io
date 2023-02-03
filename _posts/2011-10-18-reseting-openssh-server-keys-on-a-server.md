@@ -17,9 +17,9 @@ by <span class="author vcard fn">Vivek Gite</span> on <abbr class="published" ti
 </div><div style="float:right;margin-top:0px;margin-left:5px;">[![](http://files.cyberciti.biz/cbzcache/3rdparty/debianlogo.gif)](http://www.cyberciti.biz/faq/category/debian-ubuntu/ "See all Debian/Ubuntu Linux related FAQ")</div><span style="color: rgb(255, 0, 0);">Q.</span> How do I regenerate  
 OpenSSH sshd server host keys stored in /etc/ssh/ssh\_host\_\* files? Can I  
  safely regenerate ssh host keys using remote ssh session as my existing  
- ssh connections shouldn’t be interrupted?  
+ ssh connections shouldn't be interrupted?  
 <span id="more-1115"></span>  
-<span style="color: rgb(0, 153, 0);">A.</span> To regenerate keys you need to delete old files and reconfigure openssh-server. It is also safe to run following commands **over remote ssh session**. Your **existing session <span style="color: rgb(0, 153, 0);">shouldn’t be interrupted</span>**.
+<span style="color: rgb(0, 153, 0);">A.</span> To regenerate keys you need to delete old files and reconfigure openssh-server. It is also safe to run following commands **over remote ssh session**. Your **existing session <span style="color: rgb(0, 153, 0);">shouldn't be interrupted</span>**.
 
 ## Step # 1: Delete old ssh host keys
 

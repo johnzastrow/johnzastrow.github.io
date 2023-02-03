@@ -10,7 +10,7 @@ categories:
     - Database
 ---
 
-For those of you that have puzzled over how to append tables in Mysql like an Access ‘Append’ query, start here:
+For those of you that have puzzled over how to append tables in Mysql like an Access 'Append' query, start here:
 
 ```
 insert into table1 select * from table2;<br />

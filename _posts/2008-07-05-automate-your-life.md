@@ -12,10 +12,10 @@ categories:
 
 ***What is crontab?***
 
-If you’ve worked with Perl  
-scripts I’m sure you’ve heard or seen the words “cron”,
+If you've worked with Perl  
+scripts I'm sure you've heard or seen the words "cron",
 
-“crontab”, or “cron job” before. If not, you’ll learn  
+"crontab", or "cron job" before. If not, you'll learn  
 something new today!
 
 The
@@ -39,7 +39,7 @@ your
 
 hosting company and let them know what file you are going to run they more than
 
-likely will be happy to enable crontab on your system. If they won’t, then you  
+likely will be happy to enable crontab on your system. If they won't, then you  
 might want to think about getting a dedicated server…
 
 ***Where do I start?***
@@ -47,44 +47,44 @@ might want to think about getting a dedicated server…
 To use crontab, you have  
 to be able to telnet into your server. This is accomplished
 
-in Windows by going to Start-&gt;Run and typing in “telnet yourdomain.com”  
+in Windows by going to Start-&gt;Run and typing in "telnet yourdomain.com"  
 and hitting
 
-“OK”. A new window will pop up and you will have to put in your  
+"OK". A new window will pop up and you will have to put in your  
 username and password.
 
-If you normally use an FTP client, usually it’s the same username and password.
+If you normally use an FTP client, usually it's the same username and password.
 
 If successful. you will  
 then get a command prompt: $
 
 First, you can see the  
-crontab usage info by typing in “crontab” and hitting return.
+crontab usage info by typing in "crontab" and hitting return.
 
-Here’s what it looks like on my server:
+Here's what it looks like on my server:
 
 usage: crontab \[-u user\]  
 file
 
 crontab \[-u user\] { -e | -l | -r }
 
--e (edit user’s crontab)
+-e (edit user's crontab)
 
--l (list user’s crontab)
+-l (list user's crontab)
 
--r (delete user’s crontab)
+-r (delete user's crontab)
 
 So, if you type:
 
 crontab -l
 
 you will get a list of the crontab jobs already running on your system. Try it  
-out. You probably don’t have any running so you will get an empty list…
+out. You probably don't have any running so you will get an empty list…
 
 ***How do I set up a  
 crontab job?***
 
-While you can edit the crontab file directly through telnet, I’ve found that the  
+While you can edit the crontab file directly through telnet, I've found that the  
 easiest way for a beginner to start a crontab job is to create a text file  
 containing your crontab instructions, upload it to your main directory, telnet  
 into your system, and then just type:
@@ -116,7 +116,7 @@ for your cron job. Here is a run down of the syntax:
 |\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ minute of hour
 
 The \* in the above example  
-basically means “every”. So, in this example the script would execute  
+basically means "every". So, in this example the script would execute  
 \*every\* month, \*every\* day of the week, \*every\* day of the month, and then ONLY  
 at hour 1 of the day. So – this script would execute once a day at 1 am in the  
 morning.
@@ -150,9 +150,9 @@ add multiple lines to the text file using the syntax above for every
 
 script that you would like to run. Make sure that the paths to the scripts are
 
-correct and you’ve double checked your time settings.
+correct and you've double checked your time settings.
 
-***How can I tell that it’s working?***
+***How can I tell that it's working?***
 
 Simple, after you have  
 executed the text file with your one line crontab, just
@@ -164,9 +164,9 @@ crontab
 
 At your command prompt and you will see something like this:
 
-\# (cronjob.txt installed on Tue Apr 11 21:19:12 2000)
+# (cronjob.txt installed on Tue Apr 11 21:19:12 2000)
 
-\# (Cron version — $Id: crontab.c,v 2.13 1994/01/17 03:20:37 vixie Exp $)
+# (Cron version — $Id: crontab.c,v 2.13 1994/01/17 03:20:37 vixie Exp $)
 
 0 1 \* \* \* /path/to/cgi-bin/yourscript.cgi
 
@@ -200,10 +200,10 @@ crontab
 
 and the crontab file will be completely deleted. You can check this by using the
 
-“crontab -l” command. And of course, you can recreate your file by  
+"crontab -l" command. And of course, you can recreate your file by  
 typing
 
-“crontab myfile.txt”. (or whatever you named the text file containing  
+"crontab myfile.txt". (or whatever you named the text file containing  
 your
 
 crontab lines)

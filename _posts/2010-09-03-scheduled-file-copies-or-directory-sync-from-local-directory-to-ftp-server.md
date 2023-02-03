@@ -10,15 +10,15 @@ categories:
     - Linux
 ---
 
-If you have a remote FTP server that you need to put files into, and you don’t want to deal with SCP/SFTP passkeys, [lftp ](http://lftp.yar.ru/)(http://lftp.yar.ru/) on the local client machine might be for you. It comes with most linux distros (I found it using yum simply as lftp) and one of its most useful traits is to be able to mirror the remote FTP directory to your local one, and vice versa (through –reverse mirror). Here’s some examples:
+If you have a remote FTP server that you need to put files into, and you don't want to deal with SCP/SFTP passkeys, [lftp ](http://lftp.yar.ru/)(http://lftp.yar.ru/) on the local client machine might be for you. It comes with most linux distros (I found it using yum simply as lftp) and one of its most useful traits is to be able to mirror the remote FTP directory to your local one, and vice versa (through –reverse mirror). Here's some examples:
 
-\# verbosely mirror files from FTP server to local dir. -d to show FTP responses  
-lftp -d -u ftpusername,password -e “mirror –only-newer –verbose /home/ftpusername/tmp /home/localusername/tmp” ftphost.com&amp;
+# verbosely mirror files from FTP server to local dir. -d to show FTP responses  
+lftp -d -u ftpusername,password -e "mirror –only-newer –verbose /home/ftpusername/tmp /home/localusername/tmp" ftphost.com&amp;
 
-\# more quietly mirror files \*to\* FTP server from local dir.  
-lftp -u ftpusername,password -e “mirror –reverse –only-newer /home/localusername/tmp tmp” ftphost.com&amp;
+# more quietly mirror files \*to\* FTP server from local dir.  
+lftp -u ftpusername,password -e "mirror –reverse –only-newer /home/localusername/tmp tmp" ftphost.com&amp;
 
-Notice the ampersand, which sends the command to the background so you don’t have to keep the terminal window open.
+Notice the ampersand, which sends the command to the background so you don't have to keep the terminal window open.
 
 Here are some more links:
 

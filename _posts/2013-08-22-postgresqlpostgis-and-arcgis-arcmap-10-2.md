@@ -13,43 +13,43 @@ categories:
     - Spatialite
 ---
 
-Of course good things come to those who wait (at least that’s the wisdom that I pass along to my kids). We expect that after we’re done waiting we will get something awesome and worth the wait, right? But sometimes what we end up getting is a little underwhelming and as adults we’re forced to just accept it with a shrug and move on. I feel like that right now and it will become clear why by the end of the post.
+Of course good things come to those who wait (at least that's the wisdom that I pass along to my kids). We expect that after we're done waiting we will get something awesome and worth the wait, right? But sometimes what we end up getting is a little underwhelming and as adults we're forced to just accept it with a shrug and move on. I feel like that right now and it will become clear why by the end of the post.
 
 But, for now I rejoice in the good part which is that I can finally connect to my handy Postgres/PostGIS database and see my data there using ArcMap. I can query, style and do most other basic things that I have tried. To see how to do this you may want to take a look at the [docs](http://resources.arcgis.com/en/help/main/10.2/index.html#/A_quick_tour_of_geodatabases_in_PostgreSQL/002p000000pt000000/). In this case I installed Postgres 9.2.4 and PostGIS 2.0.something using the EnterpriseDB installer and Stackbuilder ([http://postgis.net/windows\_downloads](http://postgis.net/windows_downloads)) . Esri will give you Postgres 9.2.2 which still has that [nasty security flaw](http://www.postgresql.org/support/security/faq/2013-04-04/) in it that everyone else upgraded from months ago. 9.2.4 seems to be working fine though using the 9.2.2 client drivers.
 
-Note that Esri keeps the Postgres client drivers away from you unless you are “authorized” through your customer number to have these free/Free drivers that are not published by Esri. You must download them separately from the ArcMap install. Here’s mine [PostgreSQLClientLibs922](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/PostgreSQLClientLibs922.zip) if you can’t get access to them cuz you are trying the demo of ArcMap 10.2 – which makes you not worthy of gaining access to these drivers.
+Note that Esri keeps the Postgres client drivers away from you unless you are "authorized" through your customer number to have these free/Free drivers that are not published by Esri. You must download them separately from the ArcMap install. Here's mine [PostgreSQLClientLibs922](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/PostgreSQLClientLibs922.zip) if you can't get access to them cuz you are trying the demo of ArcMap 10.2 – which makes you not worthy of gaining access to these drivers.
 
 [![postgres_drivers](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/postgres_drivers-300x163.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/postgres_drivers.png)
 
 BTW, if you are a better reader than I you would immediately note that the bit-ness of the drivers should match the \*client\* software that you are installing them into, NOT the database you are connecting to. So, by installing the 64-bit database server, then trying to get ArcMap to use the 64-bit drivers I was doomed to suffer through the useless Esri errors for an hour until I had a face-palm moment. You must give ArcMap the **\*32-bit\*** drivers.
 
-Bug alert: I can’t reproduce this right now, BUT when I first created the connection ArcMap complained because its default database port for Postgres came up as 54321. If you get an error while first connecting, recall that by default Postgres’s port is 5432. So you need to force that in the connection “Instance” field by entering the machine followed by a comma, then the port number like 127.0.0.1,5432 as shown below.
+Bug alert: I can't reproduce this right now, BUT when I first created the connection ArcMap complained because its default database port for Postgres came up as 54321. If you get an error while first connecting, recall that by default Postgres's port is 5432. So you need to force that in the connection "Instance" field by entering the machine followed by a comma, then the port number like 127.0.0.1,5432 as shown below.
 
 [![db_port](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/db_port-300x211.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/db_port.png)
 
 Once you connect this little issue goes away &lt;shrug&gt;.
 
-So I finally got the DB connection working and was very excited. Here’s a pic.
+So I finally got the DB connection working and was very excited. Here's a pic.
 
 [![database_data](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/database_data-300x201.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/database_data.png)
 
 You see some poly data from PostGIS (make sure that you set the SRID when loading) and a few points from my handy Spatialite database (no database connection needed to display these Spatialite data. Must be the GDAL/OGR baked right in). Bill Dollins explains a little more about using Spatialite data in ArcMap in this [post.](http://blog.geomusings.com/2013/08/07/spatialite-and-arcgis-10-dot-2/)From the docs it seems that Esri is supporting Spatialite 4.0, which may also support the current 4.1 as well.
 
-Here’s the similar view from QGIS.
+Here's the similar view from QGIS.
 
 [![qgis_post](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/qgis_post-300x191.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/qgis_post.png)
 
-Ok, so now I’m feeling pretty good about myself. How about trying to edit some of these non-geodatabase data in ArcMap? Without too much drama, the short answer seems to be that you can’t. When Esri says “you may USE the database data in ArcMap” they mean you may VIEW it – and only view it. You may not edit PostGIS data directly in ArcMap.
+Ok, so now I'm feeling pretty good about myself. How about trying to edit some of these non-geodatabase data in ArcMap? Without too much drama, the short answer seems to be that you can't. When Esri says "you may USE the database data in ArcMap" they mean you may VIEW it – and only view it. You may not edit PostGIS data directly in ArcMap.
 
 [![no_editing](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/no_editing-300x100.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/no_editing.png)
 
-It’s not the end of the world since I can do most things in QGIS running side-by-side. But it’s annoying.
+It's not the end of the world since I can do most things in QGIS running side-by-side. But it's annoying.
 
-I’m pretty sure that the Spatialite layer can’t be edited either. Despite setting all layers displayed to EPSG SRID = 4326 (WGS84) ArcMap still feels that they layers are not in the same coordinate ref. Then goes on to complain about not being able to edit the layer.
+I'm pretty sure that the Spatialite layer can't be edited either. Despite setting all layers displayed to EPSG SRID = 4326 (WGS84) ArcMap still feels that they layers are not in the same coordinate ref. Then goes on to complain about not being able to edit the layer.
 
 [![postgis_coordref](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/postgis_coordref-300x213.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/postgis_coordref.png)[![spatiliate_cref](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/spatiliate_cref-300x230.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/spatiliate_cref.png)[![stillnoedit](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/stillnoedit-300x78.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/08/stillnoedit.png)
 
-So, I’ve been waiting a long time to be able to use my non-ESRI geodatabase database geodata in ArcMap with all the functions I expect including editing. But I guess I have to wait a bit longer… sigh..
+So, I've been waiting a long time to be able to use my non-ESRI geodatabase database geodata in ArcMap with all the functions I expect including editing. But I guess I have to wait a bit longer… sigh..
 
 Here is a picture of the geodata as seen by the free and included Postgres IDE pgAdmin III
 

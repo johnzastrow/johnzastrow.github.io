@@ -10,13 +10,13 @@ categories:
     - Linux
 ---
 
-If you want to grep (search) through a log file while you’re ssh’d in  
+If you want to grep (search) through a log file while you're ssh'd in  
 to a server and then get that output to yourself on your workstation. I  
-usually do “grep … &gt; ~/file.txt” and then scp it over.
+usually do "grep … &gt; ~/file.txt" and then scp it over.
 
 But you can also do:
 
- ssh remotehost -l remoteuser “grep regexpr logfile” &gt; localfilename
+ ssh remotehost -l remoteuser "grep regexpr logfile" &gt; localfilename
 
 Or if you are already on the remote but want the file to end up locally:
 

@@ -14,15 +14,15 @@ categories:
     - Uncategorized
 ---
 
-I finally decided to do a little demo here of a common feature I need on a lot of projects. We often have systems that maintain point locations of things (create, update, delete, view them) and having attributes of spatial relationship automatically applied to them is often quite handy. For example, in a system that tracks illegal dumping observations, knowing the county that dots of the sightings falls into (because the counties regulate dumping) would be handy thing to know immediately for reporting and filtering. We used to ask users to know what county their point (e.g., position of trash sighting) was in. But it’s a lot nicer (and perhaps more accurate) to do some simple spatial magic for the user.
+I finally decided to do a little demo here of a common feature I need on a lot of projects. We often have systems that maintain point locations of things (create, update, delete, view them) and having attributes of spatial relationship automatically applied to them is often quite handy. For example, in a system that tracks illegal dumping observations, knowing the county that dots of the sightings falls into (because the counties regulate dumping) would be handy thing to know immediately for reporting and filtering. We used to ask users to know what county their point (e.g., position of trash sighting) was in. But it's a lot nicer (and perhaps more accurate) to do some simple spatial magic for the user.
 
-I spend time worrying about water quality so in this example I want to what small watershed (12-digit hydrologic unit code or HUC 12’s) my Points of Interest (POIs) fall into. I also want to know what date and time the record was created or updated on. Consider the following basic map. Blue polygons are HUC12s and the stars are my POIs – both stored in the same sqlite/spatialite file (a single .db or .sqlite file).
+I spend time worrying about water quality so in this example I want to what small watershed (12-digit hydrologic unit code or HUC 12's) my Points of Interest (POIs) fall into. I also want to know what date and time the record was created or updated on. Consider the following basic map. Blue polygons are HUC12s and the stars are my POIs – both stored in the same sqlite/spatialite file (a single .db or .sqlite file).
 
 ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea1.png)
 
-Note that I have an unique, incrementing primary key column (PKUID), then NAME and TYPE columns. We don’t see it, but there is also a Geometry column to store the coordinates of my points.
+Note that I have an unique, incrementing primary key column (PKUID), then NAME and TYPE columns. We don't see it, but there is also a Geometry column to store the coordinates of my points.
 
-Now I’ll add two columns to store the HUC12 and DATE and TIME of the edits to the points.
+Now I'll add two columns to store the HUC12 and DATE and TIME of the edits to the points.
 
 ```sql
 ALTER TABLE "mypois" ADD COLUMN HUC_12 TEXT;
@@ -46,11 +46,11 @@ Now my attribute table looks like this.
 
 ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea2.png)
 
-OK. So I’ve got a place to store these attributes. Now let’s apply the database triggers. We’ll create to add the data during an INSERT operation, and another for an UPDATE. Note that triggers must be uniquely named in a Sqlite database. So, I’ve prefixed my triggers with the table name.
+OK. So I've got a place to store these attributes. Now let's apply the database triggers. We'll create to add the data during an INSERT operation, and another for an UPDATE. Note that triggers must be uniquely named in a Sqlite database. So, I've prefixed my triggers with the table name.
 
 ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/101912_0507_Spatialitea3.png)
 
-And here’s the code.
+And here's the code.
 
 ```sql
 CREATE TRIGGER mypois_UPD_UDT_HUC12 AFTER UPDATE ON mypois
@@ -96,7 +96,7 @@ Now let me use Qgis to enter a new point. The screen below is just filling in th
 
 No need to fill in the attributes that will be set by the trigger.
 
-Here’s a quick screen to show how to start and end an editing session in Qgis. You must Save your edits to commit them and fire the trigger.
+Here's a quick screen to show how to start and end an editing session in Qgis. You must Save your edits to commit them and fire the trigger.
 
 
 
@@ -104,6 +104,6 @@ Here’s a quick screen to show how to start and end an editing session in Qgis.
 
 
 
-Don’t forget to SAVE your edits, or the triggers won’t fire. 
+Don't forget to SAVE your edits, or the triggers won't fire. 
 
  [![saved_edits_trigger](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/10/saved_edits_trigger-300x169.png)](https://johnzastrow.github.io/2012/10/19/spatialite-and-triggers-to-update-data/saved_edits_trigger/) Voila. The triggered attributes were updated. 

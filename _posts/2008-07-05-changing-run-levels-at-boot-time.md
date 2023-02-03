@@ -17,11 +17,11 @@ This one is how to change the default startup runlevel of a debian (via
 knoppix distribution). In this case I want it to stop booting into  
 graphical mode, or boot into runlevel 3.
 
-The “/etc/inittab” file tells init which runlevel to start the system at and describes the processes to be run at each runlevel.
+The "/etc/inittab" file tells init which runlevel to start the system at and describes the processes to be run at each runlevel.
 
 So, according to
 
-\# Default runlevel. The runlevels used by RHS are:  
+# Default runlevel. The runlevels used by RHS are:  
  # 0 – halt (Do NOT set initdefault to this)  
  # 1 – Single user mode  
  # 2 – Multiuser, without NFS (The same as 3, if you do not have networking)  

@@ -11,14 +11,14 @@ categories:
     - Web
 ---
 
-So I’m doing a little research tonight on some requirements for a client:
+So I'm doing a little research tonight on some requirements for a client:
 
-1\. Embed a map in the client’s home page (non-database driven ASP.Net which is essentially HTML) that depicts the county’s watersheds and some number of additional layers  
+1\. Embed a map in the client's home page (non-database driven ASP.Net which is essentially HTML) that depicts the county's watersheds and some number of additional layers  
 2\. Let users click each watershed polygon to trigger an event that leads to them learning more about the conditions within the polygon (think old school image maps). This could be as simple as take the user to a static HTML page about the watershed.
 
 The client currently supports ArcIMS (v9.1) and Google Maps. There is no immediate plan to move to ArcGIS server, though we will learn more next week.
 
-I think that embedding ESRI in their pages for such a simple need is overkill and the client has already won awards for their use of Google Maps. So I’m researching options to use the Google Maps API and Google Gadgets to meet their needs
+I think that embedding ESRI in their pages for such a simple need is overkill and the client has already won awards for their use of Google Maps. So I'm researching options to use the Google Maps API and Google Gadgets to meet their needs
 
 - See these links for some impressive examples. Note the use of non-Google data, and the events tied to the polygons. We might have enough here to work with.
 - <http://code.google.com/apis/maps/documentation/demogallery.html>
@@ -39,5 +39,5 @@ I think that embedding ESRI in their pages for such a simple need is overkill an
 - 
 - 
 - 
-- If we just want to create static tiles (prolly all that is needed) we can use this in combination with ArcMap (or combine it with our internal developer’s tile generator which is probably superior to it).
+- If we just want to create static tiles (prolly all that is needed) we can use this in combination with ArcMap (or combine it with our internal developer's tile generator which is probably superior to it).
 - <http://arcscripts.esri.com/details.asp?dbid=15524>

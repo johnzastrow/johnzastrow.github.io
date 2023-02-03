@@ -12,7 +12,7 @@ categories:
     - GIS
 ---
 
-The other day I needed to process some data for the whole country and I wanted to get the data out by the next morning. The processing was comprised of two steps in Python and ESRI’s ArcPy for ArcGIS 10 and each needed to run for several hours. So, instead of sitting waiting for the first to finish, I figured it would be cool if the script would email me when it was done? And, yes it was cool. Below is an example of how to do it. Note that the indents get screwed up by WordPress.
+The other day I needed to process some data for the whole country and I wanted to get the data out by the next morning. The processing was comprised of two steps in Python and ESRI's ArcPy for ArcGIS 10 and each needed to run for several hours. So, instead of sitting waiting for the first to finish, I figured it would be cool if the script would email me when it was done? And, yes it was cool. Below is an example of how to do it. Note that the indents get screwed up by WordPress.
 
 ```python
 # Import arcpy and other useful modules
@@ -224,7 +224,7 @@ done!
 </snip>
 ```
 
-And this for the output log “2012\_05\_25\_16-43-19\_Appended\_Classes.txt”.
+And this for the output log "2012\_05\_25\_16-43-19\_Appended\_Classes.txt".
 
 ```bash
 
@@ -247,9 +247,9 @@ imprv_1km_VA_Alexandria_city - 05/25/2012 16:48:30
 
 ```
 
-And then kindly sends me an email when it’s done!
+And then kindly sends me an email when it's done!
 
-BTW, hands down the easiest Python editor I’ve found (and do love) is [PyScripter](http://code.google.com/p/pyscripter/ "PyScripter Google Code link").
+BTW, hands down the easiest Python editor I've found (and do love) is [PyScripter](http://code.google.com/p/pyscripter/ "PyScripter Google Code link").
 
  [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/editor_options1.gif "editor_options")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/editor_options1.gif)<figcaption class="wp-caption-text" id="caption-attachment-507">Add arcPy to the IDE to allow integrations and things like code hints (shown below)</figcaption> 
 

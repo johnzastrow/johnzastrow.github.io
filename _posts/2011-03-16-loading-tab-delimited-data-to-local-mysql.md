@@ -10,30 +10,30 @@ categories:
     - Uncategorized
 ---
 
-I’m looking at some data from the Avian Knowledge Network and Microsoft Access just isn’t up to dealing with the volume of records. So I switched over to MySQL.
+I'm looking at some data from the Avian Knowledge Network and Microsoft Access just isn't up to dealing with the volume of records. So I switched over to MySQL.
 
-I’m using the Positive Observation Essentials format as queried from their database. Here’s an example of the data: ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2011/03/data_example.png)
+I'm using the Positive Observation Essentials format as queried from their database. Here's an example of the data: ![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2011/03/data_example.png)
 
 I did use a sed command (created and verified in Excel) on the original files to fix the spaces in the column names (if you are in the business of making data for people, never, ever, ever, ever create large tabular files with spaces or special characters in the column names. Avoid dashes as well, and preferably use all caps). Note that the commands below will REPLACE your files. So be sure to back up your originals in case anything goes wrong.
 
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Record\\ Number/Record\_Number/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Global\\ Unique\\ Identifier/Global\_Unique\_Identifier/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Collection\\ Code/Collection\_Code/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Scientific\\ Name/Scientific\_Name/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Latitude/Latitude/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Longitude/Longitude/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Country/Country/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/State\\ Province/State\_Province/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Observation\\ Count/Observation\_Count/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Obs\\ Count\\ At\\ Least/Obs\_Count\_At\_Least/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Obs\\ Count\\ At\\ Most/Obs\_Count\_At\_Most/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Observation\\ Date/Observation\_Date/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Duration\\ In\\ Hours/Duration\_In\_Hours/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Time\\ Observations\\ Started/Time\_Observations\_Started/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Time\\ Observations\\ Ended/Time\_Observations\_Ended/g’ {} \\;  
-find . -name ‘\*AKN\*’ -exec sed -i ‘s/Sampling\\ Event\\ Identifier/Sampling\_Event\_Identifier/g’ {} \\;
+find . -name '\*AKN\*' -exec sed -i 's/Record\\ Number/Record\_Number/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Global\\ Unique\\ Identifier/Global\_Unique\_Identifier/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Collection\\ Code/Collection\_Code/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Scientific\\ Name/Scientific\_Name/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Latitude/Latitude/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Longitude/Longitude/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Country/Country/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/State\\ Province/State\_Province/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Observation\\ Count/Observation\_Count/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Obs\\ Count\\ At\\ Least/Obs\_Count\_At\_Least/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Obs\\ Count\\ At\\ Most/Obs\_Count\_At\_Most/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Observation\\ Date/Observation\_Date/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Duration\\ In\\ Hours/Duration\_In\_Hours/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Time\\ Observations\\ Started/Time\_Observations\_Started/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Time\\ Observations\\ Ended/Time\_Observations\_Ended/g' {} \\;  
+find . -name '\*AKN\*' -exec sed -i 's/Sampling\\ Event\\ Identifier/Sampling\_Event\_Identifier/g' {} \\;
 
-Then I create a basic staging table (commands also from Excel). I don’t know why I used InnoDB, when MyIsam would have been faster. But, notice the absence of indexes for faster loading.
+Then I create a basic staging table (commands also from Excel). I don't know why I used InnoDB, when MyIsam would have been faster. But, notice the absence of indexes for faster loading.
 
 CREATE TABLE `nv\_akn` (  
  `Record\_Number` VARCHAR(30) DEFAULT NULL,  
@@ -54,11 +54,11 @@ CREATE TABLE `nv\_akn` (
  `Sampling\_Event\_Identifier` VARCHAR(50) DEFAULT NULL  
 ) ENGINE=INNODB DEFAULT CHARSET=latin1
 
-I’m just doing this locally, so XAMPP is my friend. So from the xampp /mysql/bin directory, I ran mysql.exe. I chose my database and ran the following on the text files produced by the above sed cleaners.
+I'm just doing this locally, so XAMPP is my friend. So from the xampp /mysql/bin directory, I ran mysql.exe. I chose my database and ran the following on the text files produced by the above sed cleaners.
 
-mysql&gt; LOAD DATA LOCAL INFILE ‘c:/xampp/mysql/bin/Nevada\_Pos\_obs\_Essent\_15-MAR-2011.txt’ INTO TABLE nv\_akn  
-FIELDS TERMINATED BY ‘\\t’  
-LINES TERMINATED BY ‘\\n’ IGNORE 1 LINES;
+mysql&gt; LOAD DATA LOCAL INFILE 'c:/xampp/mysql/bin/Nevada\_Pos\_obs\_Essent\_15-MAR-2011.txt' INTO TABLE nv\_akn  
+FIELDS TERMINATED BY '\\t'  
+LINES TERMINATED BY '\\n' IGNORE 1 LINES;
 
-I used LOCAL since the database is on my workstation. Note the full path to the windows file, with forward slashes. Fields are tab-delimited, lines seem to just use carriage returns (or at least it doesn’t look like I need another line ender) and I’m ignoring the column header row.
+I used LOCAL since the database is on my workstation. Note the full path to the windows file, with forward slashes. Fields are tab-delimited, lines seem to just use carriage returns (or at least it doesn't look like I need another line ender) and I'm ignoring the column header row.
 

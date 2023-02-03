@@ -11,7 +11,7 @@ hero: ../../../defaultHero.jpg
 This will list the non-numeric data values in a mysql column.
 
 ```sql
-select * from `tablename` where concat(”,`columnname` * 1) <> `columnname`
+select * from `tablename` where concat(",`columnname` * 1) <> `columnname`
 
 ```
 

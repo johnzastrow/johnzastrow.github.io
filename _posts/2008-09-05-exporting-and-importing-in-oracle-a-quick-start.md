@@ -10,7 +10,7 @@ categories:
     - Database
 ---
 
-I do this about twice per year and every time I have to look back at my notes to remember how. Maybe you are in the same boat. So, to save us both some trouble I’m going to blog my notes on the subject here.
+I do this about twice per year and every time I have to look back at my notes to remember how. Maybe you are in the same boat. So, to save us both some trouble I'm going to blog my notes on the subject here.
 
 **exp schemaname/password@instance FILE=d:\\mydump.dmp \[follow instructions\]**  
 Give the file a name after FILE, most of the rest of the defaults are fine in the interactive prompting that exp will provide

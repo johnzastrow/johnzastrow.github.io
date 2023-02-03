@@ -22,7 +22,7 @@ create and load the table
 ```sql  
 CREATE TABLE TEST\_GIS\_PERMITS (OID integer NOT NULL, permit\_no nvarchar2(12), location sde.st\_geometry);
 
-CREATE INDEX IX1\_TGP ON TEST\_GIS\_PERMITS (LOCATION) INDEXTYPE IS SDE.ST\_SPATIAL\_INDEX PARAMETERS(‘ST\_GRIDS = 4644.5262325165 ST\_SRID = 8 ST\_COMMIT\_ROWS = 10000 PCTFREE 0 INITRANS 4′) NOPARALLEL;
+CREATE INDEX IX1\_TGP ON TEST\_GIS\_PERMITS (LOCATION) INDEXTYPE IS SDE.ST\_SPATIAL\_INDEX PARAMETERS('ST\_GRIDS = 4644.5262325165 ST\_SRID = 8 ST\_COMMIT\_ROWS = 10000 PCTFREE 0 INITRANS 4′) NOPARALLEL;
 
 CREATE UNIQUE INDEX UX1\_TGP ON TEST\_GIS\_PERMITS (OID) NOLOGGING NOPARALLEL;
 
@@ -43,7 +43,7 @@ SELECT oid, permit\_no, location
 
 FROM TEST\_GIS\_PERMITS
 
-WHERE SUBSTR(permit\_no,1,3) = ‘A90′;
+WHERE SUBSTR(permit\_no,1,3) = 'A90′;
 
  ```
 
@@ -77,4 +77,4 @@ Layer Administration Utility
 
 ```
 
-Now we can read and write to this layer using ESRI’s ST\_ SQL or ArcMap. and read the latest records from the view (which limits the out of date records since we are versioning using home grown methods in Oracle tables) with ArcGIS Server OR ArcMAP OR our Oracle/.Net application which doesn’t care about the geometry.
+Now we can read and write to this layer using ESRI's ST\_ SQL or ArcMap. and read the latest records from the view (which limits the out of date records since we are versioning using home grown methods in Oracle tables) with ArcGIS Server OR ArcMAP OR our Oracle/.Net application which doesn't care about the geometry.

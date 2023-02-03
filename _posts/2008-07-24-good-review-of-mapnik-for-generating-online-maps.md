@@ -11,7 +11,7 @@ categories:
     - Web
 ---
 
-In my opinion you can’t beat UMN Mapserver or Mapnik for making gorgeous online maps. Mapserver has installed and run for me flawlessly every time I’ve tried it — without days of arguing with it. Mapnik has taken me nearly a week to get running sometimes. But, just like you wouldn’t want to shovel snow with a pitch fork, — always use the right tool for the right job. Mapnik is a focused tool for quickly turning geographic data (think shapefiles) into good looking static images (tiles) for serving to modern internet tiling maps.
+In my opinion you can't beat UMN Mapserver or Mapnik for making gorgeous online maps. Mapserver has installed and run for me flawlessly every time I've tried it — without days of arguing with it. Mapnik has taken me nearly a week to get running sometimes. But, just like you wouldn't want to shovel snow with a pitch fork, — always use the right tool for the right job. Mapnik is a focused tool for quickly turning geographic data (think shapefiles) into good looking static images (tiles) for serving to modern internet tiling maps.
 
 If you need something like this (and a few other things) then read this excellent article.
 

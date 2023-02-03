@@ -18,7 +18,7 @@ categories:
 
 *This post is part of a series [[1]](https://johnzastrow.github.io/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1"), [[2]](https://johnzastrow.github.io/2012/01/17/example-with-php-and-spatialite-part-2/ "Example with PHP and Spatialite, part 2"), [[3]](https://johnzastrow.github.io/2012/01/18/spatialite-and-spatial-indexes/ "Spatialite and Spatial Indexes"), [[4]](https://johnzastrow.github.io/2012/01/20/spatialite-speed-test/ "Spatialite Speed Test")*
 
-So I’m ready to take the next steps with my little project. This is a continuation of my [previous post ](https://johnzastrow.github.io/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1")about my little journey. At this point I am connecting to a physical database file that I loaded with some sample data (12-digit watersheds). Now I’m going to practice with queries and you can see the results below.
+So I'm ready to take the next steps with my little project. This is a continuation of my [previous post ](https://johnzastrow.github.io/2012/01/16/example-with-php-and-spatialite-part-1/ "Example with PHP and Spatialite, part 1")about my little journey. At this point I am connecting to a physical database file that I loaded with some sample data (12-digit watersheds). Now I'm going to practice with queries and you can see the results below.
 
 Here are the base data.
 
@@ -40,7 +40,7 @@ In fact, it looks like this query is testing the relationship between the point 
  Lots of little points to check
  
 
-At this point I’m just going to perform basic queries without using spatial indexes. You will almost always want to use spatial indexes, but I’m going to practice this in phases so these examples won’t use indexes.
+At this point I'm just going to perform basic queries without using spatial indexes. You will almost always want to use spatial indexes, but I'm going to practice this in phases so these examples won't use indexes.
 
 Note that unlike tradition database indexes, spatial databases like Spatialite and PostGIS (and their GiST/R-tree indexes) do not use indexes for spatial queries unless you explicitly tell them to (though PostGIS seems to use them by default some of the time). You must smartly craft the use of indexes the same way that you do the SQL itself… or at least it seems this way to me.
 
@@ -53,7 +53,7 @@ And here are the spatial indexes that spatialite sees.
  Spatial indexes used in spatialite
  
 
-So what’s in these indexes? Boxes…as we see below. Hopefully you can imagine how we get boxes from Xmin, Ymin, Xmax, Ymax extents. There is one box for each polygon HUC12 feature (note the PK_UID is the primary key of the main geometry layer). These simple boxes are much simpler to test for spatial relationships that the multitude of vertices we saw above. But also much less accurate; especially for funny shaped things like watersheds. But, we can use these simple boxes to pre-filter the number of features that have to be tested by the more accurate (but lengthy) spatial test – hence speeding up the overall operation in many cases.
+So what's in these indexes? Boxes…as we see below. Hopefully you can imagine how we get boxes from Xmin, Ymin, Xmax, Ymax extents. There is one box for each polygon HUC12 feature (note the PK_UID is the primary key of the main geometry layer). These simple boxes are much simpler to test for spatial relationships that the multitude of vertices we saw above. But also much less accurate; especially for funny shaped things like watersheds. But, we can use these simple boxes to pre-filter the number of features that have to be tested by the more accurate (but lengthy) spatial test – hence speeding up the overall operation in many cases.
 
  [![What is in a name... or an Rtree index.](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/index-300x152.png "What is in a name... or an Rtree index.")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/index.png)
  
@@ -67,14 +67,14 @@ Below is an example of the spatial query used in the code below. Translated, it 
  The free gui provided by spatialite and a spatial query
  
 
-Here are the files in the project so far. Of course you’re not normally going to be putting a loadable extension library (libspatialite.so) in a web server file directory. But, this is just practice.
+Here are the files in the project so far. Of course you're not normally going to be putting a loadable extension library (libspatialite.so) in a web server file directory. But, this is just practice.
 
  [![Files so far for this project](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/files-300x122.png "Files so far for this project")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/files.png)
  
  Files so far for this project
  
 
-Here’s the code of db.php. This isn’t using spatial indexes, so it’s scanning 183 features and a whole bunch of vertices to figure out which polygon actually contains that point… and doing a couple simpler things like opening a connection, asking some simple questions, and closing the connection all in about 0.4 seconds.
+Here's the code of db.php. This isn't using spatial indexes, so it's scanning 183 features and a whole bunch of vertices to figure out which polygon actually contains that point… and doing a couple simpler things like opening a connection, asking some simple questions, and closing the connection all in about 0.4 seconds.
 
 ```php
 
@@ -88,30 +88,30 @@ Here’s the code of db.php. This isn’t using spatial indexes, so it’s scann
 <?php  
 // Start TIMER  
 // ———–  
-$stimer = explode( ‘ ‘, microtime() );  
+$stimer = explode( ' ', microtime() );  
 $stimer = $stimer[1] + $stimer[0];  
 // ———–  
 try {  
 /*** connect to SQLite database ***/  
-$db = new SQLite3(‘db.sqlite’);
+$db = new SQLite3('db.sqlite');
 
 /*** a little message to say we did it ***/  
-echo ‘database connected’;  
+echo 'database connected';  
 }  
 catch(PDOException $e)  
 {  
 echo $e->getMessage();  
 }  
 # loading SpatiaLite as an extension  
-$db->loadExtension(‘libspatialite.so’);
+$db->loadExtension('libspatialite.so');
 
 # reporting some version info  
-$rs = $db->query(‘SELECT sqlite_version()’);  
+$rs = $db->query('SELECT sqlite_version()');  
 while ($row = $rs->fetchArray())  
 {  
 print "<h3>SQLite version: $row[0]</h3>";  
 }  
-$rs = $db->query(‘SELECT spatialite_version()’);  
+$rs = $db->query('SELECT spatialite_version()');  
 while ($row = $rs->fetchArray())  
 {  
 print "<h3>SpatiaLite version: $row[0]</h3>";  
@@ -155,11 +155,11 @@ $db->close();
 
 // End TIMER  
 // ———  
-$etimer = explode( ‘ ‘, microtime() );  
+$etimer = explode( ' ', microtime() );  
 $etimer = $etimer[1] + $etimer[0];  
-echo ‘<p style="margin:auto; text-align:center">’;  
+echo '<p style="margin:auto; text-align:center">';  
 printf( "Script timer: <b>%f</b> seconds.", ($etimer-$stimer) );  
-echo ‘</p>’;  
+echo '</p>';  
 // ———
 
 ?>

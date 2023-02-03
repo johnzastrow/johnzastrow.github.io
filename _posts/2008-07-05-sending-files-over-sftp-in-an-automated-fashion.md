@@ -17,15 +17,15 @@ needed to do this as part of a back up script.
 Use the ssh authorized\_keys functionality instead of trying to pass in  
 a username and password. Create a key on the client side using  
 ssh-keygen (it will have to be nonpassworded if you want this to be  
-fully automated) and copy the public key to the target user’s  
+fully automated) and copy the public key to the target user's  
 authorized\_keys file on the ssh/sftp server. For extra security, an  
-option (“from”) is available to limit the use of that key to  
+option ("from") is available to limit the use of that key to  
 connections coming from your client server. This will give ssh or sftp  
 access to anyone who comes from the client server with the right  
 private key (no worse than having a name and password hardcoded in a  
 script). See the SSH docs for more detail.
 
-Set that up and you’ll be past the authentication issues. Then check  
+Set that up and you'll be past the authentication issues. Then check  
 out the -b option of sftp to give it a batch file with sftp commands to  
 automatically execute:
 
@@ -69,7 +69,7 @@ Log in to your account on the front-end node (the client machine). Here
 we describe the machine you want to login TO as the client (compute  
 node). In the example below we are using root, but you should likely  
 use a standard user name. Go to the .ssh directory of your home  
-directory. If it isn’t there, you may create one with the command
+directory. If it isn't there, you may create one with the command
 
 mkdir ~/.ssh
 
@@ -77,7 +77,7 @@ In the examples below, you should conceptually replace /root/ with /home/youruse
 
 Create an rsa key pair by executing ssh-keygen with the
 
-“rsa” option:
+"rsa" option:
 
 ssh-keygen -t rsa
 
@@ -93,7 +93,7 @@ Type the Enter key to accept the default value:
 
 The ssh-keygen program will respond with:
 
-Created directory ‘/root/.ssh’.
+Created directory '/root/.ssh'.
 
 Enter passphrase (empty for no passphrase):
 
@@ -119,7 +119,7 @@ The key fingerprint is:
 
 \[fingerprint\] root@\[hostname\]
 
-Create the ssh directory for each compute node’s root
+Create the ssh directory for each compute node's root
 
 account (on the first use of ssh the system automatically
 
@@ -157,7 +157,7 @@ logout
 
 Use sftp (secure ftp) to copy the generated rsa public key
 
-to each compute node’s root account secure shell directory
+to each compute node's root account secure shell directory
 
 as the file authorized\_keys. Type:
 

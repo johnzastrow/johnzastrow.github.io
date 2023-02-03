@@ -22,16 +22,16 @@ directory/ me.jpeg script.sh\*
 
 ls –color=tty
 
-Will color the ‘ls’ output. Directories are blue, regular files stay black (or white) and executable files are green.
+Will color the 'ls' output. Directories are blue, regular files stay black (or white) and executable files are green.
 
 Make an Alias of your prefered method.
 
 Example:
 
-alias ls=’ls –color=tty –classify’
+alias ls='ls –color=tty –classify'
 
 List only directories
 
 ls -d \*/
 
-Will list only dentries ended by a “/”, and with the “-d” option, will not descend into the next level of directory.
+Will list only dentries ended by a "/", and with the "-d" option, will not descend into the next level of directory.

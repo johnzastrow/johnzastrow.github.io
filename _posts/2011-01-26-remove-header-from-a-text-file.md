@@ -13,7 +13,7 @@ categories:
     - Uncategorized
 ---
 
-I’m processing some Darwin-schema biodiversity text files in preparation for GISing them and I need to trim the headers from the tops of the files before importing them to the database. Of course, \*NIX command line utilities have been my friend here. The following will trim the first line off the file. Just up the number to trim more lines off. I’m using Cygwin on Windows to run these.
+I'm processing some Darwin-schema biodiversity text files in preparation for GISing them and I need to trim the headers from the tops of the files before importing them to the database. Of course, \*NIX command line utilities have been my friend here. The following will trim the first line off the file. Just up the number to trim more lines off. I'm using Cygwin on Windows to run these.
 
 ```
 sed '1d' file.txt # trims the line then replaces file.txt, so be careful.
