@@ -28,32 +28,48 @@ As with my HUC12 question, I want to try to make Spatialite slow by asking a sim
 
 So, I needed to find a big point data set.. and hopefully oen that I might actually use later. While I think the [Geonames](<http://www.geonames.org/ >) dataset has like 7 million points, I decided to keep things closer to home and use the US national dataset from [GNIS at USGS](http://gnis.usgs.gov/domestic/download_data.htm). In the US national GNIS file there are about 2.2 million points of varying types.
 
- [![Lots of dots](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/22millionfeatures.png "Lots of dots")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/22millionfeatures.png)<figcaption class="wp-caption-text" id="caption-attachment-370">Lots of dots</figcaption> 
+ [![Lots of dots](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/22millionfeatures.png "Lots of dots")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/22millionfeatures.png)
+ <p><i> 
+-370">Lots of dots
+ </i></p> 
 
- [![All the dots](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/zoomout-300x127.png "All the dots")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/zoomout.png)<figcaption class="wp-caption-text" id="caption-attachment-377">All the dots</figcaption> 
+
+ [![All the dots](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/zoomout-300x127.png "All the dots")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/zoomout.png)
+ <p><i> 
+-377">All the dots
+ </i></p> 
+
 
 **and here is the dot density for New York City area.**
 
- [![Recognize this shape?](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/ny-300x166.png "Recognize this shape?")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/ny.png)<figcaption class="wp-caption-text" id="caption-attachment-376">Recognize this shape?</figcaption> 
+ [![Recognize this shape?](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/ny-300x166.png "Recognize this shape?")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/ny.png)
+ <p><i> 
+-376">Recognize this shape?
+ </i></p> 
+
 
 Which leads me to a <span style="text-decoration: underline;">&lt;digression&gt;</span>
 
 These GNIS data are available as a pipe-delimited text file. But The first few characters in the first row (right before the first column name, or maybe it's some kind of magic binary header) are always screwed up.. which confounds some software that starts with Arc… .
 
- [![The offending characters in the GNIS text files](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/offending_char.png "The offending characters in the GNIS text files")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/offending_char.png)<figcaption class="wp-caption-text" id="caption-attachment-367">The offending characters in the GNIS text files</figcaption> 
+ [![The offending characters in the GNIS text files](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/offending_char.png "The offending characters in the GNIS text files")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/offending_char.png)
+ <p><i> 
+-367">The offending characters in the GNIS text files
+ </i></p> 
+
 
 So, I always end up having to bring the data through Microsoft Access to cleanse them.. then back out again usually as a comma-delimited, double-quoted text file (CSV). In this case, I ran that "fixed" text file through ArcCatalog to make a Shapefile that I could import into Spatialite.. because I seem to like to torture myself. Of course, halfway through the import Spatialite informed me that it couldn't proceed because one of the geometries was corrupted. Throwing my hands up, I switched to using Spatialite's heavenly text import routine to import the pipe-delimited file into a table.
 
 Then I simply ran these commands from a tutorial at Spatialite's site:
 
 ```
-<pre class="lang:default decode:true">SELECT AddGeometryColumn('XYGNIS', 'Geometry',  4326, 'POINT', 'XY', 0);
+--- SELECT AddGeometryColumn('XYGNIS', 'Geometry',  4326, 'POINT', 'XY', 0);
 ```
 
 Where the value explanations are :
 
 ```
-<pre class="lang:pgsql decode:true">AddGeometryColumn( table String , column String , srid Integer , geom_type String , dimension String [ , not_null Integer ] ) : Integer
+--- AddGeometryColumn( table String , column String , srid Integer , geom_type String , dimension String [ , not_null Integer ] ) : Integer
 ```
 
 Voila. This created the needed structures in the database to hold the indexes, setup needed triggers, etc. Then I created the point geometry with a recipe like the following:
@@ -66,7 +82,11 @@ Lastly, I had to tell Spatialite to build the spatial indexes. I just did this t
 
 Why am I telling you all this? Well, for it was interesting to see the differences in file sizes representing each data type. Each has varying amount of indexes (the Access .accdb has none, but Spatialite and the Shapefiles have spatial indexes). But it's still interesting to see the differences in the amount of room needed to store the same records in various file formats. For education I also made an ArcGIS 9.3 Personal Geodatabase and File Geodatabase as shown below. I'm not going to test performance differences here. But maybe when I finally upgrade to ArcGIS 10.X and I have a handy SQL layer option I'll try something like that.
 
- [![Geo Files Sizes](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/file_sizes.png "Geo Files Sizes")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/file_sizes.png)<figcaption class="wp-caption-text" id="caption-attachment-366">Geo Files Sizes</figcaption> 
+ [![Geo Files Sizes](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/file_sizes.png "Geo Files Sizes")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/file_sizes.png)
+ <p><i> 
+-366">Geo Files Sizes
+ </i></p> 
+
 
 <span style="text-decoration: underline;"> &lt;/digression&gt;</span>
 
@@ -81,7 +101,11 @@ WHERE distance < 0.1
 ORDER BY distance LIMIT 1
 ```
 
- [![No indexes, nearest point feature within 0.1 degrees](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/no-index_pt.png "No indexes, nearest point feature within 0.1 degrees")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/no-index_pt.png)<figcaption class="wp-caption-text" id="caption-attachment-378">No indexes, nearest point feature within 0.1 degrees</figcaption> 
+ [![No indexes, nearest point feature within 0.1 degrees](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/no-index_pt.png "No indexes, nearest point feature within 0.1 degrees")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/no-index_pt.png)
+ <p><i> 
+-378">No indexes, nearest point feature within 0.1 degrees
+ </i></p> 
+
 
 **44.5 seconds.** Not as bad one would think. I'm using a radius of 0.1 degrees to limit how many results I get back. I played around with this value and you should too. To find the very nearest feature, I LIMIT the number of my results to 1, and because I've sorted, or ordered my results ascending by distance, I can get a single answer that is the very nearest feature.
 
@@ -101,8 +125,15 @@ BuildCircleMbr(-70.250, 43.802, 0.1))
 ORDER BY distance LIMIT 10
 ```
 
- [![Still fast enough](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/even_faster.png "Still fast enough")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/even_faster.png)<figcaption class="wp-caption-text" id="caption-attachment-368">Still fast enough</figcaption> 
+ [![Still fast enough](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/even_faster.png "Still fast enough")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/even_faster.png)
+ <p><i> 
+-368">Still fast enough
+ </i></p> 
+
 
 Pretty cool. BTW, if I wanted more than one result, I can just change the LIMIT to a higher number, like 10.
 
- [![When 1 isn't enough](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/nearest10.png "When 1 isn't enough")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/nearest10.png)<figcaption class="wp-caption-text" id="caption-attachment-369">When 1 isn't enough</figcaption> 
+ [![When 1 isn't enough](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/nearest10.png "When 1 isn't enough")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/nearest10.png)
+ <p><i> 
+-369">When 1 isn't enough
+ </i></p> 

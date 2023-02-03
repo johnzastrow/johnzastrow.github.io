@@ -23,7 +23,8 @@ if($myrow=mysql\_fetch\_array($showDB))
 do  
 {  
 $DB = $myrow\["Database"\];  
-echo "$DB \\n";  
+echo "$DB \
+";  
 $showTable = mysql\_query("show tables from $DB");  
 if($myrow=mysql\_fetch\_array($showTable))  
 {  
@@ -31,7 +32,8 @@ do
 {  
 $col = "Tables\_in\_".$DB;  
 $Table = $myrow\["$col"\];  
-echo "$Table \\n";  
+echo "$Table \
+";  
 $describeTable = mysql\_query("describe $DB.$Table");  
 if($myrow=mysql\_fetch\_array($describeTable))  
 {  
@@ -43,7 +45,8 @@ $null = $myrow\["Null"\];
 $key = $myrow\["Key"\];  
 $default = $myrow\["Default"\];  
 $extra = $myrow\["Extra"\];  
-echo "$field \\t $type \\t $null \\t $key \\t $default \\t $extra \\n";  
+echo "$field \\t $type \\t $null \\t $key \\t $default \\t $extra \
+";  
 }  
 while ($myrow=mysql\_fetch\_array($describeTable));  
 }  

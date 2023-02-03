@@ -46,7 +46,11 @@ First I created this table to hold my data (you might need to add more columns).
 
 then run the following bash code from within a directory that looks like below.
 
- [![WQX XML domain file list](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list-188x300.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list.png)<figcaption class="wp-caption-text" id="caption-attachment-657">WQX XML domain file list</figcaption> 
+ [![WQX XML domain file list](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list-188x300.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2013/02/wqx_file_list.png)
+ <p><i> 
+-657">WQX XML domain file list
+ </i></p> 
+
 
 in the last sed line below, note that you must reset the delimeter to | (or something besides / as you need to escape those chars in the values you need to replace. This is the easiest way I think.
 
@@ -100,7 +104,7 @@ mysqldump -uuser -p'password' wqx > wqx_lookup_dump.sql
 and you will get a MySQL table with contents as follows
 
 ```
-<pre class="lang:default decode:true">+---------------------------------+---------+
+--- +---------------------------------+---------+
 | WQXElementName                  | Records |
 +---------------------------------+---------+
 | ActivityGroupType               |       8 |

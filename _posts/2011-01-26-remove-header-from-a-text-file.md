@@ -20,7 +20,9 @@ sed '1d' file.txt # trims the line then replaces file.txt, so be careful.
 
 awk 'FNR>1{print}' file.txt > newfile.txt # I ended up using this to be safe. It was easier to test.
 
-tail -n+2 /path/to/file > /path/to/output # can be tested with echo -e "foo\nbar\nbaz" | tail -n+2
+tail -n+2 /path/to/file > /path/to/output # can be tested with echo -e "foo
+bar
+baz" | tail -n+2
 ```
 
 Also in my case, I wanted column headers left in file, and thankfully the headers were pretty much the same across all the files. So I grep searched in the directory with all the files for the name of the first uniquely worded column and asked grep to also return the line numbers of where it found that word. Then I use that number (minus one) to put into my header deleting command.

@@ -14,7 +14,8 @@ Here are some simple bash scripts to list files into a text files that can be us
 \[cce\_bash\]
 
 filer=$(find . -mtime -1)  
-sizer=$(ls -lah $filer | awk '{ print $5″\\t" $6″\\t" $7″\\t" $8″\\t" $9″\\t\\n" }')  
+sizer=$(ls -lah $filer | awk '{ print $5″\\t" $6″\\t" $7″\\t" $8″\\t" $9″\\t\
+" }')  
 echo $sizer
 
 \[/cce\_bash\]
@@ -22,7 +23,8 @@ echo $sizer
 or this one
 
 \[cce\_bash\]  
-ls -ghG –full-time | awk '{ print $1″\\t" $3 "\\t" $4 "\\t" $7 $8 $9 $10 $11 $12 "\\n" }' &gt; files.txt  
+ls -ghG –full-time | awk '{ print $1″\\t" $3 "\\t" $4 "\\t" $7 $8 $9 $10 $11 $12 "\
+" }' &gt; files.txt  
 cat files.txt  
 \[/cce\_bash\]  
 The script above makes output as follows. The extra lines just made it easier for me to read. This one will output files with spaces in the name by removing the spaces (lumping the words together). If you don't like that, just put the " " between $7 $8 $9 etc. above.
@@ -72,7 +74,8 @@ The script above makes output as follows. The extra lines just made it easier fo
 \#!/bin/sh  
 date &gt; statfile.txt  
 echo -e "File\_type \\t Modified\_date \\t Change\_date \\t File\_bytes \\t File\_name" &gt;&gt; statfile.txt  
-stat –printf "%F \\t %y \\t %z \\t %s \\t %N\\n" \* &gt;&gt; statfile.txt  
+stat –printf "%F \\t %y \\t %z \\t %s \\t %N\
+" \* &gt;&gt; statfile.txt  
 cat statfile.txt
 
 \[/cce\_bash\]  

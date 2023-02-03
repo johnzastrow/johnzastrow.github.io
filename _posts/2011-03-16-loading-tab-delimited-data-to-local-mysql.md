@@ -58,7 +58,8 @@ I'm just doing this locally, so XAMPP is my friend. So from the xampp /mysql/bin
 
 mysql&gt; LOAD DATA LOCAL INFILE 'c:/xampp/mysql/bin/Nevada\_Pos\_obs\_Essent\_15-MAR-2011.txt' INTO TABLE nv\_akn  
 FIELDS TERMINATED BY '\\t'  
-LINES TERMINATED BY '\\n' IGNORE 1 LINES;
+LINES TERMINATED BY '\
+' IGNORE 1 LINES;
 
 I used LOCAL since the database is on my workstation. Note the full path to the windows file, with forward slashes. Fields are tab-delimited, lines seem to just use carriage returns (or at least it doesn't look like I need another line ender) and I'm ignoring the column header row.
 

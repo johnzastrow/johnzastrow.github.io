@@ -71,14 +71,17 @@ strWs = arcpy.env.workspace
  ######### END COPY BLOCK #################
 
 # Measure process time then wall time from the initialization above
- print time.clock() - t0clock,  " - seconds process time from timer (script) initialization to rename and copy \n "
- print time.time() - t0time,  " - seconds wall time from timer (script) initialization to rename and copy \n "
+ print time.clock() - t0clock,  " - seconds process time from timer (script) initialization to rename and copy 
+ "
+ print time.time() - t0time,  " - seconds wall time from timer (script) initialization to rename and copy 
+ "
 
 # for each feature class in the list of f classes returned above
  for fc in fcs:
 
  ## Put looped processing steps here:
- print fc +  "\n Feature class processed "
+ print fc +  "
+ Feature class processed "
 
  ## Initialize the loop timer
  start_fc_time = clock()
@@ -99,7 +102,8 @@ strWs = arcpy.env.workspace
  ######### END RENAME BLOCK #################
 
 #Create the output file
- outstr = fc +  " -  " + time.strftime( "%m/%d/%Y %H:%M:%S ", nowTime) +  "\n "
+ outstr = fc +  " -  " + time.strftime( "%m/%d/%Y %H:%M:%S ", nowTime) +  "
+ "
 
 #Write values out to the log file
  f.write(outstr)
@@ -119,7 +123,9 @@ strWs = arcpy.env.workspace
 
 # Close the text file
  minutesRun = (time.time() - t0time)/60
- timerall =  "--------------- \n \n The script took the following minutes:  " + str(minutesRun)
+ timerall =  "--------------- 
+ 
+ The script took the following minutes:  " + str(minutesRun)
  f.write(timerall)
  f.close()
  # Tell user the name of the file and how long everything took
@@ -142,8 +148,14 @@ except:
 
 # Concatenate information together concerning the error into a message string
  #
- pymsg =  "PYTHON ERRORS:\nTraceback info:\n " + tbinfo +  "\nError Info:\n " + str(sys.exc_info()[1])
- msgs =  "arcpy ERRORS:\n " + arcpy.GetMessages(2) +  "\n "
+ pymsg =  "PYTHON ERRORS:
+Traceback info:
+ " + tbinfo +  "
+Error Info:
+ " + str(sys.exc_info()[1])
+ msgs =  "arcpy ERRORS:
+ " + arcpy.GetMessages(2) +  "
+ "
 
 # Return python error messages for use in script tool or Python Window
  #
@@ -168,9 +180,15 @@ smtpserver.ehlo()
 smtpserver.starttls()
 smtpserver.ehlo
 smtpserver.login(gmail_user, gmail_pwd)
-header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject: I am done ' + '\n'
+header = 'To:' + to + '
+' + 'From: ' + gmail_user + '
+' + 'Subject: I am done ' + '
+'
 print header
-msg = header + '\n The append has finished \n\n' + 'see ' + outFile
+msg = header + '
+ The append has finished 
+
+' + 'see ' + outFile
 smtpserver.sendmail(gmail_user, to, msg)
 print 'done!'
 smtpserver.close()
@@ -251,8 +269,19 @@ And then kindly sends me an email when it's done!
 
 BTW, hands down the easiest Python editor I've found (and do love) is [PyScripter](http://code.google.com/p/pyscripter/ "PyScripter Google Code link").
 
- [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/editor_options1.gif "editor_options")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/editor_options1.gif)<figcaption class="wp-caption-text" id="caption-attachment-507">Add arcPy to the IDE to allow integrations and things like code hints (shown below)</figcaption> 
+ [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/editor_options1.gif "editor_options")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/editor_options1.gif)
+ <p><i> 
+-507">Add arcPy to the IDE to allow integrations and things like code hints (shown below)
+ </i></p> 
 
- [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/arcpy.gif "arcpy")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/arcpy.gif)<figcaption class="wp-caption-text" id="caption-attachment-504">Just enter a comma then ArcPy to get PyScripter to see and use what ESRI hath wrought</figcaption> 
 
- [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/code_hints.gif "code_hints")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/code_hints.gif)<figcaption class="wp-caption-text" id="caption-attachment-505">Code hints. If you wrap your code with the try/except blocks as shown above, the debugging output is quite good</figcaption> 
+ [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/arcpy.gif "arcpy")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/arcpy.gif)
+ <p><i> 
+-504">Just enter a comma then ArcPy to get PyScripter to see and use what ESRI hath wrought
+ </i></p> 
+
+
+ [![](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/code_hints.gif "code_hints")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/05/code_hints.gif)
+ <p><i> 
+-505">Code hints. If you wrap your code with the try/except blocks as shown above, the debugging output is quite good
+ </i></p> 
