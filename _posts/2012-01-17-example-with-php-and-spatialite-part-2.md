@@ -31,7 +31,7 @@ And here are some close ups of the data. These are fairly dense polygons.
 
  [![Example of polygon vertices](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huczoom-300x216.png "Example of polygon vertices")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/huczoom.png)
  
- Example of polygon vertices
+ <i>Example of polygon vertices</i>
 
 In fact, it looks like this query is testing the relationship between the point and polygons formed by 144,700 coordinate pairs (vertices) by scanning without the help of an index.
 
@@ -60,7 +60,7 @@ So what’s in these indexes? Boxes…as we see below. Hopefully you can imagine
  What is in a name... or an Rtree index.
  
 
-Below is an example of the spatial query used in the code below. Translated, it says, “show me the name of the HUC12 that contains this point.”
+Below is an example of the spatial query used in the code below. Translated, it says, "show me the name of the HUC12 that contains this point."
 
  [![The free gui provided by spatialite and a spatial query](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialgui-300x276.png "The free gui provided by spatialite and a spatial query")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/spatialgui.png)
  
@@ -109,12 +109,12 @@ $db->loadExtension(‘libspatialite.so’);
 $rs = $db->query(‘SELECT sqlite_version()’);  
 while ($row = $rs->fetchArray())  
 {  
-print “<h3>SQLite version: $row[0]</h3>”;  
+print "<h3>SQLite version: $row[0]</h3>";  
 }  
 $rs = $db->query(‘SELECT spatialite_version()’);  
 while ($row = $rs->fetchArray())  
 {  
-print “<h3>SpatiaLite version: $row[0]</h3>”;  
+print "<h3>SpatiaLite version: $row[0]</h3>";  
 }
 
 /* SELECT HU_12_NAME FROM huc12 WHERE ST_Contains(Geometry, MakePoint(-70.250,43.802));  
@@ -122,29 +122,29 @@ print “<h3>SpatiaLite version: $row[0]</h3>”;
 /*  
 * Create a query  
 */  
-$sql = “SELECT DISTINCT Count(*), ST_GeometryType(Geometry), “;  
-$sql .= “ST_Srid(Geometry) FROM huc12”;  
+$sql = "SELECT DISTINCT Count(*), ST_GeometryType(Geometry), ";  
+$sql .= "ST_Srid(Geometry) FROM huc12";  
 $rs = $db->query($sql);  
 while ($row = $rs->fetchArray())  
 {  
 # read the result set  
-$msg = “There are “;  
+$msg = "There are ";  
 $msg .= $row[0];  
-$msg .= ” entities of type “;  
+$msg .= " entities of type ";  
 $msg .= $row[1];  
-$msg .= ” SRID=”;  
+$msg .= " SRID=";  
 $msg .= $row[2];  
-print “<h3>$msg</h3>”;  
+print "<h3>$msg</h3>";  
 }
 
-$sql = “SELECT HU_12_NAME FROM huc12 WHERE ST_Contains(Geometry, MakePoint(-70.250,43.802))”;  
+$sql = "SELECT HU_12_NAME FROM huc12 WHERE ST_Contains(Geometry, MakePoint(-70.250,43.802))";  
 $rs = $db->query($sql);  
 while ($row = $rs->fetchArray())  
 {  
 # read the result set  
-$msg = “Your point is in the HUC12: “;  
+$msg = "Your point is in the HUC12: ";  
 $msg .= $row[0];  
-print “<h3>$msg</h3>”;  
+print "<h3>$msg</h3>";  
 }  
 /*  
 * do not forget to release all handles !  
@@ -157,8 +157,8 @@ $db->close();
 // ———  
 $etimer = explode( ‘ ‘, microtime() );  
 $etimer = $etimer[1] + $etimer[0];  
-echo ‘<p style=”margin:auto; text-align:center”>’;  
-printf( “Script timer: <b>%f</b> seconds.”, ($etimer-$stimer) );  
+echo ‘<p style="margin:auto; text-align:center">’;  
+printf( "Script timer: <b>%f</b> seconds.", ($etimer-$stimer) );  
 echo ‘</p>’;  
 // ———
 
@@ -173,4 +173,4 @@ Not too bad, but I want this faster because I want to feed it much larger data i
 
  [![Results of the first try at this](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/testing-300x157.png "Results of the first try at this")](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2012/01/testing.png)
  
- ##### Results of the first try at this
+ <i> Results of the first try at this </i>
