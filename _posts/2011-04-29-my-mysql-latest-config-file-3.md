@@ -57,6 +57,8 @@ slow-query-log = 1
 slow_query_log_file = /var/log/mysql/slow-queries.log  
 log_output = FILE # 5.1 only  
 long_query_time = 3
+```
+```bash
 
 # Enable this to get a log of all the statements coming from a client,  
 # this should be used for debugging only as it generates a lot of stuff  
@@ -351,3 +353,4 @@ interactive-timeout
 # to /etc/my.cnf before restarting MySQL and then add –port=8819 to the mysqldump command.   
 # This way you avoid the MySQL database getting hit with queries while the repair is in progress.
 
+```
