@@ -13,7 +13,7 @@ categories:
 
 From Matthew Crowley on the MySQl forums (<http://forums.mysql.com/read.php?101,8004>), this php script will output a DESC of all databases and tables in MySQL. It needs some formatting for the output, but it works and might be handy later. I really just need to get around to figuring out how to do this in a procedure or something.
 
-[cce_php]
+```php
 
 $connection = mysql_connect("localhost","root","PASSWORD");
 
@@ -57,5 +57,4 @@ while ($myrow=mysql_fetch_array($showTable));
 while ($myrow=mysql_fetch_array($showDB));  
 }
 
-[/cce_php]
-
+```

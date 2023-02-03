@@ -17,15 +17,15 @@ From the MySQL 5.0 Online manual
 
 An example of how to make the first letter in a string uppercase – analogous to UCFIRST
 
-[cce_sql]
+```sql
 
 SELECT CONCAT(UPPER(SUBSTRING(firstName, 1, 1)), LOWER(SUBSTRING(firstName FROM 2))) AS properFirstName
 
-[/cce_sql]
+```
 
 a user-defined function in MySQL 5.0+ similar to PHP's substr_count(), since I could not find an equivalent native function in MySQL. (If there is one please tell me!!!)
 
-[cce_sql]
+```sql
 
 delimiter ||  
 DROP FUNCTION IF EXISTS substrCount||  
@@ -55,21 +55,21 @@ END;
 
 delimiter ;
 
-[/cce_sql]
+```
 
 Use like this:
 
-[cce_sql]
+```sql
 
 SELECT substrCount('/this/is/a/path', '/') `count`;
 
-[/cce_sql]
+```
 
 `count` would return 4 in this case. Can be used in such cases where you might want to find the "depth" of a path, or for many other uses.
 
 It's pretty easy to create your own string functions for many examples listed here
 
-[cce_sql]  
+```sql  
 ## Count substrings
 
 CREATE FUNCTION substrCount(x varchar(255), delim varchar(12)) returns int  
@@ -77,7 +77,7 @@ return (length(x)-length(REPLACE(x, delim, ")))/length(delim);
 
 SELECT substrCount('/this/is/a/path', '/') as count;
 
-[/cce_sql]
+```
 
 +——-+  
 | count |  
@@ -85,11 +85,11 @@ SELECT substrCount('/this/is/a/path', '/') as count;
 | 4 |  
 +——-+
 
-[cce_sql]
+```sql
 
 SELECT substrCount('/this/is/a/path', 'is') as count;
 
-[/cce_sql]
+```
 
 +——-+  
 | count |  
@@ -97,7 +97,7 @@ SELECT substrCount('/this/is/a/path', 'is') as count;
 | 2 |  
 +——-+
 
-[cce_sql]
+```sql
 
 ## Split delimited strings
 
@@ -106,7 +106,7 @@ return replace(substring(substring_index(x, delim, pos), length(substring_index(
 
 select strSplit("aaa,b,cc,d", ',', 2) as second;
 
-[/cce_sql]
+```
 
 +——–+  
 | second |  
@@ -114,11 +114,11 @@ select strSplit("aaa,b,cc,d", ',', 2) as second;
 | b |  
 +——–+
 
-[cce_sql]
+```sql
 
 select strSplit("a|bb|ccc|dd", '|', 3) as third;
 
-[/cce_sql]
+```
 
 +——-+  
 | third |  
@@ -126,11 +126,11 @@ select strSplit("a|bb|ccc|dd", '|', 3) as third;
 | ccc |  
 +——-+
 
-[cce_sql]
+```sql
 
 select strSplit("aaa,b,cc,d", ',', 7) as 7th;
 
-[/cce_sql]
+```
 
 +——+  
 | 7th |  
@@ -138,7 +138,7 @@ select strSplit("aaa,b,cc,d", ',', 7) as 7th;
 | NULL |  
 +——+
 
-[cce_sql]
+```sql
 
 ## Upper case first letter, UCFIRST or INITCAP
 
@@ -147,7 +147,7 @@ return concat( upper(substring(x,1,1)),lower(substring(x,2)) );
 
 select ucfirst("TEST");
 
-[/cce_sql]
+```
 
 +—————–+  
 | ucfirst("TEST") |  
@@ -155,7 +155,7 @@ select ucfirst("TEST");
 | Test |  
 +—————–+
 
-[cce_sql]
+```sql
 
 ##Or a more complicated example, this will repeat an insert after every nth position.
 
@@ -181,8 +181,9 @@ DELIMITER ;
 
 select insert2("ATGCATACAGTTATTTGA", 3, " ") as seq2;
 
-[/cce_sql]
+```
 
+```
 +————————-+  
 | seq2 |  
 +————————-+  
@@ -191,3 +192,4 @@ select insert2("ATGCATACAGTTATTTGA", 3, " ") as seq2;
 
 —————————-
 
+```
