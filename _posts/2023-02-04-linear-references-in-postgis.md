@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linear referencing events in PostGIS
-subtitle: points snapped to lines, describing linear conditions along the lines
+subtitle: Psoints snapped to lines, describing linear conditions along the lines
 gh-badge: [star, fork, follow]
 date: '2023-02-02T12:47:41-05:00'
 tags: [geodata, gis, spatial, data management]
@@ -184,6 +184,7 @@ SELECT
 FROM greatpond.events
 JOIN greatpond.trails
 ON (greatpond.trails.fid = greatpond.events.trails_fid);
+
 ```
 
 -- Step 3. Create observation event segments based on observed sizes:
@@ -206,4 +207,5 @@ FROM
 	
 	ALTER TABLE greatpond.segments ADD column id serial; 
 	ALTER TABLE greatpond.segments ADD PRIMARY KEY (id);
-    ```
+
+```
