@@ -14,6 +14,8 @@ comments: false
 
 This will be a growing post on my exploration of linear referencing in PostGIS
 
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)
+
 
 {: .box-note}
 

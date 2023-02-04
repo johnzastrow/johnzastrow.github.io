@@ -21,7 +21,9 @@ We wish that Esri would issue proper warnings about using PGDBs rather than just
 
 Apparently switching between geoprocessing in the foreground (32-bit) versus the background (64-bit) switches between 32 and 64-bit processing. The default is background processing.This makes sense now finding out that personal geodatabases files are unsupported in v10.2 with 64-bit AND background anything. See the docs below. The upside is converting .mdb to file geodatabase (.gdb) appears to have fixed the problems.
 
-[![ArcGIS64-bit_docs](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs-300x181.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs.jpg)**Solution:** Don't use PGDBs and if you do, set everything to run in the FOREGROUND, which forces operations to be done in 32-bit mode. Switching to foreground brought the speeds back to near instantaneous (un-checking the enable background processing in the screen shot below).
+[![ArcGIS64-bit_docs](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs-300x181.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs.jpg)
+
+**Solution:** Don't use PGDBs and if you do, set everything to run in the FOREGROUND, which forces operations to be done in 32-bit mode. Switching to foreground brought the speeds back to near instantaneous (un-checking the enable background processing in the screen shot below).
 
 [![ArcGIS64-bit_docs2](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs2-243x300.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2014/03/ArcGIS64-bit_docs2.jpg)
 
