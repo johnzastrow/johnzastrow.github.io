@@ -3,7 +3,7 @@ layout: post
 title: Linear referencing events in PostGIS
 subtitle: points snapped to lines, describing linear conditions along the lines
 gh-badge: [star, fork, follow]
-date: '2023-04-2T12:47:41-05:00'
+date: '2023-02-02T12:47:41-05:00'
 tags: [geodata, gis, spatial, data management]
 comments: false
 ---
