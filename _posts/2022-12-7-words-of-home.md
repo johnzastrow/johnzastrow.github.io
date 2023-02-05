@@ -17,9 +17,11 @@ Lake Ontario and Old Fort Niagara Web cam [https://www.oldfortniagara.org/lighth
 
 Our town motto is, "Young in spirit. Ageless in pride." While I'm not sure about the first part, I am sure about second.
 
+These are the words that come to my mind when I think of Youngstown, though I’m sure other people would have different words to describe this place. 
+
 # The Words
 
-Home, Historic, Simple, Strong, Basic, Practical, Stable, Timeless, Proud, Patinaed, Storied, Tranquil, Calming, Stoic, Nurturing, Sheltering, Blessed, Native, Blue-collar, White-collar, Agriculture, Industry, Water, Sailing, Fishing, Family, Community, Safe, Dependent, Independent, Immovable, Stalwart, Roots, Simple, Bland, Shrunken, Insular, Stuck,
+Home, Historic, Family, Roots, Simple, Community, Safe, Dependent, Independent, Immovable, Stalwart, Basic, Practical, Stable, Timeless, Proud, Patinaed, Storied, Tranquil, Calming, Stoic, Nurturing, Sheltering, Blessed, Native, Blue-collar, Agriculture, Industry, Water, Clay, Sun, Clouds, Sailing, Fishing,  Shrunken, Insular, Stuck,
 
 <figure>
     <img src="/assets/uploads/YNYgazebo.jpg"

@@ -27,7 +27,7 @@ The left pic is how he looked when he was picked up from the nasty dog pound
 |  |  |
 |---|---|
 
-The right image is how he looks now all cleaned up and minus a few clumps of hair
+The right image is how he looks now all cleaned up and minus a few clumps of hair 
 
 Bubba is 9 years old and extremely sweet. He is recovering from  
 a few pound caught illnesses, but is doing well. Currently, the plan   
