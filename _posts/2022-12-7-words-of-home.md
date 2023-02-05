@@ -17,7 +17,7 @@ Lake Ontario and Old Fort Niagara Web cam [https://www.oldfortniagara.org/lighth
 
 Our town motto is, "Young in spirit. Ageless in pride." While I'm not sure about the first part, I am sure about second.
 
-These are the words that come to my mind when I think of Youngstown, though I’m sure other people would have different words to describe this place. I have added and discarded probably about 50 words, and these are the ones that remain for me.
+These are the words that come to my mind when I think of Youngstown, though I’m sure other people would have different words to describe this place. I have added and discarded probably about 50 words, and these are the ones that remain for me. Words left out are just as important.
 
 # The Words
 
