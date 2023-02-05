@@ -4,7 +4,7 @@ title: Organizing spatial data (or just data) for organizations
 subtitle: My approach for keeping data from spawling like basket of socks
 gh-badge: [star, fork, follow]
 tags: [geodata, gis, spatial, data management]
-comments: false
+comments: true
 ---
 
 **This is a living post. Check back for updates as I learned more.**
