@@ -21,6 +21,17 @@ This will be a growing post on my exploration of linear referencing in PostGIS
 
 I've used this approach several times with years between and each time I have to develop it from memory. So I'm going to put it here for future use and revision. Hopefully it helps you too. 
 
+{: .box-warning}
+<b>What is linear referencing: </b>
+Adapted from From: https://gisgeography.com/linear-referencing-systems/
+
+Linear referencing systems store, or reference, relative positions on an existing line feature stored physically in the GIS with normal line geometry (coordinates for each vertex). 
+
+Unlike regular line geometry, linear referencing systems have m-values, which stands for “measurement” along the line feature (only lines, because we're talking about "linear" referencing). It considers how far down a linear feature is relative to a point of reference. 
+
+Once you have a route, events can be layered on top for different types of linear analysis.
+
+
 #### Tech Notes
 
 a-- CLEANUP: 
