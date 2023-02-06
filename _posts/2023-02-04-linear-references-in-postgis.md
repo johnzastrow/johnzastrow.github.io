@@ -32,9 +32,9 @@ Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-s
 Crews travel the trails and collect observations from parts of the trails that need repair to turn into tasks for asset management, costing, and future work. Each observation might contain the following items:
 
 {: .box-error}
-* coordinate pair (with error from GPS interference) from the part needing repair in the middle of the part
-* size in meters of the part needing repair
-* notes and details about the condition and repair needed
+  **Coordinate pair (X,Y) or point location** (with error from GPS interference) from the part of the trail needing repair. Point is collected in the middle of the part
+  **Size in meters of the part needing repair** if the trail need 10 meters repaird, record 10 meters
+  **Notes and details about the condition and repair needed**
 
 
 #### CLEANUP: 
