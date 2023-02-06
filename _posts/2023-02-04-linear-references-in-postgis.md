@@ -5,7 +5,7 @@ subtitle: Points snapped to lines, describing linear conditions along the lines
 gh-badge: [star, fork, follow]
 date: '2023-02-02T12:47:41-05:00'
 tags: [geodata, gis, spatial, data management]
-comments: false
+comments: true
 ---
 
 **This will be a growing post on my exploration of linear referencing in PostGIS. Check back for updates as I learned more.**
@@ -70,18 +70,15 @@ SELECT AddGeometryColumn ('greatpond','obs','geom',6348,'POINT',2); -- EPSG:6348
 
 
 ### PROCESS:
-1. Step 1. Create events table as the first output from the primary input which is the observations table. The other input is line layer (here trails) and here the layer is of type LINESTRINGMZ, not MULTILINESTRING.
+**Step 1. Create events table** as the first output from the primary input which is the observations table. The other input is line layer (here trails) and here the layer is of type LINESTRINGMZ (single lines with room for M and Z measures), not MULTILINESTRING. 
 
-This step will create the new events table from observations
+This step will create the new events table from observations.
+
+We first need to get a candidate set of maybe-closest trails, ordered by id and distance. In this example the trails layer is line layer of the trail, and observations are points of recorded single observations along the trail lines. We are going to keep osm_id as the primary id for the trails. 
 
 ```sql
 DROP TABLE IF EXISTS greatpond.events;
 CREATE TABLE greatpond.events AS
--- We first need to get a candidate set of maybe-closest
--- trails, ordered by id and distance. In this example the trails layer 
--- is line layer of the trail, and observations are points of recorded single 
--- observations along the trail lines.
--- We are going to keep osm_id as the primary id for the trails. 
 WITH ordered_nearest AS (
 SELECT
   ST_GeometryN(greatpond.trails.geom,1) AS trails_geom, -- Reads in geom. Return the 1-based Nth element geometry of an input geometry.
@@ -115,8 +112,7 @@ SELECT
 FROM ordered_nearest;
 ```
 
--- Step 1a. Update the table with some more value
--- Primary keys are useful for visualization softwares
+**Step 1a. Update the table with some more value.** Primary keys are useful for visualization softwares
 
 ```sql
 
@@ -140,10 +136,7 @@ update greatpond.events SET
 ;
 ```
 
--- force measures to be between 0 and 1, because a negative distance doesn't make sense. 
--- This script is then sensitive to observations being placed near the end of line segments...
--- and therefore short segments. Consider dissolving (merging) segments that end at places
--- other than intersections with other segments in the same layer.
+Here we force measures to be between 0 and 1, because a negative distance doesn't make sense. This script is then sensitive to observations being placed near the end of line segments... and therefore short segments. Consider dissolving (merging) segments that end at places other than intersections with other segments in the same layer.
 
 ```sql
 update greatpond.events SET
@@ -157,8 +150,7 @@ update greatpond.events SET
 ;
 ```
 
--- Step 2. Create events layer with point objects
--- New table that turns events into spatial objects, points snapped to the line in this case
+**Step 2. Create events layer with point objects.** New table that turns events into spatial objects, points snapped to the line in this case
 
 ```sql
 
@@ -185,7 +177,7 @@ ON (greatpond.trails.fid = greatpond.events.trails_fid);
 
 ```
 
--- Step 3. Create observation event segments based on observed sizes:
+**Step 3. Create observation event segments based on observed sizes**
 
 ```sql
 
@@ -207,6 +199,8 @@ FROM
 	ALTER TABLE greatpond.segments ADD PRIMARY KEY (id);
 
 ```
+
+#### RESULTS:
 
 ## REFERENCES:
 1. https://gis.stackexchange.com/questions/112282/splitting-lines-into-non-overlapping-subsets-based-on-points-using-postgis
