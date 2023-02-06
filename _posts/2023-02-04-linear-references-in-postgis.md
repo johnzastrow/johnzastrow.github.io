@@ -8,11 +8,9 @@ tags: [geodata, gis, spatial, data management]
 comments: false
 ---
 
-**This is a living post. Check back for updates as I learned more.**
+**This will be a growing post on my exploration of linear referencing in PostGIS. Check back for updates as I learned more.**
 
 #### Intro
-
-This will be a growing post on my exploration of linear referencing in PostGIS
 
 [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)
 
@@ -36,13 +34,10 @@ Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-s
 2. final version with month_year in output names
 3. Add prep steps like turn trails line into 3D/4D
 
-## REFERENCE:
-1. https://gis.stackexchange.com/questions/112282/splitting-lines-into-non-overlapping-subsets-based-on-points-using-postgis
-2. https://gis.stackexchange.com/questions/332213/splitting-lines-with-points-using-postgis?utm_source=pocket_mylist
-3. https://www.fhwa.dot.gov/policyinformation/hpms/documents/arnold_reference_manual_2014.pdf
+
 
 ### INPUTS:
-1.  Observation table containing point events. In this case all work is being done in the schema called 'greatpond'. References are prefixed with that schema.
+1.  Observation table containing point events, called event_points in the image, but they might be observations from our example use case. Here all work is being done in the schema called 'greatpond'. References are prefixed with that schema.
 
 ```sql
 CREATE TABLE IF NOT EXISTS greatpond.obs
@@ -69,7 +64,7 @@ SELECT AddGeometryColumn ('greatpond','obs','geom',6348,'POINT',2); -- EPSG:6348
   ON greatpond.obs
   USING GIST (geom);
 ```
-
+2. Line features to reference to
 
 
 
@@ -216,3 +211,10 @@ FROM
 	ALTER TABLE greatpond.segments ADD PRIMARY KEY (id);
 
 ```
+
+## REFERENCES:
+1. https://gis.stackexchange.com/questions/112282/splitting-lines-into-non-overlapping-subsets-based-on-points-using-postgis
+2. https://gis.stackexchange.com/questions/332213/splitting-lines-with-points-using-postgis?utm_source=pocket_mylist
+3. https://www.fhwa.dot.gov/policyinformation/hpms/documents/arnold_reference_manual_2014.pdf
+4. http://postgis.net/workshops/postgis-intro/linear_referencing.html
+5. https://postgis.net/docs/reference.html#Linear_Referencing 
