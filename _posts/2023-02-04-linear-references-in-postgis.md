@@ -25,15 +25,15 @@ I've used this approach several times with years between and each time I have to
 <b>What is linear referencing or linear referencing systems (LRS): </b>
 Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-systems). Linear referencing systems store, or reference, relative positions on an existing line feature stored physically in the GIS with normal line geometry (coordinates for each vertex). Unlike regular line geometry, linear referencing systems have m-values, which stands for “measurement” along the line feature (only lines, because we're talking about "linear" referencing). It considers how far down a linear feature is relative to a point of reference. The reference describes a linear events (this article we'll call them segments for clarity) from each point event (or pair of points). Because the segment describes a measure along the physical line (the one with geometry) but does not contain geometry itself, the base line feature can change (the trail line gets moved due to erosion on the ground) and the segment magically follows it without edits. Linear events, or segments, can also overlap, where lines in a single GIS should not to maintain proper topology.  
 
-<p class="box-error">
-**Use case**: I needed a project to explore linear refer with. Here we are working to assist a land trust with recording field information about parts of trails that need repair. <br><br>
-
+{: .box-warning}
+**Use case**: I needed a project to explore linear refer with. Here we are working to assist a land trust with recording field information about parts of trails that need repair.
+{: .box-warning}
 Crews travel the trails and collect observations from parts of the trails that need repair to turn into tasks for asset management, costing, and future work. Each observation might contain the following items:
-
+{: .box-warning}
 * coordinate pair (with error from GPS interference) from the part needing repair in the middle of the part
 * size in meters of the part needing repair
 * notes and details about the condition and repair needed
-<p>
+
 
 #### CLEANUP: 
 1. simplify names even more for demo
