@@ -22,22 +22,17 @@ This will be a growing post on my exploration of linear referencing in PostGIS
 I've used this approach several times with years between and each time I have to develop it from memory. So I'm going to put it here for future use and revision. Hopefully it helps you too. 
 
 {: .box-warning}
-<b>What is linear referencing: </b>
-Adapted from From: https://gisgeography.com/linear-referencing-systems/
-
-Linear referencing systems store, or reference, relative positions on an existing line feature stored physically in the GIS with normal line geometry (coordinates for each vertex). 
-
-Unlike regular line geometry, linear referencing systems have m-values, which stands for “measurement” along the line feature (only lines, because we're talking about "linear" referencing). It considers how far down a linear feature is relative to a point of reference. 
-
-Once you have a route, events can be layered on top for different types of linear analysis.
+<b>What is linear referencing or linear referencing systems (LRS): </b>
+Adapted from From: https://gisgeography.com/linear-referencing-systems/. Linear referencing systems store, or reference, relative positions on an existing line feature stored physically in the GIS with normal line geometry (coordinates for each vertex). Unlike regular line geometry, linear referencing systems have m-values, which stands for “measurement” along the line feature (only lines, because we're talking about "linear" referencing). It considers how far down a linear feature is relative to a point of reference. The reference describes a linear events (this article we'll call them segments for clarity) from each point event (or pair of points). Because the segment describes a measure along the physical line (the one with geometry) but does not contain geometry itself, the base line feature can change (the trail line gets moved due to erosion on the ground) and the segment magically follows it without edits. Linear events, or segments, can also overlap, where lines in a single GIS should not to maintain proper topology.
 
 
-#### Tech Notes
 
-a-- CLEANUP: 
--- 1. simplify names even more for demo
--- 2. final version with month_year in output names
--- 3. Add prep steps like turn trails line into 3D/4D
+## Tech Notes
+
+### CLEANUP: 
+1. simplify names even more for demo
+2. final version with month_year in output names
+3. Add prep steps like turn trails line into 3D/4D
 
 METHODS and REFERENCE:
 -- https://gis.stackexchange.com/questions/112282/splitting-lines-into-non-overlapping-subsets-based-on-points-using-postgis
