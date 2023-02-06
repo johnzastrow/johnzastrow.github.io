@@ -70,11 +70,9 @@ SELECT AddGeometryColumn ('greatpond','obs','geom',6348,'POINT',2); -- EPSG:6348
 
 
 ### PROCESS:
--- Step 1. Create events table as the first output from the primary input which is the observations table. 
--- The other input is line layer (here trails) and here the layer is 
--- of type LINESTRINGMZ, not MULTILINESTRING.
+1. Step 1. Create events table as the first output from the primary input which is the observations table. The other input is line layer (here trails) and here the layer is of type LINESTRINGMZ, not MULTILINESTRING.
 
--- This step will create the new events table from observations
+This step will create the new events table from observations
 
 ```sql
 DROP TABLE IF EXISTS greatpond.events;
@@ -101,10 +99,7 @@ ORDER BY obs_id, dist_to_trail ASC
 );
 ```
 
--- We use the 'distinct on' PostgreSQL feature to get the first
--- trail (the nearest) for each unique trail fid. We can then
--- pass that one trail into ST_LineLocatePoint along with
--- its candidate observation to calculate the measure along the trail.
+ We use the 'distinct on' PostgreSQL feature to get the first trail (the nearest) for each unique trail fid. We can then pass that one trail into ST_LineLocatePoint along with its candidate observation to calculate the measure along the trail.
 
 ```sql
 SELECT
