@@ -23,21 +23,20 @@ I've used this approach several times with years between and each time I have to
 <b>What is linear referencing or linear referencing systems (LRS): </b>
 Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-systems). Linear referencing systems store, or reference, relative positions on an existing line feature stored physically in the GIS with normal line geometry (coordinates for each vertex). Unlike regular line geometry, linear referencing systems have m-values, which stands for “measurement” along the line feature (only lines, because we're talking about "linear" referencing). It considers how far down a linear feature is relative to a point of reference. The reference describes a linear events (this article we'll call them segments for clarity) from each point event (or pair of points). Because the segment describes a measure along the physical line (the one with geometry) but does not contain geometry itself, the base line feature can change (the trail line gets moved due to erosion on the ground) and the segment magically follows it without edits. Linear events, or segments, can also overlap, where lines in a single GIS should not to maintain proper topology.  
 
-
-
-## METHODS
-1. This article uses pure PostGIS to perform the analysis, build the segments, and store everything.
-
+{: .box-error}
+**Use case**: I needed a project to explore linear refer with. Here we are working to assist a land trust with recording field information about parts of trails that need repair. 
 
 ### CLEANUP: 
 1. simplify names even more for demo
 2. final version with month_year in output names
 3. Add prep steps like turn trails line into 3D/4D
 
+## METHODS
+1. This article uses pure PostGIS to perform the analysis, build the segments, and store everything.
 
 
 ### INPUTS:
-1.  Observation table containing point events, called event_points in the image, but they might be observations from our example use case. Here all work is being done in the schema called 'greatpond'. References are prefixed with that schema.
+1.  **Observation table** containing point events, called event_points in the image, but they might be observations from our example use case. Here all work is being done in the schema called 'greatpond'. References are prefixed with that schema.
 
 ```sql
 CREATE TABLE IF NOT EXISTS greatpond.obs
@@ -64,11 +63,11 @@ SELECT AddGeometryColumn ('greatpond','obs','geom',6348,'POINT',2); -- EPSG:6348
   ON greatpond.obs
   USING GIST (geom);
 ```
-2. Line features to reference to
+2. **Line features** to reference to
 
 
 
--- PROCESS:
+### PROCESS:
 -- Step 1. Create events table as the first output from the primary input which is the observations table. 
 -- The other input is line layer (here trails) and here the layer is 
 -- of type LINESTRINGMZ, not MULTILINESTRING.
