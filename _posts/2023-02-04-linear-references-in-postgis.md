@@ -13,6 +13,8 @@ comments: false
 #### Intro
 
 [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)
+*Figure 1. The real data*
+
 
 
 {: .box-note}
@@ -26,7 +28,7 @@ Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-s
 {: .box-error}
 **Use case**: I needed a project to explore linear refer with. Here we are working to assist a land trust with recording field information about parts of trails that need repair. 
 
-### CLEANUP: 
+#### CLEANUP: 
 1. simplify names even more for demo
 2. final version with month_year in output names
 3. Add prep steps like turn trails line into 3D/4D
@@ -35,7 +37,7 @@ Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-s
 1. This article uses pure PostGIS to perform the analysis, build the segments, and store everything.
 
 
-### INPUTS:
+#### INPUTS:
 1.  **Observation table** containing point events, called event_points in the image, but they might be observations from our example use case. Here all work is being done in the schema called 'greatpond'. References are prefixed with that schema.
 
 ```sql
