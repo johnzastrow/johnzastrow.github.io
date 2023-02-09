@@ -76,10 +76,13 @@ SELECT AddGeometryColumn ('greatpond','obs','geom',6348,'POINT',2); -- EPSG:6348
 ```
 
 [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/event_points_info.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/event_points_info.png)
-*Figure 1. Notice the horizontal units are in meters. Do that.*
+*Figure 2. Notice the horizontal units are in meters. Do that.*
 
 
-2. **Line features** to reference to
+2. **Line features** to reference the observations against. In this case, we're using a trails layer I got from OpenStreetMap.
+
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/trails.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/trails.png)
+*Figure 3. Notice the horizontal units are in meters. Do that again.*
 
 
 
