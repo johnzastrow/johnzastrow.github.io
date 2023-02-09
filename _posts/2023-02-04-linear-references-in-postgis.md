@@ -129,7 +129,7 @@ SELECT
 FROM ordered_nearest;
 ```
 
-**Step 1a. Update the table with some more value.** Primary keys are useful for visualization softwares
+**Step 1a. Update the table with some more value.** Primary keys are useful for visualization softwares. I also added some values to allow me to check on distances above and below the event to allow me to satisfy some curiosity and QC the outputs.
 
 ```sql
 
@@ -149,7 +149,7 @@ update greatpond.events SET
 	
 update greatpond.events SET
 	lower_meas = meas_per_m * lower_m,
-	upper_meas = meas_per_m * upper_m -- this field did not update the first time so process as second step
+	upper_meas = meas_per_m * upper_m -- this field did not update the first time so process as second step.
 ;
 ```
 
