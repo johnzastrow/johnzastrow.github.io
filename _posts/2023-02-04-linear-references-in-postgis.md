@@ -33,7 +33,7 @@ Crews travel the trails and collect observations from parts of the trails that n
 
 {: .box-error}
   **Coordinate pair (X,Y) or point location** (with error from GPS interference) from the part of the trail needing repair. Point is collected in the middle of the part
-  **Size in meters of the part needing repair** if the trail need 10 meters repaird, record 10 meters
+  **Size in meters of the part needing repair** if the trail need 10 meters repaired, record 10 meters
   **Notes and details about the condition and repair needed**
 
 
