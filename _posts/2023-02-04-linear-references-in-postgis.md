@@ -74,6 +74,11 @@ SELECT AddGeometryColumn ('greatpond','obs','geom',6348,'POINT',2); -- EPSG:6348
   ON greatpond.obs
   USING GIST (geom);
 ```
+
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/event_points_info.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/event_points_info.png)
+*Figure 1. Notice the horizontal units are in meters. Do that.*
+
+
 2. **Line features** to reference to
 
 
