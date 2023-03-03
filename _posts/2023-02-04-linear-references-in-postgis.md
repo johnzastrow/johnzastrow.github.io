@@ -4,7 +4,7 @@ title: Linear referencing events in PostGIS
 subtitle: Points snapped to lines, describing linear conditions along the lines
 gh-badge: [star, fork, follow]
 date: '2023-02-02T12:47:41-05:00'
-tags: [geodata, gis, spatial, data management]
+tags: [geodata, gis, spatial, data management, PostGIS, Spatialite]
 comments: true
 ---
 
@@ -39,7 +39,7 @@ Then the organization would be able to produce reports, maps, and other products
 
 
 
-Therefore, below is an exploration of using Linear Referencing in the PostgreSQL/[PostGIS](https://postgis.net/docs/reference.html#Linear_Referencing) spatial database to solve the data storage and representation 
+Therefore, below is an exploration of using Linear Referencing in the PostgreSQL/[PostGIS](https://postgis.net/docs/reference.html#Linear_Referencing) spatial database to solve the data storage and representation. I should note that my former desktop-level crush, [Spatialite](https://www.gaia-gis.it/gaia-sins/spatialite_topics.html), has [linear referencing](https://www.gaia-gis.it/gaia-sins/spatialite-sql-5.0.1.html#p14-) as well, and it's at least partially based on the GEOS engine that PostGIS uses. However there may be [differences](https://gis.stackexchange.com/questions/195279/dynamic-linear-referencing-of-events-in-qgis-from-excel-or-csv-using-virtual-lay) in how referencing is done between the two spatial databases.
 
 
 #### CLEANUP: 
@@ -230,3 +230,24 @@ FROM
 3. [https://www.fhwa.dot.gov/policyinformation/hpms/documents/arnold_reference_manual_2014.pdf](https://www.fhwa.dot.gov/policyinformation/hpms/documents/arnold_reference_manual_2014.pdf)
 4. [http://postgis.net/workshops/postgis-intro/linear_referencing.html](http://postgis.net/workshops/postgis-intro/linear_referencing.html)
 5. [https://postgis.net/docs/reference.html#Linear_Referencing](https://postgis.net/docs/reference.html#Linear_Referencing ) 
+
+### [Experimental](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams) [mermaid](https://mermaid.live/) mindmap
+
+```mermaid
+mindmap
+  root((Open Source Spatial Databases))
+    PostgreSQL
+      PostGIS
+        GEOS
+    SQLite
+      Geopackage
+         Storage only
+      Spatialite
+        GEOS
+        Builtin
+    MySQL
+      Boost Cplus p libraries
+    MariaDB
+      TBD
+```
+
