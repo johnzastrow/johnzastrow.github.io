@@ -21,20 +21,25 @@ comments: true
 
 I've used this approach several times with years between and each time I have to develop it from memory. So I'm going to put it here for future use and revision. Hopefully it helps you too. 
 
-{: .box-warning}
+{: .box-note}
 <b>What is linear referencing or linear referencing systems (LRS): </b>
-Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-systems). Linear referencing systems store, or reference, relative positions on an existing line feature stored physically in the GIS with normal line geometry (coordinates for each vertex). Unlike regular line geometry, linear referencing systems have m-values, which stands for “measurement” along the line feature (only lines, because we're talking about "linear" referencing). It considers how far down a linear feature is relative to a point of reference. The reference describes a linear events (this article we'll call them segments for clarity) from each point event (or pair of points). Because the segment describes a measure along the physical line (the one with geometry) but does not contain geometry itself, the base line feature can change (the trail line gets moved due to erosion on the ground) and the segment magically follows it without edits. Linear events, or segments, can also overlap, where lines in a single GIS should not to maintain proper topology.  
+Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-systems). [Linear referencing](http://postgis.net/workshops/postgis-intro/linear_referencing.html) systems store, or reference, relative positions on an existing line feature stored physically in the GIS with normal line geometry (coordinates for each vertex). Unlike basic line geometry (simple pairs of coordinates that describes points that when connected in the right order describe a line), linear referencing systems have m-values, which stands for “measurement” along the line feature (only lines, because we're talking about "linear" referencing). It records how far a reference (event point or segment) is along a line as a percentage from the "start" of the line - the first point. The reference may describe linear events (this article we'll call them segments for clarity) from each point event (or pair of points). Because the segment describes a measure along the physical line (the one with geometry) but does not contain geometry itself, the original line feature can change (the trail line gets moved due to erosion on the ground) and the segment magically follows it without edits. Linear events, or segments, can also overlap, where lines in a single GIS should not to maintain proper topology.  
 
 {: .box-success}
-**Use case**: I needed a project to explore linear refer with. Here we are working to assist a land trust with recording field information about parts of trails that need repair.
+**Use case** **- why is this useful?**: Consider assisting a land trust with recording field information about parts of trails that need repair. The trial lines almost never change, but the conditions on the trails change frequently. I don't want to record/delete all the geometry of a little line every time I want to describe a problem on the trail, and then its repair. I want to "reference" parts of the existing trail line.
 
-{: .box-error}
-Crews travel the trails and collect observations from parts of the trails that need repair to turn into tasks for asset management, costing, and future work. Each observation might contain the following items:
 
-{: .box-error}
-  **Coordinate pair (X,Y) or point location** (with error from GPS interference) from the part of the trail needing repair. Point is collected in the middle of the part
-  **Size in meters of the part needing repair** if the trail need 10 meters repaired, record 10 meters
-  **Notes and details about the condition and repair needed**
+**Process:** Crews travel the trails and collect observations from parts of the trails that need repair to turn into tasks for asset management, costing, and future work. Each observation might contain the following items:
+
+1. **Coordinate pair (X,Y) or point location** (with error from GPS interference) from the part of the trail needing repair. Point is collected in the middle of the part. This is required input.
+2. **Size in meters of the part needing repair** if the trail need 10 meters repaired, record 10 meters. This is required input.
+3. **Notes and details about the condition and repair needed**. This is optional.
+
+Then the organization would be able to produce reports, maps, and other products to visualize and otherwise manage the repair of the trails and efficiently track the progress against the conditions through simple updates to non-geometric records in the database. 
+
+
+
+Therefore, below is an exploration of using Linear Referencing in the PostgreSQL/[PostGIS](https://postgis.net/docs/reference.html#Linear_Referencing) spatial database to solve the data storage and representation 
 
 
 #### CLEANUP: 
