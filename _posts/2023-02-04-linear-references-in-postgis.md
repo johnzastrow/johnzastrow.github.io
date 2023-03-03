@@ -8,7 +8,7 @@ tags: [geodata, gis, spatial, data management, PostGIS, Spatialite]
 comments: true
 ---
 
-**This will be a growing post on my exploration of linear referencing in PostGIS. Check back for updates as I learned more.**
+**This will be a growing post on my exploration of linear referencing in PostGIS.**
 
 #### Intro
 
