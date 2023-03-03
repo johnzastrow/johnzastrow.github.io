@@ -13,13 +13,9 @@ comments: true
 #### Intro
 
 [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)
-*Figure 1. The real data* as shown in QGIS. Observations (*obs*) are point GPS collected by crews (exaggerated error included) these have sizes recorded from the field. The process below snaps the observations to the nearest point along the trail line to eventually create *event_points* along with some ancillary attributes for fun. Event_points and their associated measures are then converted to linear *segments* that are referenced to the trail line and are sized according to the size recorded in the field with the *event_point* at the center of each segment. Other attributes are calculated and shown to demonstrate the concepts, but are not likely useful otherwise. The vertices are simply point coordinates from the line geometry - ignore them. GIS and PostGIS are like chocolate and peanut butter - you never eat one without the other.
+*Figure 1. The real data* as shown in QGIS. Observations (*obs*) are point GPS collected by crews (exaggerated error included) these have sizes recorded from the field [pink highlighted attribute labels]. The process below snaps the observations to the nearest point along the trail line to eventually create *event_points* along with some ancillary attributes for fun. Event_points and their associated measures [light blue highlighted attribute labels] are then converted to linear *segments* that are referenced to the trail line and are sized according to the size recorded in the field with the *event_point* at the center of each segment. Other attributes are calculated and shown to demonstrate the concepts, but are not likely useful otherwise. The vertices are simply point coordinates from the line geometry - ignore them. GIS and PostGIS are like chocolate and peanut butter - you never eat one without the other.
 
 
-
-{: .box-note}
-
-I've used this approach several times with years between and each time I have to develop it from memory. So I'm going to put it here for future use and revision. Hopefully it helps you too. 
 
 {: .box-note}
 <b>What is linear referencing or linear referencing systems (LRS): </b>
@@ -45,7 +41,9 @@ Therefore, below is an exploration of using Linear Referencing in the PostgreSQL
 #### CLEANUP: 
 1. simplify names even more for demo
 2. final version with month_year in output names
-3. Add prep steps like turn trails line into 3D/4D
+3. add prep steps like turn trails line into 3D/4D
+4. add links to example data
+5. cleanup DDL examples
 
 ## METHODS
 1. This article uses pure PostGIS to perform the analysis, build the segments, and store everything.
@@ -221,6 +219,27 @@ FROM
 	ALTER TABLE greatpond.segments ADD PRIMARY KEY (id);
 
 ```
+
+In this exploration I created intermediate and final products as physical tables in the database. However, you can also just create them as [views](https://www.postgresql.org/docs/current/sql-createview.html) so that edits to the original *obs* table would result in automatic updates cascading into the final product without re-running anything. So, here's Step 3 above as a database view simply replacing ```create table``` with ```create view``` and removing the ability to have a [primary key](). You might also consider [Materialized Views](https://blog.devart.com/postgresql-materialized-views.html) if performance matters and you want a [unique index](https://www.postgresql.org/docs/current/sql-createindex.html) as a quasi replacement for a [PK](https://stackoverflow.com/questions/54154897/create-primary-key-on-materialized-view-in-postgres), but the updates would not be immediate as with a traditional view.
+
+```sql
+create view greatpond.v_segments as (
+WITH cuts AS (
+    SELECT events.obs_id, events.trails_fid, events.lower_meas, events.upper_meas,	
+	ST_GeometryN(trails.geom,1) as geom, trails.osm_id, trails.fid, trails.id 
+	from greatpond.trails
+	inner join greatpond.events
+	ON trails.fid=events.trails_fid order by events.upper_meas 
+)
+SELECT
+	ST_LineSubstring(geom, lower_meas, upper_meas) as mygeom, obs_id, trails_fid, lower_meas, upper_meas
+FROM 
+    cuts);
+```
+
+
+
+
 
 #### RESULTS:
 
