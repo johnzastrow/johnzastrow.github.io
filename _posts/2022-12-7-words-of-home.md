@@ -15,7 +15,7 @@ Below are words that come to my mind when I think of Youngstown, though I’m su
 
 # The Words
 
-Home, Historic, Family, Roots, Simple, Community, Safe, Basic, Practical, Stable, Timeless, Proud, Storied, Tranquil, Calming, Stoic, Nurturing, Sheltering, Blessed, Native, Blue-collar, Agriculture, Industry, Water, Clay, Sun, Clouds, Sailing, Fishing,  Shrunken, Insular, Stuck, Dependent, Independent,
+Home, Historic, Family, Roots, Simple, Community, Open, Closed, Safe, Basic, Practical, Stable, Timeless, Proud, Storied, Tranquil, Calming, Stoic, Nurturing, Sheltering, Blessed, Native, Blue-collar, Agriculture, Industry, Water, Clay, Sun, Clouds, Sail boats, Soccer, Fishing, Shrunken, Insular, Island, Stuck, Dependent, Independent, Patina of history, 
 
 <figure>
     <img src="/assets/uploads/YNYgazebo.jpg"
