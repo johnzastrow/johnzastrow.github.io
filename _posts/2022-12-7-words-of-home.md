@@ -28,3 +28,9 @@ Home, Historic, Family, Roots, Simple, Community, Safe, Basic, Practical, Stable
          alt="Gazebo, Youngstown, NY" width="600">
     <figcaption>The village gazebo looking over the Niagara River to Niagara-on-the-Lake, Ontario, Canada</figcaption>
 </figure>
+
+<figure>
+    <img src="/assets/uploads/pillar1.jpg"
+         alt="stone, pillar, Youngstown, NY" width="600">
+    <figcaption>A concrete pillar that I've always thought of as a hitching post for horses (?) but never seen anywhere else so I associate it with Youngstown.</figcaption>
+</figure>
