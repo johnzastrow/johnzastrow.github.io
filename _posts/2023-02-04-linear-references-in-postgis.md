@@ -4,43 +4,46 @@ title: Linear referencing events in PostGIS
 subtitle: Points snapped to lines, describing linear conditions along the lines
 gh-badge: [star, fork, follow]
 date: '2023-02-02T12:47:41-05:00'
-tags: [geodata, gis, spatial, data management]
+tags: [geodata, gis, spatial, data management, PostGIS, Spatialite]
 comments: true
 ---
 
-**This will be a growing post on my exploration of linear referencing in PostGIS. Check back for updates as I learned more.**
+**This will be a growing post on my exploration of linear referencing in PostGIS.**
 
 #### Intro
 
 [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)
-*Figure 1. The real data*
+*Figure 1. The real data* as shown in QGIS. Observations (*obs*) are point GPS collected by crews (exaggerated error included) these have sizes recorded from the field [pink highlighted attribute labels]. The process below snaps the observations to the nearest point along the trail line to eventually create *event_points* along with some ancillary attributes for fun. Event_points and their associated measures [light blue highlighted attribute labels] are then converted to linear *segments* that are referenced to the trail line and are sized according to the size recorded in the field with the *event_point* at the center of each segment. Other attributes are calculated and shown to demonstrate the concepts, but are not likely useful otherwise. The vertices are simply point coordinates from the line geometry - ignore them. GIS and PostGIS are like chocolate and peanut butter - you never eat one without the other.
 
 
 
 {: .box-note}
-
-I've used this approach several times with years between and each time I have to develop it from memory. So I'm going to put it here for future use and revision. Hopefully it helps you too. 
-
-{: .box-warning}
 <b>What is linear referencing or linear referencing systems (LRS): </b>
-Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-systems). Linear referencing systems store, or reference, relative positions on an existing line feature stored physically in the GIS with normal line geometry (coordinates for each vertex). Unlike regular line geometry, linear referencing systems have m-values, which stands for “measurement” along the line feature (only lines, because we're talking about "linear" referencing). It considers how far down a linear feature is relative to a point of reference. The reference describes a linear events (this article we'll call them segments for clarity) from each point event (or pair of points). Because the segment describes a measure along the physical line (the one with geometry) but does not contain geometry itself, the base line feature can change (the trail line gets moved due to erosion on the ground) and the segment magically follows it without edits. Linear events, or segments, can also overlap, where lines in a single GIS should not to maintain proper topology.  
+Adapted from From: [GIS Geography](https://gisgeography.com/linear-referencing-systems). [Linear referencing](http://postgis.net/workshops/postgis-intro/linear_referencing.html) systems store, or reference, relative positions on an existing line feature stored physically in the GIS with normal line geometry (coordinates for each vertex). Unlike basic line geometry (simple pairs of coordinates that describes points that when connected in the right order describe a line), linear referencing systems have m-values, which stands for “measurement” along the line feature (only lines, because we're talking about "linear" referencing). It records how far a reference (event point or segment) is along a line as a percentage from the "start" of the line - the first point. The reference may describe linear events (this article we'll call them segments for clarity) from each point event (or pair of points). Because the segment describes a measure along the physical line (the one with geometry) but does not contain geometry itself, the original line feature can change (the trail line gets moved due to erosion on the ground) and the segment magically follows it without edits. Linear events, or segments, can also overlap, where lines in a single GIS should not to maintain proper topology.  
 
 {: .box-success}
-**Use case**: I needed a project to explore linear refer with. Here we are working to assist a land trust with recording field information about parts of trails that need repair.
+**Use case** **- why is this useful?**: Consider assisting a land trust with recording field information about parts of trails that need repair. The trial lines almost never change, but the conditions on the trails change frequently. I don't want to record/delete all the geometry of a little line every time I want to describe a problem on the trail, and then its repair. I want to "reference" parts of the existing trail line.
 
-{: .box-error}
-Crews travel the trails and collect observations from parts of the trails that need repair to turn into tasks for asset management, costing, and future work. Each observation might contain the following items:
 
-{: .box-error}
-  **Coordinate pair (X,Y) or point location** (with error from GPS interference) from the part of the trail needing repair. Point is collected in the middle of the part
-  **Size in meters of the part needing repair** if the trail need 10 meters repaired, record 10 meters
-  **Notes and details about the condition and repair needed**
+**Process:** Crews travel the trails and collect observations from parts of the trails that need repair to turn into tasks for asset management, costing, and future work. Each observation might contain the following items:
+
+1. **Coordinate pair (X,Y) or point location** (with error from GPS interference) from the part of the trail needing repair. Point is collected in the middle of the part. This is required input.
+2. **Size in meters of the part needing repair** if the trail need 10 meters repaired, record 10 meters. This is required input.
+3. **Notes and details about the condition and repair needed**. This is optional.
+
+Then the organization would be able to produce reports, maps, and other products to visualize and otherwise manage the repair of the trails and efficiently track the progress against the conditions through simple updates to non-geometric records in the database. 
+
+
+
+Therefore, below is an exploration of using Linear Referencing in the PostgreSQL/[PostGIS](https://postgis.net/docs/reference.html#Linear_Referencing) spatial database to solve the data storage and representation. I should note that my former desktop-level crush, [Spatialite](https://www.gaia-gis.it/gaia-sins/spatialite_topics.html), has [linear referencing](https://www.gaia-gis.it/gaia-sins/spatialite-sql-5.0.1.html#p14-) as well, and it's at least partially based on the GEOS engine that PostGIS uses. However there may be [differences](https://gis.stackexchange.com/questions/195279/dynamic-linear-referencing-of-events-in-qgis-from-excel-or-csv-using-virtual-lay) in how referencing is done between the two spatial databases.
 
 
 #### CLEANUP: 
 1. simplify names even more for demo
 2. final version with month_year in output names
-3. Add prep steps like turn trails line into 3D/4D
+3. add prep steps like turn trails line into 3D/4D
+4. add links to example data
+5. cleanup DDL examples
 
 ## METHODS
 1. This article uses pure PostGIS to perform the analysis, build the segments, and store everything.
@@ -217,7 +220,40 @@ FROM
 
 ```
 
+In this exploration I created intermediate and final products as physical tables. However, you can also just create them as [views](https://www.postgresql.org/docs/current/sql-createview.html) so that edits to the original *obs* table would result in automatic updates cascading into the final product without re-running anything. Below is Step 3 above as a database view by replacing ```create table``` with ```create view``` and removing the ability to have a [primary key](). You might also consider [Materialized Views](https://blog.devart.com/postgresql-materialized-views.html) if performance matters and you want a [unique index](https://www.postgresql.org/docs/current/sql-createindex.html) as a quasi replacement for a [PK](https://stackoverflow.com/questions/54154897/create-primary-key-on-materialized-view-in-postgres), but the updates would not be immediate as with a traditional view.
+
+```sql
+create view greatpond.v_segments as (
+WITH cuts AS (
+    SELECT events.obs_id, events.trails_fid, events.lower_meas, events.upper_meas,	
+	ST_GeometryN(trails.geom,1) as geom, trails.osm_id, trails.fid, trails.id 
+	from greatpond.trails
+	inner join greatpond.events
+	ON trails.fid=events.trails_fid order by events.upper_meas 
+)
+SELECT
+	ST_LineSubstring(geom, lower_meas, upper_meas) as mygeom, obs_id, trails_fid, lower_meas, upper_meas
+FROM 
+    cuts);
+```
+
+Here it is graphically executing through the DB Manager in QGIS
+
+
+[![1](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/lr_as_view.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/lr_as_view.png)
+
+
+
+
+
 #### RESULTS:
+
+
+
+Here are the physical outputs from above
+
+[![2](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/lr_outputs.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/lr_outputs.png)
+
 
 ## REFERENCES:
 1. [![https://gis.stackexchange.com/questions/112282/splitting-lines-into-non-overlapping-subsets-based-on-points-using-postgis]](https://gis.stackexchange.com/questions/112282/splitting-lines-into-non-overlapping-subsets-based-on-points-using-postgis)
@@ -225,3 +261,24 @@ FROM
 3. [https://www.fhwa.dot.gov/policyinformation/hpms/documents/arnold_reference_manual_2014.pdf](https://www.fhwa.dot.gov/policyinformation/hpms/documents/arnold_reference_manual_2014.pdf)
 4. [http://postgis.net/workshops/postgis-intro/linear_referencing.html](http://postgis.net/workshops/postgis-intro/linear_referencing.html)
 5. [https://postgis.net/docs/reference.html#Linear_Referencing](https://postgis.net/docs/reference.html#Linear_Referencing ) 
+
+### [Experimental](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams) [mermaid](https://mermaid.live/) mindmap
+
+```mermaid
+mindmap
+  root((Open Source Spatial Databases))
+    PostgreSQL
+      PostGIS
+        GEOS
+    SQLite
+      Geopackage
+         Storage only
+      Spatialite
+        GEOS
+        Builtin
+    MySQL
+      Boost Cplus p libraries
+    MariaDB
+      TBD
+```
+
