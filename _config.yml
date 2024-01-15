@@ -256,6 +256,9 @@ paginate: 10
 kramdown:
   input: GFM
 
+### 15-Jan-2024 to try to get mermaid working
+mermaid: true
+
 # Default YAML values (more information on Jekyll's site)
 defaults:
   -
