@@ -122,6 +122,7 @@ Number  Start   End     Size    Type      File system  Flags
 
 {: .box-terminal}
 fdisk -l
+More here. Does it work
 
 
 ```bash
