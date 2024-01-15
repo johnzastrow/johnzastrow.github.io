@@ -973,6 +973,17 @@ pre {
   border-left-color: #68ad87;
 }
 
+.box-terminal {
+  background-color: black;
+  background-image: radial-gradient(
+    rgba(0, 150, 0, 0.75), black 120%
+  );
+  height: 100vh;
+  color: hsl(0, 0%, 99%);
+  text-shadow: 0 0 5px #C8C8C8;
+  font: 1.3rem Inconsolata, monospace;
+}
+
 /* --- Misc blog post styles --- */s
 
 .blog-post :first-child {

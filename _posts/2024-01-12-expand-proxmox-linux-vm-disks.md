@@ -110,9 +110,18 @@ Number  Start   End     Size    Type      File system  Flags
 
 ### Other useful commands and their output
 
+- [x] Read the Markdown guide
+- [ ] Review the style guide
+- [ ] Stay awesome!
+
 ```bash fdisk -l ```
 
 ```bash lsblk```
+
+### Notification
+
+{: .box-terminal}
+fdisk -l
 
 
 ```bash
