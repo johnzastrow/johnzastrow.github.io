@@ -106,6 +106,16 @@ Number  Start   End     Size    Type      File system  Flags
 
 ```fdisk -l ```
 
+```lsblk```
+
+
+```
+growpart /dev/sda 3
+pvresize /dev/sda3
+lvextend -l +100%FREE /dev/pve/root
+resize2fs /dev/mapper/pve-root
+```
+
 **Proxmox - Virtualization Orchestration Platform**
   - Show Notes
       - https://wiki.opensourceisawesome.com/books/virtualization-virtual-machines/page/install-and-setup-proxmox-virtualization-os
