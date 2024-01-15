@@ -200,6 +200,9 @@ lvresize --extents +100%FREE --resizefs /dev/{volume group name}/root
 
 Online for Linux guests without LVM
 Enlarge the filesystem (in this case root is on vda1)
+An ext4 file system may be grown while mounted using the resize2fs command:
+
+``` resize2fs /mount/device size ```
 
 ```bash
 resize2fs /dev/vda1
