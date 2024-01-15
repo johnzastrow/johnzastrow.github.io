@@ -118,9 +118,10 @@ Number  Start   End     Size    Type      File system  Flags
 
 ```bash lsblk```
 
-### Notification
+### Terminal 
 
 {: .box-terminal}
+```echo "can I do code in P```
 fdisk -l
 More here. Does it work
 
