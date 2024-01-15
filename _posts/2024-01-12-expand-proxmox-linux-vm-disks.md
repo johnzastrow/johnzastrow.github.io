@@ -121,10 +121,11 @@ Number  Start   End     Size    Type      File system  Flags
 ### Terminal 
 
 {: .box-terminal}
+<pre>
 ```echo "can I do code in P```
 fdisk -l
 More here. Does it work
-
+</pre>
 
 ```bash
 growpart /dev/sda 3
