@@ -112,7 +112,98 @@ Number  Start   End     Size    Type      File system  Flags
 (parted) quit
 </pre>
 
+## 3. Enlarge the filesystem(s) in the partitions on the virtual disk
+If you did not resize the filesystem in step 2
 
+#### Online for Linux guests with LVM
+Enlarge the physical volume to occupy the whole available space in the partition:
+
+```pvresize /dev/vda3
+```
+List logical volumes:
+
+```lvdisplay``````
+
+{: .box-terminal}
+<pre>
+ --- Logical volume ---
+ LV Path                /dev/{volume group name}/root
+ LV Name                root
+ VG Name                {volume group name}
+ LV UUID                DXSq3l-Rufb-...
+ LV Write Access        read/write
+ LV Creation host, time ...
+ LV Status              available
+ # open                 1
+ LV Size                <19.50 GiB
+ Current LE             4991
+ Segments               1
+ Allocation             inherit
+ Read ahead sectors     auto
+ - currently set to     256
+ Block device           253:0
+</pre>
+
+I've noted that in Ubuntu Server the Volume Group Name does not end in root as Ubuntu Desktop does.
+
+Here is Ubuntu Server
+{: .box-terminal}
+<pre>
+--- Logical volume ---
+  LV Path                /dev/ubuntu-vg/ubuntu-lv
+  LV Name                ubuntu-lv
+  VG Name                ubuntu-vg
+  LV UUID                DoMD3y-0lmV-osy5-mwOj-hMs9-ruaV-S8ufTu
+  LV Write Access        read/write
+  LV Creation host, time ubuntu-server, 2022-01-24 21:59:57 +0000
+  LV Status              available
+  # open                 1
+  LV Size                <66.00 GiB
+  Current LE             16895
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     256
+  Block device           253:0
+</pre>
+
+and here is Ubuntu Desktop (Ubuntu Mate)
+
+{: .box-terminal}
+<pre>
+ --- Logical volume ---
+  LV Path                /dev/vgubuntu-mate/root
+  LV Name                root
+  VG Name                vgubuntu-mate
+  LV UUID                Z270jO-SCGC-cttK-Vtac-m2gF-zILg-dPA9xO
+  LV Write Access        read/write
+  LV Creation host, time ubuntu-mate, 2023-11-19 18:59:16 -0500
+  LV Status              available
+  # open                 1
+  LV Size                <55.77 GiB
+  Current LE             14276
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     256
+  Block device           252:0
+</pre>
+
+Enlarge the logical volume and the filesystem (the file system can be mounted, works with ext4 and xfs). Replace "{volume group name}" with your specific volume group name:
+
+```bash 
+#This command will increase the partition up by 20GB
+lvresize --size +20G --resizefs /dev/{volume group name}/root 
+#Use all the remaining space on the volume group
+lvresize --extents +100%FREE --resizefs /dev/{volume group name}/root
+```
+
+Online for Linux guests without LVM
+Enlarge the filesystem (in this case root is on vda1)
+
+```bash
+resize2fs /dev/vda1
+```
 
 <!-- [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)
 *Figure 1. The real data* as shown in QGIS. -->
@@ -124,18 +215,52 @@ Number  Start   End     Size    Type      File system  Flags
 - [ ] Review the style guide
 - [ ] Stay awesome!
 
-```bash fdisk -l ```
 
-```bash lsblk```
-
-### Terminal 
 
 {: .box-terminal}
 <pre>
-```echo "can I do code in P```
 fdisk -l
-More here. Does it work
+Disk /dev/vda: 67 GiB, 71940702208 bytes, 140509184 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: D1A6933C-7817-4756-AA1B-5D924F3054B0
+
+Device       Start       End   Sectors Size Type
+/dev/vda1     2048      4095      2048   1M BIOS boot
+/dev/vda2     4096   2101247   2097152   1G Linux filesystem
+/dev/vda3  2101248 140509150 138407903  66G Linux filesystem
+
+
+Disk /dev/mapper/ubuntu--vg-ubuntu--lv: 66 GiB, 70862766080 bytes, 138403840 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
 </pre>
+
+{: .box-terminal}
+<pre>
+lsblk
+NAME                      MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0                       7:0    0   1.9M  1 loop /snap/bottom/759
+loop1                       7:1    0     4K  1 loop /snap/bare/5
+loop2                       7:2    0   1.9M  1 loop /snap/btop/655
+loop3                       7:3    0   9.6M  1 loop /snap/canonical-livepatch/246
+loop4                       7:4    0 105.8M  1 loop /snap/core/16202
+loop5                       7:5    0  63.9M  1 loop /snap/core20/2105
+loop6                       7:6    0  74.1M  1 loop /snap/core22/1033
+loop7                       7:7    0 152.1M  1 loop /snap/lxd/26200
+loop8                       7:8    0  40.4M  1 loop /snap/snapd/20671
+vda                       252:0    0    67G  0 disk 
+├─vda1                    252:1    0     1M  0 part 
+├─vda2                    252:2    0     1G  0 part /boot
+└─vda3                    252:3    0    66G  0 part 
+  └─ubuntu--vg-ubuntu--lv 253:0    0    66G  0 lvm  /
+</pre>
+
+
+
 
 ```bash
 growpart /dev/sda 3
