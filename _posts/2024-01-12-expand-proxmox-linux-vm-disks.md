@@ -76,31 +76,35 @@ Fix/Ignore? F
 #### Example without EFI
 Another example without EFI using parted:
 
-```bash
+{: .box-terminal}
+<pre>
 parted /dev/vda
 (parted) print
 Number  Start   End     Size    Type      File system  Flags
 1       1049kB  538MB   537MB   primary   fat32        boot
 2       539MB   21.5GB  20.9GB  extended
 3       539MB   21.5GB  20.9GB  logical                lvm
-```
+</pre>
+
 Resize the 2nd partition, first (extended):
 
-```bash
+{: .box-terminal}
+<pre>
 (parted) resizepart 2 100%
 (parted) resizepart 3 100%
-```
+</pre>
 
 Check the new partition table
 
-```bash
+{: .box-terminal}
+<pre>
 (parted) print
 Number  Start   End     Size    Type      File system  Flags
 1       1049kB  538MB   537MB   primary   fat32        boot
 2       539MB   26.8GB  26.3GB  extended
 3       539MB   26.8GB  26.3GB  logical                lvm
 (parted) quit
-```
+</pre>
 
 
 
