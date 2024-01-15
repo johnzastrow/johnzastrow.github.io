@@ -977,7 +977,7 @@ pre {
 .box-terminal {
   background-color: black;
   color: hsl(55, 90%, 84%);
-  font: 1.0rem Inconsolata, monospace;
+  font: 0.8 rem Inconsolata, monospace;
 }
 /* ---height: 100vh; --- */
 /* --- Misc blog post styles --- */s
