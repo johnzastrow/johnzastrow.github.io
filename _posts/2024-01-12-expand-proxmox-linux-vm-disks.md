@@ -118,11 +118,11 @@ If you did not resize the filesystem in step 2
 #### Online for Linux guests with LVM
 Enlarge the physical volume to occupy the whole available space in the partition:
 
-```bash pvresize /dev/vda3```
+```pvresize /dev/vda3```
 
 List logical volumes:
 
-```bash lvdisplay```
+```lvdisplay```
 
 {: .box-terminal}
 <pre>
@@ -144,9 +144,12 @@ List logical volumes:
  Block device           253:0
 </pre>
 
+
 I've noted that in Ubuntu Server the Volume Group Name does not end in root as Ubuntu Desktop does.
 
 Here is Ubuntu Server
+
+
 {: .box-terminal}
 <pre>
 --- Logical volume ---
@@ -168,6 +171,7 @@ Here is Ubuntu Server
 </pre>
 
 and here is Ubuntu Desktop (Ubuntu Mate)
+
 
 {: .box-terminal}
 <pre>
