@@ -945,7 +945,8 @@ pre {
 .box-note,
 .box-warning,
 .box-error,
-.box-success {
+.box-success,
+.box-terminal {
   padding: 0.9375rem 0.9375rem 0.9375rem 0.625rem;
   margin: 1.25rem 1.25rem 1.25rem 0.3125rem;
   border: 1px solid #eee;
@@ -975,7 +976,7 @@ pre {
 
 .box-terminal {
   background-color: black;
-  color: hsl(0, 0%, 99%);
+  color: hsl(105, 91%, 40%);
   font: 1.0rem Inconsolata, monospace;
 }
 /* ---height: 100vh; --- */
