@@ -126,6 +126,7 @@ List logical volumes:
 
 {: .box-terminal}
 <pre>
+
  --- Logical volume ---
  LV Path                /dev/{volume group name}/root
  LV Name                root
@@ -142,6 +143,7 @@ List logical volumes:
  Read ahead sectors     auto
  - currently set to     256
  Block device           253:0
+
 </pre>
 
 
@@ -152,6 +154,7 @@ Here is Ubuntu Server
 
 {: .box-terminal}
 <pre>
+
 --- Logical volume ---
   LV Path                /dev/ubuntu-vg/ubuntu-lv
   LV Name                ubuntu-lv
@@ -168,6 +171,7 @@ Here is Ubuntu Server
   Read ahead sectors     auto
   - currently set to     256
   Block device           253:0
+
 </pre>
 
 and here is Ubuntu Desktop (Ubuntu Mate)
@@ -195,12 +199,13 @@ and here is Ubuntu Desktop (Ubuntu Mate)
 
 Enlarge the logical volume and the filesystem (the file system can be mounted, works with ext4 and xfs). Replace "{volume group name}" with your specific volume group name:
 
-```bash 
-#This command will increase the partition up by 20GB
-lvresize --size +20G --resizefs /dev/{volume group name}/root 
-#Use all the remaining space on the volume group
-lvresize --extents +100%FREE --resizefs /dev/{volume group name}/root
-```
+This command will increase the partition up by 20GB
+
+```lvresize --size +20G --resizefs /dev/{volume group name}/root ``````
+
+Use all the remaining space on the volume group
+
+```lvresize --extents +100%FREE --resizefs /dev/{volume group name}/root ```
 
 Online for Linux guests without LVM
 Enlarge the filesystem (in this case root is on vda1)
@@ -217,11 +222,6 @@ resize2fs /dev/vda1
 
 
 ### Other useful commands and their output
-
-- [x] Read the Markdown guide
-- [ ] Review the style guide
-- [ ] Stay awesome!
-
 
 
 {: .box-terminal}
