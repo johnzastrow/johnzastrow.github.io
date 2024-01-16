@@ -124,9 +124,8 @@ List logical volumes:
 
 ```lvdisplay```
 
-{: .box-terminal}
-<pre>
 
+{: .box-terminal}
  --- Logical volume ---
  LV Path                /dev/{volume group name}/root
  LV Name                root
@@ -144,7 +143,7 @@ List logical volumes:
  - currently set to     256
  Block device           253:0
 
-</pre>
+
 
 
 I've noted that in Ubuntu Server the Volume Group Name does not end in root as Ubuntu Desktop does.
