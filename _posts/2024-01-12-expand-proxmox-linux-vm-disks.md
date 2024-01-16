@@ -118,11 +118,11 @@ If you did not resize the filesystem in step 2
 #### Online for Linux guests with LVM
 Enlarge the physical volume to occupy the whole available space in the partition:
 
-```pvresize /dev/vda3```
+pvresize /dev/vda3
 
 List logical volumes:
 
-```lvdisplay```
+lvdisplay
 
 
 {: .box-terminal}
