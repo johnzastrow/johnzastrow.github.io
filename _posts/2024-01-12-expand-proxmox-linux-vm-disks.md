@@ -123,11 +123,12 @@ Enlarge the physical volume to occupy the whole available space in the partition
 List logical volumes:
 
 
-lvdisplay
+
 
 
 {: .box-terminal}
 <pre>
+lvdisplay
  --- Logical volume ---
  LV Path                /dev/{volume group name}/root
  LV Name                root
