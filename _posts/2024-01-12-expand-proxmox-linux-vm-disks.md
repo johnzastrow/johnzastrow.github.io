@@ -122,7 +122,8 @@ Enlarge the physical volume to occupy the whole available space in the partition
 
 List logical volumes:
 
-```lvdisplay```
+
+lvdisplay
 
 
 {: .box-terminal}
