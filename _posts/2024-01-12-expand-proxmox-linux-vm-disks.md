@@ -201,7 +201,7 @@ Enlarge the logical volume and the filesystem (the file system can be mounted, w
 
 This command will increase the partition up by 20GB
 
-```lvresize --size +20G --resizefs /dev/{volume group name}/root ``````
+```lvresize --size +20G --resizefs /dev/{volume group name}/root ```
 
 Use all the remaining space on the volume group
 
