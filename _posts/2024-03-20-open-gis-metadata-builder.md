@@ -737,6 +737,8 @@ END Geopackages
 
 #### Example metadata output
 
+from ./DATA/MAIN/Biota_Ecological/2022/Ecological/communities.md.txt 
+
 ```
 
 # Title: Some Good Title. Edit everything in this file 
