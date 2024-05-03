@@ -328,7 +328,8 @@ fi
 done
 ```
 
-metalog.txt
+#### metalog.txt
+
 ```
 Run on computer:  proxwin10
 Starting in this directory and below:  /cygdrive/z/GreatPondTrust/GIS_ReorgB
@@ -356,7 +357,7 @@ By this user:  br8kw
 ./DATA/MAIN/Boundaries/2022/GPMCT/ARCHIVE/property_boyle_poly.md.txt
 ```
 
-listed files output
+#### Listed files output
 
 ```
 # * WELCOME TO THE FILELISTING SCRIPT FOR THE HOSTNAME proxwin10
@@ -732,5 +733,116 @@ Filename|Filesize (bytes)|Modified
 './DATA/MAIN/MAPDOCUMENTS_STYLES/qgis_map_projects.gpkg' |0 |2023-02-02 16:06:51.792821000 -0500
 **********************************************************************************************
 END Geopackages
+```
+
+#### Example metadata output
+
+```
+
+# Title: Some Good Title. Edit everything in this file 
+
+Edit this file and remove this line. File is formatted using MarkDown for human readability -> https://www.markdownguide.org/getting-started/
+
+## Edit Date: 
+
+Data edited on: 2012-04-18 16:51:08.000000000 -0400
+
+Metadata edited on: Thu_2023-04-27-14:23:38
+
+## Edited By: 
+
+## Creation Date: 
+
+Example: April 20, 2010 
+
+## Created By: 
+
+br8kw
+Example: John Zastrow 
+
+## Abstract 
+
+    What: what has been recorded and in what form. Should immediately convey precisely what the resource is.
+
+    Where: description of spatial coverage; whether the coverage is even or variable
+
+    When: period over which the data were collected.
+
+    How: brief description of methodology. 
+
+   Why: what purpose was the data collected? Who will find the data useful?
+
+    Who: parties responsible for the collection and interpretation of data.
+
+    Completeness: any data absent from the dataset? which data are included or excluded, and why. 
+
+## Spatial Extent
+
+ The extents of the Great Pond Mountain Trust property at time the data were collected. North, East, South, West coordinates or description
+
+## Contact information 
+
+## History 
+
+Date and description of edits, with editor
 
 
+
+ ****************** OGRINFO OUTPUT ******************** 
+INFO: Open of `./DATA/MAIN/Biota_Ecological/2022/Ecological/communities.shp'
+      using driver `ESRI Shapefile' successful.
+
+Layer name: communities
+Metadata:
+  DBF_DATE_LAST_UPDATE=2006-12-11
+Geometry: Polygon
+Feature Count: 111
+Extent: (523963.443207, 4935055.928364) - (530878.440822, 4941835.887466)
+Layer SRS WKT:
+PROJCRS["NAD83 / UTM zone 19N",
+    BASEGEOGCRS["NAD83",
+        DATUM["North American Datum 1983",
+            ELLIPSOID["GRS 1980",6378137,298.257222101,
+                LENGTHUNIT["metre",1]]],
+        PRIMEM["Greenwich",0,
+            ANGLEUNIT["degree",0.0174532925199433]],
+        ID["EPSG",4269]],
+    CONVERSION["UTM zone 19N",
+        METHOD["Transverse Mercator",
+            ID["EPSG",9807]],
+        PARAMETER["Latitude of natural origin",0,
+            ANGLEUNIT["Degree",0.0174532925199433],
+            ID["EPSG",8801]],
+        PARAMETER["Longitude of natural origin",-69,
+            ANGLEUNIT["Degree",0.0174532925199433],
+            ID["EPSG",8802]],
+        PARAMETER["Scale factor at natural origin",0.9996,
+            SCALEUNIT["unity",1],
+            ID["EPSG",8805]],
+        PARAMETER["False easting",500000,
+            LENGTHUNIT["metre",1],
+            ID["EPSG",8806]],
+        PARAMETER["False northing",0,
+            LENGTHUNIT["metre",1],
+            ID["EPSG",8807]]],
+    CS[Cartesian,2],
+        AXIS["(E)",east,
+            ORDER[1],
+            LENGTHUNIT["metre",1]],
+        AXIS["(N)",north,
+            ORDER[2],
+            LENGTHUNIT["metre",1]],
+    ID["EPSG",26919]]
+Data axis to CRS axis mapping: 1,2
+ID_: Integer64 (11.0)
+ID_1: Integer64 (11.0)
+ID__: Integer64 (11.0)
+ID___: Integer64 (11.0)
+COVER: String (16.0)
+ID____: Integer (8.0)
+ID: Integer64 (11.0)
+AREA: Real (16.3)
+ACRES: Real (16.3)
+PERIMETER: Real (16.3)
+
+```
