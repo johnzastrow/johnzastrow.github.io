@@ -1,0 +1,21 @@
+{
+    "cSpell.words": [
+        "btop",
+        "Disklabel",
+        "fdisk",
+        "growpart",
+        "livepatch",
+        "lvextend",
+        "virtio",
+        "vmid"
+    ],
+    "cSpell.ignoreWords": [
+        "PMBR",
+        "lvdisplay",
+        "lvresize",
+        "pvresize",
+        "resizefs",
+        "resizepart",
+        "vgubuntu"
+    ]
+}

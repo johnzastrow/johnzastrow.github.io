@@ -8,23 +8,25 @@ tags: [linux]
 comments: true
 ---
 
-Sources: https://pve.proxmox.com/wiki/Resize_disks , 
+Sources: <https://pve.proxmox.com/wiki/Resize_disks>,
 
 I'm writing this down because I do this about every six months and spend a day looking it up and breaking stuff every time. I use LVM and ext4 file system in my VMs.
 
-# Expansion Process
+## Expansion Process
 
-<i>"If you enlarge the hard disk, once you have added the disk plate, your partition table and file system knows nothing about the new size, so you have to act inside the VM to fix it.
+```If you enlarge the hard disk, once you have added the disk plate, your partition table and file system knows nothing about the new size, so you have to act inside the VM to fix it.
 
-If you reduce (shrink) the hard disk, of course removing the last disk plate will probably destroy your file system and remove the data in it! So in this case it is paramount to act in the VM in advance, reducing the file system and the partition size. SystemRescueCD comes very handy for it, just add its iso as cdrom of your VM and set boot priority to CD-ROM.
+If you reduce (shrink) the hard disk, of course removing the last disk plate will probably destroy your file system and remove the data in it! So in this case it is paramount to act in the VM in advance, reducing the file system and the partition size. SystemRescueCD comes very handy for it, just add its iso as cd-rom of your VM and set boot priority to CD-ROM.
 
-Shrinking disks is not supported by the PVE API and has to be done manually."</i>
+Shrinking disks is not supported by the PVE API and has to be done manually."```
 
 ## 1. Resizing guest disk
+
 #### qm command (or use the resize command in the GUI)
+
 You can resize your disks online or offline with command line:
 
-```qm resize <vmid> <disk> <size> ```
+```qm resize <vmid> <disk> <size>```
 
 example: to add 5G to your virtio0 disk on vmid100:
 
@@ -36,21 +38,23 @@ For virtio disks, Linux should see the new size online without reboot with kerne
 
 We will assume you are using LVM on the storage and the VM OS is using ext4 filesystem.
 
-
 #### Online for Linux Guests
+
 Here we will enlarge a LVM PV partition, but the procedure is the same for every kind of partitions. Note that the partition you want to enlarge should be at the end of the disk. If you want to enlarge a partition which is anywhere on the disk, use the offline method.
 
 Check that the kernel has detected the change of the hard drive size
 (here we use VirtIO so the hard drive is named vda)
 
-```bash dmesg | grep vda ```
+```bash dmesg | grep vda```
 
 ```
-[ 3982.979046] vda: detected capacity change from 34359738368 to 171798691840
-```
 
+[3982.979046] vda: detected capacity change from 34359738368 to 171798691840
+
+```
 
 #### Example with EFI
+
 Print the current partition table
 
 {: .box-terminal}
@@ -73,13 +77,14 @@ parted /dev/vda
 (parted) print
 Warning: Not all of the space available to /dev/vda appears to be used, you can
 fix the GPT to use all of the space (an extra 268435456 blocks) or continue
-with the current setting? 
-Fix/Ignore? F 
+with the current setting?
+Fix/Ignore? F
 (parted) resizepart 3 100%
 (parted) quit
 </pre>
 
 #### Example without EFI
+
 Another example without EFI using parted:
 
 {: .box-terminal}
@@ -113,18 +118,16 @@ Number  Start   End     Size    Type      File system  Flags
 </pre>
 
 ## 3. Enlarge the filesystem(s) in the partitions on the virtual disk
+
 If you did not resize the filesystem in step 2
 
 #### Online for Linux guests with LVM
+
 Enlarge the physical volume to occupy the whole available space in the partition:
 
 ```pvresize /dev/vda3```
 
 List logical volumes:
-
-
-
-
 
 {: .box-terminal}
 <pre>
@@ -147,12 +150,9 @@ lvdisplay
  Block device           253:0
 </pre>
 
-
-
 I've noted that in Ubuntu Server the Volume Group Name does not end in root as Ubuntu Desktop does.
 
 Here is Ubuntu Server
-
 
 {: .box-terminal}
 <pre>
@@ -178,7 +178,6 @@ Here is Ubuntu Server
 
 and here is Ubuntu Desktop (Ubuntu Mate)
 
-
 {: .box-terminal}
 <pre>
  --- Logical volume ---
@@ -203,11 +202,11 @@ Enlarge the logical volume and the filesystem (the file system can be mounted, w
 
 This command will increase the partition up by 20GB
 
-```lvresize --size +20G --resizefs /dev/{volume group name}/root ```
+```lvresize --size +20G --resizefs /dev/{volume group name}/root```
 
 Use all the remaining space on the volume group
 
-```lvresize --extents +100%FREE --resizefs /dev/{volume group name}/root ```
+```lvresize --extents +100%FREE --resizefs /dev/{volume group name}/root```
 
 Online for Linux guests without LVM
 Enlarge the filesystem (in this case root is on vda1)
@@ -222,9 +221,7 @@ resize2fs /dev/vda1
 <!-- [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)
 *Figure 1. The real data* as shown in QGIS. -->
 
-
 ### Other useful commands and their output
-
 
 {: .box-terminal}
 <pre>
@@ -240,7 +237,6 @@ Device       Start       End   Sectors Size Type
 /dev/vda1     2048      4095      2048   1M BIOS boot
 /dev/vda2     4096   2101247   2097152   1G Linux filesystem
 /dev/vda3  2101248 140509150 138407903  66G Linux filesystem
-
 
 Disk /dev/mapper/ubuntu--vg-ubuntu--lv: 66 GiB, 70862766080 bytes, 138403840 sectors
 Units: sectors of 1 * 512 = 512 bytes
@@ -261,15 +257,12 @@ loop5                       7:5    0  63.9M  1 loop /snap/core20/2105
 loop6                       7:6    0  74.1M  1 loop /snap/core22/1033
 loop7                       7:7    0 152.1M  1 loop /snap/lxd/26200
 loop8                       7:8    0  40.4M  1 loop /snap/snapd/20671
-vda                       252:0    0    67G  0 disk 
-├─vda1                    252:1    0     1M  0 part 
+vda                       252:0    0    67G  0 disk
+├─vda1                    252:1    0     1M  0 part
 ├─vda2                    252:2    0     1G  0 part /boot
-└─vda3                    252:3    0    66G  0 part 
+└─vda3                    252:3    0    66G  0 part
   └─ubuntu--vg-ubuntu--lv 253:0    0    66G  0 lvm  /
 </pre>
-
-
-
 
 ```bash
 growpart /dev/sda 3
@@ -278,8 +271,10 @@ lvextend -l +100%FREE /dev/pve/root
 resize2fs /dev/mapper/pve-root
 ```
 
-**Proxmox - Virtualization Orchestration Platform**
-  - Show Notes
-      - https://wiki.opensourceisawesome.com/books/virtualization-virtual-machines/page/install-and-setup-proxmox-virtualization-os
-  - Home Page - https://www.proxmox.com/en/
- 
+## Errata
+
+### Proxmox - Virtualization Orchestration Platform
+
+- Show Notes
+  - <https://wiki.opensourceisawesome.com/books/virtualization-virtual-machines/page/install-and-setup-proxmox-virtualization-os>
+- Home Page - <https://www.proxmox.com/en/>
