@@ -155,6 +155,8 @@ footer-hover-col: "#0085A1"
 site-js:
  - "/assets/js/mermaid.js"
 
+ remote_theme: daattali/beautiful-jekyll@6.0.1
+
 #################################
 # --- Web Analytics Section --- #
 #################################
