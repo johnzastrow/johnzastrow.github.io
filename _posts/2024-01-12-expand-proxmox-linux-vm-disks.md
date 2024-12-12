@@ -7,18 +7,21 @@ date: '2024-01-12T12:47:41-05:00'
 tags: [linux]
 comments: true
 ---
+Updated: 12-Dec-2024
 
-Sources: *1* <https://pve.proxmox.com/wiki/Resize_disks>, *2*<https://packetpushers.net/blog/ubuntu-extend-your-default-lvm-space/>
+Sources: 
+**1** <https://pve.proxmox.com/wiki/Resize_disks>, 
+**2** <https://packetpushers.net/blog/ubuntu-extend-your-default-lvm-space/>
 
 I'm writing this down because I do this about every six months and spend a day looking it up and breaking stuff every time. I use LVM and ext4 file system in my VMs.
 
 ## Expansion Process
 
-```If you enlarge the hard disk, once you have added the disk plate, your partition table and file system knows nothing about the new size, so you have to act inside the VM to fix it.
+If you enlarge the hard disk, once you have added the disk plate, your partition table and file system knows nothing about the new size, so you have to act inside the VM to fix it.
 
 If you reduce (shrink) the hard disk, of course removing the last disk plate will probably destroy your file system and remove the data in it! So in this case it is paramount to act in the VM in advance, reducing the file system and the partition size. SystemRescueCD comes very handy for it, just add its iso as cd-rom of your VM and set boot priority to CD-ROM.
 
-Shrinking disks is not supported by the PVE API and has to be done manually."```
+Shrinking disks is not supported by the PVE API and has to be done manually."
 
 ## 1. Resizing guest disk
 
@@ -221,13 +224,16 @@ resize2fs /dev/vda1
 <!-- [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)
 *Figure 1. The real data* as shown in QGIS. -->
 
+# From the second article
 
 ## For just Ubuntu/Debian and assumes there is free space in the partition
 
 See the second link above. The default Ubuntu installer settings may not use your entire root partition available to it. So you may use these commands to expand the usable space to grab up all the free space that may be left in the partition.
 
-1. Start by checking your root filesystem free space with ```df -h ```
+A. Start by checking your root filesystem free space with ```df -h ```
  Here I am using 32% or 20GB/65GB of the file System
+ 
+ 
  {: .box-terminal}
 <pre>
  jcz@lamp:~$ df -h
@@ -240,7 +246,7 @@ tmpfs                              5.0M     0  5.0M   0% /run/lock
 tmpfs                              382M   12K  382M   1% /run/user/1000
 </pre>
 
-2. Check for existing free space on your Volume Group, run the command ```vgdisplay``` and check for free space. Here you can see I have 16.00 GiB of free space (Free PE) ready to be used. If you don’t have any free space, move on to the next section to use some free space from an extended physical (or virtual) disk.
+B. Check for existing free space on your Volume Group, run the command ```vgdisplay``` and check for free space. Here you can see I have 16.00 GiB of free space (Free PE) ready to be used. If you don’t have any free space, move on to the next section to use some free space from an extended physical (or virtual) disk.
 
  {: .box-terminal}
 <pre>
@@ -269,7 +275,7 @@ root@pbs:~# vgdisplay
   
 </pre>
 
-3. Use up any free space on your Volume Group (VG) for your root Logical Volume (LV), first run the ```lvdisplay``` command and check the Logical Volume (LV) size, then run ```lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv``` to extend the LV (from the LV Path) to the maximum size usable, then run ```lvdisplay``` one more time to make sure it changed.
+C. Use up any free space on your Volume Group (VG) for your root Logical Volume (LV), first run the ```lvdisplay``` command and check the Logical Volume (LV) size, then run ```lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv``` to extend the LV (from the LV Path) to the maximum size usable, then run ```lvdisplay``` one more time to make sure it changed.
 
 
  {: .box-terminal}
@@ -332,7 +338,7 @@ root@pbs:~# lvextend -l +100%FREE /dev/pbs/root
   
   </pre>
   
-4. Now I have increased the size of the block volume where the root filesystem resides, but I still need to extend the filesystem on top of it. First, I will run ```df -h``` to verify my (almost full) root file system, then I will run ```resize2fs /dev/mapper/ubuntu–vg-ubuntu–lv``` to extend my filesystem, and run ```df -h``` one more time to make sure I'm successful.
+D. Now I have increased the size of the block volume where the root filesystem resides, but I still need to extend the filesystem on top of it. First, I will run ```df -h``` to verify my (almost full) root file system, then I will run ```resize2fs /dev/mapper/ubuntu–vg-ubuntu–lv``` to extend my filesystem, and run ```df -h``` one more time to make sure I'm successful.
   
    {: .box-terminal}
 <pre>
@@ -380,7 +386,7 @@ Once that is done, I may need to get Linux to rescan the disk for the new free s
 
 cfdisk.png
 
-If you don’t see free space listed, then initiate a rescan of ```/dev/sda```  with echo 1>/sys/class/block/sda/device/rescan. Once done, rerun cfdisk and you should see the free space listed.
+If you don’t see free space listed, then initiate a rescan of ```/dev/sda```  with ```echo 1>/sys/class/block/sda/device/rescan``` . Once done, rerun ```cfdisk``` and you should see the free space listed.
 
 free-partition-space-scan.jpg
 
