@@ -17,9 +17,9 @@ I'm writing this down because I do this about every six months and spend a day l
 
 ## Expansion Process
 
-If you enlarge the hard disk, once you have added the disk plate, your partition table and file system knows nothing about the new size, so you have to act inside the VM to fix it.
+If I enlarge the hard disk, once I have added the disk plate, my partition table and file system knows nothing about the new size, so I have to act inside the VM to fix it.
 
-If you reduce (shrink) the hard disk, of course removing the last disk plate will probably destroy your file system and remove the data in it! So in this case it is paramount to act in the VM in advance, reducing the file system and the partition size. SystemRescueCD comes very handy for it, just add its iso as cd-rom of your VM and set boot priority to CD-ROM.
+If I reduce (shrink) the hard disk, of course removing the last disk plate will probably destroy my file system and remove the data in it! So in this case it is paramount to act in the VM in advance, reducing the file system and the partition size. SystemRescueCD comes very handy for it, just add its iso as cd-rom of my VM and set boot priority to CD-ROM.
 
 Shrinking disks is not supported by the PVE API and has to be done manually."
 
@@ -27,11 +27,11 @@ Shrinking disks is not supported by the PVE API and has to be done manually."
 
 #### qm command (or use the resize command in the GUI)
 
-You can resize your disks online or offline with command line:
+You can resize my disks online or offline with command line:
 
 ```qm resize <vmid> <disk> <size>```
 
-example: to add 5G to your virtio0 disk on vmid100:
+example: to add 5G to my virtio0 disk on vmid100:
 
 ```qm resize 100 virtio0 +5G```
 
@@ -39,11 +39,11 @@ For virtio disks, Linux should see the new size online without reboot with kerne
 
 ## 2. Enlarge the partition(s) in the virtual disk
 
-We will assume you are using LVM on the storage and the VM OS is using ext4 filesystem.
+We will assume I am using LVM on the storage and the VM OS is using ext4 filesystem.
 
 #### Online for Linux Guests
 
-Here we will enlarge a LVM PV partition, but the procedure is the same for every kind of partitions. Note that the partition you want to enlarge should be at the end of the disk. If you want to enlarge a partition which is anywhere on the disk, use the offline method.
+Here we will enlarge a LVM PV partition, but the procedure is the same for every kind of partitions. Note that the partition I want to enlarge should be at the end of the disk. If I want to enlarge a partition which is anywhere on the disk, use the offline method.
 
 Check that the kernel has detected the change of the hard drive size
 (here we use VirtIO so the hard drive is named vda)
@@ -78,7 +78,7 @@ Resize the partition 3 (LVM PV) to occupy the whole remaining space of the hard 
 parted /dev/vda
 
 (parted) print
-Warning: Not all of the space available to /dev/vda appears to be used, you can
+Warning: Not all of the space available to /dev/vda appears to be used, I can
 fix the GPT to use all of the space (an extra 268435456 blocks) or continue
 with the current setting?
 Fix/Ignore? F
@@ -122,7 +122,7 @@ Number  Start   End     Size    Type      File system  Flags
 
 ## 3. Enlarge the filesystem(s) in the partitions on the virtual disk
 
-If you did not resize the filesystem in step 2
+If I did not resize the filesystem in step 2
 
 #### Online for Linux guests with LVM
 
@@ -201,7 +201,7 @@ and here is Ubuntu Desktop (Ubuntu Mate)
   Block device           252:0
 </pre>
 
-Enlarge the logical volume and the filesystem (the file system can be mounted, works with ext4 and xfs). Replace "{volume group name}" with your specific volume group name:
+Enlarge the logical volume and the filesystem (the file system can be mounted, works with ext4 and xfs). Replace "{volume group name}" with my specific volume group name:
 
 This command will increase the partition up by 20GB
 
@@ -228,9 +228,9 @@ resize2fs /dev/vda1
 
 ## For just Ubuntu/Debian and assumes there is free space in the partition
 
-See the second link above. The default Ubuntu installer settings may not use your entire root partition available to it. So you may use these commands to expand the usable space to grab up all the free space that may be left in the partition.
+See the second link above. The default Ubuntu installer settings may not use my entire root partition available to it. So I may use these commands to expand the usable space to grab up all the free space that may be left in the partition.
 
-A. Start by checking your root filesystem free space with ```df -h ```
+A. Start by checking my root filesystem free space with ```df -h ```
  Here I am using 32% or 20GB/65GB of the file System
  
  
@@ -246,7 +246,7 @@ tmpfs                              5.0M     0  5.0M   0% /run/lock
 tmpfs                              382M   12K  382M   1% /run/user/1000
 </pre>
 
-B. Check for existing free space on your Volume Group, run the command ```vgdisplay``` and check for free space. Here you can see I have 16.00 GiB of free space (Free PE) ready to be used. If you don’t have any free space, move on to the next section to use some free space from an extended physical (or virtual) disk.
+B. Check for existing free space on my Volume Group, run the command ```vgdisplay``` and check for free space. Here I can see I have 16.00 GiB of free space (Free PE) ready to be used. If I don’t have any free space, move on to the next section to use some free space from an extended physical (or virtual) disk.
 
  {: .box-terminal}
 <pre>
@@ -275,7 +275,7 @@ root@pbs:~# vgdisplay
   
 </pre>
 
-C. Use up any free space on your Volume Group (VG) for your root Logical Volume (LV), first run the ```lvdisplay``` command and check the Logical Volume (LV) size, then run ```lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv``` to extend the LV (from the LV Path) to the maximum size usable, then run ```lvdisplay``` one more time to make sure it changed.
+C. Use up any free space on my Volume Group (VG) for my root Logical Volume (LV), first run the ```lvdisplay``` command and check the Logical Volume (LV) size, then run ```lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv``` to extend the LV (from the LV Path) to the maximum size usable, then run ```lvdisplay``` one more time to make sure it changed.
 
 
  {: .box-terminal}
@@ -338,7 +338,7 @@ root@pbs:~# lvextend -l +100%FREE /dev/pbs/root
   
   </pre>
   
-D. Now I have increased the size of the block volume where the root filesystem resides, but I still need to extend the filesystem on top of it. First, I will run ```df -h``` to verify my (almost full) root file system, then I will run ```resize2fs /dev/mapper/ubuntu–vg-ubuntu–lv``` to extend my filesystem, and run ```df -h``` one more time to make sure I'm successful.
+D. Now I have increased the size of the block volume where the root filesystem resides, but I still need to extend the filesystem on top of it. First, I will run ```df -h``` to verify my (almost full) root file system, then I will run ```resize2fs /dev/mapper/pbs-root``` to extend my filesystem, and run ```df -h``` one more time to make sure I'm successful. of course I'm using Debian here as installed on a test instance of Proxmox Backup Server that I'm going to blow away.
   
    {: .box-terminal}
 <pre>
@@ -379,17 +379,52 @@ tmpfs                 382M     0  382M   0% /run/user/0
 
 Great! I just allocated the free space left behind by the installer to my root filesystem. If this is still not enough space, I will continue on to the next section to allocate more space by extending an underlying disk.
 
-### Use Space from Extended Physical (or Virtual) Disk
-First I might need to increase the size of the disk being presented to the Linux OS. This is most likely done by expanding the virtual disk in KVM/VMWare/Hyper-V or by adjusting your RAID controller / storage system to increase the volume size. You can often do this while Linux is running; without shutting down or restarting. 
 
-Once that is done, I may need to get Linux to rescan the disk for the new free space. Check for free space by running ```cfdisk``` and see if there is free space listed, use “q” to exit once you’re done.
+### Use Space from Extended Physical (or Virtual) Disk
+
+*Using examples from the author *
+
+A. First I might need to increase the size of the disk being presented to the Linux OS. This is most likely done by expanding the virtual disk in KVM/VMWare/Hyper-V or by adjusting my RAID controller / storage system to increase the volume size. You can often do this while Linux is running; without shutting down or restarting. 
+
+B. Once that is done, I may need to get Linux to rescan the disk for the new free space. Check for free space by running ```cfdisk``` and see if there is free space listed, use “q” to exit once I’re done.
 
 [![cfdisk.png](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/cfdisk.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/cfdisk.png)
 
 
-If you don’t see free space listed, then initiate a rescan of ```/dev/sda```  with ```echo 1>/sys/class/block/sda/device/rescan``` . Once done, rerun ```cfdisk``` and you should see the free space listed.
+If I don’t see free space listed, then I initiate a rescan of ```/dev/sda```  with ```echo 1>/sys/class/block/sda/device/rescan``` . Once done, rerun ```cfdisk``` and I should see the free space listed.
 
 [![free-partition-space-scan.jpg](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/free-partition-space-scan.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/free-partition-space-scan.jpg)
+
+
+C. Select my ```/dev/sda3``` partition from the list and then select “Resize” from the bottom menu. Hit ENTER and it will prompt me to confirm the new size. Hit ENTER again and I will now see the ```/dev/sda3``` partition with a new larger size.
+
+* Select ***“Write”*** from the bottom menu, type ***yes*** to confirm, and hit ***ENTER***. Then use ***“q”*** to exit the program.
+
+D. Now that the LVM partition backing the ```/dev/sda3``` Physical Volume (PV) has been extended, we need to extend the PV itself. Run ```pvresize /dev/sda3``` to do this and then use ```pvdisplay``` to check the new size.
+
+
+
+[![free-partition-space-scan.jpg](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/free-partition-space-scan.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/free-partition-space-scan.jpg)
+
+As I can see above, my PV has been increased from 98.5GB to 198.5GB. Now let’s check the Volume Group (VG) free space with ```vgdisplay```.
+
+[![vg-space-vgdisplay.jpg](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/vg-space-vgdisplay.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/vg-space-vgdisplay.jpg)
+
+We can see above that the VG has 100GB of free space. Now let’s check the size of our upstream Logical Volume (LV) using ```lvdisplay```.
+
+E. Now we extend the LV to use up all the VG’s free space with ```lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv```, and then check the LV one more time with ```lvdisplay``` to make sure it has been extended.
+
+
+[![lv-size-lvdisplay.jpg](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/lv-size-lvdisplay.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/lv-size-lvdisplay.jpg)
+
+
+F. At this point, the block volume underpinning our root filesystem has been extended, but the filesystem itself has not been resized to fit that new volume. To do this, run ```df -h``` to check the current size of the file system, then run ```resize2fs /dev/mapper/ubuntu–vg-ubuntu–lv``` to resize it, and ```df -h``` one more time to check the new file system available space.
+
+
+
+[![extend-filesystem-resize2fs.jpg](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/extend-filesystem-resize2fs.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/extend-filesystem-resize2fs.jpg)
+
+And there I go. I’ve now taken an expanded physical (or virtual) disk and moved that free space all the way up through the LVM abstraction layers to be used by my (critically full) root file system. 
 
 
 ## Other useful commands and their output
