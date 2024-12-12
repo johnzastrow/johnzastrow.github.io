@@ -384,11 +384,12 @@ First I might need to increase the size of the disk being presented to the Linux
 
 Once that is done, I may need to get Linux to rescan the disk for the new free space. Check for free space by running ```cfdisk``` and see if there is free space listed, use “q” to exit once you’re done.
 
-cfdisk.png
+[![cfdisk.png](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/cfdisk.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/cfdisk.png)
+
 
 If you don’t see free space listed, then initiate a rescan of ```/dev/sda```  with ```echo 1>/sys/class/block/sda/device/rescan``` . Once done, rerun ```cfdisk``` and you should see the free space listed.
 
-free-partition-space-scan.jpg
+[![free-partition-space-scan.jpg](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/free-partition-space-scan.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/free-partition-space-scan.jpg)
 
 
 ## Other useful commands and their output
