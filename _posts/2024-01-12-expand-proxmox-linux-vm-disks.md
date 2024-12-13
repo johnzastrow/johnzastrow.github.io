@@ -470,6 +470,9 @@ vda                       252:0    0    67G  0 disk
   └─ubuntu--vg-ubuntu--lv 253:0    0    66G  0 lvm  /
 </pre>
 
+
+#### Volume and Partition Commands
+
 ```bash
 growpart /dev/sda 3
 pvresize /dev/sda3
@@ -493,10 +496,11 @@ resize2fs /dev/mapper/pve-root
 
  - But to increase the size of a volume, you first resize the volume, and then the filesystem. Doing it the other way, you couldn't make the filesystem larger since there was no new space for it to use (yet).
 
-* resize2fs is for ext filesystems, not partitions. resize2fs should be used first only when you want to shrink the fs: shrink fs first, shrink the partition/LV second. when enlarging a fs, do the reverse - enlarge partition/LV, enlarge fs. lvresize resizes a logical volume (a virtual disk); resize2fs resizes an ext filesystem. Clearly to increase a filessystem, you need to extend space first; if you want to shrink, the other way around. 
+* `resize2fs` is for ext filesystems, not partitions. `resize2fs` should be used first only when you want to shrink the fs: shrink fs first, shrink the partition/LV second. when enlarging a fs, do the reverse - enlarge partition/LV, enlarge fs. lvresize resizes a logical volume (a virtual disk); resize2fs resizes an ext filesystem. Clearly to increase a filessystem, you need to extend space first; if you want to shrink, the other way around. 
 
 
-## Errata
+* see also `vgchange` and `pvmove`  as discussed here <https://serverfault.com/questions/519172/how-to-change-volumegroup-pe-size>
+
 
 
 
