@@ -486,15 +486,15 @@ resize2fs /dev/mapper/pve-root
 
 * There are two separate things:
 
- - The filesystem, a data structure that provides a way to store distinct named files, and the block device (disk, partition, LVM volume) on inside of which the filesystem lies
+    - The filesystem, a data structure that provides a way to store distinct named files, and the block device (disk, partition, LVM volume) on inside of which the filesystem lies
 
- - `resize2fs` resizes the filesystem, i.e. it modifies the data structures there to make use of new space, or to fit them in a smaller space. It doesn't affect the size of the underlying device.
+    - `resize2fs` resizes the filesystem, i.e. it modifies the data structures there to make use of new space, or to fit them in a smaller space. It doesn't affect the size of the underlying device.
 
- - `lvresize` resizes an LVM volume, but it doesn't care at all what lies within it.
+    - `lvresize` resizes an LVM volume, but it doesn't care at all what lies within it.
 
- - So, to reduce a volume, you have to first reduce the filesystem to a new size (resize2fs), and after that you can resize the volume to the new size (lvresize). Doing it the other way would trash the filesystem when the device was resized.
+    - So, to reduce a volume, you have to first reduce the filesystem to a new size (resize2fs), and after that you can resize the volume to the new size (lvresize). Doing it the other way would trash the filesystem when the device was resized.
 
- - But to increase the size of a volume, you first resize the volume, and then the filesystem. Doing it the other way, you couldn't make the filesystem larger since there was no new space for it to use (yet).
+    - But to increase the size of a volume, you first resize the volume, and then the filesystem. Doing it the other way, you couldn't make the filesystem larger since there was no new space for it to use (yet).
 
 * `resize2fs` is for ext filesystems, not partitions. `resize2fs` should be used first only when you want to shrink the fs: shrink fs first, shrink the partition/LV second. when enlarging a fs, do the reverse - enlarge partition/LV, enlarge fs. lvresize resizes a logical volume (a virtual disk); resize2fs resizes an ext filesystem. Clearly to increase a filessystem, you need to extend space first; if you want to shrink, the other way around. 
 
