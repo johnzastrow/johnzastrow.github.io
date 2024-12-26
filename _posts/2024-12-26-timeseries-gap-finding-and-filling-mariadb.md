@@ -90,6 +90,8 @@ CREATE TABLE `KPWM` (
 ```
 
 Here is a view I use to find data gaps (11,000 seconds defines the "gap" in this case). It is much faster than my old method.
+The LEAD .... OVER thing in the subquery is very cool.
+
 
 ```sql
 CREATE VIEW `v_gaps_KPWM` AS
@@ -101,6 +103,7 @@ SELECT `t`.`dt_utc` AS `GapStart`,
        -- Setting a fixed field to name the station to set the data up for the UNION in the next step
        'KPWM' AS `STATION`
 FROM
+-- I was so excited when a a helpful DBA suggested the lead... over approach on Stackexchange. Huge performance leap over my last approach
   (SELECT `KPWM`.`dt_utc` AS `dt_utc`,
           lead(`KPWM`.`dt_utc`, 1) OVER (
                                          ORDER BY `KPWM`.`dt_utc`) AS `NextDateTime`
@@ -193,7 +196,7 @@ ORDER BY `gapstart`
 ```
 
 
-which makes output like this
+Which makes output like this. Combining the gap data and sorting by the gap dates let me choose nearby stations that don't have gaps in the same periods.
 
 
 {: .box-terminal}
@@ -261,3 +264,26 @@ MariaDB [weather]> select * from v_gaps_all_stations;
 130 rows in set (0.383 sec)
 </pre>
 
+
+Here is an insert query that lets me use the gap date and TIME to fill gaps from nearby stations. I just made this query, so don't try to match it to the table above
+
+```sql
+INSERT INTO e4229 (`dt_utc`, `pressure_mbar`, `temp_f`, `dewpoint_f`, `humid_perc`, `windsp_mph`, `windir_deg`, `a_press_mbar`, `a_temp_f`, `a_dewp_f`, `a_humid_perc` , `a_windsp_mph`, `a_windir_deg`, `notes`)
+SELECT `dt_utc`,
+       `pressure_mbar`,
+       `temp_f`,
+       `dewpoint_f`,
+       `humid_perc`,
+       `windsp_mph`,
+       `windir_deg`,
+       `a_press_mbar`,
+       `a_temp_f`,
+       `a_dewp_f`,
+       `a_humid_perc` ,
+       `a_windsp_mph`,
+       `a_windir_deg`,
+       'From KPWM for hole 2024-09-24 04:45:01 to 2024-11-12 18:29:00' AS notes
+       -- the above note gives me some lineage for data, and of course flagging if I want to exclude it
+FROM kpwm
+WHERE kpwm.dt_utc BETWEEN cast('2024-09-24 04:45:01' AS datetime) AND cast('2024-11-12 18:29:00' AS datetime);
+```
