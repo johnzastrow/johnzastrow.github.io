@@ -10,7 +10,7 @@ comments: true
 
 # Utilities for finding and filling data gaps in timeseries data
 
-For a few reasons I've been collecting and archiving meterological data from sites near me from here http://www.wxqa.com/ [[https://gisgeography.com/gis-metadata/](https://https://gisgeography.com/gis-metadata/)] and here https://weather.gladstonefamily.net/. I display these data for myself and others here https://northredoubt.com/weather/
+For a few reasons I've been collecting and archiving meterological data from sites near me from here [[http://www.wxqa.com/](http://www.wxqa.com/ )] and here  [[https://weather.gladstonefamily.net/](https://weather.gladstonefamily.net/)]. I display these data for myself and others here [[https://northredoubt.com/weather/](https://northredoubt.com/weather)]
 
 I fetch the records several times each data and load them into these tables, 
 
