@@ -10,7 +10,7 @@ comments: true
 
 # Utilities for finding and filling data gaps in timeseries data
 
-For a few reasons I've been collecting and archiving meterological data from sites near me from here http://www.wxqa.com/  and here https://weather.gladstonefamily.net/. I display these data for myself and others here https://northredoubt.com/weather/
+For a few reasons I've been collecting and archiving meterological data from sites near me from here http://www.wxqa.com/ [[https://gisgeography.com/gis-metadata/](https://https://gisgeography.com/gis-metadata/)] and here https://weather.gladstonefamily.net/. I display these data for myself and others here https://northredoubt.com/weather/
 
 I fetch the records several times each data and load them into these tables, 
 
@@ -92,11 +92,13 @@ CREATE TABLE `KPWM` (
 Here is a view I use to find data gaps (11,000 seconds defines the "gap" in this case). It is much faster than my old method.
 
 ```sql
-CREATE ALGORITHM=UNDEFINED DEFINER=`jcz`@`%` SQL SECURITY DEFINER VIEW `v_gaps_KPWM` AS
+CREATE VIEW `v_gaps_KPWM` AS
 SELECT `t`.`dt_utc` AS `GapStart`,
        `t`.`NextDateTime` AS `GapEnd`,
        timestampdiff(SECOND, `t`.`dt_utc`, `t`.`NextDateTime`) AS `SizeInSecond`,
+       -- Of course dividing time diff in seconds by 3600 translates the difference, or gap, into hours
        timestampdiff(SECOND, `t`.`dt_utc`, `t`.`NextDateTime`) / 3600 AS `SizeInHours`,
+       -- Setting a fixed field to name the station to set the data up for the UNION in the next step
        'KPWM' AS `STATION`
 FROM
   (SELECT `KPWM`.`dt_utc` AS `dt_utc`,
@@ -104,6 +106,8 @@ FROM
                                          ORDER BY `KPWM`.`dt_utc`) AS `NextDateTime`
    FROM `KPWM`
    ORDER BY `KPWM`.`dt_utc`) `t`
+   -- Leave behind the small gaps due to transmission errors as I aggregate enough they don't bother me
+   -- for me, small is less than 11,000 seconds.
 WHERE timestampdiff(SECOND, `t`.`dt_utc`, `t`.`NextDateTime`) > 11000
 ```
 
@@ -141,8 +145,49 @@ MariaDB [weather]> select * from v_gaps_KPWM;
 | 2024-07-13 13:51:00 | 2024-07-14 00:51:00 |        39600 |     11.0000 | KPWM    |
 | 2024-07-25 03:51:00 | 2024-07-25 09:51:00 |        21600 |      6.0000 | KPWM    |
 +---------------------+---------------------+--------------+-------------+---------+
-56 rows in set (0.060 sec)
+56 rows in set (0.060 sec) 83330 Records
 
 </pre>
+
+Then I union the results from all the stations I collect and care about.
+
+```sql
+CREATE algorithm=undefined DEFINER=`jcz`@`%` SQL SECURITY DEFINER VIEW `v_gaps_all_stations` AS
+SELECT `v_gaps_e4279`.`gapstart` AS `gapstart`,
+       `v_gaps_e4279`.`gapend` AS `gapend`,
+       `v_gaps_e4279`.`sizeinsecond` AS `sizeinsecond`,
+       `v_gaps_e4279`.`sizeinhours` AS `sizeinhours`,
+       `v_gaps_e4279`.`station` AS `station`
+FROM `v_gaps_e4279`
+UNION
+SELECT `v_gaps_e4229`.`gapstart` AS `gapstart`,
+       `v_gaps_e4229`.`gapend` AS `gapend`,
+       `v_gaps_e4229`.`sizeinsecond` AS `sizeinsecond`,
+       `v_gaps_e4229`.`sizeinhours` AS `sizeinhours`,
+       `v_gaps_e4229`.`station` AS `station`
+FROM `v_gaps_e4229`
+UNION
+SELECT `v_gaps_g5290`.`gapstart` AS `gapstart`,
+       `v_gaps_g5290`.`gapend` AS `gapend`,
+       `v_gaps_g5290`.`sizeinsecond` AS `sizeinsecond`,
+       `v_gaps_g5290`.`sizeinhours` AS `sizeinhours`,
+       `v_gaps_g5290`.`station` AS `station`
+FROM `v_gaps_g5290`
+UNION
+SELECT `v_gaps_g5544`.`gapstart` AS `gapstart`,
+       `v_gaps_g5544`.`gapend` AS `gapend`,
+       `v_gaps_g5544`.`sizeinsecond` AS `sizeinsecond`,
+       `v_gaps_g5544`.`sizeinhours` AS `sizeinhours`,
+       `v_gaps_g5544`.`station` AS `station`
+FROM `v_gaps_g5544`
+UNION
+SELECT `v_gaps_kpwm`.`gapstart` AS `gapstart`,
+       `v_gaps_kpwm`.`gapend` AS `gapend`,
+       `v_gaps_kpwm`.`sizeinsecond` AS `sizeinsecond`,
+       `v_gaps_kpwm`.`sizeinhours` AS `sizeinhours`,
+       `v_gaps_kpwm`.`station` AS `station`
+FROM `v_gaps_kpwm`
+ORDER BY `gapstart`
+```
 
 I love geospatial metadata [[https://gisgeography.com/gis-metadata/](https://https://gisgeography.com/gis-metadata/)], both human (often narrative text) and machine metadata (derived from the data themselves, but written out for humans and machines to see). As a GIS user we spend a lot of time prospecting for usable data to meet our needs. Finding data is only the middle step in eventually using the data. Next you need to determine if those data meet your needs in terms of coverage (spatial and temporal), quality and technical considerations such as how the data were collected, pre/post processed, and later maintained. Good geospatial metadata can provide all of this if it is maintained. Really good human metadata, written by thoughtful humans, can be delightful to read - at least for me.
