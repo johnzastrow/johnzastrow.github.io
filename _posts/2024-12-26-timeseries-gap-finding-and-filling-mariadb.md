@@ -32,6 +32,8 @@ MariaDB [weather]> show tables;
 </pre>
 
 each with identical structures as follows:
+
+
 {: .box-terminal}
 <pre>
 
@@ -57,6 +59,7 @@ MariaDB [weather]> ```desc KPWM```;
 | notes         | varchar(250) | YES  |     | NULL                |                               |
 +---------------+--------------+------+-----+---------------------+-------------------------------+
 16 rows in set (0.001 sec)
+
 </pre>
 
 and
