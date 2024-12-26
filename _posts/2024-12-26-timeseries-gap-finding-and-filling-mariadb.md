@@ -35,7 +35,7 @@ each with identical structures as follows:
 {: .box-terminal}
 <pre>
 
-MariaDB [weather]> desc KPWM;
+MariaDB [weather]> ```desc KPWM```;
 +---------------+--------------+------+-----+---------------------+-------------------------------+
 | Field         | Type         | Null | Key | Default             | Extra                         |
 +---------------+--------------+------+-----+---------------------+-------------------------------+
@@ -60,8 +60,8 @@ MariaDB [weather]> desc KPWM;
 </pre>
 
 and
-{: .box-terminal}
-<pre>
+
+```sql
 
 
 /*DDL Information*/
@@ -87,7 +87,7 @@ CREATE TABLE `KPWM` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_dt` (`dt_utc`) COMMENT 'Helps keep dupe data out'
 ) ENGINE=InnoDB AUTO_INCREMENT=140813 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci CHECKSUM=1 COMMENT='The table for raw data'
-</pre>
+```
 
 
 
