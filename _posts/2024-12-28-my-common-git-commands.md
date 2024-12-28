@@ -16,12 +16,15 @@ This is mostly a log for myself of stuff I don't do every day so I don't have to
 
 This assumes that you are working on a workstation (or in shell environment) where you have already setup your git globals. It also assumes that the remote repo is empty. It might error abut not pulling first. If the remote is empty, try a `git pull origin main` before the push.
 
+If you’re using Git 2.28.0 or a later version, you can set the name of the default branch using -b.
 
 
 ```bash
-git init
+git init -b main
+# Adds the files in the local repository and stages them for commit. To unstage a file, use `git reset HEAD YOUR-FILE`.
+
 git add .
-git commit -m "my commit"
+git commit -m "First commit"
 git remote add origin <remote repository URL>
 git push -f origin main
 ```
