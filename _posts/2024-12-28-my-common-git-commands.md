@@ -29,6 +29,18 @@ git remote add origin <remote repository URL>
 git push -f origin main
 ```
 
+or from Github itself, where the repo is called 'fitness'
+
+```bash
+echo "# fitness" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/johnzastrow/fitness.git
+git push -u origin main
+```
+
 # Resources
 
 * (https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)
