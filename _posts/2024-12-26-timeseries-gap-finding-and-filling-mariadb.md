@@ -12,8 +12,7 @@ comments: true
 
 For a few reasons I've been collecting and archiving meterological data from sites near me from here [[http://www.wxqa.com/](http://www.wxqa.com/ )] and here  [[https://weather.gladstonefamily.net/](https://weather.gladstonefamily.net/)]. I display these data for myself and others here [[https://northredoubt.com/weather/](https://northredoubt.com/weather)]
 
-I fetch the records several times each data and load them into these tables, 
-
+I fetch the records several times each data and load them into these tables,
 
 {: .box-terminal}
 <pre>
@@ -31,7 +30,6 @@ MariaDB [weather]> show tables;
 </pre>
 
 each with identical structures as follows:
-
 
 {: .box-terminal}
 <pre>
