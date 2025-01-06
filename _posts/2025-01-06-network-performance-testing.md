@@ -125,6 +125,52 @@ verbose mode:			 enabled
 
 </pre>
 
+
+### Reversing the flow
+
+ We’ll need to run CMD as administrator, open the firewall on the Windows machine to allow it to listen (receive), and the networking benchmark tool with other parameters:
+
+``` netsh advfirewall firewall add rule program=C:\Users\username\Downloads\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY ```
+
+netsh advfirewall firewall add rule program=C:\Users\br8kw\Downloads\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY
+C:\Users\br8kw\Downloads>ntttcp.exe -r -m 1,*,192.168.31.141 -ns -t 60 -V
+
+then, for Receiver on Windows
+
+``` C:\Users\username\Downloads>ntttcp.exe -r -m 1,*,192.168.1.39 -ns -t 60 -V ```
+
+and the sender on linux, which is quite different
+
+``` ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V ```
+
+
+jcz@xub2404:~$ ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V
+NTTTCP for Linux 1.4.0
+---------------------------------------------------------
+*** sender role
+*** no sender/receiver synch
+connections:                     1 X 1 X 1
+cpu affinity:                    *
+server address:                  192.168.1.39
+domain:                          IPv4
+protocol:                        TCP
+server port starting at:         5001
+sender socket buffer (bytes):    131072
+test warm-up (sec):              no
+test duration (sec):             60
+test cool-down (sec):            no
+show system tcp retransmit:      no
+quiet mode:                      disabled
+verbose mode:                    enabled
+---------------------------------------------------------
+15:21:36 DBG : user limits for maximum number of open files: soft: 1024; hard: 1048576
+15:21:36 INFO: Starting sender activity (no sync) ...
+15:21:36 INFO: 1 threads created
+15:21:36 DBG : New connection: local:41826 [socket:3] --> 192.168.1.39:5001
+15:21:36 INFO: 1 connections created in 142708 microseconds
+Real-time throughput: 26.11Mbps
+
+
 # Resources
 
 * (https://www.cnx-software.com/2024/04/22/testing-ntttcp-iperf3-alternative-windows-11-linux/)
