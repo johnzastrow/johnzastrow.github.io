@@ -18,14 +18,14 @@ This is mostly a log for myself of stuff I don't do every day so I don't have to
 
 ### This worked. Trial 1: Sending from Windows to Linux with a single core on each
 
-#### Receiver, on linux
+#### Receiver, on Linux
 
 ``` ntttcp -r -m 1,*,192.168.1.27 -t 60 -V ```
 
 Only one core is used to emulate iperf3 and the V (verbose) 
 After downloading the ntttcp.exe binary to Windows we can run it immediately as a sender in a command prompt:
 
-#### Sender, on windows
+#### Sender, on Windows
 
 ``` ntttcp.exe -s -m 1,*,192.168.1.27 -l 128K -t 60 -ns ```
 
@@ -132,17 +132,22 @@ verbose mode:			 enabled
 
 ``` netsh advfirewall firewall add rule program=C:\Users\username\Downloads\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY ```
 
-netsh advfirewall firewall add rule program=C:\Users\br8kw\Downloads\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY
-C:\Users\br8kw\Downloads>ntttcp.exe -r -m 1,*,192.168.31.141 -ns -t 60 -V
+#### Receiver, on Windows
 
 then, for Receiver on Windows
 
-``` C:\Users\username\Downloads>ntttcp.exe -r -m 1,*,192.168.1.39 -ns -t 60 -V ```
+``` ntttcp.exe -r -m 1,*,192.168.1.39 -ns -t 60 -V ```
+
+#### Sender, on Linux
 
 and the sender on linux, which is quite different
 
 ``` ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V ```
 
+#### The run as shown on the sender, here linux
+
+{: .box-terminal}
+<pre>
 
 jcz@xub2404:~$ ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V
 NTTTCP for Linux 1.4.0
@@ -169,7 +174,61 @@ verbose mode:                    enabled
 15:21:36 DBG : New connection: local:41826 [socket:3] --> 192.168.1.39:5001
 15:21:36 INFO: 1 connections created in 142708 microseconds
 Real-time throughput: 26.11Mbps
+</pre>
 
+#### The results as shown on the sender, here linux
+
+{: .box-terminal}
+<pre>
+
+jcz@xub2404:~$ ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V
+NTTTCP for Linux 1.4.0
+---------------------------------------------------------
+*** sender role
+*** no sender/receiver synch
+connections:                     1 X 1 X 1
+cpu affinity:                    *
+server address:                  192.168.1.39
+domain:                          IPv4
+protocol:                        TCP
+server port starting at:         5001
+sender socket buffer (bytes):    131072
+test warm-up (sec):              no
+test duration (sec):             60
+test cool-down (sec):            no
+show system tcp retransmit:      no
+quiet mode:                      disabled
+verbose mode:                    enabled
+---------------------------------------------------------
+15:21:36 DBG : user limits for maximum number of open files: soft: 1024; hard: 1048576
+15:21:36 INFO: Starting sender activity (no sync) ...
+15:21:36 INFO: 1 threads created
+15:21:36 DBG : New connection: local:41826 [socket:3] --> 192.168.1.39:5001
+15:21:36 INFO: 1 connections created in 142708 microseconds
+15:22:36 INFO: Test run completed.
+15:22:36 INFO: Test cycle finished.
+15:22:36 INFO:  Thread  Time(s) Throughput
+15:22:36 INFO:  ======  ======= ==========
+15:22:36 INFO:  0        60.00   31.79Mbps
+15:22:36 INFO: 1 connections tested
+15:22:36 INFO: #####  Totals:  #####
+15:22:36 INFO: test duration    :60.00 seconds
+15:22:36 INFO: total bytes      :238419968
+15:22:36 INFO:   throughput     :31.79Mbps
+15:22:36 INFO:   retrans segs   :805
+15:22:36 INFO: cpu cores        :4
+15:22:36 INFO:   cpu speed      :4699.976MHz
+15:22:36 INFO:   user           :5.13%
+15:22:36 INFO:   system         :0.34%
+15:22:36 INFO:   idle           :94.49%
+15:22:36 INFO:   iowait         :0.02%
+15:22:36 INFO:   softirq        :0.02%
+15:22:36 INFO:   cycles/byte    :260.48
+15:22:36 INFO: cpu busy (all)   :1.04%
+15:22:36 INFO: tcpi rtt         :30470 us
+---------------------------------------------------------
+
+</pre>
 
 # Resources
 
