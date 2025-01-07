@@ -334,6 +334,8 @@ Packets Sent Packets Received Retransmits Errors Avg. CPU %
 
 The results from the receiver (Windows) above show 3.757 MB/s and 60.118 Mbps (I think), but 90 errors which is interesting. CPU in 
 
+{: .box-terminal}
+<pre>
 
 ### Trial 3. Fluctuations
 
@@ -688,6 +690,10 @@ verbose mode:                    enabled
 19:14:52 INFO: tcpi rtt         :28863 us
 ---------------------------------------------------------
 
+</pre>
+
+{: .box-terminal}
+<pre>
 
 ########## TEST RUN 4 With 2 Second Warm Up and 2 Second Cool Down ##############
 
@@ -836,6 +842,10 @@ verbose mode:                    enabled
 19:19:24 INFO: tcpi rtt         :51796 us
 ---------------------------------------------------------
 
+</pre>
+
+{: .box-terminal}
+<pre>
 
 # TEST RUN 4 With 2 Second Warm Up and 2 Second Cool Down w/ Latency measurement #
 
@@ -987,6 +997,8 @@ verbose mode:                    enabled
 19:25:23 INFO: cpu busy (all)   :1.09%
 19:25:23 INFO: tcpi rtt         :37717 us
 ---------------------------------------------------------
+
+</pre>
 
 # RUN 4 With 2 Second Warm Up and 2 Second Cool Down w/ Latency measurement & Jitter #
 
