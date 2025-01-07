@@ -12,14 +12,17 @@ comments: true
 
 This is mostly a log for myself of stuff I don't do every day so I don't have to Google it all the time. The first article at the bottom is where I poached most of this content from. His article pretty much says it all - including that commands and binaries differ between Linux and Windows. This video also explains more.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HvDHQXuoSoQ?si=d_I7QGqlLuuxDi4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 I don't know why such a fundamental thing as network performance measurement in this age is such a confusing, hot mess, with crappy hard tools. We're ALL doing video calls these days and Internet access is more critical than most other services.
 
 Use the links to the *different* Github projects at the bottom if you want to try this either for Windows or Linux or both. For Windows you can just download and run the .exe. For Linux they couldn't be bothered to provide binaries and I'm not getting anything searching. But it's simple matter of downloading the source code, expanding the .zip, go into the src/ directory, then ``` make/sudo make install ```
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HvDHQXuoSoQ?si=d_I7QGqlLuuxDi4w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{: .box-warning}
+This is just a start of my network benchmarking journey, especially as I'm adding hard wiring to my office hopefully this month. I'll log my methods and results over time here.
 
 
-I'm putting the summary here for those that like to read the end of the book first.
+I'm putting the summary here in this table for those that like to read the end of the book first.
 
 | Test Name | Source Host | End Host | Command | Throughput(MB/s) | Latency(ns) Avg | Latency(ns) Min | Latency(ns) Max  |Throughput(Buffers/s)   |Retransmits | Errors | Avg. CPU %  |
 |----|-------------|----------|---------|------------|---------------|----------------|------------------|------------------|-----------------|-----------------|-----------------------|
