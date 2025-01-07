@@ -21,9 +21,9 @@ Use the links to the *different* Github projects at the bottom if you want to tr
 
 I'm putting the summary here for those that like to read the end of the book first.
 
-| ID | Source Host | End Host | Command | Bytes(MEG) | Real time (s) | Avg Frame Size | Throughput(MB/s) | Latency(ns) Avg  | Latency(ns) Min | Latency(ns) Max | Throughput(Buffers/s) |
+| Test Name | Source Host | End Host | Command | Bytes(MEG) | Real time (s) | Avg Frame Size | Throughput(MB/s) | Latency(ns) Avg  | Latency(ns) Min | Latency(ns) Max | Throughput(Buffers/s) |
 |----|-------------|----------|---------|------------|---------------|----------------|------------------|------------------|-----------------|-----------------|-----------------------|
-|    | Sending from Windows over 2.4 Ghz Wifi to   |  linux VM wire attached to the router, each with one core, in verbose mode, for 60 secs | ntttcp.exe -s -m 1,*,192.168.1.27 -l 128K -t 60 -ns --> ntttcp -r -m 1,*,192.168.1.27 -t 60 -V        |            |               |                |                  |                  |                 |                 |                       |
+| Trial 1. Hello world using two internal hosts  | Sending from Windows over 2.4 Ghz Wifi to   |  linux VM wire attached to the router, each with one core, in verbose mode, for 60 secs | ntttcp.exe -s -m 1,*,192.168.1.27 -l 128K -t 60 -ns --> ntttcp -r -m 1,*,192.168.1.27 -t 60 -V        |   285         |     60.011          |      1422.133          |    4.749              |                  |                 |                 |                       |
 |    |             |          |         |            |               |                |                  |                  |                 |                 |                       |
 |    |             |          |         |            |               |                |                  |                  |                 |                 |                       |
 
