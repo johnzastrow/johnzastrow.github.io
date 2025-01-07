@@ -10,7 +10,8 @@ comments: true
 
 # My common (and not so common) Git commands. 
 
-This is mostly a log for myself of stuff I don't do every day so I don't have to Google it all the time.
+{: .box-note}
+This is mostly a log for myself of stuff I don't do every day so I don't have to Google it all the time. This is just a start and I'm going to add to it over time.
 
 1. Initialize a directory with Git and point it to a remote, empty (like Github) repo that I created.
 
