@@ -19,6 +19,10 @@ This is mostly a log for myself of stuff I don't do every day so I don't have to
 {: .box-warning}
 This is just a start of my network benchmarking journey, especially as I'm adding hard wiring to my office hopefully this month. I'll log my methods and results over time here.
 
+``` sed -e '/^[^+-]/d' ```
+
+
+
 ### Rant
 
 I don't know why such a fundamental thing as network performance measurement in this age is such a confusing, hot mess, with crappy hard tools. We're ALL doing video calls these days and Internet access is more critical than most other services. 
