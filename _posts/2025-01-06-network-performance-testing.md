@@ -42,8 +42,8 @@ I'm putting the summary here in this table for those that like to read the end o
 
 | Test Name                                       | Source Host                                | End Host                                                                                | Command | Throughput(MB/s) | Throughput(Buffers/s)   |Retransmits | Errors | Avg. CPU %  |
 |----|-------------|----------|---------|------------|---------------|----------------|------------------|------------------|-----------------|-----------------|-----------------------|
-| Trial 1. Hello world using two internal hosts  | Sending from Windows over 2.4 Ghz Wifi to   |  linux VM wire attached to the router, each with one core, in verbose mode, for 60 secs | ntttcp.exe -s -m 1,*,192.168.1.27 -l 128K -t 60 -ns --> ntttcp -r -m 1,*,192.168.1.27 -t 60 -V        |   4.749       |         37.993           |         12       |        0         |          14.704        |
-| Trial 2. This also worked. Reversing the flow. From Linux to Windows, but need to open Windows firewall first   |  Linux VM on wired          |      Windows on wifi   | ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V --> ntttcp.exe -r -m 1,*,192.168.1.39 -ns -t 60 -V         |            |                          |                 |                       |
+| Trial 1. Hello world using two internal hosts  | Sending from Windows over 2.4 Ghz Wifi to   |  Linux VM wire attached to the router, each with one core, in verbose mode, for 60 secs | ntttcp.exe -s -m 1,*,192.168.1.27 -l 128K -t 60 -ns --> ntttcp -r -m 1,*,192.168.1.27 -t 60 -V        |  4.749  | 37.993           | 12   | 0 | 14.704   |
+| Trial 2. This also worked. Reversing the flow. From Linux to Windows, but need to open Windows firewall first   |  Linux VM on wired                          |      Windows on wifi   | ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V --> ntttcp.exe -r -m 1,*,192.168.1.39 -ns -t 60 -V  |         |                  |      |   |
 |    |             |          |         |            |               |                              |                       |
 
 
