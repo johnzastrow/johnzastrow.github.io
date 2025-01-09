@@ -66,7 +66,7 @@ After downloading the ntttcp.exe binary to Windows we can run it immediately as 
 
 ``` ntttcp.exe -s -m 1,*,192.168.1.27 -l 128K -t 60 -ns ```
 
-#### Results as shown on the sender
+#### Some results
 
 {: .box-terminal}
 <pre>
