@@ -179,30 +179,14 @@ and the sender on linux, which is quite different
 
 ``` ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V ```
 
-#### The run as shown on the sender, here linux
+#### The run as shown on the sender, here linux, and in progress. I like the log that update at the hottom with the `-V` (verbose). It shows `Real-time throughput: 26.11Mbps` which I'm not sure how useful or accurate it is, but it's cute.
 
 {: .box-terminal}
 <pre>
 
 jcz@xub2404:~$ ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V
 NTTTCP for Linux 1.4.0
----------------------------------------------------------
-*** sender role
-*** no sender/receiver synch
-connections:                     1 X 1 X 1
-cpu affinity:                    *
-server address:                  192.168.1.39
-domain:                          IPv4
-protocol:                        TCP
-server port starting at:         5001
-sender socket buffer (bytes):    131072
-test warm-up (sec):              no
-test duration (sec):             60
-test cool-down (sec):            no
-show system tcp retransmit:      no
-quiet mode:                      disabled
-verbose mode:                    enabled
----------------------------------------------------------
+
 15:21:36 DBG : user limits for maximum number of open files: soft: 1024; hard: 1048576
 15:21:36 INFO: Starting sender activity (no sync) ...
 15:21:36 INFO: 1 threads created
@@ -211,7 +195,9 @@ verbose mode:                    enabled
 Real-time throughput: 26.11Mbps
 </pre>
 
-#### The results as shown on the sender, here linux
+#### The final results as shown on the sender, here linux, just for reference. 
+
+I think you actually report from the receiver side.
 
 {: .box-terminal}
 <pre>
