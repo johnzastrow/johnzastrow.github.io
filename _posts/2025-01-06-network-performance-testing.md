@@ -19,9 +19,6 @@ This is mostly a log for myself of stuff I don't do every day so I don't have to
 {: .box-warning}
 This is just a start of my network benchmarking journey, especially as I'm adding hard wiring to my office hopefully this month. I'll log my methods and results over time here.
 
-``` sed -e '/^[^+-]/d' ```
-
-
 
 ### Rant
 
@@ -35,6 +32,11 @@ It could run from say three (3) raspberry pi's (on the LAN, some wired, some wif
 
 Use the links to the *different* Github projects at the bottom if you want to try this either for Windows or Linux or both. For Windows you can just download and run the .exe. For Linux they couldn't be bothered to provide binaries and I'm not getting anything searching. But it's simple matter of downloading the source code, expanding the .zip, go into the src/ directory, then ``` make/sudo make install ```
 
+### The Network
+
+Just a snap of what I'm testing
+
+[![Topology](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/posts/img/testing_topology_wifi.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/posts/img/testing_topology_wifi.png)
 
 ### Results
 
@@ -267,3 +269,7 @@ verbose mode:                    enabled
 * [https://www.cnx-software.com/2024/04/22/testing-ntttcp-iperf3-alternative-windows-11-linux/](https://www.cnx-software.com/2024/04/22/testing-ntttcp-iperf3-alternative-windows-11-linux/)
 * [https://github.com/microsoft/ntttcp](https://github.com/microsoft/ntttcp) for the Windows client
 * [https://github.com/microsoft/ntttcp-for-linux](https://github.com/microsoft/ntttcp-for-linux) for the Linux client
+* [https://www.pingplotter.com/](https://www.pingplotter.com/) Ping Plotter. Good Windows client for monitoring network latency health. 
+* [https://oss.oetiker.ch/smokeping/](https://oss.oetiker.ch/smokeping/) Smokeping. Functional but dated and annoying for also monitoring latency. Runs on Docker though...
+
+
