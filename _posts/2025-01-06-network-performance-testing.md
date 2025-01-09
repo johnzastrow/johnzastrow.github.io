@@ -42,7 +42,7 @@ Just a snap of what I'm testing
 
 ### Results
 
-I'm putting the summary here in this table for those that like to read the end of the book first.
+Summary table of the tests.
 
 | Test Name                                       | Source Host                                | End Host                                                                                | Command | Throughput(MB/s)  |Retransmits | Errors | Avg. CPU %  |
 |----|-------------|----------|---------|------------|---------------|----------------|------------------|------------------|-----------------|-----------------|-----------------------|
