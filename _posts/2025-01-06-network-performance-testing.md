@@ -28,15 +28,17 @@ So please someone develop cheap/free, easy, and ideally unified tool to help iso
 
 It could run from say three (3) raspberry pi's (on the LAN, some wired, some wifi) and maybe a $5 VPS at Linode/Digital Ocean. Each node would be the same, they'd talk and gather stats and be aware of where they on the topology. Then present results with some vision on variance across time (then re-run in different positions to check for variance across space). Bonus points for making recommendations, "This wifi leg from a Pi in the living room is the cause of the latency and dropped packets to the internet, not your internet connection because once it hits the router everything is with good ranges (X,Y)"
 
-### Resources
+### Resources and Methods
 
 Use the links to the *different* Github projects at the bottom if you want to try this either for Windows or Linux or both. For Windows you can just download and run the .exe. For Linux they couldn't be bothered to provide binaries and I'm not getting anything searching. But it's simple matter of downloading the source code, expanding the .zip, go into the src/ directory, then ``` make/sudo make install ```
+
+For this testing I'll present the results from ntttcp, both Linux and Windows variants, under a few scenarios.
 
 ### The Network
 
 Just a snap of what I'm testing
 
-[![Topology](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/posts/img/testing_topology_wifi.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/posts/img/testing_topology_wifi.png)
+[![Topology](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/testing_topology_wifi.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/testing_topology_wifi.png)
 
 ### Results
 
