@@ -44,7 +44,9 @@ I'm putting the summary here in this table for those that like to read the end o
 |----|-------------|----------|---------|------------|---------------|----------------|------------------|------------------|-----------------|-----------------|-----------------------|
 | Trial 1. Hello world using two internal hosts  | Sending from Windows over 2.4 Ghz Wifi to   |  Linux VM wire attached to the router, each with one core, in verbose mode, for 60 secs | ntttcp.exe -s -m 1,*,192.168.1.27 -l 128K -t 60 -ns --> ntttcp -r -m 1,*,192.168.1.27 -t 60 -V        |  4.749  | 37.993           | 12   | 0 | 14.704   |
 | Trial 2. This also worked. Reversing the flow. From Linux to Windows, but need to open Windows firewall first   |  Linux VM on wired                          |      Windows on wifi   | ntttcp -s -m 1,*,192.168.1.39 -b 128K -N -t 60 -V --> ntttcp.exe -r -m 1,*,192.168.1.39 -ns -t 60 -V  |         |                  |      |   |
-|    |             |          |         |            |               |                              |                       |
+| Trial 3a. 2.4 Ghz vs. 5 Ghz Wifi. This time on 2.4 Ghz [Ch. 3  (2.4 GHz, 20 MHz) 2x2 WiFi 4 -59 dBm] |  Sending from the Linux VM           | Receiving on the Windows 11 Lenovo 1 Liter    |  ntttcp -s -m 2,*,192.168.1.39 -b 128K -N -t 60 -W 2 -C 2 --> ./ntttcp.exe -r -m 2,*,192.168.1.39 -ns -t 60 -cd 2 -wu 2       |     8.816       |      0         |          0                    |      9.633                 |
+| Trial 3b. This time on 5Ghz. Though signal strength is lower. [Ch. 48  (5 GHz, 80 MHz) 2x2 WiFi 5 -84 dBm] |  Sending from the Linux VM           | Receiving on the Windows 11 Lenovo 1 Liter    |  ntttcp -s -m 2,*,192.168.1.39 -b 128K -N -t 60 -W 2 -C 2 --> ./ntttcp.exe -r -m 2,*,192.168.1.39 -ns -t 60 -cd 2 -wu 2       |      24.363       |      2         |      0                    |      9.743                 |
+
 
 
 ### This worked. Trial 1: Sending from Windows to Linux with a single core on each
