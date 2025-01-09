@@ -261,8 +261,6 @@ verbose mode:                    enabled
 
 </pre>
 
-The results above don't show MB/s here, so we'll go with 31.79 Mbps, which is being sent by a 4 CPU (not using that many) linux VM on a 1 year old, otherwise idling AMD workstation running Proxmox hardwired to the Unifi Dream Machine that the 1 liter is wifing to.
-
 
 # Resources
 
