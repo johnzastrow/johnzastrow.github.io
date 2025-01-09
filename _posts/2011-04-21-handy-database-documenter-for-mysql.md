@@ -4,7 +4,6 @@ title: 'Handy database documenter for MySQL'
 date: '2011-04-21T14:39:45-05:00'
 author: 'John C. Zastrow'
 layout: post
-guid: 'https://johnzastrow.github.io/2011/04/21/handy-database-documenter-for-mysql/'
 permalink: /2011/04/21/handy-database-documenter-for-mysql/
 categories:
     - Database
@@ -14,13 +13,13 @@ UPDATE: see the next iteration on this project [[here]](https://johnzastrow.gith
 
 Here's a view that will spit out just about everything MySQL (5.1) knows about the tables and fields it maintains for you. The first field can be joined to the output of something like
 
-```
+```sql
 SELECT * FROM AZ_CA_NV_UT_species_LOCAL PROCEDURE ANALYSE(10000, 4000);
 ```
 
 to see before and after "optimal" [(1)](http://www.mysqlperformanceblog.com/2009/03/23/procedure-analyse/) [(2)](http://dave-stokes.blogspot.com/2008/02/procedure-analyse.html) field types and lengths predicted by the internal <span style="text-decoration: underline;">**PROCEDURE ANALYSE.**</span>
 
-```
+```sql
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_field_table_data` AS
 SELECT
 CONCAT_WS('.',`tables`.`TABLE_SCHEMA`,`columns`.`TABLE_NAME`,`columns`.`COLUMN_NAME`) AS `FIELD_NAME`,
@@ -64,4 +63,3 @@ JOIN `information_schema`.`columns`
 ON (((`tables`.`TABLE_SCHEMA` = `columns`.`TABLE_SCHEMA`)
 AND (`tables`.`TABLE_NAME` = `columns`.`TABLE_NAME`))))
 ```
-
