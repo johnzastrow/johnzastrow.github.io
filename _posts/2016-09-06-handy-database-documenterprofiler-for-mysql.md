@@ -12,14 +12,14 @@ Some time ago I wrote down a little [script](https://johnzastrow.github.io/2011/
 
 Towards that end, I figure I need to take the contents of the handy view I made earlier and turn them into a table. Then if I execute some profiling queries, I can create tables from the results and join back to this summary table. So here is me persisting the view created earlier.You can do it this way:
 
-```
+```sql
 CREATE TABLE profiler_recs AS SELECT * FROM `v_field_table_data`;
 ALTER TABLE `mysql`.`profiler_recs` ADD COLUMN `PROFILE_RECS_ID` BIGINT(20) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY(`PROFILE_RECS_ID`);
 ```
 
 or here is the resulting DDL
 
-```
+```sql
 CREATE TABLE `profiler_recs` (
 `PROFILE_RECS_ID` BIGINT(20) NOT NULL AUTO_INCREMENT,
 `FIELD_NAME` VARCHAR(194) CHARACTER SET utf8 NOT NULL DEFAULT '',
@@ -75,7 +75,7 @@ I think you could design a procedure(*returnExtents*) that would accept a schema
 
 Ideally you would write the results into a table as below
 
-```
+```sql
 CREATE TABLE `mysql.profile_rec_extents` (
 `PROF_VALUE_RECS_ID` BIGINT(20) NOT NULL AUTO_INCREMENT,
 `PROFILE_RECS_ID` BIGINT(20) DEFAULT NULL,
@@ -92,34 +92,40 @@ PRIMARY KEY (`PROF_VALUE_RECS_ID`)
 
 The following query returns somewhat useful information that could be used to populate the above table, but you'd have to loop it through every field.
 
+```sql
+
+SELECT MIN(FIELD_NAME) AS MIN_VALUE,
+MAX(FIELD_NAME) AS MAX_VALUE, 
+MAX(CHAR_LENGTH(FIELD_NAME)) AS MAX_CHARS,
+MIN(CHAR_LENGTH(FIELD_NAME)) AS MIN_CHARS,
+MAX(LENGTH(FIELD_NAME)) AS MAX_BYTES,
+MIN(LENGTH(FIELD_NAME)) AS MIN_BYTES
+FROM profiler_recs;
 ```
 
-<p>SELECT MIN(FIELD_NAME) AS MIN_VALUE,<br></br>
-MAX(FIELD_NAME) AS MAX_VALUE,<br></br>
-MAX(CHAR_LENGTH(FIELD_NAME)) AS MAX_CHARS,<br></br>
-MIN(CHAR_LENGTH(FIELD_NAME)) AS MIN_CHARS,<br></br>
-MAX(LENGTH(FIELD_NAME)) AS MAX_BYTES,<br></br>
-MIN(LENGTH(FIELD_NAME)) AS MIN_BYTES<br></br>
-FROM profiler_recs;</p>
-<p></p>
-<p>Then, you do something like:</p>
-<p> </p>
-<p>for each VARCHAR field, where MAX_LENGTH <= 25 do</p>
-<p>SELECT<br></br>
-COUNT(*)<br></br>
-, `FIELDX`<br></br>
-FROM<br></br>
-`TABLEY`<br></br>
-GROUP BY `FIELDX`<br></br>
-ORDER BY COUNT(*) DESC;</p>
-<p></p>
-<p> </p>
-<p>and load it into something like</p>
-<p>CREATE TABLE `mysql.profile_value_recs` (<br></br>
-`PROF_DOMAIN_RECS_ID` BIGINT(20) NOT NULL AUTO_INCREMENT,<br></br>
-`PROFILE_RECS_ID` BIGINT(20) DEFAULT NULL,<br></br>
-`VALUE` VARCHAR(250) DEFAULT NULL,<br></br>
-`COUNT_VALUE` BIGINT(20) DEFAULT NULL,<br></br>
-`RUN_DATETIME` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,<br></br>
-PRIMARY KEY (`PROF_DOMAIN_RECS_ID`)) ENGINE=INNODB </p>
+Then, you do something like:
+
+
+```sql
+for each VARCHAR field, where MAX_LENGTH <= 25 do
+
+SELECT
+COUNT(*)
+, `FIELDX`
+FROM
+`TABLEY` 
+GROUP BY `FIELDX` 
+ORDER BY COUNT(*) DESC; 
+```
+
+ and load it into something like
+
+ ```sql
+ CREATE TABLE `mysql.profile_value_recs` ( 
+`PROF_DOMAIN_RECS_ID` BIGINT(20) NOT NULL AUTO_INCREMENT, 
+`PROFILE_RECS_ID` BIGINT(20) DEFAULT NULL, 
+`VALUE` VARCHAR(250) DEFAULT NULL, 
+`COUNT_VALUE` BIGINT(20) DEFAULT NULL, 
+`RUN_DATETIME` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP, 
+PRIMARY KEY (`PROF_DOMAIN_RECS_ID`)) ENGINE=INNODB  
 ```
