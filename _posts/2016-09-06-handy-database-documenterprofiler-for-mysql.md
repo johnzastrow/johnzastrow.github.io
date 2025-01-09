@@ -1,11 +1,11 @@
 ---
-id: 909
-title: 'Handy database documenter/profiler for mysql, cont.'
-date: '2016-09-06T16:08:05-05:00'
-author: 'John C. Zastrow'
-layout: revision
-guid: 'https://johnzastrow.github.io/2016/09/06/201-autosave-v1/'
-permalink: '/?p=909'
+layout: post
+title: Handy database documenter/profiler for mysql, cont.
+subtitle: Oldy but still useful?
+gh-badge: [star, fork, follow]
+date: '2016-09-06T12:47:41-05:00'
+tags: [linux, windows, networking, mysql, database]
+comments: true
 ---
 
 Some time ago I wrote down a little [script](https://johnzastrow.github.io/2011/04/21/handy-database-documenter-for-mysql/ "Handy database documenter for MySQL") to make a table from the MySQL information schema to describe your database. My eventual goal is to come close to reproducing a poor man's database profiling script similar to this crude one ( [http://www.ipcdesigns.com/data_profiling/](http://www.ipcdesigns.com/data_profiling/ "Oracle, SQL Server")), but perhaps less powerful and yet more elegant. I figure it's going to take creating some procedures to loop through the chosen tables and columns.
