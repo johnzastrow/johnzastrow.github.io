@@ -290,3 +290,61 @@ TX Power
 * [https://oss.oetiker.ch/smokeping/](https://oss.oetiker.ch/smokeping/) Smokeping. Functional but dated and annoying for also monitoring latency. Runs on Docker though...
 
 
+*********************** Two Linux VMs talking to each ***********************************
+
+CPU usage on the 4-core receiving VM hit 65% at peak, and was ingesting 7.82 Gbps of traffic. The sending VM is on the same Proxmox host, so this was likely all occuring over the internal bridge on the machine.. a virtual network.
+
+<pre>
+
+jcz@xub2404:~$ ntttcp -r -m 4,*,192.168.1.27 -b 128K -N -t 300 -W 2 -C 2
+NTTTCP for Linux 1.4.0
+---------------------------------------------------------
+16:01:08 INFO: 4 threads created
+16:01:20 INFO: Test warmup completed.
+16:06:20 INFO: Test run completed.
+16:06:20 INFO: Test cooldown is in progress...
+16:06:22 INFO: Test cycle finished.
+16:06:22 INFO: #####  Totals:  #####
+16:06:22 INFO: test duration    :300.28 seconds
+16:06:22 INFO: total bytes      :2324240849720
+**16:06:22 INFO:   throughput     :61.92Gbps**
+16:06:22 INFO:   retrans segs   :2
+16:06:22 INFO: cpu cores        :4
+16:06:22 INFO:   cpu speed      :4699.976MHz
+16:06:22 INFO:   user           :0.58%
+16:06:22 INFO:   system         :10.38%
+16:06:22 INFO:   idle           :80.37%
+16:06:22 INFO:   iowait         :0.07%
+16:06:22 INFO:   softirq        :8.57%
+16:06:22 INFO:   cycles/byte    :0.48
+16:06:22 INFO: cpu busy (all)   :87.98%
+---------------------------------------------------------
+
+jcz@gisdb:~$ ntttcp -s -m 4,*,192.168.1.27 -b 128K -N -t 300 -W 2 -C 2
+NTTTCP for Linux 1.4.0
+---------------------------------------------------------
+21:01:18 INFO: Starting sender activity (no sync) ...
+21:01:18 INFO: 4 threads created
+21:01:18 INFO: 4 connections created in 620 microseconds
+21:01:20 INFO: Test warmup completed.
+21:06:20 INFO: Test run completed.
+21:06:20 INFO: Test cooldown is in progress...
+21:06:22 INFO: Test cycle finished.
+21:06:22 INFO: 4 connections tested
+21:06:22 INFO: #####  Totals:  #####
+21:06:22 INFO: test duration    :300.06 seconds
+21:06:22 INFO: total bytes      :2322617860096
+21:06:22 INFO:   throughput     :61.92Gbps
+21:06:22 INFO:   retrans segs   :25
+21:06:22 INFO: cpu cores        :4
+21:06:22 INFO:   cpu speed      :4699.976MHz
+21:06:22 INFO:   user           :0.20%
+21:06:22 INFO:   system         :11.56%
+21:06:22 INFO:   idle           :87.73%
+21:06:22 INFO:   iowait         :0.02%
+21:06:22 INFO:   softirq        :0.47%
+21:06:22 INFO:   cycles/byte    :0.30
+21:06:22 INFO: cpu busy (all)   :46.88%
+---------------------------------------------------------
+
+</pre>
