@@ -291,6 +291,7 @@ TX Power
 
 
 *********************** Two Linux VMs talking to each ***********************************
+Just for comparison, let's do a test that maxes out throughput. I'm going to up the core count on each end to `-m 4` to make sure were making enough bits to stress the virtual network.
 
 CPU usage on the 4-core receiving VM hit 65% at peak, and was ingesting 7.82 Gbps of traffic. The sending VM is on the same Proxmox host, so this was likely all occuring over the internal bridge on the machine.. a virtual network.
 
