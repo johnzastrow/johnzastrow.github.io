@@ -251,6 +251,17 @@ verbose mode:                    enabled
 
 </pre>
 
+### Router Details
+
+Model: UDM
+UniFi OS Version: 4.1.13
+Processor: ARM 64-bit 4 cores
+Memory: 1.78 GB / 2.05 GB
+Internal Storage: 2.42 GB / 10.1 GB
+Temperature: 65°C
+CPU Load: 22%
+
+
 
 # Resources
 
