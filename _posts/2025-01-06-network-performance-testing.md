@@ -19,6 +19,9 @@ This is mostly a log for myself of stuff I don't do every day so I don't have to
 {: .box-warning}
 This is just a start of my network benchmarking journey, especially as I'm adding hard wiring to my office hopefully this month. I'll log my methods and results over time here.
 
+{: .box-note}
+Note to self, break this sprawling post into a few articles.
+
 
 ### Rant
 
@@ -39,6 +42,11 @@ For this testing I'll present the results from ntttcp, both Linux and Windows va
 Just a snap of what I'm testing
 
 [![Topology](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/testing_topology_wifi.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/testing_topology_wifi.png)
+
+Here's another view using a Mermaid.js diagram that I can't for the life of me get to render inside this Markdown + Jekyll-based blog system at Github, even though it renders fine outside Github's Jekyll.
+
+[![Mermaid.js Topology](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/mer_topology.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/mer_topology.png)
+
 
 ### Results
 
@@ -291,7 +299,7 @@ TX Power
 * [https://www.pingplotter.com/](https://www.pingplotter.com/) Ping Plotter. Good Windows client for monitoring network latency health. 
 * [https://oss.oetiker.ch/smokeping/](https://oss.oetiker.ch/smokeping/) Smokeping. Functional but dated and annoying for also monitoring latency. Runs on Docker though...
 
-### Two Linux VMs talking to each other 
+### Silly Stuff: Two Linux VMs talking to each other 
 
 Just for comparison, let's do a test that maxes out throughput. I'm going to up the core count on each end to `-m 4` to make sure were making enough bits to stress the virtual network.
 
