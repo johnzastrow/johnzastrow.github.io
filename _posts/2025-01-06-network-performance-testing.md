@@ -253,15 +253,31 @@ verbose mode:                    enabled
 
 ### Router Details
 
-Model: UDM
-UniFi OS Version: 4.1.13
-Processor: ARM 64-bit 4 cores
-Memory: 1.78 GB / 2.05 GB
-Internal Storage: 2.42 GB / 10.1 GB
-Temperature: 65°C
-CPU Load: 22%
+* Model: UDM
+* UniFi OS Version: 4.1.13
+* Processor: ARM 64-bit 4 cores, Processor - Arm Cortex-A57 Quad-Core at 1.7 GHz 
+* Memory: 1.78 GB / 2.05 GB
+* Internal Storage: 2.42 GB / 10.1 GB
+* Temperature: 65°C
+* CPU Load: 22%
+* Max rated throughput (according to forums): The UDM IDS/IPS is limited to 850Mbps. Anecdotes show closer to 1000 Mbps
+TX Power 
+       2.4 GHz - 23 dBm
+       5 GHz - 26 dBm
+Antenna - (1) Dual-Band, Quad-Polarity Antenna
+Antenna Gain
+      2.4 GHz - 3 dBi
+      5 GHz - 4.5 dBi 
+Wi-Fi Standards - 802.11 a/b/g/n/ac/ac-wave2
+Wireless Security - WEP, WPA-PSK, WPA-Enterprise (WPA/WPA2, TKIP/AES), 802.11w/PMF
 
+```mermaid
 
+flowchart TD
+    A[Internet] -->|Spectrum Modem| B(Unifi Dream Machine Egg)
+    B --> |Cat6 patch into wall jack. Cat6 through walls, up two floors to wall jack| C[Lenovo 1 Liter]
+
+```
 
 # Resources
 
