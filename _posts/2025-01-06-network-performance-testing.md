@@ -271,23 +271,6 @@ TX Power
 * Wi-Fi Standards - 802.11 a/b/g/n/ac/ac-wave2
 * Wireless Security - WEP, WPA-PSK, WPA-Enterprise (WPA/WPA2, TKIP/AES), 802.11w/PMF
 
-<pre>
-```mermaid
-flowchart TD
-    A[Internet] -->|Spectrum Modem| B(Unifi Dream Machine Egg)
-    B --> |Cat6 patch into wall jack. Cat6 through walls, up two floors to wall jack| C[Lenovo 1 Liter]
-```
-</pre>
-
-<pre>
-```mermaid
-  graph TD;
-      A-->B;
-      A-->C;
-      B-->D;
-      C-->D;
-```
-</pre>
 
 # Resources
 
