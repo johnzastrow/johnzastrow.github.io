@@ -34,7 +34,7 @@ Use the links to the *different* Github projects at the bottom if you want to tr
 
 For this testing I'll present the results from ntttcp, both Linux and Windows variants, under a few scenarios.
 
-### The Network
+### The Wireless Network
 
 Just a snap of what I'm testing
 
@@ -52,17 +52,16 @@ Summary table of the tests. Note the asterisks in the commands are getting markd
 | **Trial 3b. This time on 5Ghz. Though signal strength is lower.** [Ch. 48  (5 GHz, 80 MHz) 2x2 WiFi 5 -84 dBm] |  Sending from the Linux VM           | Receiving on the Windows 11 Lenovo 1 Liter    |  ntttcp -s -m 2,\*,192.168.1.39 -b 128K -N -t 60 -W 2 -C 2 --> ./ntttcp.exe -r -m 2,\*,192.168.1.39 -ns -t 60 -cd 2 -wu 2       |      24.363       |      2         |      0                    |      9.743                 |
 
 
+#### This worked. Trial 1: Sending from Windows to Linux with a single core on each
 
-### This worked. Trial 1: Sending from Windows to Linux with a single core on each
-
-#### Receiver, on Linux
+##### Receiver, on Linux
 
 ``` ntttcp -r -m 1,*,192.168.1.27 -t 60 -V ```
 
 Only one core is used to emulate iperf3 and the V (verbose) 
 After downloading the ntttcp.exe binary to Windows we can run it immediately as a sender in a command prompt:
 
-#### Sender, on Windows
+##### Sender, on Windows
 
 ``` ntttcp.exe -s -m 1,*,192.168.1.27 -l 128K -t 60 -ns ```
 
@@ -163,7 +162,7 @@ verbose mode:			 enabled
 
 ### Trial 2. This also worked. Reversing the flow
 
- We’ll need to run CMD as administrator, open the firewall on the Windows machine to allow it to listen (receive), and the networking benchmark tool with other parameters:
+ We'll need to run CMD as administrator, open the firewall on the Windows machine to allow it to listen (receive), and the networking benchmark tool with other parameters:
 
 ``` netsh advfirewall firewall add rule program=C:\Users\username\Downloads\ntttcp.exe name="ntttcp" protocol=any dir=in action=allow enable=yes profile=ANY ```
 
@@ -250,6 +249,16 @@ verbose mode:                    enabled
 ---------------------------------------------------------
 
 </pre>
+
+### Wired testing
+
+##### Floorplan 
+[![Floorplan](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/floorplan.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/floorplan.png)
+
+##### Latency from router to remote PC over the wire
+
+[![WiredLatency](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/l1l_wired_latency.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/l1l_wired_latency.png)
+
 
 ### Router Details
 
