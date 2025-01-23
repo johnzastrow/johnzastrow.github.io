@@ -289,11 +289,12 @@ TX Power
 * [https://www.pingplotter.com/](https://www.pingplotter.com/) Ping Plotter. Good Windows client for monitoring network latency health. 
 * [https://oss.oetiker.ch/smokeping/](https://oss.oetiker.ch/smokeping/) Smokeping. Functional but dated and annoying for also monitoring latency. Runs on Docker though...
 
+### Two Linux VMs talking to each other 
 
-*********************** Two Linux VMs talking to each ***********************************
 Just for comparison, let's do a test that maxes out throughput. I'm going to up the core count on each end to `-m 4` to make sure were making enough bits to stress the virtual network.
 
-CPU usage on the 4-core receiving VM hit 65% at peak, and was ingesting 7.82 Gbps of traffic. The sending VM is on the same Proxmox host, so this was likely all occuring over the internal bridge on the machine.. a virtual network.
+CPU usage on the 4-core receiving VM hit 65% at peak, and was ingesting 7.82 Gbps of traffic. The sending VM is on the same Proxmox host, so this was likely all occuring over the internal bridge on the machine.. a virtual network. 
+The receiving VM reported `16:06:22 INFO: throughpu: 61.92Gbps`
 
 <pre>
 
@@ -349,3 +350,126 @@ NTTTCP for Linux 1.4.0
 ---------------------------------------------------------
 
 </pre>
+
+With 6 cores. It seems that the throughput actually went down. Maybe resource starvation since everything is happening on the same host? Except that CPU utilization 
+on the host never went above 40% in any test, and memory stayed very low. This isn't hitting the NIC, so that's not a bottleneck here. Of course. there are LOT of bits being recorded, so this is just academic.
+
+<pre>
+
+jcz@xub2404:~$ ntttcp -r -m 6,*,192.168.1.27 -b 128K -N -t 300 -W 2 -C 2
+NTTTCP for Linux 1.4.0
+---------------------------------------------------------
+16:16:33 INFO: 6 threads created
+16:16:42 INFO: Test warmup completed.
+16:21:43 INFO: Test run completed.
+16:21:43 INFO: Test cooldown is in progress...
+16:21:44 INFO: Test cycle finished.
+16:21:44 INFO: #####  Totals:  #####
+16:21:44 INFO: test duration    :300.27 seconds
+16:21:44 INFO: total bytes      :2031269376776
+16:21:44 INFO:   throughput     :54.12Gbps
+16:21:44 INFO:   retrans segs   :1
+16:21:44 INFO: cpu cores        :4
+16:21:44 INFO:   cpu speed      :4699.976MHz
+16:21:44 INFO:   user           :0.57%
+16:21:44 INFO:   system         :9.69%
+16:21:44 INFO:   idle           :84.36%
+16:21:44 INFO:   iowait         :0.06%
+16:21:44 INFO:   softirq        :5.29%
+16:21:44 INFO:   cycles/byte    :0.43
+16:21:44 INFO: cpu busy (all)   :69.33%
+---------------------------------------------------------
+
+jcz@gisdb:~$ ntttcp -s -m 6,*,192.168.1.27 -b 128K -N -t 300 -W 2 -C 2
+NTTTCP for Linux 1.4.0
+---------------------------------------------------------
+21:16:40 INFO: Starting sender activity (no sync) ...
+21:16:40 INFO: 6 threads created
+21:16:40 INFO: 6 connections created in 748 microseconds
+21:16:42 INFO: Test warmup completed.
+21:21:42 INFO: Test run completed.
+21:21:42 INFO: Test cooldown is in progress...
+21:21:44 INFO: Test cycle finished.
+21:21:44 INFO: 6 connections tested
+21:21:44 INFO: #####  Totals:  #####
+21:21:44 INFO: test duration    :300.09 seconds
+21:21:44 INFO: total bytes      :2030016004096
+21:21:44 INFO:   throughput     :54.12Gbps
+21:21:44 INFO:   retrans segs   :0
+21:21:44 INFO: cpu cores        :4
+21:21:44 INFO:   cpu speed      :4699.976MHz
+21:21:44 INFO:   user           :0.20%
+21:21:44 INFO:   system         :11.91%
+21:21:44 INFO:   idle           :87.44%
+21:21:44 INFO:   iowait         :0.02%
+21:21:44 INFO:   softirq        :0.40%
+21:21:44 INFO:   cycles/byte    :0.35
+21:21:44 INFO: cpu busy (all)   :48.25%
+---------------------------------------------------------
+
+
+</pre>
+
+And with 2 cores.
+
+CPU usage on the 2-core receiving VM hit 77% at peak, and was ingesting 8.63 Gbps of traffic.  
+The receiving VM reported `16:28:42 INFO: throughput :68.91Gbps`. So fewer cores made more traffic?
+
+<pre>
+
+jcz@xub2404:~$ ntttcp -r -m 2,*,192.168.1.27 -b 128K -N -t 300 -W 2 -C 2
+NTTTCP for Linux 1.4.0
+---------------------------------------------------------
+16:23:28 INFO: 2 threads created
+16:23:40 INFO: Test warmup completed.
+16:28:40 INFO: Test run completed.
+16:28:40 INFO: Test cooldown is in progress...
+16:28:42 INFO: Test cycle finished.
+16:28:42 INFO: #####  Totals:  #####
+16:28:42 INFO: test duration    :300.44 seconds
+16:28:42 INFO: total bytes      :2587987722000
+16:28:42 INFO:   throughput     :68.91Gbps
+16:28:42 INFO:   retrans segs   :2
+16:28:42 INFO: cpu cores        :4
+16:28:42 INFO:   cpu speed      :4699.976MHz
+16:28:42 INFO:   user           :0.57%
+16:28:42 INFO:   system         :10.77%
+16:28:42 INFO:   idle           :82.09%
+16:28:42 INFO:   iowait         :0.01%
+16:28:42 INFO:   softirq        :6.53%
+16:28:42 INFO:   cycles/byte    :0.39
+16:28:42 INFO: cpu busy (all)   :77.79%
+---------------------------------------------------------
+
+
+jcz@gisdb:~$ ntttcp -s -m 2,*,192.168.1.27 -b 128K -N -t 300 -W 2 -C 2
+NTTTCP for Linux 1.4.0
+---------------------------------------------------------
+21:23:38 INFO: Starting sender activity (no sync) ...
+21:23:38 INFO: 2 threads created
+21:23:38 INFO: 2 connections created in 602 microseconds
+21:23:40 INFO: Test warmup completed.
+21:28:40 INFO: Test run completed.
+21:28:40 INFO: Test cooldown is in progress...
+21:28:42 INFO: Test cycle finished.
+21:28:42 INFO: 2 connections tested
+21:28:42 INFO: #####  Totals:  #####
+21:28:42 INFO: test duration    :300.25 seconds
+21:28:42 INFO: total bytes      :2586434732032
+21:28:42 INFO:   throughput     :68.91Gbps
+21:28:42 INFO:   retrans segs   :13
+21:28:42 INFO: cpu cores        :4
+21:28:42 INFO:   cpu speed      :4699.976MHz
+21:28:42 INFO:   user           :0.18%
+21:28:42 INFO:   system         :11.60%
+21:28:42 INFO:   idle           :87.83%
+21:28:42 INFO:   iowait         :0.02%
+21:28:42 INFO:   softirq        :0.35%
+21:28:42 INFO:   cycles/byte    :0.27
+21:28:42 INFO: cpu busy (all)   :46.00%
+---------------------------------------------------------
+
+</pre>
+
+##### Stressing out the Proxmox Host: Receiving VM
+[![4,6,2 Core Testing](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/receiver_usage.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/receiver_usage.png)
