@@ -81,13 +81,25 @@ Do this in Linux. Installing and running `git-filter-repo` in Windows is still w
 To create a backup, we simply make a complete copy of our repository. Open your command line, navigate to the directory containing your repository, and run:
 
 ``` git clone --mirror [your-repo-url] [backup-repo-name].git ```
-also do this to your current working repo to have second backup. Then check sizes using tools below.
 
-1. tar -cvzf weather-May11.tgz weather
+also do this to your current working repo to have second backup. Then check sizes using tools below. We'll work with a repo called `weather` now. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`
 
-2. ncdu /home/jcz/weather
-1b. du -s --si
-1c. git count-objects -v
+``` 
+
+# another way to back up
+
+tar -cvzf weather-May11.tgz weather 
+
+# interactively explore how much space your repo is using from the file system level
+
+ncdu /home/jcz/weather
+
+# another way to check the total space used by your repo
+du -s --si
+
+# summarize the git objects before we clean out
+
+git count-objects -v
 1d. git-sizer
 1.e git remote -v >> ../remote_origins.txt
 # see also git ls-remote --get-url origin  
