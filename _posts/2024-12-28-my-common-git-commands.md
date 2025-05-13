@@ -33,7 +33,7 @@ git config user.name
 
 ```
 
-## Getting Started and Using
+## Getting Started
 
 1. Initialize a directory with Git and point it to a remote, empty (like Github) repo that I created.
 
@@ -65,7 +65,7 @@ git push -u origin main
 ```
 
 
-## Cleaning Up
+## Where Are We Starting
 
 I'm a bad person and I commit often AND I commit a lot of blobs as I use Github as a sort of backup as well as a way to move files between the literally ten computers I work on in a given week. The result is that my repos are HUUUGE and full of useless blobs. So, to shrink my repos I periodically have to trim the fat. Here is my working recipe.
 
@@ -236,11 +236,67 @@ In my case my `dumps` and `archive` directories accumulate the cruft I want to d
 ```bash
 # begin by analysing
 git filter-repo --analyze
----> stopped here
+```
+
+
+{: .box-terminal}
+<pre>
+jcz@lamp:~/weather$ git filter-repo --analyze
+Processed 1201 blob sizes
+Processed 476 commits
+
+jcz@lamp:~/weather/.git/filter-repo/analysis$ ls -lht
+total 212K
+-rw-rw-r-- 1 jcz jcz 109K May 13 12:54 blob-shas-and-paths.txt
+-rw-rw-r-- 1 jcz jcz  43K May 13 12:54 path-all-sizes.txt
+-rw-rw-r-- 1 jcz jcz 1.7K May 13 12:54 extensions-all-sizes.txt
+-rw-rw-r-- 1 jcz jcz  25K May 13 12:54 path-deleted-sizes.txt
+-rw-rw-r-- 1 jcz jcz 1.3K May 13 12:54 directories-all-sizes.txt
+-rw-rw-r-- 1 jcz jcz  509 May 13 12:54 extensions-deleted-sizes.txt
+-rw-rw-r-- 1 jcz jcz  193 May 13 12:54 directories-deleted-sizes.txt
+-rw-rw-r-- 1 jcz jcz 3.4K May 13 12:54 README
+-rw-rw-r-- 1 jcz jcz 6.1K May 13 12:54 renames.txt
+</pre>
+
+Then you cam try these commands. Some of these are really incriminating for me, like the one below.
+
+```
+jcz@lamp:~/weather$ less .git/filter-repo/analysis/directories-deleted-sizes.txt
+jcz@lamp:~/weather$ less .git/filter-repo/analysis/blob-shas-and-paths.txt
+jcz@lamp:~/weather$ less .git/filter-repo/analysis/path-all-sizes.txt
+jcz@lamp:~/weather$ less .git/filter-repo/analysis/path-deleted-sizes.txt
+jcz@lamp:~/weather$ less .git/filter-repo/analysis/README
+```
+
+{: .box-terminal}
+<pre>
+jcz@lamp:~/weather$ less .git/filter-repo/analysis/blob-shas-and-paths.txt
+
+=== Files by sha and associated pathnames in reverse size ===
+Format: sha, unpacked size, packed size, filename(s) object stored as
+  14bb748925d2ec1f9f5177f8b53278c6e49352d8   26572582   25516501 dumps/weather-09May2025.sql.gz
+  3cbfa6baf374764310b169dc4ed608f3dd0fa7ee   26553761   25495734 dumps/weather-08May2025.sql.gz
+  43e25da893f25f28d003c6871769ee07ca2c21c5   26041304   25342898 dumps/weather-07May2025.sql.gz
+  55d9fe63004cba4824fb764e116bf7685a43d2b7   26035963   25336991 dumps/weather-06May2025.sql.gz
+  a71dbfeeb918fb746c3e5135cb2b26ae22f06cfb   25980610   25293898 archive/weather-05May2025.sql.gz
+  3bcc6d472864017fefa2aa11bb2e54a5acec78bd   25972633   25282833 archive/weather-04May2025.sql.gz
+  d095614d37501dcc50d2fd267a00064ab5f81e46   25961112   25273456 archive/weather-03May2025.sql.gz
+  e092148ed252a0bc0d71342b035547b99b42688f   25943882   25257668 archive/weather-02May2025.sql.gz
+  22875baa2c396cd790bf48cf9b31f9d2e9202d63   25931531   25243838 archive/weather-01May2025.sql.gz
+  60435ab3cd5190ca0ef29ae1307ba80f72499649   25924811   25236304 archive/weather-30Apr2025.sql.gz
+  783b689f9348906c66a4389c395df013b17665f8   25469636   24783745 dumps/weather-09Apr2025.sql.gz
+  1f4b41839c6d85aecae695ef0ac32704be345941   25169254   24484055 dumps/weather-25Jan2025.sql.gz
+  57d8871d430fe3ca4bb78acd49c14469108ac36f   24766310   24082958 dumps/weather-24Dec2024.sql.gz
+  5452e3cd3c939292186ca11aa8eb596e158e1e37   20225522   19562033 dumps/weather-09Dec2024.sql.gz
+</pre>
+
+## Cleaning Up
+
+I have a lot of low hanging fruit in my `dumps/` and `archive/` directories.
 
 
 
-3b. ls -lht .git/filter-repo/analysis/
+
 1. less .git/filter-repo/analysis/directories-deleted-sizes.txt
 
 2. git filter-repo --invert-paths --path dumps/ --path archive/
