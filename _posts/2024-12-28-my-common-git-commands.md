@@ -72,23 +72,27 @@ I'm a bad person and I commit often AND I commit a lot of blobs as I use Github 
 
 Do this in Linux. Installing and running `git-filter-repo` in Windows is still weird. So clean in linux, then force push to the origin, then pull down to your other sets of code. `git-filter-repo` is a python program. But install it through apt on Ubuntu. Do not use `git-filter-branch` people says it's wonky and does odd things. I can confirm. Plus it's a lot more work to use.
 
-1. Install stuff
+#### 1. Install stuff
    
 ```sudo apt install git-filter-repo git-sizer ncdu```
 
-2. Backup your data before playing in these dark arts
+#### 2. Backup your data before playing in these dark arts
    
 To create a backup, we simply make a complete copy of our repository. Open your command line, navigate to the directory containing your repository, and run:
 
 ``` git clone --mirror [your-repo-url] [backup-repo-name].git ```
 
-also do this to your current working repo to have second backup. Then check sizes using tools below. We'll work with a repo called `weather` now. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`
-
+also do this to your current working repo to have second backup. 
 ``` 
 
 # another way to back up
 
 tar -cvzf weather-May11.tgz weather 
+```
+#### 3. Checkout the starting state
+
+Then check sizes using tools below. We'll work with a repo called `weather` now. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`
+
 
 # interactively explore how much space your repo is using from the file system level
 
