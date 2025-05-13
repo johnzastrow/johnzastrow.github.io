@@ -100,6 +100,8 @@ du -s --si
 # summarize the git objects before we clean out
 
 git count-objects -v
+```
+
 1d. git-sizer
 1.e git remote -v >> ../remote_origins.txt
 # see also git ls-remote --get-url origin  
