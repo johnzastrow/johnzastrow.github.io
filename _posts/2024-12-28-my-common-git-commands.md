@@ -74,46 +74,69 @@ Do this in Linux. Installing and running `git-filter-repo` in Windows is still w
 
 #### 1. Install stuff
    
-```sudo apt install git-filter-repo git-sizer ncdu```
+```bash 
+sudo apt install git-filter-repo git-sizer ncdu
+```
 
 #### 2. Backup your data before playing in these dark arts
    
 To create a backup, we simply make a complete copy of our repository. Open your command line, navigate to the directory containing your repository, and run:
 
-``` git clone --mirror [your-repo-url] [backup-repo-name].git ```
+```bash
+git clone --mirror [your-repo-url] [backup-repo-name].git 
+```
 
-also do this to your current working repo to have second backup. 
-``` 
+Also do this to your current working repo to have second backup. Backup this way too by compressing your local repo.
 
-# another way to back up
-
+```bash
 tar -cvzf weather-May11.tgz weather 
+```
+
+Save this `remote_origins.txt` file because for some reason git-filter-repo deletes your remote origin value! Maybe for safety reasons so you don't accidentally push when you don't want to
+
+```bash
+git remote -v >> ../remote_origins.txt
+
+# see also 
+git ls-remote --get-url origin
+
+# or this for a lot of detail
+git remote show origin
 ```
 #### 3. Checkout the starting state
 
-Then check sizes using tools below. We'll work with a repo called `weather` now. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`
+Then check sizes using tools below. We'll work with a repo called `weather` now. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`. 
 
-```
-# interactively explore how much space your repo is using from the file system level
-
+```bash
+# Interactively explore how much space your repo is using from the file system level
 ncdu /home/jcz/weather
 
-# another way to check the total space used by your repo
+# Another way to check the total space used by your repo
 du -s --si
 
-# summarize the git objects before we clean out
-
+# Summarize the git objects before we clean out
 git count-objects -v
+
+# Another way to explore tree sizes in your repo
+git-sizer
+
+# Yet another way to explore the largest files in the repo
+git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 -r | head -n 5
 ```
 
-1d. git-sizer
-1.e git remote -v >> ../remote_origins.txt
-# see also git ls-remote --get-url origin  
-# or this for a lot of detail
-# git remote show origin
+Now identify the directories with the largest files, because approach will blow them away and amend the git history as if they never existed. Do more research if you want to selectively remove files or things that are more granular. 
 
-1. git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 -r | head -n 5
-2. git filter-repo --analyze
+#### 4. Clean, Expunge, Compress
+
+In my case my `dumps` and `archive` directories accumulate the cruft I want to drop
+
+```bash
+# begin by analysing
+git filter-repo --analyze
+---> stopped here
+
+
+
 3b. ls -lht .git/filter-repo/analysis/
 1. less .git/filter-repo/analysis/directories-deleted-sizes.txt
 
