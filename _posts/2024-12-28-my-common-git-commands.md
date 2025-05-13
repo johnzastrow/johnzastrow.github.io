@@ -98,19 +98,39 @@ Save this `remote_origins.txt` file because for some reason git-filter-repo dele
 git remote -v >> ../remote_origins.txt
 
 # see also 
-git ls-remote --get-url origin
+git ls-remote --get-url origin  >> ../remote_origins.txt
 
 # or this for a lot of detail
-git remote show origin
+git remote show origin  >> ../remote_origins.txt
+cat ../remote_origins.txt
 ```
 
 Here are some examples
+
+
 {: .box-terminal}
 <pre>
-git remote -v
-git ls-remote --get-url origin
-git remote show origin
+jcz@lamp:~/weather$ git remote -v
+origin  git@github.com:johnzastrow/weather.git (fetch)
+origin  git@github.com:johnzastrow/weather.git (push)
 
+
+jcz@lamp:~/weather$ git ls-remote --get-url origin
+git@github.com:johnzastrow/weather.git
+
+
+jcz@lamp:~/weather$ git remote show origin
+* remote origin
+  Fetch URL: git@github.com:johnzastrow/weather.git
+  Push  URL: git@github.com:johnzastrow/weather.git
+  HEAD branch: master
+  Remote branches:
+    baseline                                        tracked
+    master                                          tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (local out of date)
 </pre>
 
 
@@ -134,6 +154,78 @@ git-sizer
 # Yet another way to explore the largest files in the repo
 git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 -r | head -n 5
 ```
+
+
+Here are some more examples
+
+
+{: .box-terminal}
+<pre>
+ncdu 1.19 ~ Use the arrow keys to navigate, press ? for help
+--- /home/jcz/Documents/github/weather ---------------------------------------------------------------------------------    
+    1.7 GiB [#################] /.git
+  111.1 MiB [#                ] /archive
+  101.5 MiB [#                ] /dumps
+   15.5 MiB [                 ]  lazygit
+   12.4 MiB [                 ] /working
+   11.7 MiB [                 ] /images
+    9.0 MiB [                 ] /jobs
+    3.1 MiB [                 ] /imports
+    1.0 MiB [                 ] /static_data
+  540.0 KiB [                 ]  60daily_temps_compare_years_claude.png
+  528.0 KiB [                 ]  60daily_temps_compare_years_copilot.png
+  516.0 KiB [                 ]  annual_energy_plot.png
+  508.0 KiB [                 ]  weekly_E4279_elect_temp_ranges.png
+  504.0 KiB [                 ]  weekly_kpwm_elect_temp_ranges.png
+  468.0 KiB [                 ]  60daily_temps_compare_years.png
+  464.0 KiB [                 ]  weekly_E4229_elect_temp_ranges.png
+  436.0 KiB [                 ] /app
+  408.0 KiB [                 ]  e4229weekly_temps_compare_years.png
+  392.0 KiB [                 ]  e4279weekly_temps_compare_years.png
+  372.0 KiB [                 ]  kpwmweekly_temps_compare_years.png
+  316.0 KiB [                 ]  daily_e4229_elect_temp.png
+  316.0 KiB [                 ]  monthly_stacked_energy_use.png
+  276.0 KiB [                 ]  kpwm_daily_elect_temp.png
+  260.0 KiB [                 ]  bardham_weekly_electric_temp_ranges.png
+  260.0 KiB [                 ]  monthly_dollars_per_kwh.png
+  
+  
+jcz@lamp:~/weather$ du -s --si
+2.1G    .
+
+jcz@lamp:~/weather$ git count-objects -v
+count: 948
+size: 975780
+in-pack: 1456
+packs: 1
+size-pack: 757701
+prune-packable: 0
+garbage: 0
+size-garbage: 0
+
+
+jcz@lamp:~/weather$ git-sizer
+Processing blobs: 1201
+Processing trees: 722
+Processing commits: 476
+Matching commits to trees: 476
+Processing annotated tags: 0
+Processing references: 7
+| Name                         | Value     | Level of concern               |
+| ---------------------------- | --------- | ------------------------------ |
+| Biggest objects              |           |                                |
+| * Blobs                      |           |                                |
+|   * Maximum size         [1] |  43.8 MiB | ****                           |
+
+[1]  07b731c6310bd79243eac3d52f7209b2cedc08b2 (151178f37da3c26c0e0e97dd16447e4fb6b7b87c:dumps/weather-15Oct2019.sql)
+
+jcz@lamp:~/weather$ git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 -r | head -n 5
+100644 blob 14bb748925d2ec1f9f5177f8b53278c6e49352d8 26572582   dumps/weather-09May2025.sql.gz
+100644 blob 3cbfa6baf374764310b169dc4ed608f3dd0fa7ee 26553761   dumps/weather-08May2025.sql.gz
+100644 blob 43e25da893f25f28d003c6871769ee07ca2c21c5 26041304   dumps/weather-07May2025.sql.gz
+100644 blob 55d9fe63004cba4824fb764e116bf7685a43d2b7 26035963   dumps/weather-06May2025.sql.gz
+100644 blob a71dbfeeb918fb746c3e5135cb2b26ae22f06cfb 25980610   archive/weather-05May2025.sql.gz
+</pre>
 
 Now identify the directories with the largest files, because approach will blow them away and amend the git history as if they never existed. Do more research if you want to selectively remove files or things that are more granular. 
 
@@ -178,6 +270,41 @@ https://ryanagibson.com/posts/shrink-git-repo/
 https://sentry.io/answers/revert-a-git-repository-to-a-previous-commit/
 https://andrewlock.net/rewriting-git-history-simply-with-git-filter-repo/
 https://www.golinuxcloud.com/reduce-git-repo-size-with-git-filter-branch/
+
+
+
+$ git filter-repo --invert-paths --path dumps/ --path archive/
+$ du -s --si
+37M	.
+
+
+
+
+	
+
+ncdu /home/jcz/weather
+
+
+
+
+jcz@lamp:~/weather$ git filter-repo --analyze
+Processed 1201 blob sizes
+Processed 476 commits
+
+jcz@lamp:~/weather/.git/filter-repo/analysis$ ls -lht
+total 212K
+-rw-rw-r-- 1 jcz jcz 109K May 13 12:54 blob-shas-and-paths.txt
+-rw-rw-r-- 1 jcz jcz  43K May 13 12:54 path-all-sizes.txt
+-rw-rw-r-- 1 jcz jcz 1.7K May 13 12:54 extensions-all-sizes.txt
+-rw-rw-r-- 1 jcz jcz  25K May 13 12:54 path-deleted-sizes.txt
+-rw-rw-r-- 1 jcz jcz 1.3K May 13 12:54 directories-all-sizes.txt
+-rw-rw-r-- 1 jcz jcz  509 May 13 12:54 extensions-deleted-sizes.txt
+-rw-rw-r-- 1 jcz jcz  193 May 13 12:54 directories-deleted-sizes.txt
+-rw-rw-r-- 1 jcz jcz 3.4K May 13 12:54 README
+-rw-rw-r-- 1 jcz jcz 6.1K May 13 12:54 renames.txt
+
+
+
 
 
 
