@@ -93,7 +93,7 @@ tar -cvzf weather-May11.tgz weather
 
 Then check sizes using tools below. We'll work with a repo called `weather` now. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`
 
-
+```
 # interactively explore how much space your repo is using from the file system level
 
 ncdu /home/jcz/weather
