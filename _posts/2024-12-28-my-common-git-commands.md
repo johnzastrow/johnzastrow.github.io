@@ -8,14 +8,17 @@ tags: [git, data]
 comments: true
 ---
 
-# My common (and not so common) Git commands. 
 
 {: .box-note}
 This is mostly a log for myself of stuff I don't do every day so I don't have to Google it all the time. 
 
 {: .box-warning}
 This is just a start and I'm going to add to it over time.
-a. Setup Git if running for the first time
+
+
+# Git from Scratch
+
+Setup Git if running for the first time
 
 
 ## Install Setup
@@ -64,13 +67,18 @@ git remote add origin https://github.com/johnzastrow/fitness.git
 git push -u origin main
 ```
 
+# Cleaning After Making a Mess
+
+
+
+I'm a bad person and I commit too often AND I commit a lot of blobs as I use Github as a sort of backup as well as an FTP server. The result is that my repos are HUUUGE and full of useless blobs. So, to shrink my repos I periodically have to trim the fat. Here is an approach I'm developing. 
 
 ## Where Are We Starting
 
-I'm a bad person and I commit often AND I commit a lot of blobs as I use Github as a sort of backup as well as a way to move files between the literally ten computers I work on in a given week. The result is that my repos are HUUUGE and full of useless blobs. So, to shrink my repos I periodically have to trim the fat. Here is my working recipe.
-
-
 Do this in Linux. Installing and running `git-filter-repo` in Windows is still weird. So clean in linux, then force push to the origin, then pull down to your other sets of code. `git-filter-repo` is a python program. But install it through apt on Ubuntu. Do not use `git-filter-branch` people says it's wonky and does odd things. I can confirm. Plus it's a lot more work to use.
+
+We'll work with a repo called `weather` now.
+
 
 #### 1. Install stuff
    
@@ -136,7 +144,7 @@ jcz@lamp:~/weather$ git remote show origin
 
 #### 3. Checkout the starting state
 
-Then check sizes using tools below. We'll work with a repo called `weather` now. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`. 
+Then check sizes using tools below. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`. 
 
 ```bash
 # Interactively explore how much space your repo is using from the file system level
@@ -227,11 +235,11 @@ jcz@lamp:~/weather$ git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 -r | he
 100644 blob a71dbfeeb918fb746c3e5135cb2b26ae22f06cfb 25980610   archive/weather-05May2025.sql.gz
 </pre>
 
-Now identify the directories with the largest files, because approach will blow them away and amend the git history as if they never existed. Do more research if you want to selectively remove files or things that are more granular. 
+Now identify the directories with the largest files. The approach below will blow them away and amend the git history as if they never existed -- be warned. Do more research if you want to selectively remove files or things that are more granular. 
 
 #### 4. Clean, Expunge, Compress
 
-In my case my `dumps` and `archive` directories accumulate the cruft I want to drop
+In my case my `dumps` and `archive` directories typically accumulate the cruft I want to drop. Let's confirm that.
 
 ```bash
 # begin by analysing
@@ -258,7 +266,7 @@ total 212K
 -rw-rw-r-- 1 jcz jcz 6.1K May 13 12:54 renames.txt
 </pre>
 
-Then you cam try these commands. Some of these are really incriminating for me, like the one below.
+Then you can try these commands. Some of these are really incriminating for me, like the one below.
 
 ```
 jcz@lamp:~/weather$ less .git/filter-repo/analysis/directories-deleted-sizes.txt
@@ -292,7 +300,7 @@ Format: sha, unpacked size, packed size, filename(s) object stored as
 
 ## Cleaning Up
 
-I have a lot of low hanging fruit in my `dumps/` and `archive/` directories.
+Confirmed. I have a lot of low hanging fruit in my `dumps/` and `archive/` directories.
 
 
 
