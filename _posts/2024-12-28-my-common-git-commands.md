@@ -103,6 +103,17 @@ git ls-remote --get-url origin
 # or this for a lot of detail
 git remote show origin
 ```
+
+Here are some examples
+{: .box-terminal}
+<pre>
+git remote -v
+git ls-remote --get-url origin
+git remote show origin
+
+</pre>
+
+
 #### 3. Checkout the starting state
 
 Then check sizes using tools below. We'll work with a repo called `weather` now. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`. 
