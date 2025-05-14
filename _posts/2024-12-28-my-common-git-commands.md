@@ -308,6 +308,78 @@ Confirmed. I have a lot of low hanging fruit in my `dumps/` and `archive/` direc
 1. less .git/filter-repo/analysis/directories-deleted-sizes.txt
 
 2. git filter-repo --invert-paths --path dumps/ --path archive/
+
+{: .box-terminal}
+<pre>
+jcz@lamp:~/weather$ git filter-repo --force --invert-paths --path dumps/ --path archive/
+Parsed 481 commits
+New history written in 0.09 seconds; now repacking/cleaning...
+Repacking your repo and cleaning out old unneeded objects
+HEAD is now at 2c7875b Merge branch 'master' of https://github.com/johnzastrow/weather
+Enumerating objects: 1905, done.
+Counting objects: 100% (1905/1905), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (1080/1080), done.
+Writing objects: 100% (1905/1905), done.
+Total 1905 (delta 1114), reused 1433 (delta 806), pack-reused 0
+Completely finished after 2.76 seconds.
+
+</pre>
+
+Now let's check the results
+
+<pre>
+jcz@lamp:~/weather$ du -s --si
+385M    .
+
+jcz@lamp:~/weather$ git count-objects -v
+count: 0
+size: 0
+in-pack: 1905
+packs: 1
+size-pack: 94206
+prune-packable: 0
+garbage: 0
+size-garbage: 0
+
+
+jcz@lamp:~/weather$ git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 -r | head -n 5
+100755 blob fc397af9a792138358c8edb2dc8ae6259a343a12 16289792   lazygit
+100644 blob 87847dd9668f287a41d23d4bfc000ac58f42ad23 12987594   working/12Nov2021WeatherDump_w_procs.tgz
+100644 blob 4166218429103ee6383318f9782e6ab2b76fda61 8357986    images/weather_diagram.svg
+100644 blob d031763bc56c8560ca44ff10bddb9f55e7b94552 3541163    images/weather_diagram2.svg
+100644 blob b9b32dfe379a15fbad06dc7690a23bb99be52b85 1450208    imports/data_bardham.csv
+
+jcz@lamp:~/weather$ git sizer
+Processing blobs: 1007
+Processing trees: 508
+Processing commits: 390
+Matching commits to trees: 390
+Processing annotated tags: 0
+Processing references: 395
+| Name                         | Value     | Level of concern               |
+| ---------------------------- | --------- | ------------------------------ |
+| Biggest objects              |           |                                |
+| * Blobs                      |           |                                |
+|   * Maximum size         [1] |  30.8 MiB | ***                            |
+
+[1]  e00710be8a656101c113fb95d6bc930a5b56557b (refs/replace/200bd0c1977662cfce28da0048a93bba9ae6577e:7March2019_weatherdump_pi.sql)
+
+jcz@lamp:~/weather$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        archive/
+        dumps/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+</pre>
+
+It looks like as far as git is concerned were pretty clean. but 
+
+
 3. git filter-repo --analyze
 4. head -n 10 .git/filter-repo/analysis/path-all-sizes.txt 
  	example 9. git filter-repo --invert-paths --path-regex '^assets\/lib\/mermaid\/(?!mermaid\.min\.js$).*'
