@@ -8,6 +8,11 @@ tags: [geodata, gis, spatial, data management, PostGIS, Spatialite]
 comments: true
 ---
 
+{: .box-success}
+This post started out my exploration of building linear events for trail maintenance in PostGIS. And then I fed it AI (claude 3.5 Sonnet through VS Code)... which then proceeded to write about 80% of what you are about to read. Now I need to read and test everything it wrote to make sure this isn't some fat hallucination. 
+
+
+
 In this comprehensive guide, we'll implement a complete trail maintenance management system using PostGIS linear referencing. This solution goes beyond basic spatial data management to create a full-featured system that includes:
 
 **Core Functionality:**
