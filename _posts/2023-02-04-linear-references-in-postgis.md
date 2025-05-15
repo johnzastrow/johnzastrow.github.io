@@ -453,41 +453,109 @@ For very large datasets, consider partitioning your events table by date or regi
 
 ### 3.5.2 Analysis Examples
 
-Here are some useful queries for analyzing your linear referenced data:
+Here are some useful queries for analyzing your linear referenced data, along with example outputs:
 
 1. **Find overlapping maintenance segments:**
 ```sql
-SELECT a.obs_id as seg1_id, 
-       b.obs_id as seg2_id,
-       ST_Length(ST_Intersection(a.mygeom, b.mygeom)) as overlap_length
+-- Find segments that overlap and calculate the overlap length
+SELECT 
+    a.obs_id as seg1_id,           -- First segment ID
+    b.obs_id as seg2_id,           -- Second segment ID
+    -- Calculate the length of overlap in meters
+    ST_Length(ST_Intersection(a.mygeom, b.mygeom)) as overlap_length,
+    -- Get segment details for context
+    a.size as seg1_size,
+    b.size as seg2_size
 FROM greatpond.segments a 
 JOIN greatpond.segments b ON ST_Overlaps(a.mygeom, b.mygeom)
-WHERE a.obs_id < b.obs_id;
+WHERE a.obs_id < b.obs_id;  -- Avoid duplicate pairs
+```
+
+Example output:
+
+| seg1_id | seg2_id | overlap_length | seg1_size | seg2_size |
+|---------|---------|----------------|-----------|-----------|
+| 101     | 102     | 15.3          | 30.0      | 25.0      |
+| 103     | 105     | 8.7           | 20.0      | 35.0      |
+| 107     | 108     | 12.1          | 40.0      | 45.0      |
+
+This helps identify:
+- Areas with multiple maintenance needs
+- Potential task consolidation opportunities
+- Validation of segment creation logic
 ```
 
 2. **Calculate total length of trail sections needing maintenance:**
 ```sql
-SELECT trails_fid,
-       SUM(ST_Length(mygeom)) as total_maintenance_length,
-       COUNT(*) as num_segments
-FROM greatpond.segments
-GROUP BY trails_fid
+-- Summarize maintenance needs by trail
+SELECT 
+    t.name as trail_name,                                    -- Trail identifier
+    COUNT(*) as num_segments,                               -- Number of issues
+    SUM(ST_Length(s.mygeom)) as total_maintenance_length,   -- Total length needing repair
+    ROUND(SUM(ST_Length(s.mygeom)) / ST_Length(t.geom) * 100, 2) as percent_affected,  -- Percentage of trail affected
+    AVG(o.severity_int)::numeric(3,1) as avg_severity      -- Average severity of issues
+FROM greatpond.segments s
+JOIN greatpond.trails t ON s.trails_fid = t.fid
+JOIN greatpond.obs o ON s.obs_id = o.id
+GROUP BY t.fid, t.name, t.geom
 ORDER BY total_maintenance_length DESC;
+```
+
+Example output:
+
+| trail_name       | num_segments | total_maintenance_length | percent_affected | avg_severity |
+|-----------------|--------------|-------------------------|------------------|--------------|
+| Maple Ridge     | 8           | 420.5                   | 15.3            | 3.4          |
+| Pine Loop       | 5           | 245.5                   | 8.7             | 2.8          |
+| Cedar Path      | 3           | 180.0                   | 5.2             | 4.1          |
+| Birch Way       | 2           | 95.0                    | 3.1             | 2.5          |
+
+This analysis helps:
+- Prioritize trails requiring most attention
+- Plan resource allocation
+- Track maintenance backlog
 ```
 
 3. **Find maintenance hotspots** (areas with multiple nearby issues):
 ```sql
+-- Identify clusters of maintenance issues
 WITH hotspots AS (
-  SELECT ST_Union(ST_Buffer(mygeom, 50)) as cluster_geom,
-         COUNT(*) as issue_count
-  FROM greatpond.segments
-  GROUP BY ST_SnapToGrid(ST_Centroid(mygeom), 100)
-  HAVING COUNT(*) > 1
+    -- Group nearby issues using clustering and buffers
+    SELECT 
+        ST_Union(ST_Buffer(mygeom, 50)) as cluster_geom,  -- 50m buffer around segments
+        COUNT(*) as issue_count,                          -- Number of issues in cluster
+        AVG(o.severity_int)::numeric(3,1) as avg_severity,  -- Average severity
+        string_agg(o."desc", '; ') as issue_descriptions    -- List all issues
+    FROM greatpond.segments s
+    JOIN greatpond.obs o ON s.obs_id = o.id
+    -- Group issues within 100m of each other
+    GROUP BY ST_SnapToGrid(ST_Centroid(s.mygeom), 100)
+    HAVING COUNT(*) > 1
 )
-SELECT issue_count,
-       ST_Area(cluster_geom) as affected_area
+SELECT 
+    issue_count,
+    ST_Area(cluster_geom) as affected_area,
+    avg_severity,
+    issue_descriptions,
+    -- Calculate priority score
+    (issue_count * avg_severity * ST_Area(cluster_geom))::integer as priority_score
 FROM hotspots
-ORDER BY issue_count DESC;
+ORDER BY priority_score DESC;
+```
+
+Example output:
+
+| issue_count | affected_area | avg_severity | issue_descriptions | priority_score |
+|-------------|---------------|--------------|-------------------|----------------|
+| 5           | 2500.5       | 4.2          | "Erosion damage; Fallen tree; ..." | 52510 |
+| 3           | 1850.3       | 3.8          | "Water damage; Root exposure; ..." | 21093 |
+| 4           | 1200.0       | 3.2          | "Surface wear; Bridge repair; ..." | 15360 |
+
+This analysis helps:
+- Identify areas requiring comprehensive repairs
+- Optimize maintenance crew deployment
+- Plan coordinated repair efforts
+- Prioritize based on severity and extent
 ```
 
 ### 3.5.3 Visualization Tips
@@ -612,23 +680,40 @@ EXECUTE FUNCTION greatpond.create_maintenance_task();
 
 ### 3.6.3 Reporting System
 
-Create a reporting view for management:
+Create a comprehensive reporting view for management that summarizes the maintenance status for each trail:
 
 ```sql
+-- Create a view that provides a complete maintenance summary for each trail
 CREATE VIEW greatpond.maintenance_report AS
 SELECT 
     t.trails_fid,
-    COUNT(*) as total_issues,
-    AVG(e.severity_int) as avg_severity,
-    SUM(ST_Length(s.mygeom)) as total_length_meters,
-    SUM(m.estimated_hours) as total_estimated_hours,
+    COUNT(*) as total_issues,                    -- Total number of maintenance issues
+    AVG(e.severity_int) as avg_severity,         -- Average severity (1-5 scale)
+    SUM(ST_Length(s.mygeom)) as total_length_meters,  -- Total length needing repair
+    SUM(m.estimated_hours) as total_estimated_hours,   -- Estimated work hours
+    -- Count completed and pending tasks separately
     COUNT(CASE WHEN m.status = 'completed' THEN 1 END) as completed_tasks,
     COUNT(CASE WHEN m.status = 'pending' THEN 1 END) as pending_tasks
 FROM greatpond.segments s
-JOIN greatpond.events e ON s.obs_id = e.obs_id
-JOIN greatpond.trails t ON s.trails_fid = t.fid
-LEFT JOIN greatpond.maintenance_tasks m ON s.id = m.segment_id
+JOIN greatpond.events e ON s.obs_id = e.obs_id           -- Link to original events
+JOIN greatpond.trails t ON s.trails_fid = t.fid          -- Link to trail information
+LEFT JOIN greatpond.maintenance_tasks m ON s.id = m.segment_id  -- Include task status
 GROUP BY t.trails_fid;
+```
+
+Example output:
+
+| trails_fid | total_issues | avg_severity | total_length_meters | total_estimated_hours | completed_tasks | pending_tasks |
+|------------|--------------|--------------|--------------------|--------------------|----------------|---------------|
+| 1          | 5           | 3.2          | 245.5             | 24.5              | 3              | 2             |
+| 2          | 3           | 4.0          | 180.0             | 18.0              | 1              | 2             |
+| 3          | 8           | 2.5          | 420.5             | 42.0              | 5              | 3             |
+
+This view helps managers:
+- Track overall maintenance status per trail
+- Identify trails with highest severity issues
+- Plan resource allocation based on estimated hours
+- Monitor task completion rates
 ```
 
 ## 3.7 Data Quality Control and Validation
