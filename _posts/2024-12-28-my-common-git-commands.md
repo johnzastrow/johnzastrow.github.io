@@ -386,9 +386,36 @@ It looks like as far as git is concerned were pretty clean. but
 5.  git gc --aggressive --prune=now
 6.  git count-objects -v
 7.  git remote add weather git@git.[url]
+
+git remote add origin git@github.com:johnzastrow/weather.git
+
+jcz@lamp:~/weather$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+
 8.  git push origin --force --all
 9.  git push origin --force --tags
 
+jcz@lamp:~/weather$ git push origin --force --all
+Enumerating objects: 1905, done.
+Counting objects: 100% (1905/1905), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (772/772), done.
+Writing objects: 100% (1905/1905), 91.95 MiB | 1007.00 KiB/s, done.
+Total 1905 (delta 1114), reused 1905 (delta 1114), pack-reused 0
+remote: Resolving deltas: 100% (1114/1114), done.
+To github.com:johnzastrow/weather.git
+ + f243c82...08406a0 baseline -> baseline (forced update)
+ + 864ee0d...2c7875b master -> master (forced update)
+ * [new branch]      dependabot/pip/pillow-9.3.0 -> dependabot/pip/pillow-9.3.0
+
+ 
 
 git gc --aggressive --prune=now
 
