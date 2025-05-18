@@ -8,12 +8,56 @@ tags: [database, postgresql, GIS, geodata, spatial, data management, PostGIS, Sp
 comments: true
 ---
 
-Post One of Two
+Post [One](https://johnzastrow.github.io/2023-02-02-linear-references-in-postgis/) of Two
 
+## 1. Introduction
 
+This second part tries to return to reality after I let AI go to town and take my previous post way too far. Too many words, too many functions, and a lot of the SQL doesn't work. Here I will try to keep it concise and will test all code to ensure it works. I'll also clean things up a bit so it's more easily reproduced. Though I don't promise to stay away from the AI, I'll just keep it on a shorter leash.
 
+My first goal is to restate the functional aspects of demonstrating linear referencing in PostGIS using the trails use case. So, here is a little recipe, or data equation if you will restated more concisely from part 1.
 
+Given two input tables (in a schema called `blog`) produce a single output materialized view (because I haven't touched mv since my days at Tetra Tech) that represents the linear refrencing concept.
 
+In more words, humans enter points and needed attributes into Input 1, the `obs` table. `obs` are referenced to line features in the `trails` table. We don't carry any useful human attributes forward from the `trails` table here (like trail name) but you could. Functional attribuites of `obs` records is size, but we also have `name`, `desc`, and `severity rating`. The final output `segments` is created through a series of intermediate queries (DBAs are shaking their heads). These `segments` are linear features along the trails that represent the size (length) entered in the `obs` record. 
+
+## 2. Methods and Implementation
+
+So given two input tables that might be created as follows.
+
+```sql
+-- Input table 1 is called `obs` and is populated by user actions
+CREATE TABLE IF NOT EXISTS blog.obs
+(
+    id integer NOT NULL,
+    geom geometry(Point,6348),
+    name character varying(50) COLLATE pg_catalog."default",
+    "desc" character varying(250) COLLATE pg_catalog."default",
+    severity_int integer,
+    size_m double precision,
+    CONSTRAINT obs_pkey PRIMARY KEY (id)
+)
+```
+
+and
+
+```sql
+
+-- Input table 2 is called `trails`
+CREATE TABLE IF NOT EXISTS blog.trails
+(
+    fid bigint NOT NULL,
+    geom geometry(LineStringZM,6348),
+    id integer,
+    osm_id character varying COLLATE pg_catalog."default",
+    name character varying COLLATE pg_catalog."default",
+    highway character varying COLLATE pg_catalog."default",
+    CONSTRAINT trails_pkey PRIMARY KEY (fid)
+)
+
+```
+Create a single materialized view.
+
+```sql
 -- This materialized view combines multiple spatial operations to create segments along trails based on observation points
 -- It processes the data through several CTEs (Common Table Expressions) to transform point observations
 -- into linear segments along trails, incorporating various measurements and spatial calculations
@@ -171,10 +215,19 @@ SELECT
 FROM cuts c
 JOIN events_adjusted ea ON c.obs_id = ea.obs_id AND c.trails_fid = ea.trails_fid;  -- Join to get intermediate calculations
 
+```
+
+Then add the index
+```sql
 -- Create a unique index on the materialized view using the new column name
 CREATE UNIQUE INDEX mv_segments_segment_id_idx ON blog.mv_segments (segment_id);
+```
 
+and periodcally (maybe on a job) refresh the materialized view
+
+```sql
 -- Refresh the materialized view
 REFRESH MATERIALIZED VIEW blog.mv_segments;
 
 SELECT * FROM blog.mv_segments;
+```
