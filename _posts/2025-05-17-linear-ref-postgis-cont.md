@@ -267,3 +267,40 @@ Figure 7. OOOO
 [![Example8](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)
 
 Figure 8. OOOO
+
+
+Here's the sample aggregation prioritization query that needed some adjustments in order to run
+
+```sql
+WITH hotspots AS (
+  SELECT 
+      ST_Union(ST_Buffer(s.geom, 100)) as cluster_geom,  -- 100m buffer around segments
+      COUNT(*) as issue_count,                          
+      AVG(o.severity_int)::numeric(3,1) as avg_severity,  
+      string_agg(o."desc", '; ') as issue_descriptions    
+  FROM blog.mv_segments s
+  JOIN blog.obs o ON s.obs_id = o.id
+  GROUP BY ST_SnapToGrid(ST_Centroid(s.geom), 200)
+  HAVING COUNT(*) > 1
+)
+SELECT 
+ issue_count,
+ ST_Area(cluster_geom) as affected_area,
+ avg_severity,
+ issue_descriptions,
+ (issue_count * avg_severity * ST_Area(cluster_geom))::integer as priority_score
+FROM hotspots
+ORDER BY priority_score DESC;
+
+```
+
+And some actual output
+
+"issue_count","affected_area","avg_severity","issue_descriptions","priority_score"
+"2","47438.313929242715",NULL,NULL,NULL
+"2","51812.377720770695",NULL,NULL,NULL
+"3","50552.78194914143","5.0",NULL,758292
+"4","61221.035901588555","2.7","big. Bring truck; what does the algo do when near a corner; Too many trees",661187
+
+
+
