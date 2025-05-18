@@ -18,7 +18,7 @@ My first goal is to restate the functional aspects of demonstrating linear refer
 
 Given two input tables (in a schema called `blog`) produce a single output materialized view (because I haven't touched mv since my days at Tetra Tech) that represents the linear refrencing concept.
 
-In more words, humans enter points and needed attributes into Input 1, the `obs` table. `obs` are referenced to line features in the `trails` table. We don't carry any useful human attributes forward from the `trails` table here (like trail name) but you could. Functional attribuites of `obs` records is size, but we also have `name`, `desc`, and `severity rating`. The final output `segments` is created through a series of intermediate queries (DBAs are shaking their heads). These `segments` are linear features along the trails that represent the size (length) entered in the `obs` record. 
+In more words, humans enter points and needed attributes into Input 1, the `obs` table. `obs` are referenced to line features in the `trails` table. We don't carry any useful human attributes forward from the `trails` table here (like trail name) but you could. Functional attribuites of `obs` records is size, but we also have `name`, `desc`, and `severity rating`. The final output `segments` is created through a series of intermediate queries (DBAs are shaking their heads). These `segments` are linear features along the trails that represent the size (length) entered in the `obs` record.
 
 ## 2. Methods and Implementation
 
@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS blog.trails
 )
 
 ```
+
 Create a single materialized view.
 
 ```sql
@@ -178,7 +179,7 @@ SELECT
     events_adjusted.obs_id,
     events_adjusted.trails_fid, 
     events_adjusted.lower_meas,
-    events_adjusted.upper_meas,	
+    events_adjusted.upper_meas, 
     ST_GeometryN(trails.geom,1) as geom,
     trails.osm_id,
     trails.fid,
@@ -218,6 +219,7 @@ JOIN events_adjusted ea ON c.obs_id = ea.obs_id AND c.trails_fid = ea.trails_fid
 ```
 
 Then add the index
+
 ```sql
 -- Create a unique index on the materialized view using the new column name
 CREATE UNIQUE INDEX mv_segments_segment_id_idx ON blog.mv_segments (segment_id);
@@ -233,7 +235,6 @@ SELECT * FROM blog.mv_segments;
 ```
 
 ## Usage
-
 
  [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr1.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr1.png)
 
