@@ -231,3 +231,8 @@ REFRESH MATERIALIZED VIEW blog.mv_segments;
 
 SELECT * FROM blog.mv_segments;
 ```
+ ## Usage
+
+ [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr1.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr1.png)
+
+ [![Example2](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr2.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr2.png)
