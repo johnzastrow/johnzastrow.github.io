@@ -65,6 +65,7 @@ In this comprehensive guide, we'll implement a complete trail maintenance manage
    - Query optimization techniques
 
 This implementation is particularly suitable for:
+
 - Land management organizations
 - Trail maintenance crews
 - Parks and recreation departments
@@ -72,6 +73,7 @@ This implementation is particularly suitable for:
 - Facilities management teams
 
 ## Table of Contents
+
 - [Table of Contents](#table-of-contents)
 - [1. Introduction](#1-introduction)
 - [1.5 Data Preparation Requirements](#15-data-preparation-requirements)
@@ -93,6 +95,8 @@ This implementation is particularly suitable for:
   - [3.6.1 Integration with Field Collection Apps](#361-integration-with-field-collection-apps)
   - [3.6.2 Automated Maintenance Workflow](#362-automated-maintenance-workflow)
   - [3.6.3 Reporting System](#363-reporting-system)
+- [3.7 Data Quality Control and Validation](#37-data-quality-control-and-validation)
+  - [3.7.1 Data Quality Checks](#371-data-quality-checks)
   - [3.7.2 Automated Quality Control](#372-automated-quality-control)
 - [3.8 Advanced Analysis and Reporting](#38-advanced-analysis-and-reporting)
   - [3.8.1 Temporal Analysis](#381-temporal-analysis)
@@ -104,15 +108,13 @@ This implementation is particularly suitable for:
   - [3.9.3 Management Summary Views](#393-management-summary-views)
 - [4. Conclusion](#4-conclusion)
   - [Common Issues and Solutions](#common-issues-and-solutions)
-- [References:](#references)
+- [References](#references)
   - [Experimental mermaid mindmap](#experimental-mermaid-mindmap)
 
 ## 1. Introduction
 
 [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/linref1.jpg)
 *Figure 1. The real data* as shown in QGIS. Observations (*obs*) are point GPS collected by crews (exaggerated error included) these have sizes recorded from the field [pink highlighted attribute labels]. The process below snaps the observations to the nearest point along the trail line to eventually create *event_points* along with some ancillary attributes for fun. Event_points and their associated measures [light blue highlighted attribute labels] are then converted to linear *segments* that are referenced to the trail line and are sized according to the size recorded in the field with the *event_point* at the center of each segment. Other attributes are calculated and shown to demonstrate the concepts, but are not likely useful otherwise. The vertices are simply point coordinates from the line geometry - ignore them. GIS and PostGIS are like chocolate and peanut butter - you never eat one without the other.
-
-
 
 {: .box-note}
 <b>What is linear referencing or linear referencing systems (LRS): </b>
@@ -121,16 +123,13 @@ Adapted from: [GIS Geography](https://gisgeography.com/linear-referencing-system
 {: .box-success}
 **Use case** **- why is this useful?**: Consider assisting a land trust with recording field information about parts of trails that need repair. The trail lines almost never change, but the conditions on the trails change frequently. I don't want to record/delete all the geometry of a little line every time I want to describe a problem on the trail, and then its repair. I want to "reference" parts of the existing trail line.
 
-
 **Process:** Crews travel the trails and collect observations from parts of the trails that need repair to turn into tasks for asset management, costing, and future work. Each observation might contain the following items:
 
 1. **Coordinate pair (X,Y) or point location** (with error from GPS interference) from the part of the trail needing repair. Point is collected in the middle of the part. This is required input.
 2. **Size in meters of the part needing repair** if the trail need 10 meters repaired, record 10 meters. This is required input.
 3. **Notes and details about the condition and repair needed**. This is optional.
 
-Then the organization would be able to produce reports, maps, and other products to visualize and otherwise manage the repair of the trails and efficiently track the progress against the conditions through simple updates to non-geometric records in the database. 
-
-
+Then the organization would be able to produce reports, maps, and other products to visualize and otherwise manage the repair of the trails and efficiently track the progress against the conditions through simple updates to non-geometric records in the database.
 
 Therefore, below is an exploration of using Linear Referencing in the PostgreSQL/[PostGIS](https://postgis.net/docs/reference.html#Linear_Referencing) spatial database to solve the data storage and representation. I should note that my former desktop-level crush, [Spatialite](https://www.gaia-gis.it/gaia-sins/spatialite_topics.html), has [linear referencing](https://www.gaia-gis.it/gaia-sins/spatialite-sql-5.0.1.html#p14-) as well, and it's at least partially based on the GEOS engine that PostGIS uses. However there may be [differences](https://gis.stackexchange.com/questions/195279/dynamic-linear-referencing-of-events-in-qgis-from-excel-or-csv-using-virtual-lay) in how referencing is done between the two spatial databases.
 
@@ -139,6 +138,7 @@ Therefore, below is an exploration of using Linear Referencing in the PostgreSQL
 Before implementing linear referencing, ensure your data meets these requirements:
 
 ### 1.5.1 Trail Lines Data
+
 1. **Connected Network**: Trail segments should be properly connected at their endpoints.
 2. **No Duplicate Segments**: Remove any overlapping or duplicate trail segments.
 3. **Coordinate System**: Use a projected coordinate system (like UTM) for accurate distance measurements.
@@ -146,6 +146,7 @@ Before implementing linear referencing, ensure your data meets these requirement
 5. **Consistent Direction**: Lines should be oriented consistently for meaningful measure values.
 
 ### 1.5.2 Observation Points Data
+
 1. **GPS Accuracy**: Record GPS accuracy estimates if available.
 2. **Required Attributes**: Each point needs:
    - Unique identifier
@@ -154,6 +155,7 @@ Before implementing linear referencing, ensure your data meets these requirement
 3. **Within Range**: Points should be within a reasonable distance of trails (we use 200m in this example).
 
 ### 1.5.3 Database Setup
+
 1. **PostGIS Extension**: Enable PostGIS with `CREATE EXTENSION postgis;`
 2. **Spatial Indexes**: Create GiST indexes on geometry columns for performance.
 3. **Schema Organization**: Consider using a dedicated schema for linear referencing tables.
@@ -211,14 +213,14 @@ CREATE TABLE IF NOT EXISTS greatpond.obs
 
 COMMENT ON TABLE greatpond.obs
     IS 'Field observations';
-	
-	-- Add a spatial column to the table
-	-- AddGeometryColumn(varchar schema_name, varchar table_name, 
-	-- 		varchar column_name, integer srid, varchar type, integer dimension, boolean use_typmod=true);
+ 
+ -- Add a spatial column to the table
+ -- AddGeometryColumn(varchar schema_name, varchar table_name, 
+ --   varchar column_name, integer srid, varchar type, integer dimension, boolean use_typmod=true);
 
 SELECT AddGeometryColumn ('greatpond','obs','geom',6348,'POINT',2); -- EPSG:6348 - NAD83(2011) / UTM zone 19N
-	
-	CREATE INDEX obs_geom_idx
+ 
+ CREATE INDEX obs_geom_idx
   ON greatpond.obs
   USING GIST (geom);
 ```
@@ -226,29 +228,27 @@ SELECT AddGeometryColumn ('greatpond','obs','geom',6348,'POINT',2); -- EPSG:6348
 [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/event_points_info.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/event_points_info.png)
 *Figure 2. Database schema showing observation points with units in meters (UTM projection). Using metric units ensures consistent measurements across the dataset.*
 
-
-2. **Line features** to reference the observations against. In this case, we're using a trails layer I got from OpenStreetMap.
+1. **Line features** to reference the observations against. In this case, we're using a trails layer I got from OpenStreetMap.
 
 [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/trails.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/trails.png)
 *Figure 3. Trail network data from OpenStreetMap shown in UTM projection (meters). Consistent use of metric units is crucial for accurate spatial analysis and measurements.*
-
-
 
 ### 2.2 Event Table Creation and Processing
 
 #### 2.2.1 Create Initial Events Table
 
 Key functions used in this section:
+
 - `ST_LineLocatePoint(line_geom, point_geom)`: Returns a float between 0 and 1 representing the location along the line where the point projects.
 - `ST_GeometryN(geometry, n)`: Used here to ensure we're working with a single line geometry.
 - `ST_Distance(geometry, geometry)`: Calculates the distance between observation points and trail lines.
 - `ST_DWithin(geometry, geometry, distance)`: Efficiently filters observations to only those within a reasonable distance of trails.
 
-Our first step is to create an events table from the observations. We'll use the observations table as our primary input and the trails layer (of type LINESTRINGMZ - single lines with M and Z measures) as our reference geometry. 
+Our first step is to create an events table from the observations. We'll use the observations table as our primary input and the trails layer (of type LINESTRINGMZ - single lines with M and Z measures) as our reference geometry.
 
 This step will create the new events table from observations.
 
-We first need to get a candidate set of maybe-closest trails, ordered by id and distance. In this example the trails layer is line layer of the trail, and observations are points of recorded single observations along the trail lines. We are going to keep osm_id as the primary id for the trails. 
+We first need to get a candidate set of maybe-closest trails, ordered by id and distance. In this example the trails layer is line layer of the trail, and observations are points of recorded single observations along the trail lines. We are going to keep osm_id as the primary id for the trails.
 
 ```sql
 DROP TABLE IF NOT EXISTS greatpond.events;
@@ -287,13 +287,14 @@ FROM ordered_nearest;
 ```
 
 Expected output:
-```
+
  obs_id | trails_fid | trails_osm_id | trail_length | obs_size |     measure      | meas_length  | dist_to_trail
 --------+------------+---------------+--------------+----------+-----------------+--------------+---------------
       1 |         23 |     12345678 |      1234.56 |     10.0 |           0.25 |       308.64 |          2.5
       2 |         24 |     12345679 |       987.32 |      5.0 |           0.75 |       740.49 |          1.8
-```
+
 This output shows:
+
 - `measure`: Position along the trail as a fraction (0-1)
 - `meas_length`: Actual distance in meters along the trail
 - `dist_to_trail`: Distance from original observation to the nearest trail
@@ -304,21 +305,21 @@ This output shows:
 
 ALTER TABLE greatpond.events ADD PRIMARY KEY (obs_id);
 ALTER TABLE greatpond.events 
-	ADD column meas_per_m numeric, 
-	ADD column lower_m numeric, 
-	ADD column upper_m numeric, 
-	ADD column lower_meas numeric, 
-	ADD column upper_meas numeric
+ ADD column meas_per_m numeric, 
+ ADD column lower_m numeric, 
+ ADD column upper_m numeric, 
+ ADD column lower_meas numeric, 
+ ADD column upper_meas numeric
  ;
 
 update greatpond.events SET
-	meas_per_m = measure / meas_length,
-	lower_m = meas_length - (obs_size/2),
-	upper_m = meas_length + (obs_size/2);
-	
+ meas_per_m = measure / meas_length,
+ lower_m = meas_length - (obs_size/2),
+ upper_m = meas_length + (obs_size/2);
+ 
 update greatpond.events SET
-	lower_meas = meas_per_m * lower_m,
-	upper_meas = meas_per_m * upper_m -- this field did not update the first time so process as second step.
+ lower_meas = meas_per_m * lower_m,
+ upper_meas = meas_per_m * upper_m -- this field did not update the first time so process as second step.
 ;
 ```
 
@@ -326,18 +327,19 @@ Here we force measures to be between 0 and 1, because a negative distance doesn'
 
 ```sql
 update greatpond.events SET
-	lower_meas = 0 where lower_meas < 0;
+ lower_meas = 0 where lower_meas < 0;
 update greatpond.events SET
-	lower_meas = 1 where lower_meas > 1;
+ lower_meas = 1 where lower_meas > 1;
 update greatpond.events SET
-	upper_meas = 1 where upper_meas > 1;
+ upper_meas = 1 where upper_meas > 1;
 update greatpond.events SET
-	upper_meas = 0 where lower_meas < 0;
+ upper_meas = 0 where lower_meas < 0;
 ```
 
 #### 2.2.2 Create Events Layer with Point Objects
 
 Key functions used in this section:
+
 - `ST_LineInterpolatePoint(geometry, float8)`: Returns a point interpolated along a line at the given fraction (0-1).
 - `ST_GeometryN(geometry, n)`: Ensures we're working with a single line geometry when interpolating points.
 
@@ -371,6 +373,7 @@ ON (greatpond.trails.fid = greatpond.events.trails_fid);
 #### 2.2.3 Generate Linear Segments from Events
 
 Key functions used in this section:
+
 - `ST_LineSubstring(geometry, float8, float8)`: Returns a linear segment between two fractional positions (0-1) along a line.
 - `ST_GeometryN(geometry, n)`: Used to ensure we're working with a single line geometry.
 - Ordered joins: The `ORDER BY events.upper_meas` clause helps ensure consistent segment creation.
@@ -382,51 +385,47 @@ Now we'll create segments based on the observed sizes from our event points. The
 DROP TABLE IF EXISTS greatpond.segments;
 create table greatpond.segments as (
 WITH cuts AS (
-    SELECT events.obs_id, events.trails_fid, events.lower_meas, events.upper_meas,	
-	ST_GeometryN(trails.geom,1) as geom, trails.osm_id, trails.fid, trails.id 
-	from greatpond.trails
-	inner join greatpond.events
-	ON trails.fid=events.trails_fid order by events.upper_meas 
+    SELECT events.obs_id, events.trails_fid, events.lower_meas, events.upper_meas, 
+ ST_GeometryN(trails.geom,1) as geom, trails.osm_id, trails.fid, trails.id 
+ from greatpond.trails
+ inner join greatpond.events
+ ON trails.fid=events.trails_fid order by events.upper_meas 
 )
 SELECT
-	ST_LineSubstring(geom, lower_meas, upper_meas) as mygeom, obs_id, trails_fid, lower_meas, upper_meas
+ ST_LineSubstring(geom, lower_meas, upper_meas) as mygeom, obs_id, trails_fid, lower_meas, upper_meas
 FROM 
     cuts);
-	
-	ALTER TABLE greatpond.segments ADD column id serial; 
-	ALTER TABLE greatpond.segments ADD PRIMARY KEY (id);
+ 
+ ALTER TABLE greatpond.segments ADD column id serial; 
+ ALTER TABLE greatpond.segments ADD PRIMARY KEY (id);
 
 ```
 
-In this exploration I created intermediate and final products as physical tables. However, you can also just create them as [views](https://www.postgresql.org/docs/current/sql-createview.html) so that edits to the original *obs* table would result in automatic updates cascading into the final product without re-running anything. Below is Step 3 above as a database view by replacing ```create table``` with ```create view``` and removing the ability to have a [primary key](). You might also consider [Materialized Views](https://blog.devart.com/postgresql-materialized-views.html) if performance matters and you want a [unique index](https://www.postgresql.org/docs/current/sql-createindex.html) as a quasi replacement for a [PK](https://stackoverflow.com/questions/54154897/create-primary-key-on-materialized-view-in-postgres), but the updates would not be immediate as with a traditional view.
+In this exploration I created intermediate and final products as physical tables. However, you can also just create them as [views](https://www.postgresql.org/docs/current/sql-createview.html) so that edits to the original *obs* table would result in automatic updates cascading into the final product without re-running anything. Below is Step 3 above as a database view by replacing ```create table``` with ```create view``` and removing the ability to have a [primary key](https://hp.com). You might also consider [Materialized Views](https://blog.devart.com/postgresql-materialized-views.html) if performance matters and you want a [unique index](https://www.postgresql.org/docs/current/sql-createindex.html) as a quasi replacement for a [PK](https://stackoverflow.com/questions/54154897/create-primary-key-on-materialized-view-in-postgres), but the updates would not be immediate as with a traditional view.
 
 ```sql
 create view greatpond.v_segments as (
 WITH cuts AS (
-    SELECT events.obs_id, events.trails_fid, events.lower_meas, events.upper_meas,	
-	ST_GeometryN(trails.geom,1) as geom, trails.osm_id, trails.fid, trails.id 
-	from greatpond.trails
-	inner join greatpond.events
-	ON trails.fid=events.trails_fid order by events.upper_meas 
+    SELECT events.obs_id, events.trails_fid, events.lower_meas, events.upper_meas, 
+ ST_GeometryN(trails.geom,1) as geom, trails.osm_id, trails.fid, trails.id 
+ from greatpond.trails
+ inner join greatpond.events
+ ON trails.fid=events.trails_fid order by events.upper_meas 
 )
 SELECT
-	ST_LineSubstring(geom, lower_meas, upper_meas) as mygeom, obs_id, trails_fid, lower_meas, upper_meas
+ ST_LineSubstring(geom, lower_meas, upper_meas) as mygeom, obs_id, trails_fid, lower_meas, upper_meas
 FROM 
     cuts);
 ```
 
 Here it is graphically executing through the DB Manager in QGIS
 
-
 [![1](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/lr_as_view.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/lr_as_view.png)
-
-
-
-
 
 ## 3. Results and Visualization
 
 The implementation creates three main outputs:
+
 1. An events table with measurements and references
 2. Point features snapped to the trails
 3. Linear segments representing areas needing maintenance
@@ -442,6 +441,7 @@ Below is a visualization of these outputs in QGIS:
 When working with large trail networks and many observations, consider these optimization strategies:
 
 1. **Spatial Indexing**
+
 ```sql
 -- Create indexes on commonly queried geometry columns
 CREATE INDEX idx_trails_geom ON greatpond.trails USING GIST (geom);
@@ -465,14 +465,11 @@ REFRESH MATERIALIZED VIEW greatpond.mv_segments;
 1. **Partition Large Tables**
 For very large datasets, consider partitioning your events table by date or region.
 
-
 ### 3.5.2 Analysis Examples
 
 Here are some useful queries for analyzing your linear referenced data, along with example outputs:
 
-
 1. **Find overlapping maintenance segments:**
-   
 
 ```sql
 -- Find segments that overlap and calculate the overlap length
@@ -497,15 +494,13 @@ Example output:
 | 103     | 105     | 8.7           | 20.0      | 35.0      |
 | 107     | 108     | 12.1          | 40.0      | 45.0      |
 
-
 This helps identify:
+
 - Areas with multiple maintenance needs
 - Potential task consolidation opportunities
 - Validation of segment creation logic
 
-
 1. **Calculate total length of trail sections needing maintenance:**
-
 
 ```sql
 -- Summarize maintenance needs by trail
@@ -524,7 +519,6 @@ ORDER BY total_maintenance_length DESC;
 
 Example output:
 
-
 | trail_name       | num_segments | total_maintenance_length | percent_affected | avg_severity |
 |-----------------|--------------|-------------------------|------------------|--------------|
 | Maple Ridge     | 8           | 420.5                   | 15.3            | 3.4          |
@@ -533,14 +527,13 @@ Example output:
 | Birch Way       | 2           | 95.0                    | 3.1             | 2.5          |
 
 This analysis helps:
+
 - Prioritize trails requiring most attention
 - Plan resource allocation
 - Track maintenance backlog
-- 
-
+-
 
 1. **Find maintenance hotspots** (areas with multiple nearby issues):
-
 
 ```sql
 -- Identify clusters of maintenance issues
@@ -577,11 +570,11 @@ Example output:
 | 4           | 1200.0       | 3.2          | "Surface wear; Bridge repair; ..." | 15360 |
 
 This analysis helps:
+
 - Identify areas requiring comprehensive repairs
 - Optimize maintenance crew deployment
 - Plan coordinated repair efforts
 - Prioritize based on severity and extent
-
 
 ### 3.5.3 Visualization Tips
 
@@ -736,11 +729,11 @@ Example output:
 | 3          | 8           | 2.5          | 420.5             | 42.0              | 5              | 3             |
 
 This view helps managers:
+
 - Track overall maintenance status per trail
 - Identify trails with highest severity issues
 - Plan resource allocation based on estimated hours
 - Monitor task completion rates
-```
 
 ## 3.7 Data Quality Control and Validation
 
@@ -1268,12 +1261,13 @@ This tutorial demonstrated how to implement linear referencing in PostGIS for tr
 - **Segment Boundaries**: For observations near the end of trails, the system enforces valid measure values (0-1).
 - **Performance**: Use materialized views for large datasets where immediate updates aren't critical.
 
-## References:
+## References
+
 1. [https://gis.stackexchange.com/questions/112282/splitting-lines-into-non-overlapping-subsets-based-on-points-using-postgis](https://gis.stackexchange.com/questions/112282/splitting-lines-into-non-overlapping-subsets-based-on-points-using-postgis)
 2. [https://gis.stackexchange.com/questions/332213/splitting-lines-with-points-using-postgis?utm_source=pocket_mylist](https://gis.stackexchange.com/questions/332213/splitting-lines-with-points-using-postgis?utm_source=pocket_mylist)
 3. [https://www.fhwa.dot.gov/policyinformation/hpms/documents/arnold_reference_manual_2014.pdf](https://www.fhwa.dot.gov/policyinformation/hpms/documents/arnold_reference_manual_2014.pdf)
 4. [http://postgis.net/workshops/postgis-intro/linear_referencing.html](http://postgis.net/workshops/postgis-intro/linear_referencing.html)
-5. [https://postgis.net/docs/reference.html#Linear_Referencing](https://postgis.net/docs/reference.html#Linear_Referencing ) 
+5. [https://postgis.net/docs/reference.html#Linear_Referencing](https://postgis.net/docs/reference.html#Linear_Referencing )
 
 ### [Experimental](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams) [mermaid](https://mermaid.live/) mindmap
 
@@ -1294,4 +1288,3 @@ mindmap
     MariaDB
       TBD
 ```
-
