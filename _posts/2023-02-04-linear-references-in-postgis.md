@@ -4,10 +4,12 @@ title: Linear referencing events in PostGIS
 subtitle: Points snapped to lines, describing linear conditions along the lines
 gh-badge: [star, fork, follow]
 date: '2023-02-02T12:47:41-05:00'
-tags: [geodata, gis, spatial, data management, PostGIS, Spatialite]
+tags: [database, postgresql, GIS, geodata, spatial, data management, PostGIS, Spatialite]
 comments: true
 ---
 **Updated on May 15, 2025**
+
+Post One of Two
 
 {: .box-success}
 This post started out my exploration of building linear events for trail maintenance in PostGIS. And then I fed it AI (claude 3.5 Sonnet through VS Code)... which then proceeded to write about 80% of what you are about to read. Now I need to read and test everything it wrote to make sure this isn't some fat hallucination. 
@@ -66,37 +68,37 @@ This implementation is particularly suitable for:
 - Facilities management teams
 
 ## Table of Contents
-1. [Introduction](#1-introduction)
-   - What is Linear Referencing?
-   - Use Case and Process
-2. [Methods and Implementation](#2-methods-and-implementation)
-   - 2.1 [Input Data Setup](#21-input-data-setup)
-   - 2.2 [Event Table Creation and Processing](#22-event-table-creation-and-processing)
-     - 2.2.1 [Create Initial Events Table](#221-create-initial-events-table)
-     - 2.2.2 [Create Events Layer with Point Objects](#222-create-events-layer-with-point-objects)
-     - 2.2.3 [Generate Linear Segments from Events](#223-generate-linear-segments-from-events)
-3. [Results and Visualization](#3-results-and-visualization)
-   - 3.5 [Performance Optimization and Analysis](#35-performance-optimization-and-analysis)
-     - 3.5.1 [Performance Tips](#351-performance-tips)
-     - 3.5.2 [Analysis Examples](#352-analysis-examples)
-     - 3.5.3 [Visualization Tips](#353-visualization-tips)
-   - 3.6 [System Integration and Automation](#36-system-integration-and-automation)
-     - 3.6.1 [Integration with Field Collection Apps](#361-integration-with-field-collection-apps)
-     - 3.6.2 [Automated Maintenance Workflow](#362-automated-maintenance-workflow)
-     - 3.6.3 [Reporting System](#363-reporting-system)
-   - 3.7 [Data Quality Control and Validation](#37-data-quality-control-and-validation)
-     - 3.7.1 [Data Quality Checks](#371-data-quality-checks)
-     - 3.7.2 [Automated Quality Control](#372-automated-quality-control)
-   - 3.8 [Advanced Analysis and Reporting](#38-advanced-analysis-and-reporting)
-     - 3.8.1 [Temporal Analysis](#381-temporal-analysis)
-     - 3.8.2 [Cost Analysis and Resource Planning](#382-cost-analysis-and-resource-planning)
-     - 3.8.3 [Priority-based Work Orders](#383-priority-based-work-orders)
-   - 3.9 [System Expansion and Integration](#39-system-expansion-and-integration)
-     - 3.9.1 [Email Notifications](#391-email-notifications)
-     - 3.9.2 [REST API Integration](#392-rest-api-integration)
-     - 3.9.3 [Management Summary Views](#393-management-summary-views)
-4. [Conclusion](#4-conclusion)
-5. [References](#references)
+- [Table of Contents](#table-of-contents)
+- [1. Introduction](#1-introduction)
+- [1.5 Data Preparation Requirements](#15-data-preparation-requirements)
+  - [1.5.1 Trail Lines Data](#151-trail-lines-data)
+  - [1.5.2 Observation Points Data](#152-observation-points-data)
+  - [1.5.3 Database Setup](#153-database-setup)
+- [2. Methods and Implementation](#2-methods-and-implementation)
+  - [2.1 Input Data Setup](#21-input-data-setup)
+  - [2.2 Event Table Creation and Processing](#22-event-table-creation-and-processing)
+    - [2.2.1 Create Initial Events Table](#221-create-initial-events-table)
+    - [2.2.2 Create Events Layer with Point Objects](#222-create-events-layer-with-point-objects)
+    - [2.2.3 Generate Linear Segments from Events](#223-generate-linear-segments-from-events)
+- [3. Results and Visualization](#3-results-and-visualization)
+- [3.5 Performance Optimization and Analysis](#35-performance-optimization-and-analysis)
+  - [3.5.1 Performance Tips](#351-performance-tips)
+  - [3.5.2 Analysis Examples](#352-analysis-examples)
+  - [3.6.2 Automated Maintenance Workflow](#362-automated-maintenance-workflow)
+  - [3.6.3 Reporting System](#363-reporting-system)
+  - [3.7.2 Automated Quality Control](#372-automated-quality-control)
+- [3.8 Advanced Analysis and Reporting](#38-advanced-analysis-and-reporting)
+  - [3.8.1 Temporal Analysis](#381-temporal-analysis)
+  - [3.8.2 Cost Analysis and Resource Planning](#382-cost-analysis-and-resource-planning)
+  - [3.8.3 Priority-based Work Orders](#383-priority-based-work-orders)
+- [3.9 System Expansion and Integration](#39-system-expansion-and-integration)
+  - [3.9.1 Email Notifications](#391-email-notifications)
+  - [3.9.2 REST API Integration](#392-rest-api-integration)
+  - [3.9.3 Management Summary Views](#393-management-summary-views)
+- [4. Conclusion](#4-conclusion)
+  - [Common Issues and Solutions](#common-issues-and-solutions)
+- [References:](#references)
+  - [Experimental mermaid mindmap](#experimental-mermaid-mindmap)
 
 ## 1. Introduction
 
