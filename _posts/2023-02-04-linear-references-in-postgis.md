@@ -9,7 +9,7 @@ comments: true
 ---
 **Updated on May 15, 2025**
 
-Post One of Two
+Post One of [Two](https://johnzastrow.github.io/2025-05-17-linear-ref-postgis-cont/)
 
 {: .box-success}
 This post started out my exploration of building linear events for trail maintenance in PostGIS. And then I fed it AI (claude 3.5 Sonnet through VS Code)... which then proceeded to write about 80% of what you are about to read. Now I need to read and test everything it wrote to make sure this isn't some fat hallucination. 
