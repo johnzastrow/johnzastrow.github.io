@@ -231,7 +231,8 @@ REFRESH MATERIALIZED VIEW blog.mv_segments;
 
 SELECT * FROM blog.mv_segments;
 ```
- ## Usage
+
+## Usage
 
 
  [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr1.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr1.png)
@@ -242,26 +243,26 @@ SELECT * FROM blog.mv_segments;
 
  Figure 2. OOOO
 
-  [![Example3](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr3.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr3.png)
+[![Example3](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr3.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr3.png)
 
-  Figure 3. OOOO
+Figure 3. OOOO
 
-   [![Example4](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)
+[![Example4](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)
 
-   Figure 4. OOOO
+Figure 4. OOOO
 
- [![Example5](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)
+[![Example5](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)
 
- Figure 5. OOOO
+Figure 5. OOOO
 
-  [![Example6](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)
+[![Example6](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)
 
-  Figure 6. OOOO
+Figure 6. OOOO
 
-   [![Example7](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr7.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr7.png)
+[![Example7](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr7.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr7.png)
 
-   Figure 7. OOOO
+Figure 7. OOOO
 
-   [![Example8](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)
+[![Example8](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)
 
 Figure 8. OOOO
