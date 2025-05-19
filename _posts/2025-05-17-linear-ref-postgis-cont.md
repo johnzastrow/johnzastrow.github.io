@@ -268,7 +268,6 @@ Figure 7. OOOO
 
 Figure 8. OOOO
 
-
 Here's the sample aggregation prioritization query that needed some adjustments in order to run
 
 ```sql
@@ -301,6 +300,23 @@ And some actual output
 "2","51812.377720770695",NULL,NULL,NULL
 "3","50552.78194914143","5.0",NULL,758292
 "4","61221.035901588555","2.7","big. Bring truck; what does the algo do when near a corner; Too many trees",661187
+
+Test for overlapping segments. This runs, but doesn't seem to detect overlaps. Geomtry precision problem? Unlikely. That's partly why we use linear ref.
+
+```sql
+SELECT 
+    a.obs_id as seg1_id,           -- First segment ID
+    b.obs_id as seg2_id,           -- Second segment ID
+    -- Calculate the length of overlap in meters
+    ST_Length(ST_Intersection(a.geom, b.geom)) as overlap_length,
+    -- Get segment details for context
+    a.obs_size as seg1_size,
+    b.obs_size as seg2_size
+FROM blog.mv_segments a 
+JOIN blog.mv_segments b ON ST_Overlaps(a.geom, b.geom)
+WHERE a.obs_id < b.obs_id;  -- Avoid duplicate pairs
+```
+
 
 
 

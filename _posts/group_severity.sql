@@ -1,22 +1,15 @@
-WITH hotspots AS (
-  SELECT 
-      ST_Union(ST_Buffer(s.geom, 100)) as cluster_geom,  -- 100m buffer around segments
-      COUNT(*) as issue_count,                          
-      AVG(o.severity_int)::numeric(3,1) as avg_severity,  
-      string_agg(o."desc", '; ') as issue_descriptions    
-  FROM blog.mv_segments s
-  JOIN blog.obs o ON s.obs_id = o.id
-  GROUP BY ST_SnapToGrid(ST_Centroid(s.geom), 100)
-  HAVING COUNT(*) > 1
-)
+
 SELECT 
- issue_count,
- ST_Area(cluster_geom) as affected_area,
- avg_severity,
- issue_descriptions,
- (issue_count * avg_severity * ST_Area(cluster_geom))::integer as priority_score
-FROM hotspots
-ORDER BY priority_score DESC;
+    t.name as trail_name,                                    -- Trail identifier
+    COUNT(*) as num_segments,                               -- Number of issues
+    SUM(ST_Length(s.mygeom)) as total_maintenance_length,   -- Total length needing repair
+    ROUND(SUM(ST_Length(s.mygeom)) / ST_Length(t.geom) * 100, 2) as percent_affected,  -- Percentage of trail affected
+    AVG(o.severity_int)::numeric(3,1) as avg_severity      -- Average severity of issues
+FROM greatpond.segments s
+JOIN greatpond.trails t ON s.trails_fid = t.fid
+JOIN greatpond.obs o ON s.obs_id = o.id
+GROUP BY t.fid, t.name, t.geom
+ORDER BY total_maintenance_length DESC;
 
 -- This query is designed to identify clusters of issues along trails,
 -- calculate their average severity, and assign a priority score based on the number of issues,     
