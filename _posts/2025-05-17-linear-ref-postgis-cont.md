@@ -236,13 +236,15 @@ SELECT * FROM blog.mv_segments;
 
 ## Usage
 
+Here are some screens of these concepts in use in Qgis and PGAdmin4 (web version)
+
  [![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr1.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr1.png)
 
- Figure 1. OOOO
+ Figure 1. The basic entities we describe above. The top panel shows the `blog`  schema with the resulting `mv_segments` materialized view with linstring outputs in it, and the inputs: `obs` point geometry table in PG and `trails` linestring table. These each correspond to their layers shown in the layer browser and the map. I'm on a new computer I had to restart on my symbologies (is there a way to share collections of Qgis synbols between computers?)
 
  [![Example2](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr2.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr2.png)
 
- Figure 2. OOOO
+ Figure 2. Little contextual flyout menu on the materialized view in Qgis allowing me to refresh it right from the comfort of my GIS. Qgis and PostGIS were kinda born together and have grown up together. Nice touch Devs!
 
 [![Example3](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr3.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr3.png)
 
