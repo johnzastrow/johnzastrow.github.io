@@ -376,17 +376,17 @@ time.tzset()
 
 # Ambient Weather API credentials
 site = {
-    "AWNdid": "C8:C9:A3:16:B8:D6",  # MAC Address
-    "AWNkey": "b3c0c4cbe4af495dbdb5597d72d5a7d6a6516aa76c874edaa1aee8a7acaeb4b2",  # API Key
-    "SWXAWNAPPID": "49cc82371bb4405b8f94442ed7aea30aa08d41cbe7af40a98994f0916116a960",  # Application Key
+    "AWNdid": "id",  # MAC Address
+    "AWNkey": "apikey",  # API Key
+    "SWXAWNAPPID": "app id",  # Application Key
 }
 
 # MySQL database configuration
 db_config = {
-    "host": "192.168.1.234",
+    "host": "ip or hostname",
     "database": "weather",
-    "user": "jcz",
-    "password": "yub.miha",
+    "user": "user",
+    "password": "password",
     "table": "zastmet",
 }
 
