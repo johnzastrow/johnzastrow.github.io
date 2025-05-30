@@ -737,3 +737,63 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`user`@`%` SQL SECURITY DEFINER VIEW `v_zastm
    ORDER BY cast(`zastmet`.`date` AS date) DESC)
 
    ```
+
+Here's one that feeds from the daily view (I know, I know) to show monthly values
+
+```sql
+CREATE VIEW `v_zastmet_monthly` AS 
+select
+  year(`v_zastmet_daily`.`d_utc`) AS `YEARY`,
+  month(`v_zastmet_daily`.`d_utc`) AS `MONTHM`,
+  concat(year(`v_zastmet_daily`.`d_utc`),'-',month(`v_zastmet_daily`.`d_utc`)) AS `YEARMONTH`,
+  min(`v_zastmet_daily`.`d_utc`) AS `MIN_DAY`,
+  round(sum(`v_zastmet_daily`.`hdd_d65`),2) AS `m_hdd_d65`,
+  round(sum(`v_zastmet_daily`.`hdd_d70`),2) AS `m_hdd_d70`,
+  round(sum(`v_zastmet_daily`.`windsp_mph_davg`),2) AS `m_windsp_davg`,
+  round(avg(`v_zastmet_daily`.`temp_f_davg`),2) AS `m_temp_f_avg`,
+  count(`v_zastmet_daily`.`recs`) AS `count_recs`
+from `v_zastmet_daily`
+group by month(`v_zastmet_daily`.`d_utc`),year(`v_zastmet_daily`.`d_utc`)
+order by year(`v_zastmet_daily`.`d_utc`),month(`v_zastmet_daily`.`d_utc`)
+```
+
+Here's a script to detect gaps in the data series.
+
+```sql
+CREATE VIEW `v_gaps_zastmet`
+AS
+        SELECT
+                `t`.`date`                                                   AS `GapStart`    ,
+                `t`.`NextDateTime`                                             AS `GapEnd`      ,
+                timestampdiff(SECOND, `t`.`date`, `t`.`NextDateTime`)        AS `SizeInSecond`,
+                timestampdiff(SECOND, `t`.`date`, `t`.`NextDateTime`) / 3600 AS `SizeInHours` ,
+                'zastmet'                                                        AS `STATION`
+        FROM
+                (
+                        SELECT
+                                `zastmet`.`date`                                            AS `date`,
+                                lead(`zastmet`.`date`, 1) OVER ( ORDER BY `zastmet`.`date`) AS `NextDateTime`
+                        FROM
+                                `zastmet`
+                        ORDER BY
+                                `zastmet`.`date`) `t`
+        WHERE
+                timestampdiff(SECOND, `t`.`date`, `t`.`NextDateTime`) > 11000 -- gaps over 11,000 seconds or about 3 hrs
+```
+
+which makes output like this
+
+|GapStart           |GapEnd             |SizeInSecond|SizeInHours|STATION|
+|-------------------|-------------------|------------|-----------|-------|
+|2024-01-24 12:50:00|2024-01-25 15:20:00|95400       |26.5000    |zastmet|
+|2024-02-22 02:00:00|2024-02-23 02:59:00|89940       |24.9833    |zastmet|
+|2024-03-14 22:40:00|2024-03-15 04:31:00|21060       |5.8500     |zastmet|
+|2024-03-15 22:40:00|2024-03-16 04:31:00|21060       |5.8500     |zastmet|
+|2024-03-16 22:40:00|2024-03-17 04:31:00|21060       |5.8500     |zastmet|
+|2024-03-17 22:40:00|2024-03-18 04:32:00|21120       |5.8667     |zastmet|
+|2024-03-18 22:45:00|2024-03-19 04:32:00|20820       |5.7833     |zastmet|
+|2024-03-19 22:40:00|2024-03-20 04:32:00|21120       |5.8667     |zastmet|
+|2024-03-20 22:40:00|2024-03-21 04:31:00|21060       |5.8500     |zastmet|
+|2024-03-21 22:40:00|2024-03-22 04:31:00|21060       |5.8500     |zastmet|
+|2024-03-22 22:40:00|2024-03-24 19:32:00|161520      |44.8667    |zastmet|
+|2024-03-24 21:55:00|2024-03-25 04:31:00|23760       |6.6000     |zastmet|
