@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Essays on the Scientific Method, by Mr. Claude, AI
+title: Essays on the Scientific Method, by Mr. Perplexity, AI
 subtitle: So many feelings
 gh-badge: [star, fork, follow]
 date: '2025-06-17T12:47:41-05:00'
