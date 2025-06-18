@@ -12,9 +12,9 @@ Post [One](https://johnzastrow.github.io/2023-02-02-linear-references-in-postgis
 
 ## 1. Introduction
 
-This second part tries to return to reality after I let AI go to town and take my previous post way too far. Too many words, too many functions, and a lot of the SQL doesn't work. Here I will try to keep it concise and will test all code to ensure it works. I'll also clean things up a bit so it's more easily reproduced. Though I don't promise to stay away from the AI, I'll just keep it on a shorter leash.
+This second part tries to return to reality after I let AI go to town and take my previous post way too far. Too many words, too many functions, and a lot of the SQL doesn't work. Here I will try to keep it concise and will test all code to ensure it works. Though I don't promise to stay away from the AI, I'll just keep it on a shorter leash.
 
-My first goal is to restate the functional aspects of demonstrating linear referencing in PostGIS using the trails use case. So, here is a little recipe, or data equation if you will restated more concisely from part 1.
+My first goal is to restate the functional aspects of demonstrating linear referencing in PostGIS using the trails use case. So, here is a little recipe restated more concisely from part 1.
 
 Given two input tables (in a schema called `blog`) produce a single output materialized view (because I haven't touched mv since my days at Tetra Tech) that represents the linear refrencing concept.
 
@@ -318,7 +318,3 @@ FROM blog.mv_segments a
 JOIN blog.mv_segments b ON ST_Overlaps(a.geom, b.geom)
 WHERE a.obs_id < b.obs_id;  -- Avoid duplicate pairs
 ```
-
-
-
-
