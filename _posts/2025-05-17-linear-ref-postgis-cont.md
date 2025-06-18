@@ -248,11 +248,11 @@ Here are some screens of these concepts in use in Qgis and PGAdmin4 (web version
 
 [![Example3](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr3.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr3.png)
 
-Figure 3. OOOO
+Figure 3. A slimmed down navigation pane from pgAdmin4 showing `jcz/blog/mv_segments` as database/schema/materialized view respectively.
 
 [![Example4](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)
 
-Figure 4. OOOO
+Figure 4. Editing the `obs` layer (table) in Qgis. 
 
 [![Example5](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)
 
