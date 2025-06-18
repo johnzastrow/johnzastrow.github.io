@@ -256,7 +256,7 @@ Figure 4. Editing the `obs` layer (table) in Qgis. I think I need to add a `SERI
 
 [![Example5](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)
 
-Figure 5. OOOO
+Figure 5. Just a reminder that if you are using Materialized Views, perhaps for better performance over a traditional view, that it needs to be refreshed to see the changes you made to the source tables.
 
 [![Example6](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)
 
