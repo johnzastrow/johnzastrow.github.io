@@ -252,7 +252,7 @@ Figure 3. A slimmed down navigation pane from pgAdmin4 showing `jcz/blog/mv_segm
 
 [![Example4](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)
 
-Figure 4. Editing the `obs` layer (table) in Qgis. 
+Figure 4. Editing the `obs` layer (table) in Qgis. I think I need to add a `SERIAL` to the primary key field `ID` so that it auto-populates and auto increments for me. Right now I'm typing into this field by hand.
 
 [![Example5](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)
 
