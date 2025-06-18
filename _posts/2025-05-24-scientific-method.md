@@ -46,6 +46,8 @@ As science evolved into the 20th century, the scientific method we know today wa
 
 The modern scientific method is characterized by several fundamental principles that ensure the reliability and validity of scientific investigations[^27][^28][^29][^30][^31]:
 
+ [![The process](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/science_method.jpg)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/science_method.jpg)
+
 ### Systematic Observation and Data Collection
 
 The scientific method begins with careful observation of natural phenomena, which can be either qualitative (descriptive) or quantitative (measurable)[^27][^30][^32]. These observations form the foundation for scientific questions and hypotheses[^28][^29].
