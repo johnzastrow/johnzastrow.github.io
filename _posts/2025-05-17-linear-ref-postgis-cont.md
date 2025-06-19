@@ -260,15 +260,15 @@ Figure 5. Just a reminder that if you are using Materialized Views, perhaps for 
 
 [![Example6](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)
 
-Figure 6. OOOO
+Figure 6. Example of what the segnments look like when the observation occurs near a straight section, and also near a corner with a node (endpoint). The observation near the corner has a size that spans the corner so the resulting event is broken into two. This view also highlights the snapping capability where the code will create the event segments on the nearest line to the observation point - which will never geometrically land on the line without snapping either in the field collection or in post-processing like this.
 
 [![Example7](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr7.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr7.png)
 
-Figure 7. OOOO
+Figure 7. For visualization let's change the symbology to show the severity of the problem. Of course this could be done better. I'm just having fun.
 
 [![Example8](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)
 
-Figure 8. OOOO
+Figure 8. Updated the map view to demonstrate the new symbology and label the segments to prove we're showing the `severity` integer value.
 
 Here's the sample aggregation prioritization query that needed some adjustments in order to run
 
@@ -295,13 +295,14 @@ ORDER BY priority_score DESC;
 
 ```
 
-And some actual output
+And some actual output. The Priority Score is just a simple multiplication of a few factors ` (issue_count * avg_severity * ST_Area(cluster_geom)`
 
-"issue_count","affected_area","avg_severity","issue_descriptions","priority_score"
-"2","47438.313929242715",NULL,NULL,NULL
-"2","51812.377720770695",NULL,NULL,NULL
-"3","50552.78194914143","5.0",NULL,758292
-"4","61221.035901588555","2.7","big. Bring truck; what does the algo do when near a corner; Too many trees",661187
+|issue_count|affected_area       |avg_severity|issue_descriptions                                                          |priority_score|
+|-----------|--------------------|------------|----------------------------------------------------------------------------|--------------|
+|2          |47438.313929242715  |NULL        |NULL                                                                        |NULL          |
+|2          |51812.377720770695  |NULL        |NULL                                                                        |NULL          |
+|3          |50552.78194914143   |5.0         |NULL                                                                        |758292        |
+|4          |61221.035901588555  |2.7         |We're going to need a bigger truck. Too many trees                          |661187        |
 
 Test for overlapping segments. This runs, but doesn't seem to detect overlaps. Geomtry precision problem? Unlikely. That's partly why we use linear ref.
 
