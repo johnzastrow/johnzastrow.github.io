@@ -34,7 +34,7 @@ ORGANIZATION uses this plan to ensure geospatial data is stored in a consistent,
 - Make data easy to find and use, so anyone can quickly access authoritative data for mapping and analysis.
 - Use consistent, self-explanatory file and folder names to minimize extra documentation.
 - Improve the consistency and reliability of data deliverables.
-- Ensure data formats and structures are portable and compatible with a wide range of software 
+- Ensure data formats and structures are portable and compatible with a wide range of software
 - Focus on basic technology standards and reduce need for recurring or ongoing financial costs towards 3rd party products and services.
 
 ## Data Structure & Standards
