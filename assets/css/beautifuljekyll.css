@@ -952,8 +952,9 @@ pre {
   padding: 0.9375rem 0.9375rem 0.9375rem 0.625rem;
   margin: 1.25rem 1.25rem 1.25rem 0.3125rem;
   border: 1px solid #eee;
-  border-left-width: 0.3125rem;
-  border-radius: 0.3125rem 0.1875rem 0.1875rem 0.3125rem;
+  border-left-width: 0.6125rem;
+  border-left-color: #0f97f1;
+  border-radius: 0.5125rem 0.5875rem 0.5875rem 0.3125rem;
 }
 
 .box-note {
@@ -978,7 +979,7 @@ pre {
 
 .box-terminal {
   background-color: black;
-  color: hsl(55, 90%, 84%);
+  color: hsl(194, 90%, 84%);
   font: 0.8 rem Inconsolata, monospace;
 }
 /* ---height: 100vh; --- */
