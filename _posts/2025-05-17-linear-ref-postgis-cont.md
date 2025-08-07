@@ -12,9 +12,9 @@ Post [One](https://johnzastrow.github.io/2023-02-02-linear-references-in-postgis
 
 ## 1. Introduction
 
-This second part tries to return to reality after I let AI go to town and take my previous post way too far. Too many words, too many functions, and a lot of the SQL doesn't work. Here I will try to keep it concise and will test all code to ensure it works. I'll also clean things up a bit so it's more easily reproduced. Though I don't promise to stay away from the AI, I'll just keep it on a shorter leash.
+This second part tries to return to reality after I let AI go to town and take my previous post way too far. Too many words, too many functions, and a lot of the SQL doesn't work. Here I will try to keep it concise and will test all code to ensure it works. Though I don't promise to stay away from the AI, I'll just keep it on a shorter leash.
 
-My first goal is to restate the functional aspects of demonstrating linear referencing in PostGIS using the trails use case. So, here is a little recipe, or data equation if you will restated more concisely from part 1.
+My first goal is to restate the functional aspects of demonstrating linear referencing in PostGIS using the trails use case. So, here is a little recipe restated more concisely from part 1.
 
 Given two input tables (in a schema called `blog`) produce a single output materialized view (because I haven't touched mv since my days at Tetra Tech) that represents the linear refrencing concept.
 
@@ -252,23 +252,23 @@ Figure 3. A slimmed down navigation pane from pgAdmin4 showing `jcz/blog/mv_segm
 
 [![Example4](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr4.png)
 
-Figure 4. Editing the `obs` layer (table) in Qgis. 
+Figure 4. Editing the `obs` layer (table) in Qgis. I think I need to add a `SERIAL` to the primary key field `ID` so that it auto-populates and auto increments for me. Right now I'm typing into this field by hand.
 
 [![Example5](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr5.png)
 
-Figure 5. OOOO
+Figure 5. Just a reminder that if you are using Materialized Views, perhaps for better performance over a traditional view, that it needs to be refreshed to see the changes you made to the source tables.
 
 [![Example6](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr6.png)
 
-Figure 6. OOOO
+Figure 6. Example of what the segnments look like when the observation occurs near a straight section, and also near a corner with a node (endpoint). The observation near the corner has a size that spans the corner so the resulting event is broken into two. This view also highlights the snapping capability where the code will create the event segments on the nearest line to the observation point - which will never geometrically land on the line without snapping either in the field collection or in post-processing like this.
 
 [![Example7](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr7.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr7.png)
 
-Figure 7. OOOO
+Figure 7. For visualization let's change the symbology to show the severity of the problem. Of course this could be done better. I'm just having fun.
 
 [![Example8](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/assets/uploads/2025/lr8.png)
 
-Figure 8. OOOO
+Figure 8. Updated the map view to demonstrate the new symbology and label the segments to prove we're showing the `severity` integer value.
 
 Here's the sample aggregation prioritization query that needed some adjustments in order to run
 
@@ -295,13 +295,14 @@ ORDER BY priority_score DESC;
 
 ```
 
-And some actual output
+And some actual output. The Priority Score is just a simple multiplication of a few factors ` (issue_count * avg_severity * ST_Area(cluster_geom)`
 
-"issue_count","affected_area","avg_severity","issue_descriptions","priority_score"
-"2","47438.313929242715",NULL,NULL,NULL
-"2","51812.377720770695",NULL,NULL,NULL
-"3","50552.78194914143","5.0",NULL,758292
-"4","61221.035901588555","2.7","big. Bring truck; what does the algo do when near a corner; Too many trees",661187
+|issue_count|affected_area       |avg_severity|issue_descriptions                                                          |priority_score|
+|-----------|--------------------|------------|----------------------------------------------------------------------------|--------------|
+|2          |47438.313929242715  |NULL        |NULL                                                                        |NULL          |
+|2          |51812.377720770695  |NULL        |NULL                                                                        |NULL          |
+|3          |50552.78194914143   |5.0         |NULL                                                                        |758292        |
+|4          |61221.035901588555  |2.7         |We're going to need a bigger truck. Too many trees                          |661187        |
 
 Test for overlapping segments. This runs, but doesn't seem to detect overlaps. Geomtry precision problem? Unlikely. That's partly why we use linear ref.
 
@@ -318,7 +319,3 @@ FROM blog.mv_segments a
 JOIN blog.mv_segments b ON ST_Overlaps(a.geom, b.geom)
 WHERE a.obs_id < b.obs_id;  -- Avoid duplicate pairs
 ```
-
-
-
-

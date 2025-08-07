@@ -418,7 +418,7 @@ To github.com:johnzastrow/weather.git
  
 
 git gc --aggressive --prune=now
-
+```
 
 
 # Resources
