@@ -60,7 +60,7 @@ Replace `myschema` with the name of your schema.
 
 To grant permissions to the spatial user, run the following commands:
 ```sql
-psql mydatabase -c "GRANT ALL PRIVILEGES ON DATABASE mydatabase TO spatial_user;" 
+sudo -u postgres && psql mydatabase -c "GRANT ALL PRIVILEGES ON DATABASE mydatabase TO spatial_user;" 
 psql mydatabase -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA myschema TO spatial_user;" 
 psql mydatabase -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA myschema TO spatial_user;" 
 ```
@@ -126,7 +126,9 @@ Do this only on your protected intranet or if you know what you are doing. It wi
 To allow remote connections to your PostgreSQL database, you need to modify the `pg_hba.conf` file. This file controls client authentication and access permissions.
 
 ```bash
-nano pg_hba.conf
+exit # Exit from the postgres user shell
+sudo nano /etc/postgresql/17/main/pg_hba.conf # change the version number if needed
+
 ```
 
 then put in the following value
@@ -153,6 +155,13 @@ PGTune - https://pgtune.leopard.in.ua/ to calculate configuration for PostgreSQL
 
  
 Here's one for a tiny Nano VM at Linode. Stick this in postgresql.conf in /etc
+
+```bash
+sudo nano /etc/postgresql/17/main/postgresql.conf # change the version number if needed
+```
+
+Paste the following configuration into the file, commenting out the existing values, or adjusting them as needed, then save the file:
+
 
 ```bash
 Comment existing values for these. Listen address lets the world talk to postgres
