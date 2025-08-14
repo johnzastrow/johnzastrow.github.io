@@ -1,10 +1,11 @@
 ---
-title: 'Customizing QGIS into a simple viewer, with user profiles'
-subtitle: 'and then trying to make it portable and easy to move'
-date: '2025-08-13T15:02:15-05:00'
-author: 'John C. Zastrow'
 layout: post
-tags: [qgis, gis]
+title: Testing2
+subtitle: So many feelings
+gh-badge: [star, fork, follow]
+date: '2025-08-13T12:47:41-05:00'
+tags: [freedom, books, science, truth]
+comments: true
 ---
 
 
