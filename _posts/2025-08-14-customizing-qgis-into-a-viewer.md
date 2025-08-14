@@ -1,10 +1,12 @@
 ---
-title: 'Customizing QGIS into a simple viewer, with user profiles'
-subtitle: 'and then trying to make it portable and easy to move'
-date: '2025-08-14T15:02:15-05:00'
-author: 'John C. Zastrow'
 layout: post
-tags: [qgis, gis]
+title: Creating a Custom QGIS Viewer
+author: John Zastrow
+subtitle: A simplified QGIS Experience for non-technical users
+gh-badge: [star, fork, follow]
+date: '2025-08-13T12:47:41-05:00'
+tags: [qgis, gis, viewer, customization, open-source]
+comments: false
 ---
 
 
