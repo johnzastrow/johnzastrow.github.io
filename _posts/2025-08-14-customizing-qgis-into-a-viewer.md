@@ -21,13 +21,14 @@ I've been using [QGIS](https://qgis.org) for years and have customized it to my 
 1. Install all the things you want in your custom QGIS. This includes plugins, settings, and any other customizations you want to make.
    1. Create a geopackage with your favorite base maps and data to include in the custom QGIS.
    2. Connect to the geopackage and set up favorite layers and styles.
-   3. Save the QGIS project into the geopackage.
-   4. Customize the QGIS interface to remove unnecessary toolbars, panels, and menus.
-   5. Set default project settings, such as coordinate reference systems and snapping options.
-   6. Install and configure any plugins that you want to include in the custom QGIS
-   7. Set up any custom styles, symbols, or templates that you want to include in the custom QGIS.
-   8. Configure any other settings or options that you want to include in the custom QGIS.
-   9. 
+   3. Add any other data sources you want to include in the custom QGIS.
+   4. Save the QGIS project into the geopackage.
+   5. Customize the QGIS interface to remove unnecessary toolbars, panels, and menus.
+   6. Set default project settings, such as coordinate reference systems and snapping options.
+   7. Install and configure any plugins that you want to include in the custom QGIS
+   8. Set up any custom styles, symbols, or templates that you want to include in the custom QGIS.
+   9. Configure any other settings or options that you want to include in the custom QGIS.
+   10. 
 2. Locate your QGIS profile folder. This is where all your settings and customizations are
 3. Copy the profile folder to a new location. This will be your custom QGIS profile.
 4. Create a batch file (Windows) or shell script (Linux) to launch QGIS
