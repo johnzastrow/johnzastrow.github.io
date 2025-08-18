@@ -16,6 +16,8 @@ I've been doing GIS since 1994 and began with a platform then called [TNTmips](h
 
 I've been using [QGIS](https://qgis.org) for years and have customized it to my liking. I recently wanted to make a simplified version of QGIS that I could use as a data viewer for clients who don't need all the tools and options that QGIS provides. I also wanted to make it easy to move between computers and operating systems (Windows and Linux).
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/i6L84WMVka4?si=ds7lJqJ6ZdYIyosl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Process
 
 1. Install all the things you want in your custom QGIS. This includes plugins, settings, and any other customizations you want to make.
