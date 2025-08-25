@@ -10,11 +10,11 @@ comments: false
 ---
 
 
-Mostly a note to self, but maybe it will help someone else. Everytime I setup a new install of Qgis on a new OS, I map into my massive network drive that has all my data on it. I have a lot of data, and I have a lot of directories and subdirectories. 
+Mostly a note to self, but maybe it will help someone else. Everytime I setup a new install of Qgis on a new OS, I map into my massive network drive that has all my data on it. I have a lot of data, and I have a lot of directories and subdirectories.
 
 BUT.. Qgis hates it.
 
-My goldfish memory always forgets that this is a bad idea and I spend day looking for exotic fixes. Invariably I come back to creating a decicated mapped drive that only has the directories I need for my QGIS project, which solves the problem every time.
+My goldfish memory always forgets that this is a bad idea and I spend day looking for exotic fixes. Invariably I come back to creating a dedicated mapped drive that only has the directories I need for my QGIS project, which solves the problem every time.
 
 Mr. AI will now tell you why this is a problem and how to fix it.
 
