@@ -371,15 +371,14 @@ Untracked files:
   (use "git add <file>..." to include in what will be committed)
         archive/
         dumps/
+  </file>
 
 nothing added to commit but untracked files present (use "git add" to track)
-
-
 </pre>
 
-It looks like as far as git is concerned were pretty clean. but 
+It looks like as far as git is concerned, we're pretty clean. But let's try this
 
-
+<pre>
 3. git filter-repo --analyze
 4. head -n 10 .git/filter-repo/analysis/path-all-sizes.txt 
  	example 9. git filter-repo --invert-paths --path-regex '^assets\/lib\/mermaid\/(?!mermaid\.min\.js$).*'
@@ -418,7 +417,7 @@ To github.com:johnzastrow/weather.git
  
 
 git gc --aggressive --prune=now
-```
+</pre>
 
 
 # Resources
@@ -434,21 +433,14 @@ https://sentry.io/answers/revert-a-git-repository-to-a-previous-commit/
 https://andrewlock.net/rewriting-git-history-simply-with-git-filter-repo/
 https://www.golinuxcloud.com/reduce-git-repo-size-with-git-filter-branch/
 
+## More testing
 
-
+<pre>
 $ git filter-repo --invert-paths --path dumps/ --path archive/
 $ du -s --si
 37M	.
 
-
-
-
-	
-
 ncdu /home/jcz/weather
-
-
-
 
 jcz@lamp:~/weather$ git filter-repo --analyze
 Processed 1201 blob sizes
@@ -465,6 +457,8 @@ total 212K
 -rw-rw-r-- 1 jcz jcz  193 May 13 12:54 directories-deleted-sizes.txt
 -rw-rw-r-- 1 jcz jcz 3.4K May 13 12:54 README
 -rw-rw-r-- 1 jcz jcz 6.1K May 13 12:54 renames.txt
+</pre>
+
 
 ## Merging a Development branch back into Main branch
 
