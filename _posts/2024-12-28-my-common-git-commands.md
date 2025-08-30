@@ -466,7 +466,50 @@ total 212K
 -rw-rw-r-- 1 jcz jcz 3.4K May 13 12:54 README
 -rw-rw-r-- 1 jcz jcz 6.1K May 13 12:54 renames.txt
 
+## Merging a Development branch back into Main branch
 
+Merging a development branch into the main branch in Git involves integrating the changes from the development branch into the main branch. This process typically follows these steps:
+Ensure main branch is up-to-date locally:
+
+```bash
+    git checkout main
+    git pull origin main
+```
+
+Ensure development branch is up-to-date locally (optional but good practice):
+
+```bash
+    git checkout development
+    git pull origin development
+```
+
+If you've made local changes on development not yet pushed, you would push them first:
+
+```bash
+    git push origin development
+```
+Switch to the main branch.
+
+
+```bash
+    git checkout main
+```
+
+Merge the development branch into main.
+```bash
+    git merge development
+```
+
+If there are no conflicts, Git will automatically create a merge commit. 
+If conflicts arise, you must resolve them manually. Git will guide you through the files with conflicts. After resolving, git add <conflicted-file> for each resolved file, and then git commit to finalize the merge.
+
+Push the merged main branch to the remote repository:
+
+```bash
+    git push origin main
+```
+
+This sequence of commands ensures that the main branch on your local and remote repositories reflects the integrated changes from the development branch.
 
 
 
