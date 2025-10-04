@@ -17,6 +17,7 @@ comments: false
 * [Spatial Thoughts](https://courses.spatialthoughts.com/introduction-to-qgis.html#) - Free training materials from a [professional](https://spatialthoughts.com/about/) GIS training organization
 * [QGIS Tutorials and Tips](https://www.qgistutorials.com/en/) - Tutorials from the same producer as above
 * [OSGEO.org](https://www.osgeo.org/projects/) - The parent organization that provides a framework for open source geospatial projects, including QGIS. QGIS is also built from a few OSGEO projects.
+* [Reusable QGIS things](https://github.com/johnzastrow/mqs) - Something I'm accumulating
 
 ## Places to ask questions
 * [The QGIS SubReddit](https://www.reddit.com/r/QGIS/) - 
