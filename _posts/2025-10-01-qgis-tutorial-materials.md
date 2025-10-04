@@ -9,7 +9,7 @@ tags: [qgis, gis, viewer, tutorial, lesson, open-source]
 comments: false
 ---
 
-# Initially developed as reference for a live, online training
+## References for a live, online training
 
 These materials are based on the following resources
 
@@ -20,5 +20,16 @@ These materials are based on the following resources
 * [The QGIS SubReddit](https://www.reddit.com/r/QGIS/)
 
 
-## Installing on Windows
+#### Installing on Windows
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZwWK0Xwe6B8?si=loIbcK_rFAoQ2KGS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## After Installation
+
+You might like to add functionality to QGIS. 
+
+[The most popular plugins](https://plugins.qgis.org/plugins/popular/)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uPF242DEx2I?si=H29Hr_-tOCnX-l7h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nC0EizOn_Kc?si=F022r_kKJ55C9v2Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
