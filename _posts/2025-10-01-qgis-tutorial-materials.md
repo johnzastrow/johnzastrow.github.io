@@ -9,15 +9,27 @@ tags: [qgis, gis, viewer, tutorial, lesson, open-source]
 comments: false
 ---
 
-## References for a live, online training
+## References
 
-These materials are based on the following resources
+* [QGIS Webite](https://qgis.org/) - Main website for the software
+* [QGIS Materials themselves - QGIS Version 3.4x](https://docs.qgis.org/3.40/en/docs/training_manual/index.html) - Official guide for QGIS from the QGIS Community 
+* [Spatial Thoughts](https://courses.spatialthoughts.com/introduction-to-qgis.html#) - Free training materials from a [professional](https://spatialthoughts.com/about/) GIS training organization
+* [QGIS Tutorials and Tips](https://www.qgistutorials.com/en/) - Tutorials from the same producer as above
+* [OSGEO.org](https://www.osgeo.org/projects/) - The parent organization that provides a framework for open source geospatial projects, including QGIS. QGIS is also built from a few OSGEO projects.
 
-* [QGIS Webite](https://qgis.org/)
-* [QGIS Materials themselves - QGIS Version 3.4x](https://docs.qgis.org/3.40/en/docs/training_manual/index.html)
-* [Spatial Thoughts](https://courses.spatialthoughts.com/introduction-to-qgis.html#)
-* [QGIS Tutorials and Tips](https://www.qgistutorials.com/en/)
-* [The QGIS SubReddit](https://www.reddit.com/r/QGIS/)
+## Places to ask questions
+* [The QGIS SubReddit](https://www.reddit.com/r/QGIS/) - 
+* The official QGIS mailing lists if email is more your speed
+Send QGIS-User mailing list submissions to `qgis-user@lists.osgeo.org`
+
+To subscribe or unsubscribe via the World Wide Web, visit
+        [https://lists.osgeo.org/mailman/listinfo/qgis-user](https://lists.osgeo.org/mailman/listinfo/qgis-user)
+
+or, via email, send a message with subject or body 'help' to `qgis-user-request@lists.osgeo.org`
+
+You can reach the person managing the list at `qgis-user-owner@lists.osgeo.org`
+
+When replying, please edit your Subject line so it is more specific than "Re: Contents of QGIS-User digest..."
 
 
 #### Installing on Windows
