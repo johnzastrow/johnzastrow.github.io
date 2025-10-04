@@ -18,3 +18,7 @@ These materials are based on the following resources
 * [Spatial Thoughts](https://courses.spatialthoughts.com/introduction-to-qgis.html#)
 * [QGIS Tutorials and Tips](https://www.qgistutorials.com/en/)
 * [The QGIS SubReddit](https://www.reddit.com/r/QGIS/)
+
+
+## Installing on Windows
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZwWK0Xwe6B8?si=loIbcK_rFAoQ2KGS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
