@@ -12,6 +12,7 @@ comments: false
 ## References
 
 * [QGIS Webite](https://qgis.org/) - Main website for the software
+* [QGIS Hub](https://hub.qgis.org/) - Share things to reuse in QGIS
 * [QGIS Materials themselves - QGIS Version 3.4x](https://docs.qgis.org/3.40/en/docs/training_manual/index.html) - Official guide for QGIS from the QGIS Community 
 * [Spatial Thoughts](https://courses.spatialthoughts.com/introduction-to-qgis.html#) - Free training materials from a [professional](https://spatialthoughts.com/about/) GIS training organization
 * [QGIS Tutorials and Tips](https://www.qgistutorials.com/en/) - Tutorials from the same producer as above
@@ -20,6 +21,7 @@ comments: false
 ## Places to ask questions
 * [The QGIS SubReddit](https://www.reddit.com/r/QGIS/) - 
 * The official QGIS mailing lists if email is more your speed
+```
 Send QGIS-User mailing list submissions to `qgis-user@lists.osgeo.org`
 
 To subscribe or unsubscribe via the World Wide Web, visit
@@ -30,7 +32,7 @@ or, via email, send a message with subject or body 'help' to `qgis-user-request@
 You can reach the person managing the list at `qgis-user-owner@lists.osgeo.org`
 
 When replying, please edit your Subject line so it is more specific than "Re: Contents of QGIS-User digest..."
-
+```
 
 #### Installing on Windows
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZwWK0Xwe6B8?si=loIbcK_rFAoQ2KGS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
