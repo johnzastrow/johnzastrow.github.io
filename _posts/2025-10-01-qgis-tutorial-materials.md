@@ -22,7 +22,9 @@ comments: false
 ## Places to ask questions
 * [The QGIS SubReddit](https://www.reddit.com/r/QGIS/) - 
 * The official QGIS mailing lists if email is more your speed
-```
+
+```bash
+
 Send QGIS-User mailing list submissions to `qgis-user@lists.osgeo.org`
 
 To subscribe or unsubscribe via the World Wide Web, visit
@@ -33,6 +35,7 @@ or, via email, send a message with subject or body 'help' to `qgis-user-request@
 You can reach the person managing the list at `qgis-user-owner@lists.osgeo.org`
 
 When replying, please edit your Subject line so it is more specific than "Re: Contents of QGIS-User digest..."
+
 ```
 
 #### Installing on Windows
