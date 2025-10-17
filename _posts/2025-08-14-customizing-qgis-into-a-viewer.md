@@ -37,7 +37,8 @@ Mr. AI says the following. Clearly I'll have to clean this up.
    
 2. Locate your QGIS profile folder. This is where all your settings and customizations are
 
-![alt text](img/ViewerProfilesDirectory.png)
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/ViewerProfilesDirectory.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/ViewerProfilesDirectory.png)
+
 3. Copy the profile folder to a new location. This will be your custom QGIS profile.
 4. Create a batch file (Windows) or shell script (Linux) to launch QGIS
 5. Distribute the custom QGIS profile and the batch file/shell script to your clients.
@@ -59,10 +60,9 @@ Mr. AI says the following. Clearly I'll have to clean this up.
 
 Use the control to click on parts of the toolbar that you want to remove. Then uncheck boxes in the list below to remove others. Shutdown QGIS with the modified profile loaded, then start it again to load that profile.
 
-![alt text](img/qgis_interface_customization_dialog.png)
-
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/qgis_interface_customization_dialog.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/qgis_interface_customization_dialog.png)
 
 ## Progress
 
-![alt text](img/qgis_viewer_profile.png)
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/qgis_viewer_profile.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/qgis_viewer_profile.png)
 Highlighting parts of the UI that were simplified

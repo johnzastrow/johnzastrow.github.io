@@ -55,9 +55,8 @@ While I'm here, on Windows, stick the init thing for bash into a `.profile` file
 ## Progress
 I'm too lazy to customize starship much, mostly because I like the default prompt.
 
-![alt text](img/starship_wsl.png)
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/starship_wsl.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/starship_wsl.png)
 Here is starship running on "Linux" via Windows using WSL2
 
-
-![alt text](img/starship_win_bash.png)
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/starship_win_bash.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/starship_win_bash.png)
 This is also starship except running on bash shell under windows showing the same directory
