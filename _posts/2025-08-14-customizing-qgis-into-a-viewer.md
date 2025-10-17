@@ -10,9 +10,7 @@ comments: false
 ---
 
 {: .box-note}
-
-
-**This is a very early post. The post, the process, and the product are very much in progress. Check back for updates as I learned more.**
+This is a very early post. The post, the process, and the product are very much in progress. Check back for updates as I learned more.
 
 I've been doing GIS since 1994 and began with a platform then called [TNTmips](https://www.microimages.com/documentation/FeatureSummaries/index.htm). They have these great documents for [learning the platform](https://www.microimages.com/documentation/html/Categories/Terrain%20Analysis%20and%20Operations.htm) and they had a free viewer called [TNTatlas](https://www.microimages.com/documentation/Tutorials/tntatlx.pdf) that you could customize and distribute to clients, along with data. It was a great way to share data and maps with clients who didn't need all the tools of the full TNTmips platform. I haven't seen anything like that in other GIS platforms, so I wondered if I could do something similar with QGIS.
 
