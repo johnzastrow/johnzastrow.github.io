@@ -51,3 +51,7 @@ You might like to add functionality to QGIS.
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/nC0EizOn_Kc?si=F022r_kKJ55C9v2Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+![https://github.com/ITC-CRIB/qgis-light]([https://github.com/ITC-CRIB/qgis-light])
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/btG-lVYYOCY?si=_c_RRSiSCvXcQ5bP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
