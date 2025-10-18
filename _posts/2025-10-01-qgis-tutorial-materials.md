@@ -55,3 +55,6 @@ You might like to add functionality to QGIS.
 ![https://github.com/ITC-CRIB/qgis-light]([https://github.com/ITC-CRIB/qgis-light])
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/btG-lVYYOCY?si=_c_RRSiSCvXcQ5bP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+QGIS User Conference 2024 - Lots of interesting videos
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=ot3E901XCV4-Bu5a&amp;list=PLi6mvse6ZEOziPdfPuf1Bvc4xmx-aQDsv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
