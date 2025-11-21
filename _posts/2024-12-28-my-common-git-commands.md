@@ -680,3 +680,13 @@ To open `vimdiff` for resolving merge conflicts, you can use the following Git c
 In short, `do` and `dp` are convenient shortcuts for simple two-file comparisons, while `:diffget` and `:diffput` offer advanced control for complex merging situations or specific line-range operations.
 
 [](https://labs.google.com/search/experiment/22)
+
+### Lazygit
+Lazygit is a simple terminal UI for git commands, written in Go with the gocui library. It aims to provide a fast and intuitive way to interact with git repositories without needing to remember complex command-line syntax.
+
+```bashbash
+sudo apt install lazygit
+lazygit
+```
+https://github.com/jesseduffield/lazygit
+
