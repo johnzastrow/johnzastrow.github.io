@@ -9,8 +9,8 @@ tags: [qgis, gis, viewer, customization, open-source]
 comments: false
 ---
 
-
-**This is a living post. Check back for updates as I learned more.**
+{: .box-note}
+This is a very early post. The post, the process, and the product are very much in progress. Check back for updates as I learned more.
 
 I've been doing GIS since 1994 and began with a platform then called [TNTmips](https://www.microimages.com/documentation/FeatureSummaries/index.htm). They have these great documents for [learning the platform](https://www.microimages.com/documentation/html/Categories/Terrain%20Analysis%20and%20Operations.htm) and they had a free viewer called [TNTatlas](https://www.microimages.com/documentation/Tutorials/tntatlx.pdf) that you could customize and distribute to clients, along with data. It was a great way to share data and maps with clients who didn't need all the tools of the full TNTmips platform. I haven't seen anything like that in other GIS platforms, so I wondered if I could do something similar with QGIS.
 
@@ -19,6 +19,8 @@ I've been using [QGIS](https://qgis.org) for years and have customized it to my 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/i6L84WMVka4?si=ds7lJqJ6ZdYIyosl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Process
+
+Mr. AI says the following. Clearly I'll have to clean this up.
 
 1. Install all the things you want in your custom QGIS. This includes plugins, settings, and any other customizations you want to make.
    1. Create a geopackage with your favorite base maps and data to include in the custom QGIS.
@@ -30,8 +32,11 @@ I've been using [QGIS](https://qgis.org) for years and have customized it to my 
    7. Install and configure any plugins that you want to include in the custom QGIS
    8. Set up any custom styles, symbols, or templates that you want to include in the custom QGIS.
    9. Configure any other settings or options that you want to include in the custom QGIS.
-   10. 
+   
 2. Locate your QGIS profile folder. This is where all your settings and customizations are
+
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/ViewerProfilesDirectory.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/ViewerProfilesDirectory.png)
+
 3. Copy the profile folder to a new location. This will be your custom QGIS profile.
 4. Create a batch file (Windows) or shell script (Linux) to launch QGIS
 5. Distribute the custom QGIS profile and the batch file/shell script to your clients.
@@ -48,6 +53,14 @@ I've been using [QGIS](https://qgis.org) for years and have customized it to my 
 16. Gather feedback from your clients to improve the custom QGIS experience and make any necessary adjustments.
 17. Share your custom QGIS profile and batch file/shell script with the QGIS community
 18. Consider creating a website or repository to host and share your custom QGIS profile and batch file/shell script with others who may find it useful.
-19. Stay up to date with the latest QGIS releases and updates to ensure compatibility with your
-20. custom QGIS profile and batch file/shell script.
+19. Stay up to date with the latest QGIS releases and updates to ensure compatibility with your 20. custom QGIS profile and batch file/shell script.
 21. 
+
+Use the control to click on parts of the toolbar that you want to remove. Then uncheck boxes in the list below to remove others. Shutdown QGIS with the modified profile loaded, then start it again to load that profile.
+
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/qgis_interface_customization_dialog.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/qgis_interface_customization_dialog.png)
+
+## Progress
+
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/qgis_viewer_profile.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/qgis_viewer_profile.png)
+Highlighting parts of the UI that were simplified

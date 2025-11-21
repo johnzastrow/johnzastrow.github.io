@@ -10,16 +10,14 @@ comments: true
 
 
 {: .box-note}
-This is mostly a log for myself of stuff I don't do every day so I don't have to Google it all the time. 
+This is mostly a log for myself of stuff I don't do every day so I don't have to Google it all the time.
 
 {: .box-warning}
 This is just a start and I'm going to add to it over time.
 
-
 # Git from Scratch
 
 Setup Git if running for the first time
-
 
 ## Install Setup
 
@@ -32,8 +30,6 @@ git config --global init.defaultBranch main
 git config --list
 cat .gitconfig
 git config user.name
-
-
 ```
 
 ## Getting Started
@@ -43,7 +39,6 @@ git config user.name
 This assumes that you are working on a workstation (or in shell environment) where you have already setup your git globals. It also assumes that the remote repo is empty. It might error abut not pulling first. If the remote is empty, try a `git pull origin main` before the push.
 
 If you’re using Git 2.28.0 or a later version, you can set the name of the default branch using -b.
-
 
 ```bash
 git init -b main
@@ -69,9 +64,7 @@ git push -u origin main
 
 # Cleaning After Making a Mess
 
-
-
-I'm a bad person and I commit too often AND I commit a lot of blobs as I use Github as a sort of backup as well as an FTP server. The result is that my repos are HUUUGE and full of useless blobs. So, to shrink my repos I periodically have to trim the fat. Here is an approach I'm developing. 
+I'm a bad person and I commit too often AND I commit a lot of blobs as I use Github as a sort of backup as well as an FTP server. The result is that my repos are HUUUGE and full of useless blobs. So, to shrink my repos I periodically have to trim the fat. Here is an approach I'm developing.
 
 ## Where Are We Starting
 
@@ -79,15 +72,14 @@ Do this in Linux. Installing and running `git-filter-repo` in Windows is still w
 
 We'll work with a repo called `weather` now.
 
-
 #### 1. Install stuff
-   
-```bash 
+
+```bash
 sudo apt install git-filter-repo git-sizer ncdu
 ```
 
 #### 2. Backup your data before playing in these dark arts
-   
+
 To create a backup, we simply make a complete copy of our repository. Open your command line, navigate to the directory containing your repository, and run:
 
 ```bash
@@ -115,17 +107,14 @@ cat ../remote_origins.txt
 
 Here are some examples
 
-
 {: .box-terminal}
 <pre>
 jcz@lamp:~/weather$ git remote -v
 origin  git@github.com:johnzastrow/weather.git (fetch)
 origin  git@github.com:johnzastrow/weather.git (push)
 
-
 jcz@lamp:~/weather$ git ls-remote --get-url origin
 git@github.com:johnzastrow/weather.git
-
 
 jcz@lamp:~/weather$ git remote show origin
 * remote origin
@@ -141,12 +130,12 @@ jcz@lamp:~/weather$ git remote show origin
     master pushes to master (local out of date)
 </pre>
 
-
 #### 3. Checkout the starting state
 
-Then check sizes using tools below. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`. 
+Then check sizes using tools below. Run the following commands to explore and document your current state. Do all this from the inside the root directory of your repo. The same one that contains `.git`.
 
-```bash
+{: .box-terminal}
+<pre>
 # Interactively explore how much space your repo is using from the file system level
 ncdu /home/jcz/weather
 
@@ -161,16 +150,14 @@ git-sizer
 
 # Yet another way to explore the largest files in the repo
 git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 -r | head -n 5
-```
-
+</pre>
 
 Here are some more examples
-
 
 {: .box-terminal}
 <pre>
 ncdu 1.19 ~ Use the arrow keys to navigate, press ? for help
---- /home/jcz/Documents/github/weather ---------------------------------------------------------------------------------    
+--- /home/jcz/Documents/github/weather ---------------------------------------------------------------------------------
     1.7 GiB [#################] /.git
   111.1 MiB [#                ] /archive
   101.5 MiB [#                ] /dumps
@@ -196,8 +183,7 @@ ncdu 1.19 ~ Use the arrow keys to navigate, press ? for help
   276.0 KiB [                 ]  kpwm_daily_elect_temp.png
   260.0 KiB [                 ]  bardham_weekly_electric_temp_ranges.png
   260.0 KiB [                 ]  monthly_dollars_per_kwh.png
-  
-  
+
 jcz@lamp:~/weather$ du -s --si
 2.1G    .
 
@@ -210,7 +196,6 @@ size-pack: 757701
 prune-packable: 0
 garbage: 0
 size-garbage: 0
-
 
 jcz@lamp:~/weather$ git-sizer
 Processing blobs: 1201
@@ -235,7 +220,7 @@ jcz@lamp:~/weather$ git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 -r | he
 100644 blob a71dbfeeb918fb746c3e5135cb2b26ae22f06cfb 25980610   archive/weather-05May2025.sql.gz
 </pre>
 
-Now identify the directories with the largest files. The approach below will blow them away and amend the git history as if they never existed -- be warned. Do more research if you want to selectively remove files or things that are more granular. 
+Now identify the directories with the largest files. The approach below will blow them away and amend the git history as if they never existed -- be warned. Do more research if you want to selectively remove files or things that are more granular.
 
 #### 4. Clean, Expunge, Compress
 
@@ -245,7 +230,6 @@ In my case my `dumps` and `archive` directories typically accumulate the cruft I
 # begin by analysing
 git filter-repo --analyze
 ```
-
 
 {: .box-terminal}
 <pre>
@@ -302,9 +286,6 @@ Format: sha, unpacked size, packed size, filename(s) object stored as
 
 Confirmed. I have a lot of low hanging fruit in my `dumps/` and `archive/` directories.
 
-
-
-
 1. less .git/filter-repo/analysis/directories-deleted-sizes.txt
 
 2. git filter-repo --invert-paths --path dumps/ --path archive/
@@ -328,6 +309,7 @@ Completely finished after 2.76 seconds.
 
 Now let's check the results
 
+{: .box-terminal}
 <pre>
 jcz@lamp:~/weather$ du -s --si
 385M    .
@@ -341,7 +323,6 @@ size-pack: 94206
 prune-packable: 0
 garbage: 0
 size-garbage: 0
-
 
 jcz@lamp:~/weather$ git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 -r | head -n 5
 100755 blob fc397af9a792138358c8edb2dc8ae6259a343a12 16289792   lazygit
@@ -371,18 +352,18 @@ Untracked files:
   (use "git add <file>..." to include in what will be committed)
         archive/
         dumps/
+  </file>
 
 nothing added to commit but untracked files present (use "git add" to track)
-
-
 </pre>
 
-It looks like as far as git is concerned were pretty clean. but 
+It looks like as far as git is concerned, we're pretty clean. But let's try this
 
-
+{: .box-terminal}
+<pre>
 3. git filter-repo --analyze
-4. head -n 10 .git/filter-repo/analysis/path-all-sizes.txt 
- 	example 9. git filter-repo --invert-paths --path-regex '^assets\/lib\/mermaid\/(?!mermaid\.min\.js$).*'
+4. head -n 10 .git/filter-repo/analysis/path-all-sizes.txt
+  example 9. git filter-repo --invert-paths --path-regex '^assets\/lib\/mermaid\/(?!mermaid\.min\.js$).*'
 5.  git gc --aggressive --prune=now
 6.  git count-objects -v
 7.  git remote add weather git@git.[url]
@@ -397,7 +378,6 @@ To push the current branch and set the remote as upstream, use
 
 To have this happen automatically for branches without a tracking
 upstream, see 'push.autoSetupRemote' in 'git help config'.
-
 
 8.  git push origin --force --all
 9.  git push origin --force --tags
@@ -415,40 +395,31 @@ To github.com:johnzastrow/weather.git
  + 864ee0d...2c7875b master -> master (forced update)
  * [new branch]      dependabot/pip/pillow-9.3.0 -> dependabot/pip/pillow-9.3.0
 
- 
-
 git gc --aggressive --prune=now
-```
-
+</pre>
 
 # Resources
 
-* (https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)
-* https://onenine.com/how-to-reduce-git-repository-size-safely/
+* (<https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github>)
+* <https://onenine.com/how-to-reduce-git-repository-size-safely/>
 
-https://www.golinuxcloud.com/reduce-git-repo-size-with-git-filter-branch/
+<https://www.golinuxcloud.com/reduce-git-repo-size-with-git-filter-branch/>
 
-https://ryanagibson.com/posts/shrink-git-repo/
+<https://ryanagibson.com/posts/shrink-git-repo/>
 
-https://sentry.io/answers/revert-a-git-repository-to-a-previous-commit/
-https://andrewlock.net/rewriting-git-history-simply-with-git-filter-repo/
-https://www.golinuxcloud.com/reduce-git-repo-size-with-git-filter-branch/
+<https://sentry.io/answers/revert-a-git-repository-to-a-previous-commit/>
+<https://andrewlock.net/rewriting-git-history-simply-with-git-filter-repo/>
+<https://www.golinuxcloud.com/reduce-git-repo-size-with-git-filter-branch/>
 
+## More testing
 
-
+{: .box-terminal}
+<pre>
 $ git filter-repo --invert-paths --path dumps/ --path archive/
 $ du -s --si
-37M	.
-
-
-
-
-	
+37M .
 
 ncdu /home/jcz/weather
-
-
-
 
 jcz@lamp:~/weather$ git filter-repo --analyze
 Processed 1201 blob sizes
@@ -465,19 +436,247 @@ total 212K
 -rw-rw-r-- 1 jcz jcz  193 May 13 12:54 directories-deleted-sizes.txt
 -rw-rw-r-- 1 jcz jcz 3.4K May 13 12:54 README
 -rw-rw-r-- 1 jcz jcz 6.1K May 13 12:54 renames.txt
+</pre>
 
+## Branching - for fun and development
 
-
-
-Use LazyGit to visualize git repos and merge conflicts on remote hosts without a GUI
-
-https://github.com/jesseduffield/lazygit
+**Creating a new branch:**
+From the current branch: To create a new branch based on the current branch you are on, use the following command:
 
 ```bash
-sudo apt install lazygit
-lazygit
+    git branch <new-branch-name>
+```
+
+This command creates the new branch but does not automatically switch you to it.
+From the current branch and switching to it immediately: To create a new branch and switch to it in one step, use:
+
+```bash
+    git checkout -b <new-branch-name>
+```
+
+This is a common and convenient way to start working on a new feature or fix.
+From a specific commit: If you need to create a branch from a particular point in the repository's history (a specific commit), you first need the commit's SHA-1 identifier. You can find this using git log. Once you have the commit ID, use:
+
+```bash
+    git branch <new-branch-name> <commit-id>
+```
+
+You would then need to manually switch to this branch using git checkout <new-branch-name>.
+Switching between branches:
+
+To move from one branch to another, use the git checkout command:
+
+```bash
+git checkout <existing-branch-name>
+```
+
+**Viewing branches:**
+
+To see a list of all local branches in your repository and identify the currently active branch (indicated by an asterisk), use:
+
+```bash
+git branch
+```
+
+**Pushing a new local branch to a remote repository:**
+
+If you want your new local branch to be available on a remote repository (like GitHub or GitLab), you need to push it:
+
+```bash
+git push -u origin <new-branch-name>
+```
+
+The -u flag sets the upstream tracking, so future git push and git pull commands for this branch will automatically know which remote branch to interact with.
+
+
+## Merging a Development branch back into Main branch
+
+Merging a development branch into the main branch in Git involves integrating the changes from the development branch into the main branch. This process typically follows these steps:
+Ensure main branch is up-to-date locally:
+
+```bash
+    git checkout main
+    git pull origin main
+```
+
+Ensure development branch is up-to-date locally (optional but good practice):
+
+```bash
+    git checkout development
+    git pull origin development
+```
+
+If you've made local changes on development not yet pushed, you would push them first:
+
+```bash
+    git push origin development
+```
+
+Switch to the main branch.
+
+```bash
+    git checkout main
+```
+
+Merge the development branch into main.
+
+```bash
+    git merge development
+```
+
+If there are no conflicts, Git will automatically create a merge commit.
+If conflicts arise, you must resolve them manually. Git will guide you through the files with conflicts. After resolving, git add <conflicted-file> for each resolved file, and then git commit to finalize the merge.
+
+Push the merged main branch to the remote repository:
+
+```bash
+    git push origin main
+```
+
+This sequence of commands ensures that the main branch on your local and remote repositories reflects the integrated changes from the development branch.
+
+
+# Using Git
+Merging and conflicts
+
+[https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository](https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository)
+
+[https://weblog.masukomi.org/2008/07/12/handling-and-avoiding-conflicts-in-git/](https://weblog.masukomi.org/2008/07/12/handling-and-avoiding-conflicts-in-git/)
+
+### vimdiff
+
+Vim has a built-in diff mode that can be used to compare and merge files. When working with Git, you can use `vimdiff` to resolve merge conflicts or compare different versions of files.
+Here are some useful commands and tips for using `vimdiff` effectively:
+
+**Starting vimdiff:**
+To start `vimdiff`, you can use the following command in your terminal:
+```bash
+vimdiff file1 file2
+```
+
+This will open `file1` and `file2` in split windows, highlighting the differences between them.
+| `:diffthis` | Type in each split window to diff existing buffers |
+| `:diffoff` | Type to turn off diff mode |
+
+Use **Ctrl**+**w**, **Ctrl**+**w** to switch between windows. [Via](https://amjith.blogspot.com/2008/08/quick-and-dirty-vimdiff-tutorial.html).
+
+### **Navigating**
+
+|     |     |
+| --- | --- |
+| `]c` | Jump to Next difference |
+| `[c` | Jump to Previous difference |
+
+### **Editing**
+
+|     |     |
+| --- | --- |
+| `do` | Diff Obtain!  <br>Pull the changes to the current file. |
+| `dp` | Diff Put!  <br>Push the changes to the other file. |
+| `:diffupdate` or `:diffu` | Re-scan the files for differences. |
+| `ZQ` | Quit without checking changes |
+
+### **Folds, Unfolding and Quitting**
+
+|     |     |
+| --- | --- |
+| `zo` _/_ `zO` | Open (the fold) |
+| `zc` _/_ `zC` | Close (the fold) |
+| `za` _/_ `zA` | Toggle (the fold) |
+| `zv` | Open folds for this line |
+| `zM` | Close all |
+| `zR` | Open all |
+| `zm` | Fold more _(foldlevel += 1)_ |
+| `zr` | Fold less _(foldlevel -= 1)_ |
+| `zx` | Update folds |
+| `:q` | Quit the current window/buffer. |
+| `:qa` | Quit **all** windows/buffers. |
+| `:qa!` | Force quit all, discarding any unsaved changes. |
+| `:wq` | Write (save) the current file and then quit the window
+| `:xa` or `:wqa` | Write all modified files and quit all windows. |
+
+
+### Vimdiff for Git Merge Conflicts
+
+When you have merge conflicts in Git, you can use `vimdiff` to visually compare and resolve them. Here’s a quick guide on how to use `vimdiff` effectively for this purpose.    
+
+**Configuring Git to Use vimdiff:**
+To set `vimdiff` as your default merge tool in Git, run the following command:
+```bash
+git config --global merge.tool vimdiff
+git config --global mergetool.prompt false
 ```
 
 
+**Basic Concepts:**
+*   In a Git merge conflict, you typically have three versions of a file:
+    
+    *   **LOCAL**: Your version (the one in your current branch).
+    *   **REMOTE**: The incoming version (the one from the branch you are merging).
+    *   **BASE**: The common ancestor version (the original file before both changes).
+    *   **MERGED**: The file with conflict markers that Git creates.
+    *   `vimdiff` will open these versions in split windows for comparison.
+  
 
+**Starting vimdiff with Git:**
+To open `vimdiff` for resolving merge conflicts, you can use the following Git command:
 
+```bash
+    git mergetool
+```
+
+*   `:diffg RE`: get from REMOTE
+*   `:diffg BA`: get from BASE
+*   `:diffg LO`: get from LOCAL
+
+**Using vimdiff:**
+  
+  * You can navigate between these windows and use commands to resolve conflicts.
+    *   `<C-w> h/j/k/l`: Navigate between split windows.
+    *   `:qa`: Quit all windows.
+    *   `:qa!`: Force quit all windows (discarding changes).
+    *   `:wqa`: Write (save) all changes and quit.
+    *   `:set diffopt+=iwhite`: Ignore whitespace differences.
+    *   `:set wrap`: Wrap lines in the current window.
+    *   `:syn off`: Disable syntax highlighting for better visibility of differences.
+    *   `:set diffopt+=iwhite`: Ignore whitespace differences.
+    *   `:set wrap`: Wrap lines in the current window.
+    *   `:syn off`: Disable syntax highlighting for better visibility of differences.
+    *   `:set diffopt+=iwhite`: Ignore whitespace differences.
+* 
+
+### Difference between `do`/`dp` and `:diffget`/`:diffput`
+
+`do` and `dp` are **normal mode shortcuts** for the ex-mode commands `:diffget` and `:diffput`, respectively. The key difference lies in their interaction with the current selection and their usage in multi-way (3 or more files) diff scenarios.
+
+**Normal Mode Commands (**`**do**` **and** `**dp**`**)**
+
+*   **Mode:** Used in normal mode (press `Esc` to ensure you are in normal mode).
+*   **Scope:** Operate on the entire "hunk" (block of differences) where your cursor is currently located.
+*   **Simplicity:** They are quick, single-command operations, designed for speed and convenience when working in a two-way diff.
+*   **Usage:**
+    
+    *   `do`: "Diff Obtain". Gets the change from the _other_ window and applies it to the _current_ window's buffer at the cursor position.
+    *   `dp`: "Diff Put". Puts the change from the _current_ window's buffer into the _other_ window's buffer.
+
+**Ex-Mode Commands (**`**:diffget**` **and** `**:diffput**`**)**
+
+*   **Mode:** Used as colon commands (ex-mode).
+*   **Scope:**
+    
+    *   When used without arguments in a two-way diff, they function identically to `do` and `dp`, operating on the current hunk.
+    *   Their primary advantage is their ability to accept a range (e.g., in visual mode, using `V` to select lines, then typing `:diffget`) or a specific buffer name/number as an argument. This allows for more granular control, such as copying only a few lines from a larger hunk, or specifying which exact buffer to obtain from/put to.
+*   **Flexibility:** Essential for managing **three-way diffs** (like when resolving Git merge conflicts), where you need to explicitly state which of the multiple alternative buffers (e.g., local version, remote version, or the merge result) you want to use.
+
+**Summary of Differences**
+
+| **Feature** | `**do**` **/** `**dp**` | `**:diffget**` **/** `**:diffput**` |
+| --- | --- | --- |
+| **Mode** | Normal mode (quick keys) | Ex-mode (colon commands) |
+| **Scope (default)** | Current difference "hunk" | Current difference "hunk" |
+| **Arguments** | No arguments; works on adjacent buffer by default | Can accept a range or a specific buffer name/number |
+| **Multi-way Diffs** | Less effective, as they don't specify _which_ other buffer to use | Required for specifying source/destination buffers precisely |
+
+In short, `do` and `dp` are convenient shortcuts for simple two-file comparisons, while `:diffget` and `:diffput` offer advanced control for complex merging situations or specific line-range operations.
+
+[](https://labs.google.com/search/experiment/22)
