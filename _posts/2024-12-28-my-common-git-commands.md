@@ -534,3 +534,149 @@ Push the merged main branch to the remote repository:
 ```
 
 This sequence of commands ensures that the main branch on your local and remote repositories reflects the integrated changes from the development branch.
+
+
+# Using Git
+Merging and conflicts
+
+[https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository](https://stackoverflow.com/questions/161813/how-do-i-resolve-merge-conflicts-in-a-git-repository)
+
+[https://weblog.masukomi.org/2008/07/12/handling-and-avoiding-conflicts-in-git/](https://weblog.masukomi.org/2008/07/12/handling-and-avoiding-conflicts-in-git/)
+
+### vimdiff
+
+Vim has a built-in diff mode that can be used to compare and merge files. When working with Git, you can use `vimdiff` to resolve merge conflicts or compare different versions of files.
+Here are some useful commands and tips for using `vimdiff` effectively:
+
+**Starting vimdiff:**
+To start `vimdiff`, you can use the following command in your terminal:
+```bash
+vimdiff file1 file2
+```
+
+This will open `file1` and `file2` in split windows, highlighting the differences between them.
+| `:diffthis` | Type in each split window to diff existing buffers |
+| `:diffoff` | Type to turn off diff mode |
+
+Use **Ctrl**+**w**, **Ctrl**+**w** to switch between windows. [Via](https://amjith.blogspot.com/2008/08/quick-and-dirty-vimdiff-tutorial.html).
+
+### **Navigating**
+
+|     |     |
+| --- | --- |
+| `]c` | Jump to Next difference |
+| `[c` | Jump to Previous difference |
+
+### **Editing**
+
+|     |     |
+| --- | --- |
+| `do` | Diff Obtain!  <br>Pull the changes to the current file. |
+| `dp` | Diff Put!  <br>Push the changes to the other file. |
+| `:diffupdate` or `:diffu` | Re-scan the files for differences. |
+| `ZQ` | Quit without checking changes |
+
+### **Folds, Unfolding and Quitting**
+
+|     |     |
+| --- | --- |
+| `zo` _/_ `zO` | Open (the fold) |
+| `zc` _/_ `zC` | Close (the fold) |
+| `za` _/_ `zA` | Toggle (the fold) |
+| `zv` | Open folds for this line |
+| `zM` | Close all |
+| `zR` | Open all |
+| `zm` | Fold more _(foldlevel += 1)_ |
+| `zr` | Fold less _(foldlevel -= 1)_ |
+| `zx` | Update folds |
+| `:q` | Quit the current window/buffer. |
+| `:qa` | Quit **all** windows/buffers. |
+| `:qa!` | Force quit all, discarding any unsaved changes. |
+| `:wq` | Write (save) the current file and then quit the window
+| `:xa` or `:wqa` | Write all modified files and quit all windows. |
+
+
+### Vimdiff for Git Merge Conflicts
+
+When you have merge conflicts in Git, you can use `vimdiff` to visually compare and resolve them. Here’s a quick guide on how to use `vimdiff` effectively for this purpose.    
+
+**Configuring Git to Use vimdiff:**
+To set `vimdiff` as your default merge tool in Git, run the following command:
+```bash
+git config --global merge.tool vimdiff
+git config --global mergetool.prompt false
+```
+
+
+**Basic Concepts:**
+*   In a Git merge conflict, you typically have three versions of a file:
+    
+    *   **LOCAL**: Your version (the one in your current branch).
+    *   **REMOTE**: The incoming version (the one from the branch you are merging).
+    *   **BASE**: The common ancestor version (the original file before both changes).
+    *   **MERGED**: The file with conflict markers that Git creates.
+    *   `vimdiff` will open these versions in split windows for comparison.
+  
+
+**Starting vimdiff with Git:**
+To open `vimdiff` for resolving merge conflicts, you can use the following Git command:
+
+```bash
+    git mergetool
+```
+
+*   `:diffg RE`: get from REMOTE
+*   `:diffg BA`: get from BASE
+*   `:diffg LO`: get from LOCAL
+
+**Using vimdiff:**
+  
+  * You can navigate between these windows and use commands to resolve conflicts.
+    *   `<C-w> h/j/k/l`: Navigate between split windows.
+    *   `:qa`: Quit all windows.
+    *   `:qa!`: Force quit all windows (discarding changes).
+    *   `:wqa`: Write (save) all changes and quit.
+    *   `:set diffopt+=iwhite`: Ignore whitespace differences.
+    *   `:set wrap`: Wrap lines in the current window.
+    *   `:syn off`: Disable syntax highlighting for better visibility of differences.
+    *   `:set diffopt+=iwhite`: Ignore whitespace differences.
+    *   `:set wrap`: Wrap lines in the current window.
+    *   `:syn off`: Disable syntax highlighting for better visibility of differences.
+    *   `:set diffopt+=iwhite`: Ignore whitespace differences.
+* 
+
+### Difference between `do`/`dp` and `:diffget`/`:diffput`
+
+`do` and `dp` are **normal mode shortcuts** for the ex-mode commands `:diffget` and `:diffput`, respectively. The key difference lies in their interaction with the current selection and their usage in multi-way (3 or more files) diff scenarios.
+
+**Normal Mode Commands (**`**do**` **and** `**dp**`**)**
+
+*   **Mode:** Used in normal mode (press `Esc` to ensure you are in normal mode).
+*   **Scope:** Operate on the entire "hunk" (block of differences) where your cursor is currently located.
+*   **Simplicity:** They are quick, single-command operations, designed for speed and convenience when working in a two-way diff.
+*   **Usage:**
+    
+    *   `do`: "Diff Obtain". Gets the change from the _other_ window and applies it to the _current_ window's buffer at the cursor position.
+    *   `dp`: "Diff Put". Puts the change from the _current_ window's buffer into the _other_ window's buffer.
+
+**Ex-Mode Commands (**`**:diffget**` **and** `**:diffput**`**)**
+
+*   **Mode:** Used as colon commands (ex-mode).
+*   **Scope:**
+    
+    *   When used without arguments in a two-way diff, they function identically to `do` and `dp`, operating on the current hunk.
+    *   Their primary advantage is their ability to accept a range (e.g., in visual mode, using `V` to select lines, then typing `:diffget`) or a specific buffer name/number as an argument. This allows for more granular control, such as copying only a few lines from a larger hunk, or specifying which exact buffer to obtain from/put to.
+*   **Flexibility:** Essential for managing **three-way diffs** (like when resolving Git merge conflicts), where you need to explicitly state which of the multiple alternative buffers (e.g., local version, remote version, or the merge result) you want to use.
+
+**Summary of Differences**
+
+| **Feature** | `**do**` **/** `**dp**` | `**:diffget**` **/** `**:diffput**` |
+| --- | --- | --- |
+| **Mode** | Normal mode (quick keys) | Ex-mode (colon commands) |
+| **Scope (default)** | Current difference "hunk" | Current difference "hunk" |
+| **Arguments** | No arguments; works on adjacent buffer by default | Can accept a range or a specific buffer name/number |
+| **Multi-way Diffs** | Less effective, as they don't specify _which_ other buffer to use | Required for specifying source/destination buffers precisely |
+
+In short, `do` and `dp` are convenient shortcuts for simple two-file comparisons, while `:diffget` and `:diffput` offer advanced control for complex merging situations or specific line-range operations.
+
+[](https://labs.google.com/search/experiment/22)

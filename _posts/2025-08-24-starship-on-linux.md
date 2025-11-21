@@ -51,3 +51,12 @@ While I'm here, on Windows, stick the init thing for bash into a `.profile` file
    * `mkdir -p ~/.config && touch ~/.config/starship.toml`
    * then maybe apply some presets from [here](https://starship.rs/config/#preset-configuration)
    * Though on my most recent deployment, I opted for a more minimal setup because I like the CLI icon better
+
+## Progress
+I'm too lazy to customize starship much, mostly because I like the default prompt.
+
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/starship_wsl.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/starship_wsl.png)
+Here is starship running on "Linux" via Windows using WSL2
+
+[![Example](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/starship_win_bash.png)](https://raw.githubusercontent.com/johnzastrow/johnzastrow.github.io/master/_posts/img/starship_win_bash.png)
+This is also starship except running on bash shell under windows showing the same directory
