@@ -469,7 +469,14 @@ total 212K
 
 
 
+Use LazyGit to visualize git repos and merge conflicts on remote hosts without a GUI
 
+https://github.com/jesseduffield/lazygit
+
+```bash
+sudo apt install lazygit
+lazygit
+```
 
 
 
