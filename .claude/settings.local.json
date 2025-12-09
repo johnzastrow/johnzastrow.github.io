@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(psql:*)",
+      "Bash(PGPASSWORD='yub.miha' psql:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
