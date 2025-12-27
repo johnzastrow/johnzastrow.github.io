@@ -177,6 +177,9 @@ gtag: "G-D47TEJ1NKB"
 # Google Tag Manager ID
 gtm: "G-D47TEJ1NKB"
 
+# GoatCounter analytics (privacy-friendly)
+goatcounter: "jcz"
+
 # Matomo (aka Piwik) Web statistics
 # Uncomment the following section to enable Matomo. The opt-out parameter controls
 # whether or not you want to allow users to opt out of tracking.
