@@ -62,6 +62,30 @@ git remote add origin https://github.com/johnzastrow/fitness.git
 git push -u origin main
 ```
 
+here are same instructions said slightly differently.
+
+```bash
+# Connecting a local git-tracked directory to a remote repo. 
+# 1. create the remote myrepo without any starting files
+# 2. `git init` then `git add .` then `git commit -m "Initial commit"` the local directory to starting tracking (careful to exclude sensitive files)
+# the do the following to connect it to the remote origin and get the files into the service
+git remote add origin git@github.com:myaccount/myrepo.git
+git remote -v
+git push -u origin main
+```
+
+## Settings to help git run on shared web hosting services
+
+```bash
+# shared hosting providers limit threads and memory, so doing git operations can fail as git expects multiple cores.
+# this config can solve that, but also slows some git operations. These worked for me.
+git config --global pack.windowMemory "100m"
+git config --global pack.packSizeLimit "100m"
+git config --global pack.threads "1"
+```
+
+
+
 # Cleaning After Making a Mess
 
 I'm a bad person and I commit too often AND I commit a lot of blobs as I use Github as a sort of backup as well as an FTP server. The result is that my repos are HUUUGE and full of useless blobs. So, to shrink my repos I periodically have to trim the fat. Here is an approach I'm developing.

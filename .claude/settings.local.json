@@ -4,7 +4,19 @@
       "Bash(wc:*)",
       "Bash(grep:*)",
       "Bash(psql:*)",
-      "Bash(PGPASSWORD='yub.miha' psql:*)"
+      "Bash(PGPASSWORD='yub.miha' psql:*)",
+      "Bash(git -C /mnt/c/Users/br8kw/Github/johnzastrow.github.io status)",
+      "Bash(git -C /mnt/c/Users/br8kw/Github/johnzastrow.github.io diff CLAUDE.md)",
+      "Bash(git -C /mnt/c/Users/br8kw/Github/johnzastrow.github.io log --oneline -5)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nStreamline CLAUDE.md for conciseness\n\nRemove redundant sections \\(directory structure, dependencies, theme details\\)\nthat duplicate information easily found in source files. Focus on actionable\nguidance for content creation and development commands.\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /mnt/c/Users/br8kw/Github/johnzastrow.github.io config user.name)",
+      "Bash(git -C /mnt/c/Users/br8kw/Github/johnzastrow.github.io config user.email)",
+      "Bash(git -C /mnt/c/Users/br8kw/Github/johnzastrow.github.io add CLAUDE.md)",
+      "Bash(git -C /mnt/c/Users/br8kw/Github/johnzastrow.github.io commit -m \"$\\(cat <<''EOF''\nStreamline CLAUDE.md for conciseness\n\nRemove redundant sections \\(directory structure, dependencies, theme details\\)\nthat duplicate information easily found in source files. Focus on actionable\nguidance for content creation and development commands.\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git config:*)",
+      "Bash(git push)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd GoatCounter analytics, remove PostHog\n\n- Add GoatCounter analytics via _includes/goatcounter.html\n- Configure goatcounter: \"jcz\" in _config.yml\n- Remove PostHog tracking script from head.html\n- Remove duplicate Google tag script \\(already loaded via gtag.html\\)\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
     ],
     "deny": [],
     "ask": []
