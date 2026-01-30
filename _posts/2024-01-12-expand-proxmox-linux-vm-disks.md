@@ -17,11 +17,9 @@ I'm writing this down because I do this about every six months and spend a day l
 
 ## Expansion Process
 
-If I enlarge the hard disk, once I have added the disk plate, my partition table and file system knows nothing about the new size, so I have to act inside the VM to fix it.
+If I enlarge or resize the hard disk in PVE, my partition table and file system INSIDE the VM knows nothing about the new size, so I have to act inside the VM to fix it.
 
-If I reduce (shrink) the hard disk, of course removing the last disk plate will probably destroy my file system and remove the data in it! So in this case it is paramount to act in the VM in advance, reducing the file system and the partition size. SystemRescueCD comes very handy for it, just add its iso as cd-rom of my VM and set boot priority to CD-ROM.
-
-Shrinking disks is not supported by the PVE API and has to be done manually."
+Shrinking disks is not supported by the PVE API and has to be done manually.
 
 ## 1. Resizing guest disk
 
@@ -33,7 +31,7 @@ You can resize my disks online or offline with command line:
 
 example: to add 5G to my virtio0 disk on vmid100:
 
-```qm resize 100 virtio0 +5G```
+```qm resize 101 virtio0 +30G```
 
 For virtio disks, Linux should see the new size online without reboot with kernel >= 3.6
 
@@ -43,17 +41,18 @@ We will assume I am using LVM on the storage and the VM OS is using ext4 filesys
 
 #### Online for Linux Guests
 
-Here we will enlarge a LVM PV partition, but the procedure is the same for every kind of partitions. Note that the partition I want to enlarge should be at the end of the disk. If I want to enlarge a partition which is anywhere on the disk, use the offline method.
+Here we will enlarge a LVM PV partition, but the procedure is the same for every kind of partitions. Note that the partition I want to enlarge should be at the end of the disk. If I want to enlarge a partition which is anywhere on the disk, use the offline method. 
 
-Check that the kernel has detected the change of the hard drive size
+Check that the kernel has detected the change of the hard drive size. In this excample
 (here we use VirtIO so the hard drive is named vda)
 
-```bash dmesg | grep vda```
-
-```
-
-[3982.979046] vda: detected capacity change from 34359738368 to 171798691840
-
+```bash
+❯ sudo dmesg | grep vda
+[    0.413554] virtio_blk virtio2: [vda] 140509184 512-byte logical blocks (71.9 GB/67.0 GiB)
+[    0.423954]  vda: vda1 vda2 vda3
+[    2.997437] EXT4-fs (vda2): mounted filesystem 9341d9b9-94d2-46c4-a3e1-53bcd19e6a22 r/w with ordered data mode. Quota mode: none.
+[1682633.068612] virtio_blk virtio2: [vda] new size: 203423744 512-byte logical blocks (104 GB/97.0 GiB)
+[1682633.068630] vda: detected capacity change from 140509184 to 203423744
 ```
 
 #### Example with EFI
@@ -62,12 +61,13 @@ Print the current partition table
 
 {: .box-terminal}
 <pre>
-fdisk -l /dev/vda | grep ^/dev
+❯ sudo fdisk -l /dev/vda | grep ^/dev
+GPT PMBR size mismatch (140509183 != 203423743) will be corrected by write.
+The backup GPT table is not on the end of the device.
+/dev/vda1     2048      4095      2048   1M BIOS boot
+/dev/vda2     4096   2101247   2097152   1G Linux filesystem
+/dev/vda3  2101248 140509150 138407903  66G Linux filesystem
 
-GPT PMBR size mismatch (67108863 != 335544319) will be corrected by w(rite).
-/dev/vda1      34     2047     2014 1007K BIOS boot
-/dev/vda2    2048   262143   260096  127M EFI System
-/dev/vda3  262144 67108830 66846687 31.9G Linux LVM
 </pre>
 
 Resize the partition 3 (LVM PV) to occupy the whole remaining space of the hard drive)
