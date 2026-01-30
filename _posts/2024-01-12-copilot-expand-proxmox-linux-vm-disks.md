@@ -2,161 +2,156 @@
 layout: post
 title: Expand Linux VM Disk under Proxmox VE
 subtitle: Step-by-step guide for expanding disk space in Linux VMs
-gh-badge: [star, fork, follow]
 date: '2024-01-12T12:47:41-05:00'
-tags: [linux]
-comments: true
+tags: [linux, proxmox]
 ---
-Updated: 12-Dec-2024
 
-Sources:  
-**1** <https://pve.proxmox.com/wiki/Resize_disks>  
-**2** <https://packetpushers.net/blog/ubuntu-extend-your-default-lvm-space/>
+Updated: 30-Jan-2025
 
-## 1. Introduction
+Sources:
+- <https://pve.proxmox.com/wiki/Resize_disks>
+- <https://packetpushers.net/blog/ubuntu-extend-your-default-lvm-space/>
 
-Expanding disk space in a Linux VM under Proxmox VE is a common task, especially as storage needs grow over time. This guide walks through the process of safely increasing disk size, updating partitions, and resizing filesystems, with a focus on LVM and ext4 setups.
+## Overview
 
-## 2. Discovery: Why and When to Expand
+This guide covers expanding disk space for Linux VMs running on Proxmox VE with ext4 filesystems. The process differs depending on whether your guest uses LVM (common with Ubuntu Server installs) or partitions directly.
 
-You might want to expand your VM disk if:
-- Your root filesystem is running out of space (`df -h` shows high usage).
-- You need more storage for applications or data.
-- The installer left unused space on your disk or volume group.
+Check your setup with `lsblk`. If you see `lvm` in the TYPE column, follow the **With LVM** section. Otherwise, follow the **Without LVM** section.
 
-Before making changes, check your current disk, partition, and volume group status.
+## Step 1: Expand the Virtual Disk in Proxmox
 
-## 3. Documenting Current State
-
-### Check Disk and Partition Layout
-
-```bash
-fdisk -l
-lsblk
-```
-
-Sample output:
-```
-NAME                      MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-vda                       252:0    0    67G  0 disk
-├─vda1                    252:1    0     1M  0 part
-├─vda2                    252:2    0     1G  0 part /boot
-└─vda3                    252:3    0    66G  0 part
-  └─ubuntu--vg-ubuntu--lv 253:0    0    66G  0 lvm  /
-```
-
-### Check Filesystem Usage
-
-```bash
-df -h
-```
-
-### Check LVM Volume Group and Logical Volume
-
-```bash
-vgdisplay
-lvdisplay
-```
-
-Look for free space in your VG and current LV size.
-
-## 4. Completing the Changes
-
-### Step 1: Expand the Virtual Disk in Proxmox
-
-Use the GUI or CLI:
+On the Proxmox host, expand the VM's disk:
 
 ```bash
 qm resize <vmid> <disk> +<size>
-# Example: qm resize 100 virtio0 +5G
+# Example: add 10GB to VM 100's first virtio disk
+qm resize 100 virtio0 +10G
 ```
 
-### Step 2: Rescan Disk and Update Partition Table
+Or use the GUI: VM → Hardware → Hard Disk → Resize.
 
-Inside the VM, rescan the disk:
+## Step 2: Rescan the Disk Inside the Guest
+
+The guest OS needs to detect the new disk size:
 
 ```bash
-dmesg | grep vda
-# Or for /dev/sda:
+# For virtio disks (vda)
+echo 1 > /sys/class/block/vda/device/rescan
+
+# For SCSI disks (sda)
 echo 1 > /sys/class/block/sda/device/rescan
 ```
 
-Use `cfdisk` or `parted` to resize the partition:
+Verify the new size:
 
-#### With EFI (GPT):
+```bash
+lsblk
+```
+
+## With LVM (Ubuntu Server Default)
+
+Typical layout:
+
+```
+NAME                      MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+vda                       252:0    0   77G  0 disk
+├─vda1                    252:1    0    1M  0 part
+├─vda2                    252:2    0    2G  0 part /boot
+└─vda3                    252:3    0   75G  0 part
+  └─ubuntu--vg-ubuntu--lv 253:0    0   65G  0 lvm  /
+```
+
+### Step 3a: Expand the Partition
+
+Resize the partition containing the LVM physical volume (usually partition 3):
+
+```bash
+parted /dev/vda resizepart 3 100%
+```
+
+Or interactively:
 
 ```bash
 parted /dev/vda
-(parted) print
+(parted) print        # confirm partition numbers
 (parted) resizepart 3 100%
 (parted) quit
 ```
 
-#### Without EFI (MBR):
-
-```bash
-parted /dev/vda
-(parted) resizepart 2 100%
-(parted) resizepart 3 100%
-(parted) quit
-```
-
-### Step 3: Resize LVM Physical Volume
+### Step 4a: Resize the LVM Physical Volume
 
 ```bash
 pvresize /dev/vda3
 ```
 
-### Step 4: Extend Logical Volume
+Verify free space appeared in the volume group:
 
-Use all free space:
+```bash
+vgdisplay
+```
+
+### Step 5a: Extend the Logical Volume
+
+Use all available space:
 
 ```bash
 lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
 ```
-Or add a specific size:
+
+Or add a specific amount:
 
 ```bash
-lvresize --size +20G --resizefs /dev/ubuntu-vg/ubuntu-lv
+lvextend -L +10G /dev/ubuntu-vg/ubuntu-lv
 ```
 
-### Step 5: Resize the Filesystem
-
-For ext4:
+### Step 6a: Resize the Filesystem
 
 ```bash
-resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+resize2fs /dev/ubuntu-vg/ubuntu-lv
 ```
 
-## 5. Documenting the Final State
+## Without LVM (Direct Partition)
 
-Re-run the following to confirm changes:
+Typical layout:
+
+```
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+vda    252:0    0   50G  0 disk
+├─vda1 252:1    0  512M  0 part /boot/efi
+└─vda2 252:2    0 49.5G  0 part /
+```
+
+### Step 3b: Expand the Partition
+
+Use `growpart` (from cloud-guest-utils) to expand the root partition:
+
+```bash
+growpart /dev/vda 2
+```
+
+Or with parted:
+
+```bash
+parted /dev/vda resizepart 2 100%
+```
+
+### Step 4b: Resize the Filesystem
+
+```bash
+resize2fs /dev/vda2
+```
+
+## Verify the Changes
 
 ```bash
 df -h
-lvdisplay
-vgdisplay
-fdisk -l
 lsblk
 ```
 
-Your root filesystem should now reflect the expanded space.
-
-## Useful Commands Reference
-
-```bash
-growpart /dev/sda 3
-pvresize /dev/sda3
-lvextend -l +100%FREE /dev/pve/root
-resize2fs /dev/mapper/pve-root
-```
+Your root filesystem should now show the expanded size.
 
 ## Notes
 
-- Always back up important data before resizing disks or partitions.
-- Shrinking disks is risky and not supported by the PVE API; use SystemRescueCD if needed.
-- For more details, see the [Proxmox Wiki](https://pve.proxmox.com/wiki/Resize_disks).
-
----
-
-*This workflow ensures you safely expand your VM disk, update partitions, and grow your filesystem, with checks before and after each
+- Always back up important data before resizing.
+- Shrinking disks is risky and not covered here.
+- A reboot may be required if the kernel doesn't recognize changes.
