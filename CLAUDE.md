@@ -35,11 +35,12 @@ title: Your Post Title
 subtitle: Optional subtitle
 date: '2025-01-15T12:00:00-05:00'
 tags: [linux, database, gis]
-comments: true
 ---
 ```
 
 **Common tags:** linux, database, gis, postgresql, PostGIS, Spatialite, geodata, spatial, data management, python, mysql, MariaDB, weather, water quality, environmental, networking, windows
+
+Draft posts go in `_drafts/` (no date prefix needed in filename). Preview with `bundle exec jekyll serve --drafts`.
 
 **Optional front matter:**
 - `cover-img` - Full-width header image
