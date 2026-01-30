@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Expand Linux VM Disk under Proxmox VE
-subtitle: Step-by-step guide for expanding disk space in Linux VMs
+subtitle: Coauthored with GitHub Copilot and Claude
 date: '2024-01-12T12:47:41-05:00'
 tags: [linux, proxmox]
 ---

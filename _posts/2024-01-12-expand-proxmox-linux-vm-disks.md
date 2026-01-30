@@ -70,25 +70,54 @@ The backup GPT table is not on the end of the device.
 
 </pre>
 
-Resize the partition 3 (LVM PV) to occupy the whole remaining space of the hard drive)
+Resize the partition 3 (LVM PV) to occupy the whole remaining space of the hard drive). Notice the third part grows from the first parted print to the second.
 
 {: .box-terminal}
 <pre>
 
-parted /dev/vda
-
+❯ sudo parted /dev/vda
+GNU Parted 3.6
+Using /dev/vda
+Welcome to GNU Parted! Type 'help' to view a list of commands.
 (parted) print
-Warning: Not all of the space available to /dev/vda appears to be used, I can
-fix the GPT to use all of the space (an extra 268435456 blocks) or continue
-with the current setting?
+Warning: Not all of the space available to /dev/vda appears to be used, you can fix the GPT to use all of the space (an
+extra 62914560 blocks) or continue with the current setting?
 Fix/Ignore? F
+Model: Virtio Block Device (virtblk)
+Disk /dev/vda: 104GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags:
+
+Number  Start   End     Size    File system  Name  Flags
+ 1      1049kB  2097kB  1049kB                     bios_grub
+ 2      2097kB  1076MB  1074MB  ext4
+ 3      1076MB  71.9GB  70.9GB
+
 (parted) resizepart 3 100%
 (parted) quit
+Information: You may need to update /etc/fstab.
+
+❯ sudo parted /dev/vda
+GNU Parted 3.6
+Using /dev/vda
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) print
+Model: Virtio Block Device (virtblk)
+Disk /dev/vda: 104GB
+Sector size (logical/physical): 512B/512B
+Partition Table: gpt
+Disk Flags:
+
+Number  Start   End     Size    File system  Name  Flags
+ 1      1049kB  2097kB  1049kB                     bios_grub
+ 2      2097kB  1076MB  1074MB  ext4
+ 3      1076MB  104GB   103GB
 </pre>
 
 #### Example without EFI
 
-Another example without EFI using parted:
+Example from another VM without EFI using parted:
 
 {: .box-terminal}
 <pre>
@@ -207,13 +236,24 @@ This command will increase the partition up by 20GB
 
 ```lvresize --size +20G --resizefs /dev/{volume group name}/root```
 
-Use all the remaining space on the volume group
+Use all the remaining space on the volume group, in this case in server:
 
-```lvresize --extents +100%FREE --resizefs /dev/{volume group name}/root```
+```sudo lvresize --extents +100%FREE --resizefs /dev/ubuntu-vg/ubuntu-lv```
 
-Online for Linux guests without LVM
-Enlarge the filesystem (in this case root is on vda1)
-An ext4 file system may be grown while mounted using the resize2fs command:
+Here it is in action:
+
+{: .box-terminal}
+<pre>
+sudo lvresize --extents +100%FREE --resizefs /dev/ubuntu-vg/ubuntu-lv
+  Size of logical volume ubuntu-vg/ubuntu-lv changed from <66.00 GiB (16895 extents) to <96.00 GiB (24575 extents).
+  Logical volume ubuntu-vg/ubuntu-lv successfully resized.
+resize2fs 1.47.0 (5-Feb-2023)
+Filesystem at /dev/mapper/ubuntu--vg-ubuntu--lv is mounted on /; on-line resizing required
+old_desc_blocks = 9, new_desc_blocks = 12
+The filesystem on /dev/mapper/ubuntu--vg-ubuntu--lv is now 25164800 (4k) blocks long.
+</pre>
+
+
 
 ``` resize2fs /mount/device size ```
 
