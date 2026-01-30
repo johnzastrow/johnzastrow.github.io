@@ -16,7 +16,23 @@ Sources:
 
 This guide covers expanding disk space for Linux VMs running on Proxmox VE with ext4 filesystems. The process differs depending on whether your guest uses LVM (common with Ubuntu Server installs) or partitions directly.
 
-Check your setup with `lsblk`. If you see `lvm` in the TYPE column, follow the **With LVM** section. Otherwise, follow the **Without LVM** section.
+## Step 0: Identify Your Disk Setup
+
+Check your setup inside the guest VM with `lsblk`. If you see `lvm` in the TYPE column, follow the **With LVM** section. Otherwise, follow the **Without LVM** section.
+
+For example, with LVM:
+
+```bash
+# use the grep to hide loop devices
+❯ lsblk | grep -e vda -e vg
+vda                       253:0    0    97G  0 disk
+├─vda1                    253:1    0     1M  0 part
+├─vda2                    253:2    0     1G  0 part /boot
+└─vda3                    253:3    0    96G  0 part
+  └─ubuntu--vg-ubuntu--lv 252:0    0    96G  0 lvm  /
+```
+Now is a good time to also run `df -h` to see current filesystem sizes and `sudo vgdisplay` to see volume group details. We'll revisit these later.
+
 
 ## Step 1: Expand the Virtual Disk in Proxmox
 
@@ -42,11 +58,8 @@ echo 1 > /sys/class/block/vda/device/rescan
 echo 1 > /sys/class/block/sda/device/rescan
 ```
 
-Verify the new size:
+Verify the new size with the `lsblk` command from above and confirm the disk size increased.
 
-```bash
-lsblk
-```
 
 ## With LVM (Ubuntu Server Default)
 
