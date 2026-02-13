@@ -750,58 +750,76 @@ Create a new GitHub repository.
 
 To create a repository interactively, use gh repo create with no arguments.
 
-To create a remote repository non-interactively, supply the repository name and one of --public, --private, or --internal. Pass --clone to clone the new repository locally.
+To create a remote repository non-interactively, supply the repository name and one of `--public, --private, or --internal`. Pass `--clone` to clone the new repository locally.
 
 If the OWNER/ portion of the OWNER/REPO name argument is omitted, it defaults to the name of the authenticating user.
 
-To create a remote repository from an existing local repository, specify the source directory with --source. By default, the remote repository name will be the name of the source directory.
+To create a remote repository from an existing local repository, specify the source directory with `--source`. By default, the remote repository name will be the name of the source directory.
 
-Pass --push to push any local commits to the new repository. If the repo is bare, this will mirror all refs.
+Pass `--push` to push any local commits to the new repository. If the repo is bare, this will mirror all refs.
 
-For language or platform .gitignore templates to use with --gitignore, https://github.com/github/gitignore.
+For language or platform .gitignore templates to use with `--gitignore`, visit [GitHub gitignore](https://github.com/github/gitignore).
 
-For license keywords to use with --license, run gh repo license list or visit https://choosealicense.com.
+For license keywords to use with `--license`, run `gh repo license list` or visit [Choose a License](https://choosealicense.com).
 
-The repo is created with the configured repository default branch, see https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/managing-the-default-branch-name-for-your-repositories.
+The repo is created with the configured repository default branch, see [Managing the default branch name for your repositories](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settingsmanaging-the-default-branch-name-for-your-repositories)       .
 
-Options
-`--add-readme`
+##### Options
+
+* `--add-readme`
 Add a README file to the new repository
-`-c, --clone`
+
+* `-c, --clone`
 Clone the new repository to the current directory
-`-d, --description <string>`
+
+* `-d, --description <string>`
 Description of the repository
-`--disable-issues`
+
+* `--disable-issues`
 Disable issues in the new repository
-`--disable-wiki`
+
+* `--disable-wiki`
 Disable wiki in the new repository
-`-g, --gitignore <string>`
+
+* `-g, --gitignore <string>`
 Specify a gitignore template for the repository
-`-h, --homepage <URL>`
+
+* `-h, --homepage <URL>`
 Repository home page URL
-`--include-all-branches`
+
+* `--include-all-branches`
 Include all branches from template repository
-`--internal`
+
+* `--internal`
 Make the new repository internal
-`-l, --license <string>`
+
+* `-l, --license <string>`
 Specify an Open Source License for the repository
-`--private`
+
+* `--private`
 Make the new repository private
-`--public`
+
+* `--public`
 Make the new repository public
-`--push`
+
+* `--push`
 Push local commits to the new repository
-`-r, --remote <string>`
+
+* `-r, --remote <string>`
 Specify remote name for the new repository
-`-s, --source <string>`
+
+* `-s, --source <string>`
 Specify path to local repository to use as source
-`-t, --team <name>`
+
+* `-t, --team <name>`
 The name of the organization team to be granted access
-`-p, --template <repository>`
-Make the new repository based on a template repositor
+
+* `-p, --template <repository>`
+Make the new repository based on a template repository
+
 
 ALIASES
-`gh repo create` is also available as `gh repo new`.
+* `gh repo create` is also available as `gh repo new`.
 
 ### Using the Git command line tool
 
@@ -809,11 +827,13 @@ ALIASES
 It's often easier to first create a new repository on GitHub using the web interface, and then add it as a remote to your local repository. Here are the steps to do that:
 1. Go to GitHub and create a new repository. You can choose to initialize it with a README, .gitignore, or license if you want, but it's not necessary if you already have a local repository.
 2. Once the repository is created, you'll be taken to the repository page. Click on the
-3. "Code" button and copy the URL of the repository (either HTTPS or SSH, depending on your preference).
+3. "Code" button and copy the URL of the repository (either HTTPS or SSH, depending on your preference, though SSH works better most of the time for later operations).
 4. Open your terminal and navigate to your local repository.
 5. Add the GitHub repository as a remote to your local repository using the following command:
 6. ```bash
 git remote add origin <repository-url>
+# for example:
+# git remote add origin https://github.com/username/repository.git
 ```
 Replace `<repository-url>` with the URL you copied from GitHub.
 7. Now you can push your local commits to the GitHub repository using:
@@ -825,24 +845,40 @@ This command pushes your local `master` branch to the `origin` remote (the GitHu
 ```bash
 git push -u origin <branch-name>
 ```
-Replace `<branch-name>` with the name of the branch you want to push.
+Replace `<branch-name>` with the name of the branch you want to push. See branching above for more details on working with branches.
 
 #### Creating a new repository on GitHub from an existing local repository
-If you want to create a new repository on GitHub directly from your existing local repository, you
-can use the GitHub CLI tool (`gh`) or the Git command line tool. Here's how to do it using the Git command line tool:
-1. First, make sure you have the GitHub CLI tool installed and authenticated with your GitHub account.
+If you want to send a locally created repository to GitHub, you
+can use the Github CLI tool (`gh`) or the plain Git command line tool, hereafter just called `git`. 
+
+Here's how to do it using just git commands:
+1. First, make sure you have git installed and authenticated with your GitHub account.
 2. Open your terminal and navigate to your local repository.
 3. Use the following command to create a new repository on GitHub from your local repository:
+
 ```bash
-gh repo create <repository-name> --public --source=. --remote=origin
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin <repository-url>
+# for example:
+# git remote add origin https://github.com/username/repository.git 
+
+git push -u origin main
 ```
-Replace `<repository-name>` with the desired name for your GitHub repository. The `--public` flag creates a public repository; you can use `--private` if you want it to be private. The `--source=.` flag indicates that the current directory (your local repository) should be used as the source for the new repository, and `--remote=origin` sets the remote name to `origin`.
-4. After running the command, the new repository will be created on GitHub, and the remote will be added to your local repository. You can now push your local commits to GitHub using:
+* Replace `<repository-url>` with the URL of your GitHub repository. 
+* The `git init` command initializes a new Git repository in your local directory. 
+* The `git add .` command stages all files for the initial commit. 
+* The `git commit -m "Initial commit"` command creates the initial commit. 
+* The `git branch -M main` command renames the default branch to `main`. 
+* The `git remote add origin <repository-url>` command adds the GitHub repository as a remote. 
+* Finally, the `git push -u origin main` command pushes the initial commit to GitHub and sets the upstream branch.  
+  
+```
+This command pushes your local `main` branch to the `origin` remote (the GitHub repository) and sets it as the upstream branch for future pushes.
+1. If you have other branches, you can push them as well using:
 ```bash
-git push -u origin master # the standard and default name is now main
-```
-This command pushes your local `master` branch to the `origin` remote (the GitHub repository) and sets it as the upstream branch for future pushes.
-5. If you have other branches, you can push them as well using:
-```bashgit push -u origin <branch-name>
+git push -u origin <branch-name>
 ```
 Replace `<branch-name>` with the name of the branch you want to push.       
