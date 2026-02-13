@@ -802,3 +802,47 @@ Make the new repository based on a template repositor
 
 ALIASES
 `gh repo create` is also available as `gh repo new`.
+
+### Using the Git command line tool
+
+#### Creating a new repository on GitHub and adding it as a remote to your local repository
+It's often easier to first create a new repository on GitHub using the web interface, and then add it as a remote to your local repository. Here are the steps to do that:
+1. Go to GitHub and create a new repository. You can choose to initialize it with a README, .gitignore, or license if you want, but it's not necessary if you already have a local repository.
+2. Once the repository is created, you'll be taken to the repository page. Click on the
+3. "Code" button and copy the URL of the repository (either HTTPS or SSH, depending on your preference).
+4. Open your terminal and navigate to your local repository.
+5. Add the GitHub repository as a remote to your local repository using the following command:
+6. ```bash
+git remote add origin <repository-url>
+```
+Replace `<repository-url>` with the URL you copied from GitHub.
+7. Now you can push your local commits to the GitHub repository using:
+```bash
+git push -u origin master # the standard and default name is now main
+```
+This command pushes your local `master` branch to the `origin` remote (the GitHub repository) and sets it as the upstream branch for future pushes.
+8. If you have other branches, you can push them as well using:
+```bash
+git push -u origin <branch-name>
+```
+Replace `<branch-name>` with the name of the branch you want to push.
+
+#### Creating a new repository on GitHub from an existing local repository
+If you want to create a new repository on GitHub directly from your existing local repository, you
+can use the GitHub CLI tool (`gh`) or the Git command line tool. Here's how to do it using the Git command line tool:
+1. First, make sure you have the GitHub CLI tool installed and authenticated with your GitHub account.
+2. Open your terminal and navigate to your local repository.
+3. Use the following command to create a new repository on GitHub from your local repository:
+```bash
+gh repo create <repository-name> --public --source=. --remote=origin
+```
+Replace `<repository-name>` with the desired name for your GitHub repository. The `--public` flag creates a public repository; you can use `--private` if you want it to be private. The `--source=.` flag indicates that the current directory (your local repository) should be used as the source for the new repository, and `--remote=origin` sets the remote name to `origin`.
+4. After running the command, the new repository will be created on GitHub, and the remote will be added to your local repository. You can now push your local commits to GitHub using:
+```bash
+git push -u origin master # the standard and default name is now main
+```
+This command pushes your local `master` branch to the `origin` remote (the GitHub repository) and sets it as the upstream branch for future pushes.
+5. If you have other branches, you can push them as well using:
+```bashgit push -u origin <branch-name>
+```
+Replace `<branch-name>` with the name of the branch you want to push.       
