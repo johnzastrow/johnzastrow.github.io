@@ -718,12 +718,14 @@ https://github.com/jesseduffield/lazygit
 
 ## Sending a local git repo to a new remote (Github)
 
+{: .box-note}
 **SKIP TO THE MEAT:**
 a. Install the `gh` CLI tool, then authenticate with it to Github using SSH
 1. CREATE THE LOCAL DIRECTORY WITH SOME STARTER FILES
 2. `git add.` and `git commit -m "xyz" them
 3. RUN `gh repo create` AND FOLLOW THE STEPS AND DEFAULTS. 
 
+{: .box-warning}
 Don't do anything else or the tools will step on their own toes.
 
 
