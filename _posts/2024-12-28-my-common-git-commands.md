@@ -718,6 +718,15 @@ https://github.com/jesseduffield/lazygit
 
 ## Sending a local git repo to a new remote (Github)
 
+**SKIP TO THE MEAT:**
+a. Install the `gh` CLI tool, then authenticate with it to Github using SSH
+1. CREATE THE LOCAL DIRECTORY WITH SOME STARTER FILES
+2. `git add.` and `git commit -m "xyz" them
+3. RUN `gh repo create` AND FOLLOW THE STEPS AND DEFAULTS. 
+
+Don't do anything else or the tools will step on their own toes.
+
+
 ### Using the Github CLI
 
 First install the Github CLI tool, `gh`. Then you can use the `gh repo create` command to create a new repository on GitHub and optionally clone it locally.
@@ -847,7 +856,12 @@ git push -u origin <branch-name>
 ```
 Replace `<branch-name>` with the name of the branch you want to push. See branching above for more details on working with branches.
 
-#### Creating a new repository on GitHub from an existing local repository
+#### ~~Creating a new repository on GitHub from an existing local repository using Git~~
+
+USE THE `gh` cli tool. `git` IS MUCH HARDER. I never got it working right. 
+
+
+
 If you want to send a locally created repository to GitHub, you
 can use the Github CLI tool (`gh`) or the plain Git command line tool, hereafter just called `git`. 
 
