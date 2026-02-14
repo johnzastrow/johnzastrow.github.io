@@ -882,3 +882,11 @@ This command pushes your local `main` branch to the `origin` remote (the GitHub 
 git push -u origin <branch-name>
 ```
 Replace `<branch-name>` with the name of the branch you want to push.       
+
+Update: looks like you can't push without the repo existing already in Github
+
+```
+> git push -u origin master
+remote: Repository not found.
+fatal: repository 'https://github.com/johnzastrow/deleteme2.git/' not found
+```
